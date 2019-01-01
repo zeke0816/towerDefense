@@ -14,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import threads.Battle;
-import threads.Movement;
 
 /**
  * Class to handle all things related to the General User Interface
@@ -48,9 +47,6 @@ public class MainInterface extends Application {
 		stage.setHeight(850);
 		stage.setScene(MainScene.getInstance());
 		stage.show();
-		
-        movementThread = new Thread(new Movement(), "Enemy Movement Thread");
-        movementThread.start();
 		
         battleThread = new Thread(new Battle(), "Battle Thread");
         battleThread.start();

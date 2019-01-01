@@ -16,7 +16,6 @@ public abstract class Character extends GameObject {
 	protected int strength;
 	protected int protection;
 	protected int attackSpeed;
-	protected int movementSpeed;
 	
 	protected Character() {
 		state = new Basic(this);
@@ -30,7 +29,6 @@ public abstract class Character extends GameObject {
             strength = target.getStrength();
             protection = target.getProtection();
             attackSpeed = target.getAttackSpeed();
-            movementSpeed = target.getMovementSpeed();
         }
     }
 	
@@ -52,30 +50,6 @@ public abstract class Character extends GameObject {
 	
 	public int getAttackSpeed() {
 		return attackSpeed;
-	}
-	
-	public int getMovementSpeed() {
-		return movementSpeed;
-	}
-	
-	public void setScope(int s) {
-		scope = s;
-	}
-	
-	public void setStrength(int s) {
-		strength = s;
-	}
-	
-	public void setProtection(int p) {
-		protection = p;
-	}
-	
-	public void setAttackSpeed(int s) {
-		attackSpeed = s;
-	}
-	
-	public void setMovementSpeed(int s) {
-		movementSpeed = s;
 	}
 
 }

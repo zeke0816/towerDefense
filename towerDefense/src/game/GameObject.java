@@ -13,6 +13,7 @@ public abstract class GameObject {
 	
 	protected int life;
 	protected int points;
+	protected int movementSpeed;
 	
 	protected GameObject() {
 		
@@ -22,6 +23,7 @@ public abstract class GameObject {
 		if(target != null) {
 			life = target.getLife();
 			points = target.getPoints();
+            movementSpeed = target.getMovementSpeed();
 		}
 	}
 	
@@ -55,6 +57,14 @@ public abstract class GameObject {
 	 */
 	public int getLife() {
 		return life;
+	}
+
+	/**
+	 * Gets the movement speed of the object
+	 * @return the movement speed
+	 */
+	public int getMovementSpeed() {
+		return movementSpeed;
 	}
 	
 	/**

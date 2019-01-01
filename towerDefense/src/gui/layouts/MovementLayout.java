@@ -2,13 +2,15 @@ package gui.layouts;
 
 import java.util.HashMap;
 
+import Item.Item;
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import game.Game;
+import game.GameObject;
 import game.Map;
 import game.characters.Enemy;
-import gui.factories.enemies.PlacedEnemy;
-import gui.factories.warriors.PlacedWarrior;
+import game.characters.Warrior;
+import gui.factories.PlacedObject;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -20,12 +22,12 @@ import javafx.scene.layout.StackPane;
  */
 public class MovementLayout extends Layout<GridPane> {
 
-	private HashMap<Integer, PlacedEnemy> placedEnemies;
+	private HashMap<GameObject, PlacedObject> placedObjects;
 	private StackPane[] movementRows;
 	private static final MovementLayout instance = new MovementLayout();
 	
 	/**
-	 * Initializes the layout creating galleries for the characters to move around
+	 * Initializes the layout creating galleries for the Game Objects to move around
 	 */
 	protected MovementLayout() {
 		super();
@@ -39,7 +41,7 @@ public class MovementLayout extends Layout<GridPane> {
 			movementRows[i] = new RowLayout();
 			layout.add(movementRows[i], 0, i);
 		}
-		placedEnemies = new HashMap<Integer, PlacedEnemy>();
+		placedObjects = new HashMap<GameObject, PlacedObject>();
 	}
 
 	/**
@@ -51,48 +53,63 @@ public class MovementLayout extends Layout<GridPane> {
 	}
 	
 	/**
-	 * Adds a Warrior onto the arena
-	 * @param row the row where the Warrior will be placed
-	 * @param col the column where the Warrior will be placed
+	 * Adds a Game Object onto the arena
+	 * @param row the row where the Game Object will be placed
+	 * @param id the ID of the Game Object
+	 * @param e the Game Object itself
 	 */
-	public void addWarrior(int row, int col) {
-		movementRows[row].getChildren().add(new PlacedWarrior(col));
+	public void addObject(int row, int col, String id, GameObject object) {
+		PlacedObject placedObject = new PlacedObject(row, col, id);
+		movementRows[row].getChildren().add(placedObject);
+		placedObjects.put(object, placedObject);
 	}
 	
 	/**
-	 * Adds an Enemy onto the arena
-	 * @param row the row where the Enemy will be placed
-	 * @param id the ID of the Enemy
-	 * @param e the Enemy itself
-	 */
-	public void addEnemy(int row, String id, Enemy e) {
-		PlacedEnemy placedEnemy = new PlacedEnemy(id, e);
-		movementRows[row].getChildren().add(placedEnemy);
-		placedEnemies.put(row, placedEnemy);
-	}
-	
-	/**
-	 * Removes an enemy from the given row
+	 * Removes a Game Object from the given row
 	 * @param row the given row
-	 * @throws InvalidActionException when there is no Wnemy at the given row
+	 * @throws InvalidActionException when there is no Game Object at the given row
 	 */
-	public void removeEnemy(int row) throws InvalidActionException {
-		if(placedEnemies.get(row) == null) {
+	public void removeObject(GameObject object) throws InvalidActionException {
+		PlacedObject placedObject = placedObjects.get(object);
+		if(placedObject == null) {
 			throw new InvalidActionException("There are no enemies placed on this row.");
 		}
-		movementRows[row].getChildren().remove(placedEnemies.remove(row));
+		movementRows[placedObject.getRow()].getChildren().remove(placedObjects.remove(object));
 	}
 	
 	/**
-	 * Moves all the Enemies on the arena
-	 * @throws InvalidActionException when there are no Enemies on the arena
-	 * @throws CellTakenException when an Enemy was trying to take a cell that had already been taken
+	 * Moves a given Warrior on the arena
+	 * @throws InvalidActionException when there are no Warriors on the arena
+	 * @throws CellTakenException when a Warrior was trying to take a cell that had already been taken
 	 */
-	public void moveEnemies() throws InvalidActionException, CellTakenException {
-		if(placedEnemies.size() > 0) {
-			for(PlacedEnemy enemy: placedEnemies.values()) {
-				enemy.advance();
-			}
+	public void moveObject(Warrior object) throws InvalidActionException, CellTakenException {
+		PlacedObject placedObject = placedObjects.get(object);
+		if(placedObject != null) {
+			placedObject.advance(object);
+		}
+	}
+	
+	/**
+	 * Moves a given Enemy on the arena
+	 * @throws InvalidActionException when there are no Enemies on the arena
+	 * @throws CellTakenException when a Enemy was trying to take a cell that had already been taken
+	 */
+	public void moveObject(Enemy object) throws InvalidActionException, CellTakenException {
+		PlacedObject placedObject = placedObjects.get(object);
+		if(placedObject != null) {
+			placedObject.advance(object);
+		}
+	}
+	
+	/**
+	 * Moves a given Item on the arena
+	 * @throws InvalidActionException when there are no Items on the arena
+	 * @throws CellTakenException when a Item was trying to take a cell that had already been taken
+	 */
+	public void moveObject(Item object) throws InvalidActionException, CellTakenException {
+		PlacedObject placedObject = placedObjects.get(object);
+		if(placedObject != null) {
+			placedObject.advance(object);
 		}
 	}
 	

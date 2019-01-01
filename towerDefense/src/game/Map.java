@@ -102,7 +102,7 @@ public class Map {
 	 * @return a Pair of coordinates indicating where the object was on the arena
 	 * @throws InvalidActionException when the object is not on the arena
 	 */
-	public Pair<Integer, Integer> freeCell(GameObject obj) throws InvalidActionException {
+	public void freeCell(GameObject obj) throws InvalidActionException {
 		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
@@ -111,7 +111,6 @@ public class Map {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
 		getCell(coordinates.getKey(), coordinates.getValue()).free();
-		return coordinates;
 	}
 	
 	/**

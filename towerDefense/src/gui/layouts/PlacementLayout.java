@@ -25,7 +25,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
-import javafx.util.Pair;
 import media.sounds.SoundPlayer;
 
 /**
@@ -122,8 +121,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	 */
 	public void killObject(GameObject object) {
 		try {
-			Pair<Integer, Integer> coordinates = Game.getInstance().getMap().freeCell(object);
-			MovementLayout.getInstance().removeEnemy(coordinates.getKey());
+			MovementLayout.getInstance().removeObject(object);
 			Game.getInstance().updateScore(object.getPoints());
 			StatusLayout.getInstance().updateScore();
 		} catch(InvalidActionException e) {
@@ -137,14 +135,15 @@ public class PlacementLayout extends Layout<GridPane> {
 		int newEnemyChooser = r.nextInt(2);
 		if(newEnemyChooser == 1) {
 			int row;
+			int col = map.getColumns()-1;
 			do {
 				row = r.nextInt(map.getRows());
-			} while(map.getCell(row, map.getColumns()-1).isTaken());
+			} while(map.getCell(row, col).isTaken());
 			try {
 				EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
 				Enemy enemy = enemyPrototype.getEnemy();
 				map.takeCell(row, map.getColumns()-1, enemy);
-				MovementLayout.getInstance().addEnemy(row, enemyPrototype.getID(), enemy);
+				MovementLayout.getInstance().addObject(row, col, enemyPrototype.getID(), enemy);
 				if(enemyPrototype.playsSound()) {
 					SoundPlayer.getInstance().play(enemyPrototype.getID());
 				}
@@ -220,7 +219,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				if(selectedWarrior.playsSound()) {
 					SoundPlayer.getInstance().play(selectedWarrior.getID());
 				}
-				MovementLayout.getInstance().addWarrior(row, col);
+				MovementLayout.getInstance().addObject(row, col, selectedWarrior.getID(), warrior);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor nor deselect the warrior
 				deselectWarrior();
 			} catch(ClassCastException e) {
