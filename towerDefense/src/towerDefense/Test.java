@@ -6,7 +6,7 @@ public class Test {
 	 * Vane genera e imprime b
 	 * Zeke genera e imprime c
 	 * Todos quedamos con a,b,c creadas.
-	 * GG 
+	 * GG .
 	 */
 	public static void main(String[] args) {
 		int a = 5;
