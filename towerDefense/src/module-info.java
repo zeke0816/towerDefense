@@ -4,5 +4,5 @@ module cartoonDefense {
 	requires javafx.graphics;
 	requires javafx.media;
 	
-	exports game;
+	exports gui;
 }

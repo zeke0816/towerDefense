@@ -1,5 +1,7 @@
-package game;
+package gui;
 
+import game.Game;
+import game.Map;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,13 +32,14 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Class to handle all things related to the General User Interface
  * @author zeke0816
  *
  */
-public class GUI extends Application {
+public class MainInterface extends Application {
 	
 	protected Stage appStage;
 	protected Scene appScene;
@@ -44,8 +47,10 @@ public class GUI extends Application {
 	protected Game game;
 	protected Button[][] arena;
 	protected VBox arenaLayout;
-	protected FlowPane dockLayout;
-	private MediaPlayer mediaPlayer;
+	protected GridPane dockLayout;
+	protected MediaPlayer mediaPlayer;
+	protected MediaPlayer backgroundPlayer;
+	protected WarriorInterface selectedWarrior;
 	protected static final Background darkBackground = new Background(new BackgroundFill(Paint.valueOf("#dddddd"), null, null));
 	//protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), new CornerRadii(4), new Insets(2)));
 	protected static final Paint gray = Paint.valueOf("#8e8e8e");
@@ -73,9 +78,22 @@ public class GUI extends Application {
 		appStage.setWidth(1300);
 		appStage.setHeight(700);
 		appStage.centerOnScreen();
-		mediaPlayer = new MediaPlayer(new Media(getMediaFromPath("/assets/AgentP.mp3")));
 		
-        appLayout = new BorderPane();
+		selectedWarrior = null;
+		
+		backgroundPlayer = new MediaPlayer(new Media(getMediaFromPath("/assets/background.mp3")));
+		backgroundPlayer.play();
+		backgroundPlayer.setOnEndOfMedia(new Runnable() {
+			
+	        @Override
+	        public void run() {
+	        	backgroundPlayer.seek(Duration.ZERO);
+	        	backgroundPlayer.play();
+	        }
+	        
+	    });
+		
+		appLayout = new BorderPane();
         appLayout.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource("/assets/background.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1300, 482, false, false, false, true))));
         
         appScene = new Scene(appLayout);
@@ -113,26 +131,50 @@ public class GUI extends Application {
 			arenaLayout.getChildren().add(rowLayout);
 		}
         
-        dockLayout = new FlowPane();
-        Button perry = new Button();
-        perry.setVisible(true);
-        perry.setPrefSize(120, 120);
-        perry.setBackground(createBackground("/assets/AgentP.png"));
-        perry.setOnAction(selectWarriorListener);
-        perry.setUserData(true);
-        dockLayout.getChildren().add(perry);
-        Button flea = new Button();
-        flea.setVisible(true);
-        flea.setPrefSize(120, 120);
-        flea.setBackground(createBackground("/assets/TheFlea.png"));
-        flea.setOnAction(selectWarriorListener);
-        flea.setUserData(false);
-        dockLayout.getChildren().add(flea);
+		dockLayout = new GridPane();
+        dockLayout.setAlignment(Pos.CENTER);
+        
+        WarriorInterface agentP = new WarriorInterface("AgentP", "Agent P", true);
+        agentP.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(agentP.getButton(), 0, 0);
+        dockLayout.add(agentP.getLabel(), 0, 1);
+        
+        WarriorInterface flea = new WarriorInterface("TheFlea", "The Flea", true);
+        flea.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(flea.getButton(), 1, 0);
+        dockLayout.add(flea.getLabel(), 1, 1);
+
+        WarriorInterface cyborg = new WarriorInterface("Cyborg", "Cyborg", true);
+        cyborg.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(cyborg.getButton(), 2, 0);
+        dockLayout.add(cyborg.getLabel(), 2, 1);
+        
+        WarriorInterface bb8 = new WarriorInterface("BB8", "BB8", false);
+        bb8.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(bb8.getButton(), 3, 0);
+        dockLayout.add(bb8.getLabel(), 3, 1);
+        
+        WarriorInterface gary = new WarriorInterface("Gary", "Gary", true);
+        gary.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(gary.getButton(), 4, 0);
+        dockLayout.add(gary.getLabel(), 4, 1);
+        
+        WarriorInterface turret = new WarriorInterface("Turret", "Turret", false);
+        turret.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(turret.getButton(), 5, 0);
+        dockLayout.add(turret.getLabel(), 5, 1);
+        
+        WarriorInterface toph = new WarriorInterface("Toph", "Toph", false);
+        toph.getButton().setOnAction(selectWarriorListener);
+        dockLayout.add(toph.getButton(), 6, 0);
+        dockLayout.add(toph.getLabel(), 6, 1);
         
 		arenaLayout.setAlignment(Pos.CENTER);
+		
 		appLayout.setTop(statusLayout);
 		appLayout.setCenter(arenaLayout);
 		appLayout.setBottom(dockLayout);
+		
 		appStage.setScene(appScene);
 		appStage.show();
 	}
@@ -154,21 +196,34 @@ public class GUI extends Application {
 	}
 	
 	private void playMusic(String path) {
-		if(mediaPlayer.getStatus().equals(Status.PLAYING)) {
+		backgroundPlayer.pause();
+		if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
 			mediaPlayer.stop();
 		}
 		Media sound = new Media(getMediaFromPath(path));
 		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
+		mediaPlayer.setOnEndOfMedia(new Runnable() {
+			
+	        @Override
+	        public void run() {
+	        	backgroundPlayer.play();
+	        }
+	        
+	    });
 	}
 	
 	EventHandler<ActionEvent> selectWarriorListener = new EventHandler<ActionEvent>() {
 
 		@Override
 		public void handle(ActionEvent event) {
-			Button warrior = (Button) event.getSource();
-			setCursorImage(warrior.getBackground().getImages().get(0).getImage());
-			playPerry = (boolean) warrior.getUserData();
+			try {
+				Button warrior = (Button) event.getSource();
+				setCursorImage(warrior.getBackground().getImages().get(0).getImage());
+				selectedWarrior = (WarriorInterface) warrior.getUserData();
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while selecting the warrior.");
+			}
 		}
 		
 	};
@@ -177,15 +232,15 @@ public class GUI extends Application {
 
 		@Override
 		public void handle(ActionEvent event) {
-			Button cell = (Button) event.getSource();
-			// TODO: get the background from the cursor image
-			resetCursorImage();
-			if(playPerry) {
-				playMusic("/assets/AgentP.mp3");
-				cell.setBackground(createBackground("/assets/AgentP.png"));
-			} else {
-				playMusic("/assets/TheFlea.mp3");
-				cell.setBackground(createBackground("/assets/TheFlea.png"));
+			try {
+				Button cell = (Button) event.getSource();
+				resetCursorImage();
+				if(selectedWarrior != null && selectedWarrior.playsMusic()) {
+					playMusic("/assets/"+selectedWarrior.getID()+".mp3");
+				}
+				cell.setBackground(createBackground("/assets/"+selectedWarrior.getID()+".png"));
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while placing the warrior.");
 			}
 		}
 		
