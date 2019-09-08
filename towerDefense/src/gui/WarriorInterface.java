@@ -11,6 +11,11 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Font;
 
+/**
+ * Class to represent and save information about a Warrior in the GUI
+ * @author zeke0816
+ *
+ */
 public class WarriorInterface {
 	
 	protected String id;
@@ -24,8 +29,6 @@ public class WarriorInterface {
 	 * @param i the ID of the warrior
 	 * @param n the name of the warrior to be shown on the dock
 	 * @param in true if it plays music when places, false if not
-	 * @param l the label for the Warrior
-	 * @param b the button for the Warrior
 	 */
 	public WarriorInterface(String i, String n, boolean in) {
 		id = i;
@@ -44,22 +47,42 @@ public class WarriorInterface {
         button.setUserData(this);
 	}
 	
+	/**
+	 * Gets the ID string for media identification
+	 * @return the ID of the warrior interface
+	 */
 	public String getID() {
 		return id;
 	}
 	
+	/**
+	 * Gets the display name of the warrior
+	 * @return the display name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Tells whether this warrior plays music or not
+	 * @return true if it plays music, false if it does not
+	 */
 	public boolean playsMusic() {
 		return interactive;
 	}
 	
+	/**
+	 * Gets the label to show on screen
+	 * @return the label
+	 */
 	public Label getLabel() {
 		return label;
 	}
 	
+	/**
+	 * Gets the button to show on screen
+	 * @return the button
+	 */
 	public Button getButton() {
 		return button;
 	}

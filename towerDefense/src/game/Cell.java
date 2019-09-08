@@ -21,7 +21,7 @@ public class Cell {
 	 * @return true if taken, false if not taken.
 	 */
 	public boolean isTaken() {
-		return object == null;
+		return object != null;
 	}
 	
 	/**
@@ -30,6 +30,14 @@ public class Cell {
 	 */
 	public GameObject getObject() {
 		return object;
+	}
+	
+	/**
+	 * Sets an object to take this cell
+	 * @param o the object to put in
+	 */
+	public void setObject(GameObject o) {
+		object = o;
 	}
 
 }

@@ -1,5 +1,7 @@
 package game;
 
+import exceptions.CellTakenException;
+
 /**
  * Class that models the arena where the characters will be placed
  * @author zeke0816
@@ -77,6 +79,19 @@ public class Map {
 			object = arena[row][i].getObject();
 		}
 		return object;
+	}
+	
+	/**
+	 * Lets an object take the place in a cell, given the row and column
+	 * @param row the row to take
+	 * @param col the column to take
+	 * @param object the object trying to take the cell
+	 */
+	public void takeCell(int row, int col, GameObject object) throws CellTakenException {
+		if(arena[row][col].isTaken()) {
+			throw new CellTakenException("This cell has already been taken!");
+		}
+		arena[row][col].setObject(object);
 	}
 
 }

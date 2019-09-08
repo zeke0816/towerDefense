@@ -1,7 +1,9 @@
 package gui;
 
+import exceptions.CellTakenException;
 import game.Game;
 import game.Map;
+import game.Warrior;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,6 +35,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 /**
  * Class to handle all things related to the General User Interface
@@ -45,6 +48,7 @@ public class MainInterface extends Application {
 	protected Scene appScene;
 	protected BorderPane appLayout;
 	protected Game game;
+	protected Map map;
 	protected Button[][] arena;
 	protected VBox arenaLayout;
 	protected GridPane dockLayout;
@@ -110,7 +114,7 @@ public class MainInterface extends Application {
         arenaLayout.setAlignment(Pos.CENTER);
         
 		game = new Game();
-		Map map = game.getMap();
+		map = game.getMap();
 		arena = new Button[map.getRows()][map.getColumns()+1];
 		int width = 25;
 		int height = 35;
@@ -124,6 +128,7 @@ public class MainInterface extends Application {
 				arena[i][j].setBorder(new Border(new BorderStroke(gray, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 				arena[i][j].setVisible(true);
 				arena[i][j].setMinSize(width, height);
+				arena[i][j].setUserData(new Pair<Integer, Integer>(i, j));
 				arena[i][j].setOnAction(cellListener);
 				rowLayout.add(arena[i][j], j, 0);
 			}
@@ -179,22 +184,43 @@ public class MainInterface extends Application {
 		appStage.show();
 	}
 	
+	/**
+	 * Creates a background from an image, given its path, and returns it
+	 * @param path the path to the background image
+	 * @return the background ready for use
+	 */
 	private Background createBackground(String path) {
 		return new Background(new BackgroundImage(new Image(getMediaFromPath(path)), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(240, 240, false, false, true, false)));
 	}
 	
+	/**
+	 * Gets media information as a String from a given path
+	 * @param path the path to the media file
+	 * @return the media information
+	 */
 	private String getMediaFromPath(String path) {
 		return getClass().getResource(path).toExternalForm();
 	}
 	
+	/**
+	 * Resets the cursor to its original default state
+	 */
 	private void resetCursorImage() {
 		appScene.setCursor(Cursor.DEFAULT);
 	}
 	
+	/**
+	 * Sets a custom image as the cursor
+	 * @param img the image
+	 */
 	private void setCursorImage(Image img) {
 		appScene.setCursor(new ImageCursor(img));
 	}
 	
+	/**
+	 * Plays music, if necessary, given a path to the file
+	 * @param path the path to the media file
+	 */
 	private void playMusic(String path) {
 		backgroundPlayer.pause();
 		if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
@@ -213,6 +239,9 @@ public class MainInterface extends Application {
 	    });
 	}
 	
+	/**
+	 * Listener for warrior selection from the dock
+	 */
 	EventHandler<ActionEvent> selectWarriorListener = new EventHandler<ActionEvent>() {
 
 		@Override
@@ -228,12 +257,20 @@ public class MainInterface extends Application {
 		
 	};
 	
+	/**
+	 * Listener for warrior placement on a cell
+	 */
 	EventHandler<ActionEvent> cellListener = new EventHandler<ActionEvent>() {
 
 		@Override
 		public void handle(ActionEvent event) {
 			try {
 				Button cell = (Button) event.getSource();
+				Pair<Integer, Integer> coordinates = (Pair<Integer, Integer>) cell.getUserData();
+				Integer row = coordinates.getKey();
+				Integer col = coordinates.getValue();
+				Warrior warrior = game.createWarrior(selectedWarrior.getID());
+				map.takeCell(row, col, warrior);
 				resetCursorImage();
 				if(selectedWarrior != null && selectedWarrior.playsMusic()) {
 					playMusic("/assets/"+selectedWarrior.getID()+".mp3");
@@ -241,6 +278,8 @@ public class MainInterface extends Application {
 				cell.setBackground(createBackground("/assets/"+selectedWarrior.getID()+".png"));
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the warrior.");
+			} catch(CellTakenException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 		

@@ -5,6 +5,6 @@ package game;
  * @author zeke0816
  *
  */
-public abstract class Warrior extends Character {
+public /*abstract*/ class Warrior extends Character {
 
 }

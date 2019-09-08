@@ -31,6 +31,16 @@ public class Game {
 	}
 	
 	/**
+	 * Creates a Warrior based on the given ID
+	 * @param id the ID of the Warrior
+	 * @return the newly created Warrior
+	 */
+	public Warrior createWarrior(String id) {
+		// TODO: use the ID to create an actual Warrior, at least until implementing the Visitor design pattern
+		return new Warrior();
+	}
+	
+	/**
 	 * End the game (Game Over)
 	 */
 	public void end() {
