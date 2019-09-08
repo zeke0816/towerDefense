@@ -117,23 +117,28 @@ public class MainInterface extends Application {
 		game = new Game();
 		map = game.getMap();
 		arena = new Button[map.getRows()][map.getColumns()+1];
-		int width = 25;
-		int height = 35;
+		int width = 40;
+		int height = 40;
 		for(int i = 0; i < map.getRows(); i++) {
 			GridPane rowLayout = new GridPane();
 			rowLayout.setAlignment(Pos.CENTER);
 			for(int j = 0; j <= map.getColumns(); j++) {
 				arena[i][j] = new Button();
-				arena[i][j].setBackground(darkBackground);
-				arena[i][j].setOpacity(.6);
-				arena[i][j].setBorder(new Border(new BorderStroke(gray, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 				arena[i][j].setVisible(true);
 				arena[i][j].setMinSize(width, height);
-				arena[i][j].setUserData(new Pair<Integer, Integer>(i, j));
-				arena[i][j].setOnAction(cellListener);
+				if(j < map.getColumns()) {
+					arena[i][j].setBackground(darkBackground);
+					arena[i][j].setOpacity(.6);
+					arena[i][j].setBorder(new Border(new BorderStroke(gray, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
+					arena[i][j].setUserData(new Pair<Integer, Integer>(i, j));
+					arena[i][j].setOnAction(cellListener);
+				} else {
+					arena[i][j].setBackground(createBackground("/assets/Portal.gif"));
+				}
 				rowLayout.add(arena[i][j], j, 0);
 			}
-			width += 2;
+			width += 5;
+			height += 5;
 			arenaLayout.getChildren().add(rowLayout);
 		}
         
@@ -284,6 +289,7 @@ public class MainInterface extends Application {
 					playMusic("/assets/"+selectedWarrior.getID()+".mp3");
 				}
 				cell.setBackground(createBackground("/assets/"+selectedWarrior.getID()+".png"));
+				cell.setOpacity(1);
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the warrior.");
 			} catch(CellTakenException e) {

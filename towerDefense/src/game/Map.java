@@ -9,8 +9,8 @@ import exceptions.CellTakenException;
  */
 public class Map {
 	
-	protected final int rows = 12;
-	protected final int cols = 25;
+	protected final int rows = 8;
+	protected final int cols = 16;
 	protected Cell[][] arena;
 	
 	/**
