@@ -80,9 +80,10 @@ public class MainInterface extends Application {
 	private void initialize(Stage stage) {
 		appStage = stage;
 		appStage.setTitle("Cartoon Defense");
-		appStage.setWidth(1300);
-		appStage.setHeight(700);
 		appStage.centerOnScreen();
+		appStage.setMaximized(true);
+		appStage.setFullScreen(true);
+		appStage.setResizable(false);
 		
 		selectedWarrior = null;
 		
