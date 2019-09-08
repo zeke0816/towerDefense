@@ -269,7 +269,7 @@ public class MainInterface extends Application {
 				Pair<Integer, Integer> coordinates = (Pair<Integer, Integer>) cell.getUserData();
 				Integer row = coordinates.getKey();
 				Integer col = coordinates.getValue();
-				Warrior warrior = game.createWarrior(selectedWarrior.getID());
+				Warrior warrior = game.getFactory().createWarrior(selectedWarrior.getID());
 				map.takeCell(row, col, warrior);
 				resetCursorImage();
 				if(selectedWarrior != null && selectedWarrior.playsMusic()) {
