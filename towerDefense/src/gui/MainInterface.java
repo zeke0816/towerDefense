@@ -7,6 +7,7 @@ import game.Warrior;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
@@ -50,6 +51,7 @@ public class MainInterface extends Application {
 	protected Game game;
 	protected Map map;
 	protected Button[][] arena;
+	protected FlowPane statusLayout;
 	protected VBox arenaLayout;
 	protected GridPane dockLayout;
 	protected MediaPlayer mediaPlayer;
@@ -59,7 +61,6 @@ public class MainInterface extends Application {
 	//protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), new CornerRadii(4), new Insets(2)));
 	protected static final Paint gray = Paint.valueOf("#8e8e8e");
 	protected boolean playPerry;
-	private FlowPane statusLayout;
 	
 	/**
     * @param args the command line arguments
@@ -143,36 +144,43 @@ public class MainInterface extends Application {
         agentP.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(agentP.getButton(), 0, 0);
         dockLayout.add(agentP.getLabel(), 0, 1);
+        GridPane.setHalignment(agentP.getLabel(), HPos.CENTER);
         
         WarriorInterface flea = new WarriorInterface("TheFlea", "The Flea", true);
         flea.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(flea.getButton(), 1, 0);
         dockLayout.add(flea.getLabel(), 1, 1);
+        GridPane.setHalignment(flea.getLabel(), HPos.CENTER);
 
         WarriorInterface cyborg = new WarriorInterface("Cyborg", "Cyborg", true);
         cyborg.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(cyborg.getButton(), 2, 0);
         dockLayout.add(cyborg.getLabel(), 2, 1);
+        GridPane.setHalignment(cyborg.getLabel(), HPos.CENTER);
         
         WarriorInterface bb8 = new WarriorInterface("BB8", "BB8", false);
         bb8.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(bb8.getButton(), 3, 0);
         dockLayout.add(bb8.getLabel(), 3, 1);
+        GridPane.setHalignment(bb8.getLabel(), HPos.CENTER);
         
         WarriorInterface gary = new WarriorInterface("Gary", "Gary", true);
         gary.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(gary.getButton(), 4, 0);
         dockLayout.add(gary.getLabel(), 4, 1);
+        GridPane.setHalignment(gary.getLabel(), HPos.CENTER);
         
         WarriorInterface turret = new WarriorInterface("Turret", "Turret", false);
         turret.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(turret.getButton(), 5, 0);
         dockLayout.add(turret.getLabel(), 5, 1);
+        GridPane.setHalignment(turret.getLabel(), HPos.CENTER);
         
         WarriorInterface toph = new WarriorInterface("Toph", "Toph", false);
         toph.getButton().setOnAction(selectWarriorListener);
         dockLayout.add(toph.getButton(), 6, 0);
         dockLayout.add(toph.getLabel(), 6, 1);
+        GridPane.setHalignment(toph.getLabel(), HPos.CENTER);
         
 		arenaLayout.setAlignment(Pos.CENTER);
 		
