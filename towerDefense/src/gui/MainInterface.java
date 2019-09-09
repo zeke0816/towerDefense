@@ -60,7 +60,6 @@ public class MainInterface extends Application {
 	protected static final Background darkBackground = new Background(new BackgroundFill(Paint.valueOf("#dddddd"), null, null));
 	//protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), new CornerRadii(4), new Insets(2)));
 	protected static final Paint gray = Paint.valueOf("#8e8e8e");
-	protected boolean playPerry;
 	
 	/**
     * @param args the command line arguments
