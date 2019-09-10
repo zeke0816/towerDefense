@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.File;
+
 import exceptions.CellTakenException;
 import game.Game;
 import game.Map;
@@ -28,7 +30,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
@@ -52,7 +53,7 @@ public class MainInterface extends Application {
 	protected Map map;
 	protected Button[][] arena;
 	protected FlowPane statusLayout;
-	protected VBox arenaLayout;
+	protected GridPane arenaLayout;
 	protected GridPane dockLayout;
 	protected MediaPlayer mediaPlayer;
 	protected MediaPlayer backgroundPlayer;
@@ -86,7 +87,7 @@ public class MainInterface extends Application {
 		
 		selectedWarrior = null;
 		
-		backgroundPlayer = new MediaPlayer(new Media(getMediaFromPath("/assets/background.mp3")));
+		backgroundPlayer = new MediaPlayer(new Media(getMediaFromPath("src/assets/background.mp3")));
 		backgroundPlayer.play();
 		backgroundPlayer.setOnEndOfMedia(new Runnable() {
 			
@@ -99,10 +100,10 @@ public class MainInterface extends Application {
 	    });
 		
 		appLayout = new BorderPane();
-        appLayout.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource("/assets/background.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1300, 482, false, false, false, true))));
+        appLayout.setBackground(new Background(new BackgroundImage(new Image(getMediaFromPath("src/assets/background.png")), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1300, 482, false, false, false, true))));
         
         appScene = new Scene(appLayout);
-        appScene.getStylesheets().add(getClass().getResource("/assets/min.style.css").toExternalForm());
+        appScene.getStylesheets().add(getMediaFromPath("src/assets/min.style.css"));
 		
         statusLayout = new FlowPane();
         Label gameTitle = new Label("Cartoon Defense");
@@ -111,21 +112,17 @@ public class MainInterface extends Application {
         statusLayout.setAlignment(Pos.CENTER);
         statusLayout.getChildren().add(gameTitle);
         
-        arenaLayout = new VBox();
-        arenaLayout.setAlignment(Pos.CENTER);
+        arenaLayout = new GridPane();
         
 		game = new Game();
 		map = game.getMap();
 		arena = new Button[map.getRows()][map.getColumns()+1];
-		int width = 40;
-		int height = 40;
+		int size = 60;
 		for(int i = 0; i < map.getRows(); i++) {
-			GridPane rowLayout = new GridPane();
-			rowLayout.setAlignment(Pos.CENTER);
 			for(int j = 0; j <= map.getColumns(); j++) {
 				arena[i][j] = new Button();
 				arena[i][j].setVisible(true);
-				arena[i][j].setMinSize(width, height);
+				arena[i][j].setMinSize(size, size);
 				if(j < map.getColumns()) {
 					arena[i][j].setBackground(darkBackground);
 					arena[i][j].setOpacity(.6);
@@ -133,13 +130,10 @@ public class MainInterface extends Application {
 					arena[i][j].setUserData(new Pair<Integer, Integer>(i, j));
 					arena[i][j].setOnAction(cellListener);
 				} else {
-					arena[i][j].setBackground(createBackground("/assets/Portal.gif"));
+					arena[i][j].setBackground(createBackground("src/assets/Portal.gif", size, size, false, true));
 				}
-				rowLayout.add(arena[i][j], j, 0);
+				arenaLayout.add(arena[i][j], j, i);
 			}
-			width += 5;
-			height += 5;
-			arenaLayout.getChildren().add(rowLayout);
 		}
         
 		dockLayout = new GridPane();
@@ -200,10 +194,14 @@ public class MainInterface extends Application {
 	/**
 	 * Creates a background from an image, given its path, and returns it
 	 * @param path the path to the background image
+	 * @param width the width of the background
+	 * @param height the height of the background
+	 * @param cover whether the background will take the shape of the object
+	 * @param contain whether the background will be adjusted to fit the shape of the object
 	 * @return the background ready for use
 	 */
-	private Background createBackground(String path) {
-		return new Background(new BackgroundImage(new Image(getMediaFromPath(path)), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(240, 240, false, false, true, false)));
+	private Background createBackground(String path, double width, double height, boolean cover, boolean contain) {
+		return new Background(new BackgroundImage(new Image(getMediaFromPath(path)), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(width, height, false, false, contain, cover)));
 	}
 	
 	/**
@@ -212,7 +210,7 @@ public class MainInterface extends Application {
 	 * @return the media information
 	 */
 	private String getMediaFromPath(String path) {
-		return getClass().getResource(path).toExternalForm();
+		return (new File(path)).toURI().toString();
 	}
 	
 	/**
@@ -227,7 +225,7 @@ public class MainInterface extends Application {
 	 * @param img the image
 	 */
 	private void setCursorImage(Image img) {
-		appScene.setCursor(new ImageCursor(img));
+		appScene.setCursor(new ImageCursor(img, 30, 30));
 	}
 	
 	/**
@@ -261,7 +259,9 @@ public class MainInterface extends Application {
 		public void handle(ActionEvent event) {
 			try {
 				Button warrior = (Button) event.getSource();
-				setCursorImage(warrior.getBackground().getImages().get(0).getImage());
+				Image img = warrior.getBackground().getImages().get(0).getImage();
+				// TODO: try to resize it (for macOS)
+				setCursorImage(img);
 				selectedWarrior = (WarriorInterface) warrior.getUserData();
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the warrior.");
@@ -286,9 +286,9 @@ public class MainInterface extends Application {
 				map.takeCell(row, col, warrior);
 				resetCursorImage();
 				if(selectedWarrior != null && selectedWarrior.playsMusic()) {
-					playMusic("/assets/"+selectedWarrior.getID()+".mp3");
+					playMusic("src/assets/"+selectedWarrior.getID()+".mp3");
 				}
-				cell.setBackground(createBackground("/assets/"+selectedWarrior.getID()+".png"));
+				cell.setBackground(createBackground("src/assets/"+selectedWarrior.getID()+".png", cell.getWidth(), cell.getHeight(), false, true));
 				cell.setOpacity(1);
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the warrior.");

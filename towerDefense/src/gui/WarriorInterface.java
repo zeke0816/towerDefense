@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.File;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,7 +45,7 @@ public class WarriorInterface {
 		button = new Button();
 		button.setVisible(true);
         button.setPrefSize(120, 120);
-        button.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource("/assets/"+id+".png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(240, 240, false, false, true, false))));
+        button.setBackground(new Background(new BackgroundImage(new Image(new File("src/assets/"+id+".png").toURI().toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(240, 240, false, false, true, false))));
         button.setUserData(this);
 	}
 	
