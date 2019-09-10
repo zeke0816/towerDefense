@@ -123,6 +123,8 @@ public class MainInterface extends Application {
 				arena[i][j] = new Button();
 				arena[i][j].setVisible(true);
 				arena[i][j].setMinSize(size, size);
+				arena[i][j].setMaxSize(size, size);
+				arena[i][j].setPrefSize(size, size);
 				if(j < map.getColumns()) {
 					arena[i][j].setBackground(darkBackground);
 					arena[i][j].setOpacity(.6);
