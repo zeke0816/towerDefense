@@ -1,7 +1,6 @@
 package gui;
 
 import java.io.File;
-
 import characters.Warrior;
 import exceptions.CellTakenException;
 import exceptions.UnselectedWarriorException;
@@ -54,7 +53,6 @@ public class MainInterface extends Application {
 	protected Scene appScene;
 	protected BorderPane appLayout;
 	protected Game game;
-	protected Map map;
 	protected FlowPane statusLayout;
 	protected StackPane arenaLayout;
 	protected GridPane placementLayout;
@@ -136,7 +134,7 @@ public class MainInterface extends Application {
         placementLayout.setAlignment(Pos.CENTER);
 
         game = new Game();
-		map = game.getMap();
+		Map map = game.getMap();
 		
 		// set the placement limit on the arena for warriors
 		double placementLimit = map.getColumns() * .6; // 60% of the arena
@@ -376,6 +374,7 @@ public class MainInterface extends Application {
 				Integer row = coordinates.getKey();
 				Integer col = coordinates.getValue();
 				Warrior warrior = game.getFactory().createWarrior(selectedWarrior.getID());
+				Map map = game.getMap();
 				map.takeCell(row, col, warrior);
 				cell.setBackground(null);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor
