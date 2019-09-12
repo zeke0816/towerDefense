@@ -17,7 +17,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Clases del Juego",
+					"name": "Game Classes",
 					"ownedViews": [
 						{
 							"_type": "UMLClassView",
@@ -7439,9 +7439,9 @@
 												"$ref": "AAAAAAFs3ZOmzu8f5Nc="
 											},
 											"font": "Arial;13;0",
-											"left": 71.58642578125,
+											"left": 75.97900390625,
 											"top": 10,
-											"width": 136.0400390625,
+											"width": 146.9580078125,
 											"height": 13,
 											"text": "Movimiento de Enemigos"
 										},
@@ -7454,7 +7454,7 @@
 											"font": "Arial;13;1",
 											"left": 10,
 											"top": 10,
-											"width": 56.58642578125,
+											"width": 60.97900390625,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -7752,7 +7752,7 @@
 													"top": 47,
 													"width": 151.58447265625,
 													"height": 13,
-													"text": "sigCelda: Celda"
+													"text": "sigCelda: Cell"
 												},
 												{
 													"_type": "LabelView",
@@ -7871,7 +7871,7 @@
 													"top": 47,
 													"width": 147.25537109375,
 													"height": 13,
-													"text": "celda: Celda"
+													"text": "celda: Cell"
 												},
 												{
 													"_type": "LabelView",
@@ -7964,9 +7964,9 @@
 												"$ref": "AAAAAAFs3Z2MFfBQn+Y="
 											},
 											"font": "Arial;13;0",
-											"left": 95.0400390625,
+											"left": 100.13720703125,
 											"top": 229,
-											"width": 86.20458984375,
+											"width": 95.681640625,
 											"height": 13,
 											"text": "no hay siguiente"
 										},
@@ -7979,7 +7979,7 @@
 											"font": "Arial;13;1",
 											"left": 45,
 											"top": 229,
-											"width": 45.0400390625,
+											"width": 50.13720703125,
 											"height": 13,
 											"text": "consider"
 										},
@@ -9740,9 +9740,9 @@
 												"$ref": "AAAAAAFs3jpPHxSqa4A="
 											},
 											"font": "Arial;13;0",
-											"left": 71.58642578125,
+											"left": 75.97900390625,
 											"top": 10,
-											"width": 88.36279296875,
+											"width": 96.3798828125,
 											"height": 13,
 											"text": "Mapa - Enemigo"
 										},
@@ -9755,7 +9755,7 @@
 											"font": "Arial;13;1",
 											"left": 10,
 											"top": 10,
-											"width": 56.58642578125,
+											"width": 60.97900390625,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -10241,9 +10241,9 @@
 												"$ref": "AAAAAAFs3j2GORX+e5U="
 											},
 											"font": "Arial;13;0",
-											"left": 66.11181640625,
+											"left": 67.578125,
 											"top": 197,
-											"width": 113.62646484375,
+											"width": 128.20068359375,
 											"height": 13,
 											"text": "cantidad de enemigos"
 										},
@@ -10256,7 +10256,7 @@
 											"font": "Arial;13;1",
 											"left": 37,
 											"top": 197,
-											"width": 24.11181640625,
+											"width": 25.578125,
 											"height": 13,
 											"text": "loop"
 										},
@@ -11357,9 +11357,9 @@
 												"$ref": "AAAAAAFs3kSz9hdMx+M="
 											},
 											"font": "Arial;13;0",
-											"left": 82.11181640625,
+											"left": 83.578125,
 											"top": 501,
-											"width": 88.36279296875,
+											"width": 100.734375,
 											"height": 13,
 											"text": "portal está usado"
 										},
@@ -11372,7 +11372,7 @@
 											"font": "Arial;13;1",
 											"left": 53,
 											"top": 501,
-											"width": 24.11181640625,
+											"width": 25.578125,
 											"height": 13,
 											"text": "loop"
 										},
@@ -12682,9 +12682,9 @@
 												"$ref": "AAAAAAFs3k44iRh6ClM="
 											},
 											"font": "Arial;13;0",
-											"left": 87.0400390625,
+											"left": 92.13720703125,
 											"top": 885,
-											"width": 111.46826171875,
+											"width": 123.10986328125,
 											"height": 13,
 											"text": "mortalidad es muerto"
 										},
@@ -12697,7 +12697,7 @@
 											"font": "Arial;13;1",
 											"left": 37,
 											"top": 885,
-											"width": 45.0400390625,
+											"width": 50.13720703125,
 											"height": 13,
 											"text": "consider"
 										},
@@ -13706,9 +13706,9 @@
 												"$ref": "AAAAAAFs3lVFJhjzBgI="
 											},
 											"font": "Arial;13;0",
-											"left": 71.58642578125,
+											"left": 75.97900390625,
 											"top": 10,
-											"width": 88.34375,
+											"width": 97.0908203125,
 											"height": 13,
 											"text": "Mapa - Guerrero"
 										},
@@ -13721,7 +13721,7 @@
 											"font": "Arial;13;1",
 											"left": 10,
 											"top": 10,
-											"width": 56.58642578125,
+											"width": 60.97900390625,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -14317,9 +14317,9 @@
 												"$ref": "AAAAAAFs3lbGJBmwLME="
 											},
 											"font": "Arial;13;0",
-											"left": 71.0400390625,
+											"left": 76.13720703125,
 											"top": 181,
-											"width": 111.46826171875,
+											"width": 123.10986328125,
 											"height": 13,
 											"text": "mortalidad es muerto"
 										},
@@ -14332,7 +14332,7 @@
 											"font": "Arial;13;1",
 											"left": 21,
 											"top": 181,
-											"width": 45.0400390625,
+											"width": 50.13720703125,
 											"height": 13,
 											"text": "consider"
 										},
@@ -15032,9 +15032,9 @@
 												"$ref": "AAAAAAFs3lt5aRos6z0="
 											},
 											"font": "Arial;13;0",
-											"left": 71.58642578125,
+											"left": 75.97900390625,
 											"top": 10,
-											"width": 138.89013671875,
+											"width": 152.0107421875,
 											"height": 13,
 											"text": "Guerrero - Mapa/Enemigo"
 										},
@@ -15047,7 +15047,7 @@
 											"font": "Arial;13;1",
 											"left": 10,
 											"top": 10,
-											"width": 56.58642578125,
+											"width": 60.97900390625,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -15646,9 +15646,9 @@
 												"$ref": "AAAAAAFs3l1MuBrsbnQ="
 											},
 											"font": "Arial;13;0",
-											"left": 79.0400390625,
+											"left": 84.13720703125,
 											"top": 181,
-											"width": 67.78369140625,
+											"width": 75.43896484375,
 											"height": 13,
 											"text": "hay enemigo"
 										},
@@ -15661,7 +15661,7 @@
 											"font": "Arial;13;1",
 											"left": 29,
 											"top": 181,
-											"width": 45.0400390625,
+											"width": 50.13720703125,
 											"height": 13,
 											"text": "consider"
 										},
@@ -16236,9 +16236,9 @@
 												"$ref": "AAAAAAFs3l/3uhtOFzo="
 											},
 											"font": "Arial;13;0",
-											"left": 71.58642578125,
+											"left": 75.97900390625,
 											"top": 10,
-											"width": 138.89013671875,
+											"width": 152.0107421875,
 											"height": 13,
 											"text": "Enemigo - Mapa/Guerrero"
 										},
@@ -16251,7 +16251,7 @@
 											"font": "Arial;13;1",
 											"left": 10,
 											"top": 10,
-											"width": 56.58642578125,
+											"width": 60.97900390625,
 											"height": 13,
 											"text": "interaction"
 										}
@@ -16856,9 +16856,9 @@
 												"$ref": "AAAAAAFs3mMbihwSEow="
 											},
 											"font": "Arial;13;0",
-											"left": 79.0400390625,
+											"left": 84.13720703125,
 											"top": 181,
-											"width": 67.04736328125,
+											"width": 74.708984375,
 											"height": 13,
 											"text": "hay guerrero"
 										},
@@ -16871,7 +16871,7 @@
 											"font": "Arial;13;1",
 											"left": 29,
 											"top": 181,
-											"width": 45.0400390625,
+											"width": 50.13720703125,
 											"height": 13,
 											"text": "consider"
 										},

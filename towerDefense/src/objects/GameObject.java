@@ -1,4 +1,4 @@
-package game;
+package objects;
 
 /**
  * Abstract class that helps define the objects in the game

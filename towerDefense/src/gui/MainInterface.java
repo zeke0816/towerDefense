@@ -2,11 +2,11 @@ package gui;
 
 import java.io.File;
 
+import characters.Warrior;
 import exceptions.CellTakenException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
 import game.Map;
-import game.Warrior;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
