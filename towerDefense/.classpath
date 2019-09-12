@@ -7,6 +7,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/zeke0816/openjfx-8/jfxrt.jar"/>
+	<classpathentry kind="lib" path="/Users/ezequielramirezbeltran/openjfx/master/artifacts/sdk/rt/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
