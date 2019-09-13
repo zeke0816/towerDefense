@@ -133,7 +133,7 @@ public class MainInterface extends Application {
         movementLayout.setAlignment(Pos.CENTER);
         placementLayout.setAlignment(Pos.CENTER);
 
-        game = new Game();
+        game = Game.getInstance();
 		Map map = game.getMap();
 		
 		// set the placement limit on the arena for warriors
