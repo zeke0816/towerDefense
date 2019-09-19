@@ -1,6 +1,4 @@
-package characters;
-
-import objects.GameObject;
+package game;
 
 /**
  * Abstract class that helps define a character in the game

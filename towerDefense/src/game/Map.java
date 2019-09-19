@@ -1,7 +1,6 @@
 package game;
 
 import exceptions.CellTakenException;
-import objects.GameObject;
 
 /**
  * Class that models the arena where the characters will be placed

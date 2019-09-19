@@ -11,20 +11,15 @@ public class Game {
 	protected Level level;
 	protected Factory factory;
 	protected boolean over;
-	private static Game instance = new Game();
 	
 	/**
 	 * Initializes the game creating a map, level, and factory, plus marking the game as not over.
 	 */
-	private Game() {
+	public Game() {
 		map = new Map();
 		level = new Level();
 		factory = new Factory();
 		over = false;
-	}
-	
-	public static Game getInstance() {
-		return instance;
 	}
 	
 	/**

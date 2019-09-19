@@ -1,4 +1,4 @@
-package characters;
+package game;
 
 /**
  * Abstract class that helps define the warriors in the game

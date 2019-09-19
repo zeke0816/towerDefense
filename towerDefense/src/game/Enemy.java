@@ -1,4 +1,4 @@
-package characters;
+package game;
 
 /**
  * Abstract class that helps define the enemies in the game
