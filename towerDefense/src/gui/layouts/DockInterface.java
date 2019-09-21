@@ -4,6 +4,7 @@ import java.io.File;
 
 import gui.factories.warriors.AgentPInterface;
 import gui.factories.warriors.WarriorInterface;
+import gui.scenes.MainScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -79,7 +80,7 @@ public class DockInterface extends LayoutInterface<GridPane> {
 	 * @param img the image
 	 */
 	private void setCursorImage(Image img) {
-		appScene.setCursor(new ImageCursor(img, img.getWidth()/2, img.getHeight()/2));
+		MainScene.getInstance().setCursor(new ImageCursor(img, img.getWidth()/2, img.getHeight()/2));
 	}
 	
 	//TODO: Use Proxy to get Media and stuff
@@ -104,7 +105,7 @@ public class DockInterface extends LayoutInterface<GridPane> {
 				Button warrior = (Button) event.getSource();
 				WarriorInterface selectedWarrior = (WarriorInterface) warrior.getUserData();
 				MapInterface.getInstance().selectWarrior(selectedWarrior);
-				Image img = new Image(getMediaFromPath("src/assets/cursors/"+selectedWarrior.getID()+".png"));
+				Image img = new Image(getMediaFromPath("src/media/cursors/"+selectedWarrior.getID()+".png"));
 				setCursorImage(img);
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the warrior.");

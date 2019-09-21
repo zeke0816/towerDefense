@@ -9,16 +9,13 @@ import game.Game;
 import game.Map;
 import gui.factories.WarriorFactory;
 import gui.factories.warriors.WarriorInterface;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import gui.scenes.MainScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -37,43 +34,23 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import media.BackgroundPlayer;
 
-public class MapInterface extends LayoutInterface<StackPane>{
+public class MapInterface extends LayoutInterface<StackPane> {
 
 	protected MediaPlayer mediaPlayer;
 	protected MediaPlayer backgroundPlayer;
-	protected static final Duration fadeDuration = Duration.seconds(.5);
-	protected Timeline fadeInTimeline;
-	protected Timeline fadeOutTimeline;
 	protected GridPane placementLayout;
 	protected StackPane[] placementRows;
 	protected GridPane movementLayout;
 	protected WarriorInterface selectedWarrior;
 	protected final static int cellSize = 64;
+	protected static final Duration fadeDuration = Duration.seconds(.5);
 	private static final MapInterface instance = new MapInterface();
-	private Scene appScene;
 
 	protected MapInterface() {
 		super();
 		selectedWarrior = null;
-		
-		// TODO: Create special classes for music and stuff
-		
-		backgroundPlayer = new MediaPlayer(new Media(getMediaFromPath("src/assets/music/background.mp3")));
-		backgroundPlayer.play();
-		
-		backgroundPlayer.setOnEndOfMedia(new Runnable() {
-			
-	        @Override
-	        public void run() {
-	        	backgroundPlayer.seek(Duration.ZERO);
-	        	backgroundPlayer.play();
-	        }
-	        
-	    });
-		
-		fadeInTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(backgroundPlayer.volumeProperty(), 1)));
-		fadeOutTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(backgroundPlayer.volumeProperty(), .1)));
 		
 		layout = new StackPane();
         movementLayout = new GridPane();
@@ -165,7 +142,7 @@ public class MapInterface extends LayoutInterface<StackPane>{
 	 * @param path the path to the media file
 	 */
 	private void playMusic(String path) {
-		fadeOutTimeline.play();
+		BackgroundPlayer.getInstance().fadeOut();
 		if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
 			mediaPlayer.stop();
 		}
@@ -176,7 +153,7 @@ public class MapInterface extends LayoutInterface<StackPane>{
 			
 	        @Override
 	        public void run() {
-	        	fadeInTimeline.play();
+	        	BackgroundPlayer.getInstance().fadeIn();
 	        }
 	        
 	    });
@@ -241,7 +218,7 @@ public class MapInterface extends LayoutInterface<StackPane>{
 	 * Resets the cursor to its original default state
 	 */
 	private void resetCursorImage() {
-		appScene.setCursor(Cursor.DEFAULT);
+		MainScene.getInstance().setCursor(Cursor.DEFAULT);
 	}
 	
 	/**
@@ -266,7 +243,7 @@ public class MapInterface extends LayoutInterface<StackPane>{
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor
 				resetCursorImage();
 				if(selectedWarrior != null && selectedWarrior.playsMusic()) {
-					playMusic("src/assets/music/"+selectedWarrior.getID()+".mp3");
+					playMusic("src/media/music/"+selectedWarrior.getID()+".mp3");
 				}
 				Label placedWarrior = new Label();
 				double paddingLeft = (col+1) * cellSize;
@@ -274,7 +251,7 @@ public class MapInterface extends LayoutInterface<StackPane>{
 				// System.out.println("Col: "+col+". Left padding: "+paddingLeft+".");
 				placedWarrior.setPrefHeight(cellSize);
 				placedWarrior.setPrefWidth(cellSize);
-				placedWarrior.setBackground(createBackground("src/assets/images/"+selectedWarrior.getID()+".png", cellSize, cellSize, false, true));
+				placedWarrior.setBackground(createBackground("src/media/images/"+selectedWarrior.getID()+".png", cellSize, cellSize, false, true));
 				placementRows[row].getChildren().add(placedWarrior);
 				selectedWarrior = null;
 			} catch(ClassCastException e) {

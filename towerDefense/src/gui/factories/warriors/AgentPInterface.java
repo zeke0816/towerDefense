@@ -39,7 +39,7 @@ public class AgentPInterface extends WarriorInterface {
 		button = new Button();
 		button.setVisible(true);
         button.setPrefSize(100, 100);
-        button.setBackground(new Background(new BackgroundImage(new Image(new File("src/assets/images/"+id+".png").toURI().toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(120, 120, false, false, true, false))));
+        button.setBackground(new Background(new BackgroundImage(new Image(new File("src/media/images/"+id+".png").toURI().toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(120, 120, false, false, true, false))));
         button.setUserData(this);
 	}
 	
