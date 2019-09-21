@@ -114,9 +114,9 @@ public class MapInterface extends LayoutInterface<StackPane> {
 	 * Plays music, if necessary, given a path to the file
 	 * @param path the path to the media file
 	 */
-	private void playSound(String path) {
+	private void playSound(String id) {
 		try {
-			Media sound = new Media(MediaDatabase.getInstance().getStyleMedia(path));
+			Media sound = MediaDatabase.getInstance().getSoundMedia(id);
 			BackgroundPlayer.getInstance().fadeOut();
 			if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
 				mediaPlayer.stop();
