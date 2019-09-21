@@ -6,5 +6,9 @@ package characters;
  *
  */
 public abstract class Warrior extends Character {
+	
+	public Warrior() {
+		attackSpeed = 0;
+	}
 
 }

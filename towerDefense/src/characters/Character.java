@@ -1,5 +1,7 @@
 package characters;
 
+import characters.states.Basic;
+import characters.states.State;
 import game.GameObject;
 
 /**
@@ -9,7 +11,30 @@ import game.GameObject;
  */
 public abstract class Character extends GameObject {
 	
+	protected State state;
 	protected int strength;
-	protected int speed;
+	protected int protection;
+	protected int attackSpeed;
+	protected int movementSpeed;
+	
+	protected Character() {
+		state = new Basic(this);
+	}
+	
+	public void setStrength(int s) {
+		strength = s;
+	}
+	
+	public void setProtection(int p) {
+		protection = p;
+	}
+	
+	public void setAttackSpeed(int s) {
+		attackSpeed = s;
+	}
+	
+	public void setMovementSpeed(int s) {
+		movementSpeed = s;
+	}
 
 }
