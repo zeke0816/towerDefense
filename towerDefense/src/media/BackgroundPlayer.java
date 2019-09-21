@@ -1,13 +1,12 @@
 package media;
 
-import java.io.File;
-
+import exceptions.DatabaseException;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import media.databases.MediaDatabase;
 
 public class BackgroundPlayer {
 	
@@ -21,8 +20,12 @@ public class BackgroundPlayer {
 	 * Initializes the background music player
 	 */
 	private BackgroundPlayer() {
-		player = new MediaPlayer(new Media(getMediaFromPath("src/media/music/background.mp3")));
-		play();
+		try {
+			player = new MediaPlayer(MediaDatabase.getInstance().getSoundMedia("background"));
+			play();
+		} catch (DatabaseException e) {
+			System.out.println("The background music could not be loaded.");
+		}
 		
 		fadeInTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), 1)));
 		fadeOutTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), .1)));
@@ -60,17 +63,6 @@ public class BackgroundPlayer {
 	 */
 	public void fadeOut() {
 		fadeOutTimeline.play();
-	}
-	
-	//TODO: Use Proxy to get Media and stuff
-	
-	/**
-	 * Gets media information as a String from a given path
-	 * @param path the path to the media file
-	 * @return the media information
-	 */
-	private String getMediaFromPath(String path) {
-		return (new File(path)).toURI().toString();
 	}
 
 }

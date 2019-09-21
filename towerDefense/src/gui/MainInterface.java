@@ -2,9 +2,9 @@ package gui;
 
 import gui.scenes.MainScene;
 import javafx.application.Application;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Paint;
+//import javafx.scene.layout.Background;
+//import javafx.scene.layout.BackgroundFill;
+//import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -14,10 +14,10 @@ import javafx.stage.Stage;
  */
 public class MainInterface extends Application {
 	
-	protected static final Background darkBackground = new Background(new BackgroundFill(Paint.valueOf("#dddddd"), null, null));
-	protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
-	protected static final Paint gray = Paint.valueOf("#8e8e8e");
-	protected static final Paint black = Paint.valueOf("#000000");
+	// protected static final Background darkBackground = new Background(new BackgroundFill(Paint.valueOf("#dddddd"), null, null));
+	// protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
+	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
+	// protected static final Paint black = Paint.valueOf("#000000");
 	
 	/**
     * @param args the command line arguments

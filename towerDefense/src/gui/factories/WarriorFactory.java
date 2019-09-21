@@ -33,21 +33,21 @@ public class WarriorFactory {
 	 * @param id the ID of the Warrior
 	 * @return the newly created Warrior
 	 */
-	public Warrior createWarrior(int id) {
+	public Warrior createWarrior(String id) {
 		switch(id) {
-			case 1:
+			case "agentP":
 				return agentP.getWarrior();
-			case 2:
+			case "theFlea":
 				return new TheFlea();
-			case 3:
+			case "cyborg":
 				return new Cyborg();
-			case 4:
+			case "bb8":
 				return new BB8();
-			case 5:
+			case "gary":
 				return new Gary();
-			case 6:
+			case "turret":
 				return new Turret();
-			case 7:
+			case "toph":
 				return new Toph();
 		}
 		return null;

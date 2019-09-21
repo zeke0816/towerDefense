@@ -1,14 +1,11 @@
 package media.databases;
 
+import java.io.File;
+
 public class StyleService extends DatabaseService {
 
 	public StyleService() {
-		database = "src/media/databases/tables/styles.csv";
-	}
-
-	@Override
-	public String getPath(String id) {
-		return null;
+		table = new File("src/media/databases/tables/styles.csv");
 	}
 
 }

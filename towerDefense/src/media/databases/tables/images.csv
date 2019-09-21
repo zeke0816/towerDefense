@@ -1,0 +1,15 @@
+background,src/media/images/background.png
+agentP,src/media/images/agentP.png
+bb8,src/media/images/bb8.png
+cyborg,src/media/images/cyborg.png
+gary,src/media/images/gary.png
+theFlea,src/media/images/theFlea.png
+toph,src/media/images/toph.png
+turret,src/media/images/turret.png
+agentPcursor,src/media/cursors/agentP.png
+bb8cursor,src/media/cursors/bb8.png
+cyborgcursor,src/media/cursors/cyborg.png
+garycursor,src/media/cursors/gary.png
+theFleacursor,src/media/cursors/theFlea.png
+tophcursor,src/media/cursors/toph.png
+turretcursor,src/media/cursors/turret.png

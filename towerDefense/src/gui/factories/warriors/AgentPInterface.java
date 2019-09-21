@@ -1,53 +1,46 @@
 package gui.factories.warriors;
 
-import java.io.File;
-
 import characters.Warrior;
+import characters.warriors.AgentP;
+import exceptions.DatabaseException;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Font;
+import media.databases.MediaDatabase;
 
 public class AgentPInterface extends WarriorInterface {
-	
-	protected int id;
-	protected String name;
-	protected boolean playsMusic;
-	protected Label label;
-	protected Button button;
 
 	public AgentPInterface() {
 		super();
 		
-		id = 1;
+		id = "agentP";
 		name = "Agent P";
-		playsMusic = true;
-		
-		// TODO: implement Proxy to get the images
+		playsSound = true;
 		
 		label = new Label(name);
 		label.setVisible(true);
 		label.setAlignment(Pos.CENTER);
 		label.setFont(new Font("Cambria", 20));
 		
+		double size = 100;
 		button = new Button();
 		button.setVisible(true);
-        button.setPrefSize(100, 100);
-        button.setBackground(new Background(new BackgroundImage(new Image(new File("src/media/images/"+id+".png").toURI().toString()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(120, 120, false, false, true, false))));
+        button.setPrefSize(size, size);
+        try {
+			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
+		} catch (DatabaseException e) {
+			System.out.println("The Warrior's graphics could not be loaded.");
+		}
         button.setUserData(this);
+        warrior = new AgentP();
 	}
 	
 	public Warrior getWarrior() {
 		return warrior;
 	}
 	
-	public int getID() {
+	public String getID() {
 		return id;
 	}
 	
@@ -55,8 +48,8 @@ public class AgentPInterface extends WarriorInterface {
 		return name;
 	}
 	
-	public boolean playsMusic() {
-		return playsMusic;
+	public boolean playsSound() {
+		return playsSound;
 	}
 	
 	public Label getLabel() {

@@ -1,14 +1,11 @@
 package media.databases;
 
+import java.io.File;
+
 public class SoundService extends DatabaseService {
 
 	public SoundService() {
-		database = "src/media/databases/tables/music.csv";
-	}
-
-	@Override
-	public String getPath(String id) {
-		return null;
+		table = new File("src/media/databases/tables/music.csv");
 	}
 
 }

@@ -1,7 +1,6 @@
 package gui.layouts;
 
-import java.io.File;
-
+import exceptions.DatabaseException;
 import gui.factories.warriors.AgentPInterface;
 import gui.factories.warriors.WarriorInterface;
 import gui.scenes.MainScene;
@@ -13,6 +12,7 @@ import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import media.databases.MediaDatabase;
 
 public class DockInterface extends LayoutInterface<GridPane> {
 	
@@ -83,17 +83,6 @@ public class DockInterface extends LayoutInterface<GridPane> {
 		MainScene.getInstance().setCursor(new ImageCursor(img, img.getWidth()/2, img.getHeight()/2));
 	}
 	
-	//TODO: Use Proxy to get Media and stuff
-	
-	/**
-	 * Gets media information as a String from a given path
-	 * @param path the path to the media file
-	 * @return the media information
-	 */
-	private String getMediaFromPath(String path) {
-		return (new File(path)).toURI().toString();
-	}
-	
 	/**
 	 * Listener for warrior selection from the dock
 	 */
@@ -105,8 +94,12 @@ public class DockInterface extends LayoutInterface<GridPane> {
 				Button warrior = (Button) event.getSource();
 				WarriorInterface selectedWarrior = (WarriorInterface) warrior.getUserData();
 				MapInterface.getInstance().selectWarrior(selectedWarrior);
-				Image img = new Image(getMediaFromPath("src/media/cursors/"+selectedWarrior.getID()+".png"));
-				setCursorImage(img);
+				try {
+					Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
+					setCursorImage(img);
+				} catch (DatabaseException e) {
+					System.out.println("The selected Warrior's graphics could not replace the cursor.");
+				}
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the warrior.");
 			}

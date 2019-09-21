@@ -11,6 +11,11 @@ import javafx.scene.control.Label;
  */
 public abstract class WarriorInterface {
 	
+	protected String id;
+	protected String name;
+	protected boolean playsSound;
+	protected Label label;
+	protected Button button;
 	protected Warrior warrior;
 	
 	/**
@@ -32,7 +37,7 @@ public abstract class WarriorInterface {
 	 * Gets the ID string for media identification
 	 * @return the ID of the warrior interface
 	 */
-	public abstract int getID();
+	public abstract String getID();
 	
 	/**
 	 * Gets the display name of the warrior
@@ -41,10 +46,10 @@ public abstract class WarriorInterface {
 	public abstract String getName();
 	
 	/**
-	 * Tells whether this warrior plays music or not
-	 * @return true if it plays music, false if it does not
+	 * Tells whether this warrior plays sounds or not
+	 * @return true if it plays sounds, false if it does not
 	 */
-	public abstract boolean playsMusic();
+	public abstract boolean playsSound();
 	
 	/**
 	 * Gets the label to show on screen

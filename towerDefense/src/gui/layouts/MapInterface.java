@@ -1,9 +1,8 @@
 package gui.layouts;
 
-import java.io.File;
-
 import characters.Warrior;
 import exceptions.CellTakenException;
+import exceptions.DatabaseException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
 import game.Map;
@@ -14,18 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -35,6 +28,7 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import media.BackgroundPlayer;
+import media.databases.MediaDatabase;
 
 public class MapInterface extends LayoutInterface<StackPane> {
 
@@ -113,50 +107,33 @@ public class MapInterface extends LayoutInterface<StackPane> {
 		selectedWarrior = w;
 	}
 	
-	/**
-	 * Creates a background from an image, given its path, and returns it
-	 * @param path the path to the background image
-	 * @param width the width of the background
-	 * @param height the height of the background
-	 * @param cover whether the background will take the shape of the object
-	 * @param contain whether the background will be adjusted to fit the shape of the object
-	 * @return the background ready for use
-	 */
-	private Background createBackground(String path, double width, double height, boolean cover, boolean contain) {
-		return new Background(new BackgroundImage(new Image(getMediaFromPath(path)), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, new BackgroundPosition(Side.RIGHT, 0, false, Side.TOP, 0, false), new BackgroundSize(width, height, false, false, contain, cover)));
-	}
-	
-	//TODO: Use Proxy to get Media and stuff
-	
-	/**
-	 * Gets media information as a String from a given path
-	 * @param path the path to the media file
-	 * @return the media information
-	 */
-	private String getMediaFromPath(String path) {
-		return (new File(path)).toURI().toString();
-	}
+	// TODO: create a sound player to allow multiple sounds to play at the same time and modularize this part
+	// There is too much responsibility in this class
 	
 	/**
 	 * Plays music, if necessary, given a path to the file
 	 * @param path the path to the media file
 	 */
-	private void playMusic(String path) {
-		BackgroundPlayer.getInstance().fadeOut();
-		if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
-			mediaPlayer.stop();
+	private void playSound(String path) {
+		try {
+			Media sound = new Media(MediaDatabase.getInstance().getStyleMedia(path));
+			BackgroundPlayer.getInstance().fadeOut();
+			if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
+				mediaPlayer.stop();
+			}
+			mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			mediaPlayer.setOnEndOfMedia(new Runnable() {
+				
+		        @Override
+		        public void run() {
+		        	BackgroundPlayer.getInstance().fadeIn();
+		        }
+		        
+		    });
+		} catch (DatabaseException e) {
+			System.out.println("The Character's sound could not be played.");
 		}
-		Media sound = new Media(getMediaFromPath(path));
-		mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
-		mediaPlayer.setOnEndOfMedia(new Runnable() {
-			
-	        @Override
-	        public void run() {
-	        	BackgroundPlayer.getInstance().fadeIn();
-	        }
-	        
-	    });
 	}
 	
 	/**
@@ -242,16 +219,21 @@ public class MapInterface extends LayoutInterface<StackPane> {
 				cell.setBackground(null);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor
 				resetCursorImage();
-				if(selectedWarrior != null && selectedWarrior.playsMusic()) {
-					playMusic("src/media/music/"+selectedWarrior.getID()+".mp3");
+				if(selectedWarrior != null && selectedWarrior.playsSound()) {
+					playSound(selectedWarrior.getID());
 				}
+				// TODO: let another class take the responsibility of creating the graphics
 				Label placedWarrior = new Label();
 				double paddingLeft = (col+1) * cellSize;
 				placedWarrior.setPadding(new Insets(0, 0, 0, paddingLeft));
 				// System.out.println("Col: "+col+". Left padding: "+paddingLeft+".");
 				placedWarrior.setPrefHeight(cellSize);
 				placedWarrior.setPrefWidth(cellSize);
-				placedWarrior.setBackground(createBackground("src/media/images/"+selectedWarrior.getID()+".png", cellSize, cellSize, false, true));
+				try {
+					placedWarrior.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(selectedWarrior.getID(), cellSize, cellSize, true, false));
+				} catch (DatabaseException e) {
+					System.out.println("The Warrior's graphics could not be loaded and placed on the Map.");
+				}
 				placementRows[row].getChildren().add(placedWarrior);
 				selectedWarrior = null;
 			} catch(ClassCastException e) {
