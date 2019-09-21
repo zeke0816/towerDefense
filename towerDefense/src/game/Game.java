@@ -9,7 +9,7 @@ public class Game {
 	
 	protected Map map;
 	protected Level level;
-	protected Factory factory;
+	protected WarriorFactory factory;
 	protected boolean over;
 	
 	/**
@@ -18,7 +18,7 @@ public class Game {
 	public Game() {
 		map = new Map();
 		level = new Level();
-		factory = new Factory();
+		factory = new WarriorFactory();
 		over = false;
 	}
 	
@@ -34,7 +34,7 @@ public class Game {
 	 * Gets the factory of the Game
 	 * @return the factory
 	 */
-	public Factory getFactory() {
+	public WarriorFactory getFactory() {
 		return factory;
 	}
 	

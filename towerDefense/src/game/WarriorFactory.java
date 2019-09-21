@@ -1,11 +1,20 @@
 package game;
 
+import characters.Warrior;
+import characters.warriors.AgentP;
+import characters.warriors.BB8;
+import characters.warriors.Cyborg;
+import characters.warriors.Gary;
+import characters.warriors.TheFlea;
+import characters.warriors.Toph;
+import characters.warriors.Turret;
+
 /**
  * Class that handles the creation of characters and objects
  * @author zeke0816
  *
  */
-public class Factory {
+public class WarriorFactory {
 	
 	/**
 	 * Creates a Warrior based on the given ID
