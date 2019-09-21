@@ -2,7 +2,7 @@ package media.databases;
 
 public class MediaDatabase {
 	
-	private static final DatabaseService music = new MusicService();
+	private static final DatabaseService sounds = new SoundService();
 	private static final DatabaseService images = new ImageService();
 	private static final DatabaseService styles = new StyleService();
 	private static final MediaDatabase instance = new MediaDatabase();
@@ -15,8 +15,8 @@ public class MediaDatabase {
 		return instance;
 	}
 	
-	public String getMusicMedia(String id) {
-		return music.getPath(id);
+	public String getSoundMedia(String id) {
+		return sounds.getPath(id);
 	}
 	
 	public String getImageMedia(String id) {

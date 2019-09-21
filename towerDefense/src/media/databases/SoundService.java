@@ -1,8 +1,8 @@
 package media.databases;
 
-public class MusicService extends DatabaseService {
+public class SoundService extends DatabaseService {
 
-	public MusicService() {
+	public SoundService() {
 		database = "src/media/databases/tables/music.csv";
 	}
 
