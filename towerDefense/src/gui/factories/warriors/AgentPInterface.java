@@ -1,7 +1,8 @@
-package gui;
+package gui.factories.warriors;
 
 import java.io.File;
 
+import characters.Warrior;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,29 +14,22 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Font;
 
-/**
- * Class to represent and save information about a Warrior in the GUI
- * @author zeke0816
- *
- */
-public class WarriorInterface {
+public class AgentPInterface extends WarriorInterface {
 	
-	protected String id;
+	protected int id;
 	protected String name;
-	protected boolean interactive;
+	protected boolean playsMusic;
 	protected Label label;
 	protected Button button;
-	
-	/**
-	 * Creates a Warrior Interface with all its attributes
-	 * @param i the ID of the warrior
-	 * @param n the name of the warrior to be shown on the dock
-	 * @param in true if it plays music when places, false if not
-	 */
-	public WarriorInterface(String i, String n, boolean in) {
-		id = i;
-		name = n;
-		interactive = in;
+
+	public AgentPInterface() {
+		super();
+		
+		id = 1;
+		name = "Agent P";
+		playsMusic = true;
+		
+		// TODO: implement Proxy to get the images
 		
 		label = new Label(name);
 		label.setVisible(true);
@@ -49,42 +43,26 @@ public class WarriorInterface {
         button.setUserData(this);
 	}
 	
-	/**
-	 * Gets the ID string for media identification
-	 * @return the ID of the warrior interface
-	 */
-	public String getID() {
+	public Warrior getWarrior() {
+		return warrior;
+	}
+	
+	public int getID() {
 		return id;
 	}
 	
-	/**
-	 * Gets the display name of the warrior
-	 * @return the display name
-	 */
 	public String getName() {
 		return name;
 	}
 	
-	/**
-	 * Tells whether this warrior plays music or not
-	 * @return true if it plays music, false if it does not
-	 */
 	public boolean playsMusic() {
-		return interactive;
+		return playsMusic;
 	}
 	
-	/**
-	 * Gets the label to show on screen
-	 * @return the label
-	 */
 	public Label getLabel() {
 		return label;
 	}
 	
-	/**
-	 * Gets the button to show on screen
-	 * @return the button
-	 */
 	public Button getButton() {
 		return button;
 	}

@@ -9,17 +9,20 @@ public class Game {
 	
 	protected Map map;
 	protected Level level;
-	protected WarriorFactory factory;
 	protected boolean over;
+	private static final Game instance = new Game();
 	
 	/**
 	 * Initializes the game creating a map, level, and factory, plus marking the game as not over.
 	 */
-	public Game() {
+	protected Game() {
 		map = new Map();
 		level = new Level();
-		factory = new WarriorFactory();
 		over = false;
+	}
+	
+	public static Game getInstance() {
+		return instance;
 	}
 	
 	/**
@@ -28,14 +31,6 @@ public class Game {
 	 */
 	public Map getMap() {
 		return map;
-	}
-	
-	/**
-	 * Gets the factory of the Game
-	 * @return the factory
-	 */
-	public WarriorFactory getFactory() {
-		return factory;
 	}
 	
 	/**
