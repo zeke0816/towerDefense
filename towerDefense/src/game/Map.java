@@ -52,28 +52,13 @@ public class Map {
 	}
 	
 	/**
-	 * Tells whether there is an enemy at a given scope from a row and column
-	 * @param row the source row
-	 * @param col the source column
-	 * @param scope the given scope
-	 * @return true if there is at least one enemy within the scope, false if there is no enemy in sight
-	 */
-	public boolean isThereEnemyAt(int row, int col, int scope) {
-		boolean thereIs = false;
-		for(int i = col; !thereIs && i < scope; i++) {
-			thereIs = arena[row][i].isTaken(); // TODO: check if it is taken by an enemy
-		}
-		return thereIs;
-	}
-	
-	/**
 	 * Gets the enemy at a given scope from a row and column
 	 * @param row the source row
 	 * @param col the source column
 	 * @param scope the given scope
 	 * @return the enemy in sight
 	 */
-	public GameObject enemyAt(int row, int col, int scope) {
+	public GameObject getObjectAt(int row, int col, int scope) {
 		GameObject object = null;
 		for(int i = col; object == null && i < scope; i++) {
 			object = arena[row][i].getObject();
