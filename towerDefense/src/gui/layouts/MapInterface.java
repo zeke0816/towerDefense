@@ -2,27 +2,24 @@ package gui.layouts;
 
 import characters.Warrior;
 import exceptions.CellTakenException;
-import exceptions.DatabaseException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
 import game.Map;
+import gui.controls.CellInterface;
 import gui.factories.WarriorFactory;
+import gui.factories.warriors.PlacedWarrior;
 import gui.factories.warriors.WarriorInterface;
 import gui.scenes.MainScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
-import javafx.util.Pair;
-import media.databases.MediaDatabase;
 import media.sounds.SoundPlayer;
 
 public class MapInterface extends LayoutInterface<StackPane> {
@@ -60,14 +57,8 @@ public class MapInterface extends LayoutInterface<StackPane> {
 			placementRows[i] = row;
 			movementLayout.add(row, 0, i);
 			for(int j = 0; j < map.getColumns(); j++) {
-				Button cell = new Button();
-				cell.setVisible(true);
-				cell.setMinSize(cellSize, cellSize);
-				cell.setMaxSize(cellSize, cellSize);
-				cell.setPrefSize(cellSize, cellSize);
-				cell.setBackground(null);
-				cell.setOpacity(.6);
-				cell.setUserData(new Pair<Integer, Integer>(i, j));
+				CellInterface cell = new CellInterface();
+				cell.setCoordinates(i, j);
 				if(j < placementLimit){
 					cell.setOnAction(cellListener);
 					cell.setOnMouseEntered(placementAllowedListener);
@@ -89,6 +80,22 @@ public class MapInterface extends LayoutInterface<StackPane> {
 	 */
 	public static MapInterface getInstance() {
 		return instance;
+	}
+	
+	/**
+	 * Checks whether a Warrior has been selected
+	 * @return true if a Warrior is currently selected, false if not
+	 */
+	public boolean warriorSelected() {
+		return selectedWarrior != null;
+	}
+	
+	/**
+	 * Gets the selected Warrior
+	 * @return the currently selected Warrior
+	 */
+	public WarriorInterface selectedWarrior() {
+		return selectedWarrior;
 	}
 	
 	/**
@@ -165,32 +172,19 @@ public class MapInterface extends LayoutInterface<StackPane> {
 				if(selectedWarrior == null) {
 					throw new UnselectedWarriorException("No Warrior has been selected!");
 				}
-				Button cell = (Button) event.getSource();
+				CellInterface cell = (CellInterface) event.getSource();
 				cell.setOnMouseEntered(placementNotAllowedListener);
-				Pair<Integer, Integer> coordinates = (Pair<Integer, Integer>) cell.getUserData();
-				Integer row = coordinates.getKey();
-				Integer col = coordinates.getValue();
+				int row = cell.getX();
+				int col = cell.getY();
 				Warrior warrior = WarriorFactory.getInstance().createWarrior(selectedWarrior.getID());
 				Game.getInstance().getMap().takeCell(row, col, warrior);
 				cell.setBackground(null);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor
 				MainScene.getInstance().resetCursorImage();
-				if(selectedWarrior != null && selectedWarrior.playsSound()) {
+				if(warriorSelected() && selectedWarrior.playsSound()) {
 					SoundPlayer.getInstance().play(selectedWarrior.getID());
 				}
-				// TODO: let another class take the responsibility of creating the graphics
-				Label placedWarrior = new Label();
-				double paddingLeft = (col+1) * cellSize;
-				placedWarrior.setPadding(new Insets(0, 0, 0, paddingLeft));
-				// System.out.println("Col: "+col+". Left padding: "+paddingLeft+".");
-				placedWarrior.setPrefHeight(cellSize);
-				placedWarrior.setPrefWidth(cellSize);
-				try {
-					placedWarrior.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(selectedWarrior.getID(), cellSize, cellSize, true, false));
-				} catch (DatabaseException e) {
-					System.out.println("The Warrior's graphics could not be loaded and placed on the Map.");
-				}
-				placementRows[row].getChildren().add(placedWarrior);
+				placementRows[row].getChildren().add(new PlacedWarrior(col, cellSize));
 				selectedWarrior = null;
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the warrior.");
