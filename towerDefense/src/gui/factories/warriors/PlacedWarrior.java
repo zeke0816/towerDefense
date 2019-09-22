@@ -1,22 +1,27 @@
 package gui.factories.warriors;
 
 import exceptions.DatabaseException;
-import gui.layouts.MapInterface;
+import gui.layouts.PlacementInterface;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import media.databases.MediaDatabase;
 
 public class PlacedWarrior extends Label {
 
-	public PlacedWarrior(int col, int cellSize) {
+	public PlacedWarrior(int col) {
 		super();
-		double paddingLeft = (col+1) * cellSize;
+		
+		double size = PlacementInterface.getCellSize();
+		double paddingLeft = (col+1) * size;
+		
 		setPadding(new Insets(0, 0, 0, paddingLeft));
+		setPrefHeight(size);
+		setPrefWidth(size);
+		
 		// System.out.println("Col: "+col+". Left padding: "+paddingLeft+".");
-		setPrefHeight(cellSize);
-		setPrefWidth(cellSize);
+		
 		try {
-			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(MapInterface.getInstance().selectedWarrior().getID(), cellSize, cellSize, true, false));
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(PlacementInterface.getInstance().getSelectedWarrior().getID(), size, size, true, false));
 		} catch (DatabaseException e) {
 			System.out.println("The Warrior's graphics could not be loaded and placed on the Map.");
 		}

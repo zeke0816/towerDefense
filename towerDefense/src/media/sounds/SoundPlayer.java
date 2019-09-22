@@ -1,6 +1,9 @@
 package media.sounds;
 
 import exceptions.DatabaseException;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
@@ -41,6 +44,8 @@ public class SoundPlayer extends MusicPlayer {
 				player.stop();
 			}
 			player = new MediaPlayer(sound);
+			fadeInTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), 1)));
+			fadeOutTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), .1)));
 			player.play();
 			player.setOnEndOfMedia(new Runnable() {
 				

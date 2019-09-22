@@ -1,6 +1,9 @@
 package media.sounds;
 
 import exceptions.DatabaseException;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import media.databases.MediaDatabase;
@@ -35,6 +38,8 @@ public class BackgroundPlayer extends MusicPlayer {
 	public void play() {
 		try {
 			player = new MediaPlayer(MediaDatabase.getInstance().getSoundMedia("background"));
+			fadeInTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), 1)));
+			fadeOutTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), .1)));
 			player.play();
 		} catch (DatabaseException e) {
 			System.out.println("The background music could not be loaded.");

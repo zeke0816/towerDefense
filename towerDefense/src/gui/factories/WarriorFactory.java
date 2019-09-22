@@ -7,8 +7,8 @@ import characters.warriors.Gary;
 import characters.warriors.TheFlea;
 import characters.warriors.Toph;
 import characters.warriors.Turret;
-import gui.factories.warriors.AgentPInterface;
-import gui.factories.warriors.WarriorInterface;
+import gui.factories.warriors.AgentPPrototype;
+import gui.factories.warriors.WarriorPrototype;
 
 /**
  * Class that handles the creation of characters and objects
@@ -17,11 +17,11 @@ import gui.factories.warriors.WarriorInterface;
  */
 public class WarriorFactory {
 	
-	protected WarriorInterface agentP;
+	protected WarriorPrototype agentP;
 	private static final WarriorFactory instance = new WarriorFactory();
 	
 	private WarriorFactory() {
-		agentP = new AgentPInterface();
+		agentP = new AgentPPrototype();
 	}
 	
 	public static WarriorFactory getInstance() {

@@ -1,17 +1,18 @@
 package gui.factories.warriors;
 
-import characters.Warrior;
 import characters.warriors.AgentP;
 import exceptions.DatabaseException;
+import gui.controls.WarriorButton;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import media.databases.MediaDatabase;
 
-public class AgentPInterface extends WarriorInterface {
+public class AgentPPrototype extends WarriorPrototype {
 
-	public AgentPInterface() {
+	public AgentPPrototype() {
 		super();
 		
 		id = "agentP";
@@ -22,9 +23,10 @@ public class AgentPInterface extends WarriorInterface {
 		label.setVisible(true);
 		label.setAlignment(Pos.CENTER);
 		label.setFont(new Font("Cambria", 20));
+        GridPane.setHalignment(label, HPos.CENTER);
 		
 		double size = 100;
-		button = new Button();
+		button = new WarriorButton();
 		button.setVisible(true);
         button.setPrefSize(size, size);
         try {
@@ -32,12 +34,8 @@ public class AgentPInterface extends WarriorInterface {
 		} catch (DatabaseException e) {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
-        button.setUserData(this);
+        button.setWarrior(this);
         warrior = new AgentP();
-	}
-	
-	public Warrior getWarrior() {
-		return warrior;
 	}
 	
 	public String getID() {
@@ -56,7 +54,7 @@ public class AgentPInterface extends WarriorInterface {
 		return label;
 	}
 	
-	public Button getButton() {
+	public WarriorButton getButton() {
 		return button;
 	}
 

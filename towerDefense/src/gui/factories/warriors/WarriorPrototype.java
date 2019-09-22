@@ -1,6 +1,7 @@
 package gui.factories.warriors;
 
 import characters.Warrior;
+import gui.controls.WarriorButton;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -9,19 +10,19 @@ import javafx.scene.control.Label;
  * @author zeke0816
  *
  */
-public abstract class WarriorInterface {
+public abstract class WarriorPrototype {
 	
 	protected String id;
 	protected String name;
 	protected boolean playsSound;
 	protected Label label;
-	protected Button button;
+	protected WarriorButton button;
 	protected Warrior warrior;
 	
 	/**
 	 * Creates an empty Warrior Interface
 	 */
-	protected WarriorInterface() {
+	protected WarriorPrototype() {
 		
 	}
 	
@@ -30,7 +31,7 @@ public abstract class WarriorInterface {
 	 * @return the Warrior
 	 */
 	public Warrior getWarrior() {
-		return warrior;
+		return warrior.clone();
 	}
 	
 	/**

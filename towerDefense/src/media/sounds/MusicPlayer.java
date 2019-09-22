@@ -1,7 +1,5 @@
 package media.sounds;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -22,8 +20,7 @@ public abstract class MusicPlayer {
 	 * Initializes the background music player
 	 */
 	protected MusicPlayer() {
-		fadeInTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), 1)));
-		fadeOutTimeline = new Timeline(new KeyFrame(fadeDuration, new KeyValue(player.volumeProperty(), .1)));
+		
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package gui.controls;
 
+import gui.layouts.PlacementInterface;
 import javafx.scene.control.Button;
 import javafx.util.Pair;
 
@@ -8,7 +9,7 @@ import javafx.util.Pair;
  * @author zeke0816
  *
  */
-public class CellInterface extends Button {
+public class CellButton extends Button {
 	
 	protected int x;
 	protected int y;
@@ -16,18 +17,13 @@ public class CellInterface extends Button {
 	/**
 	 * Initializes the Cell Interface as a Button
 	 */
-	public CellInterface() {
+	public CellButton() {
 		super();
 		setVisible(true);
 		setBackground(null);
 		setOpacity(.6);
-	}
-	
-	/**
-	 * Sets the size of the Cell
-	 * @param size the size (both width and height, it is a square)
-	 */
-	public void setSize(double size) {
+		
+		double size = PlacementInterface.getCellSize();
 		setMinSize(size, size);
 		setMaxSize(size, size);
 		setPrefSize(size, size);
