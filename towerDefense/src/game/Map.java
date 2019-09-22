@@ -73,6 +73,7 @@ public class Map {
 	 * @param object the object trying to take the cell
 	 */
 	public void takeCell(int row, int col, GameObject object) throws CellTakenException {
+		// System.out.println(object.hashCode()); // Memory tester to see if each object is correctly cloned by the prototype
 		if(arena[row][col].isTaken()) {
 			throw new CellTakenException("This cell has already been taken!");
 		}
