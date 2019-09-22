@@ -2,8 +2,11 @@ package gui.factories.warriors;
 
 import characters.Warrior;
 import gui.controls.WarriorButton;
-import javafx.scene.control.Button;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 
 /**
  * Class to represent and save information about a Warrior in the GUI
@@ -18,12 +21,21 @@ public abstract class WarriorPrototype {
 	protected Label label;
 	protected WarriorButton button;
 	protected Warrior warrior;
+	protected static final double size = 100;
 	
 	/**
 	 * Creates an empty Warrior Interface
 	 */
 	protected WarriorPrototype() {
-		
+		label = new Label();
+		label.setVisible(true);
+		label.setAlignment(Pos.CENTER);
+		label.setFont(new Font("Cambria", 20));
+        GridPane.setHalignment(label, HPos.CENTER);
+        
+		button = new WarriorButton();
+		button.setVisible(true);
+        button.setPrefSize(size, size);
 	}
 	
 	/**
@@ -38,30 +50,40 @@ public abstract class WarriorPrototype {
 	 * Gets the ID string for media identification
 	 * @return the ID of the warrior interface
 	 */
-	public abstract String getID();
-	
+	public String getID() {
+		return id;
+	}
+
 	/**
 	 * Gets the display name of the warrior
 	 * @return the display name
 	 */
-	public abstract String getName();
-	
+	public String getName() {
+		return name;
+	}
+
 	/**
 	 * Tells whether this warrior plays sounds or not
 	 * @return true if it plays sounds, false if it does not
 	 */
-	public abstract boolean playsSound();
-	
+	public boolean playsSound() {
+		return playsSound;
+	}
+
 	/**
 	 * Gets the label to show on screen
 	 * @return the label
 	 */
-	public abstract Label getLabel();
-	
+	public Label getLabel() {
+		return label;
+	}
+
 	/**
 	 * Gets the button to show on screen
 	 * @return the button
 	 */
-	public abstract Button getButton();
+	public WarriorButton getButton() {
+		return button;
+	}
 
 }

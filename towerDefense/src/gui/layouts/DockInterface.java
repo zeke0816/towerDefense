@@ -3,6 +3,12 @@ package gui.layouts;
 import exceptions.DatabaseException;
 import gui.controls.WarriorButton;
 import gui.factories.warriors.AgentPPrototype;
+import gui.factories.warriors.BB8Prototype;
+import gui.factories.warriors.CyborgPrototype;
+import gui.factories.warriors.GaryPrototype;
+import gui.factories.warriors.TheFleaPrototype;
+import gui.factories.warriors.TophPrototype;
+import gui.factories.warriors.TurretPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
 import javafx.event.ActionEvent;
@@ -27,35 +33,35 @@ public class DockInterface extends LayoutInterface<GridPane> {
         layout.add(agentP.getButton(), 0, 0);
         layout.add(agentP.getLabel(), 0, 1);
         
-        /*WarriorInterface flea = new WarriorInterface("TheFlea", "The Flea", true);
+        TheFleaPrototype flea = new TheFleaPrototype();
         flea.getButton().setOnAction(selectWarriorListener);
         layout.add(flea.getButton(), 1, 0);
         layout.add(flea.getLabel(), 1, 1);
 
-        WarriorInterface cyborg = new WarriorInterface("Cyborg", "Cyborg", true);
+        CyborgPrototype cyborg = new CyborgPrototype();
         cyborg.getButton().setOnAction(selectWarriorListener);
         layout.add(cyborg.getButton(), 2, 0);
         layout.add(cyborg.getLabel(), 2, 1);
         
-        WarriorInterface bb8 = new WarriorInterface("BB8", "BB8", false);
+        BB8Prototype bb8 = new BB8Prototype();
         bb8.getButton().setOnAction(selectWarriorListener);
         layout.add(bb8.getButton(), 3, 0);
         layout.add(bb8.getLabel(), 3, 1);
         
-        WarriorInterface gary = new WarriorInterface("Gary", "Gary", true);
+        GaryPrototype gary = new GaryPrototype();
         gary.getButton().setOnAction(selectWarriorListener);
         layout.add(gary.getButton(), 4, 0);
         layout.add(gary.getLabel(), 4, 1);
         
-        WarriorInterface turret = new WarriorInterface("Turret", "Turret", false);
+        TurretPrototype turret = new TurretPrototype();
         turret.getButton().setOnAction(selectWarriorListener);
         layout.add(turret.getButton(), 5, 0);
         layout.add(turret.getLabel(), 5, 1);
         
-        WarriorInterface toph = new WarriorInterface("Toph", "Toph", false);
+        TophPrototype toph = new TophPrototype();
         toph.getButton().setOnAction(selectWarriorListener);
         layout.add(toph.getButton(), 6, 0);
-        layout.add(toph.getLabel(), 6, 1);*/
+        layout.add(toph.getLabel(), 6, 1);
 	}
 	
 	/**
