@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -76,14 +75,6 @@ public class DockInterface extends LayoutInterface<GridPane> {
 	}
 	
 	/**
-	 * Sets a custom image as the cursor
-	 * @param img the image
-	 */
-	private void setCursorImage(Image img) {
-		MainScene.getInstance().setCursor(new ImageCursor(img, img.getWidth()/2, img.getHeight()/2));
-	}
-	
-	/**
 	 * Listener for warrior selection from the dock
 	 */
 	EventHandler<ActionEvent> selectWarriorListener = new EventHandler<ActionEvent>() {
@@ -96,7 +87,7 @@ public class DockInterface extends LayoutInterface<GridPane> {
 				MapInterface.getInstance().selectWarrior(selectedWarrior);
 				try {
 					Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
-					setCursorImage(img);
+					MainScene.getInstance().setCursorImage(img);
 				} catch (DatabaseException e) {
 					System.out.println("The selected Warrior's graphics could not replace the cursor.");
 				}

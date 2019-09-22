@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -21,25 +20,18 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.paint.Paint;
-import javafx.util.Duration;
 import javafx.util.Pair;
-import media.BackgroundPlayer;
 import media.databases.MediaDatabase;
+import media.sounds.SoundPlayer;
 
 public class MapInterface extends LayoutInterface<StackPane> {
 
-	protected MediaPlayer mediaPlayer;
-	protected MediaPlayer backgroundPlayer;
 	protected GridPane placementLayout;
 	protected StackPane[] placementRows;
 	protected GridPane movementLayout;
 	protected WarriorInterface selectedWarrior;
 	protected final static int cellSize = 64;
-	protected static final Duration fadeDuration = Duration.seconds(.5);
 	private static final MapInterface instance = new MapInterface();
 
 	protected MapInterface() {
@@ -107,35 +99,6 @@ public class MapInterface extends LayoutInterface<StackPane> {
 		selectedWarrior = w;
 	}
 	
-	// TODO: create a sound player to allow multiple sounds to play at the same time and modularize this part
-	// There is too much responsibility in this class
-	
-	/**
-	 * Plays music, if necessary, given a path to the file
-	 * @param path the path to the media file
-	 */
-	private void playSound(String id) {
-		try {
-			Media sound = MediaDatabase.getInstance().getSoundMedia(id);
-			BackgroundPlayer.getInstance().fadeOut();
-			if(mediaPlayer != null && mediaPlayer.getStatus().equals(Status.PLAYING)) {
-				mediaPlayer.stop();
-			}
-			mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
-			mediaPlayer.setOnEndOfMedia(new Runnable() {
-				
-		        @Override
-		        public void run() {
-		        	BackgroundPlayer.getInstance().fadeIn();
-		        }
-		        
-		    });
-		} catch (DatabaseException e) {
-			System.out.println("The Character's sound could not be played.");
-		}
-	}
-	
 	/**
 	 * Listener for warrior placement being allowed
 	 */
@@ -192,13 +155,6 @@ public class MapInterface extends LayoutInterface<StackPane> {
 	};
 	
 	/**
-	 * Resets the cursor to its original default state
-	 */
-	private void resetCursorImage() {
-		MainScene.getInstance().setCursor(Cursor.DEFAULT);
-	}
-	
-	/**
 	 * Listener for warrior placement on a cell
 	 */
 	EventHandler<ActionEvent> cellListener = new EventHandler<ActionEvent>() {
@@ -218,9 +174,9 @@ public class MapInterface extends LayoutInterface<StackPane> {
 				Game.getInstance().getMap().takeCell(row, col, warrior);
 				cell.setBackground(null);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor
-				resetCursorImage();
+				MainScene.getInstance().resetCursorImage();
 				if(selectedWarrior != null && selectedWarrior.playsSound()) {
-					playSound(selectedWarrior.getID());
+					SoundPlayer.getInstance().play(selectedWarrior.getID());
 				}
 				// TODO: let another class take the responsibility of creating the graphics
 				Label placedWarrior = new Label();

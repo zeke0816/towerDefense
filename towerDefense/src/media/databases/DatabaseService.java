@@ -8,14 +8,28 @@ import java.io.IOException;
 
 import exceptions.DatabaseException;
 
+/**
+ * Class that serves as the Database reader
+ * @author zeke0816
+ *
+ */
 public abstract class DatabaseService {
 	
 	protected File table;
 	
+	/**
+	 * Initializes the Database Service
+	 */
 	protected DatabaseService() {
 		
 	}
 
+	/**
+	 * Gets a path given an identifier
+	 * @param id the identifying value
+	 * @return the path
+	 * @throws DatabaseException when the media resource could not be found
+	 */
 	public String getPath(String id) throws DatabaseException {
 		String path = "";
 		try {
