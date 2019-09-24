@@ -11,10 +11,10 @@ import gui.factories.warriors.TophPrototype;
 import gui.factories.warriors.TurretPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import media.databases.MediaDatabase;
 
@@ -29,37 +29,37 @@ public class DockLayout extends Layout<GridPane> {
         layout.setPrefHeight(120);
         
         AgentPPrototype agentP = new AgentPPrototype();
-        agentP.getButton().setOnAction(selectWarriorListener);
+        agentP.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(agentP.getButton(), 0, 0);
         layout.add(agentP.getLabel(), 0, 1);
         
         TheFleaPrototype flea = new TheFleaPrototype();
-        flea.getButton().setOnAction(selectWarriorListener);
+        flea.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(flea.getButton(), 1, 0);
         layout.add(flea.getLabel(), 1, 1);
 
         CyborgPrototype cyborg = new CyborgPrototype();
-        cyborg.getButton().setOnAction(selectWarriorListener);
+        cyborg.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(cyborg.getButton(), 2, 0);
         layout.add(cyborg.getLabel(), 2, 1);
         
         BB8Prototype bb8 = new BB8Prototype();
-        bb8.getButton().setOnAction(selectWarriorListener);
+        bb8.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(bb8.getButton(), 3, 0);
         layout.add(bb8.getLabel(), 3, 1);
         
         GaryPrototype gary = new GaryPrototype();
-        gary.getButton().setOnAction(selectWarriorListener);
+        gary.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(gary.getButton(), 4, 0);
         layout.add(gary.getLabel(), 4, 1);
         
         TurretPrototype turret = new TurretPrototype();
-        turret.getButton().setOnAction(selectWarriorListener);
+        turret.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(turret.getButton(), 5, 0);
         layout.add(turret.getLabel(), 5, 1);
         
         TophPrototype toph = new TophPrototype();
-        toph.getButton().setOnAction(selectWarriorListener);
+        toph.getButton().setOnMouseClicked(selectWarriorListener);
         layout.add(toph.getButton(), 6, 0);
         layout.add(toph.getLabel(), 6, 1);
 	}
@@ -75,10 +75,10 @@ public class DockLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior selection from the dock
 	 */
-	EventHandler<ActionEvent> selectWarriorListener = new EventHandler<ActionEvent>() {
+	private EventHandler<MouseEvent> selectWarriorListener = new EventHandler<MouseEvent>() {
 
 		@Override
-		public void handle(ActionEvent event) {
+		public void handle(MouseEvent event) {
 			try {
 				WarriorButton button = (WarriorButton) event.getSource();
 				WarriorPrototype selectedWarrior = button.getWarrior();

@@ -9,7 +9,6 @@ import gui.controls.CellButton;
 import gui.factories.WarriorFactory;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -50,7 +49,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				CellButton cell = new CellButton();
 				cell.setCoordinates(i, j);
 				if(j < placementLimit){
-					cell.setOnAction(placementListener);
+					cell.setOnMouseClicked(placementListener);
 					cell.setOnMouseEntered(placementAllowedListener);
 				} else {
 					cell.setOnMouseEntered(placementNotAllowedListener);
@@ -167,10 +166,10 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement on a cell
 	 */
-	private EventHandler<ActionEvent> placementListener = new EventHandler<ActionEvent>() {
+	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
 
 		@Override
-		public void handle(ActionEvent event) {
+		public void handle(MouseEvent event) {
 			try {
 				if(!warriorSelected()) {
 					throw new UnselectedWarriorException("No Warrior has been selected!");
