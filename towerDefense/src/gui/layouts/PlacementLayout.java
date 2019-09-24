@@ -28,7 +28,7 @@ import media.sounds.SoundPlayer;
 public class PlacementLayout extends Layout<GridPane> {
 
 	private WarriorPrototype selectedWarrior;
-	private final static int cellSize = 64;
+	private final static double cellSize = 64;
 	private static final PlacementLayout instance = new PlacementLayout();
 	
 	/**
@@ -112,7 +112,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement being allowed
 	 */
-	EventHandler<MouseEvent> placementAllowedListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> placementAllowedListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
@@ -131,7 +131,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement not being allowed
 	 */
-	EventHandler<MouseEvent> placementNotAllowedListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> placementNotAllowedListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
@@ -150,7 +150,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement being dismissed
 	 */
-	EventHandler<MouseEvent> placementDismissedListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> placementDismissedListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
@@ -167,7 +167,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement on a cell
 	 */
-	EventHandler<ActionEvent> placementListener = new EventHandler<ActionEvent>() {
+	private EventHandler<ActionEvent> placementListener = new EventHandler<ActionEvent>() {
 
 		@Override
 		public void handle(ActionEvent event) {
