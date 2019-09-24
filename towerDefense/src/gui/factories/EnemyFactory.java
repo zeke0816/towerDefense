@@ -29,7 +29,7 @@ public class EnemyFactory {
 	
 	public Enemy createEnemy() {
 		Random ran = new Random();
-		int randomInt = ran.nextInt(7);
+		int randomInt = ran.nextInt(5);
 		EnemyPrototype enemy = null;
 		switch(randomInt) {
 			case 0: enemy = alien;
@@ -43,7 +43,7 @@ public class EnemyFactory {
 			case 4: enemy = doof;
 					break;
 		}
-		return null;
+		return enemy.getEnemy();
 	}
 	
 }
