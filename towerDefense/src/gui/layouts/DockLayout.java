@@ -18,11 +18,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import media.databases.MediaDatabase;
 
-public class DockInterface extends LayoutInterface<GridPane> {
+public class DockLayout extends Layout<GridPane> {
 	
-	private static final DockInterface instance = new DockInterface();
+	private static final DockLayout instance = new DockLayout();
 
-	protected DockInterface() {
+	protected DockLayout() {
 		super();
 		layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
@@ -68,7 +68,7 @@ public class DockInterface extends LayoutInterface<GridPane> {
 	 * Gets the instance of this class
 	 * @return the only instance of this class
 	 */
-	public static DockInterface getInstance() {
+	public static DockLayout getInstance() {
 		return instance;
 	}
 	
@@ -82,7 +82,7 @@ public class DockInterface extends LayoutInterface<GridPane> {
 			try {
 				WarriorButton button = (WarriorButton) event.getSource();
 				WarriorPrototype selectedWarrior = button.getWarrior();
-				PlacementInterface.getInstance().selectWarrior(selectedWarrior);
+				PlacementLayout.getInstance().selectWarrior(selectedWarrior);
 				try {
 					Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
 					MainScene.getInstance().setCursorImage(img);

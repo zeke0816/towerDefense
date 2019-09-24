@@ -2,11 +2,11 @@ package gui.layouts;
 
 import javafx.scene.layout.Pane;
 
-public abstract class LayoutInterface<E extends Pane> {
+public abstract class Layout<E extends Pane> {
 	
 	protected E layout;
 
-	protected LayoutInterface() {
+	protected Layout() {
 		
 	}
 	

@@ -1,9 +1,9 @@
 package gui.scenes;
 
 import exceptions.DatabaseException;
-import gui.layouts.DockInterface;
-import gui.layouts.MapInterface;
-import gui.layouts.StatusInterface;
+import gui.layouts.DockLayout;
+import gui.layouts.MapLayout;
+import gui.layouts.StatusLayout;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
@@ -37,9 +37,9 @@ public class MainScene extends Scene {
 		} catch (DatabaseException e) {
 			System.out.println("The main Scene's background image could not be loaded.");
 		}
-        layout.setTop(StatusInterface.getInstance().getLayout());
-        layout.setCenter(MapInterface.getInstance().getLayout());
-        layout.setBottom(DockInterface.getInstance().getLayout());
+        layout.setTop(StatusLayout.getInstance().getLayout());
+        layout.setCenter(MapLayout.getInstance().getLayout());
+        layout.setBottom(DockLayout.getInstance().getLayout());
 	}
 
 	/**

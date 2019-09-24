@@ -4,12 +4,12 @@ import game.Game;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 
-public class RowInterface extends StackPane {
+public class RowLayout extends StackPane {
 	
-	public RowInterface() {
+	public RowLayout() {
 		setAlignment(Pos.CENTER_LEFT);
 		
-		double size = PlacementInterface.getCellSize();
+		double size = PlacementLayout.getCellSize();
 		setPrefHeight(size);
 		setPrefWidth(size * Game.getInstance().getMap().getColumns());
 	}

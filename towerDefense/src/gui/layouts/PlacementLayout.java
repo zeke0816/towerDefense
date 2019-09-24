@@ -25,16 +25,16 @@ import media.sounds.SoundPlayer;
  * @author zeke0816
  *
  */
-public class PlacementInterface extends LayoutInterface<GridPane> {
+public class PlacementLayout extends Layout<GridPane> {
 
 	private WarriorPrototype selectedWarrior;
 	private final static int cellSize = 64;
-	private static final PlacementInterface instance = new PlacementInterface();
+	private static final PlacementLayout instance = new PlacementLayout();
 	
 	/**
 	 * Initializes the layout for the buttons that will handle the positioning of the Warriors
 	 */
-	protected PlacementInterface() {
+	protected PlacementLayout() {
 		super();
 		layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
@@ -66,7 +66,7 @@ public class PlacementInterface extends LayoutInterface<GridPane> {
 	 * Gets the instance of this class
 	 * @return the only instance of this class
 	 */
-	public static PlacementInterface getInstance() {
+	public static PlacementLayout getInstance() {
 		return instance;
 	}
 
@@ -186,7 +186,7 @@ public class PlacementInterface extends LayoutInterface<GridPane> {
 				if(selectedWarrior.playsSound()) {
 					SoundPlayer.getInstance().play(selectedWarrior.getID());
 				}
-				MovementInterface.getInstance().addWarrior(row, col);
+				MovementLayout.getInstance().addWarrior(row, col);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor nor deselect the warrior
 				MainScene.getInstance().resetCursorImage();
 				deselectWarrior();

@@ -9,17 +9,17 @@ import javafx.scene.layout.StackPane;
  * @author zeke0816
  *
  */
-public class MapInterface extends LayoutInterface<StackPane> {
+public class MapLayout extends Layout<StackPane> {
 
-	private static final MapInterface instance = new MapInterface();
+	private static final MapLayout instance = new MapLayout();
 
-	protected MapInterface() {
+	protected MapLayout() {
 		super();
 		layout = new StackPane();
         layout.setAlignment(Pos.CENTER);
 		
-		GridPane movementLayout = MovementInterface.getInstance().getLayout();
-		GridPane placementLayout = PlacementInterface.getInstance().getLayout();
+		GridPane movementLayout = MovementLayout.getInstance().getLayout();
+		GridPane placementLayout = PlacementLayout.getInstance().getLayout();
 		layout.getChildren().addAll(movementLayout, placementLayout);
 	}
 
@@ -27,7 +27,7 @@ public class MapInterface extends LayoutInterface<StackPane> {
 	 * Gets the instance of this class
 	 * @return the only instance of this class
 	 */
-	public static MapInterface getInstance() {
+	public static MapLayout getInstance() {
 		return instance;
 	}
 

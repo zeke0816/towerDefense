@@ -5,11 +5,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 
-public class StatusInterface extends LayoutInterface<FlowPane> {
+public class StatusLayout extends Layout<FlowPane> {
 
-	private static final StatusInterface instance = new StatusInterface();
+	private static final StatusLayout instance = new StatusLayout();
 	
-	protected StatusInterface() {
+	protected StatusLayout() {
 		super();
 		layout = new FlowPane();
         Label gameTitle = new Label("Cartoon Defense");
@@ -24,7 +24,7 @@ public class StatusInterface extends LayoutInterface<FlowPane> {
 	 * Gets the instance of this class
 	 * @return the only instance of this class
 	 */
-	public static StatusInterface getInstance() {
+	public static StatusLayout getInstance() {
 		return instance;
 	}
 	

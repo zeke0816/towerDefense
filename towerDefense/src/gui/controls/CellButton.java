@@ -1,6 +1,6 @@
 package gui.controls;
 
-import gui.layouts.PlacementInterface;
+import gui.layouts.PlacementLayout;
 import javafx.scene.control.Button;
 import javafx.util.Pair;
 
@@ -23,7 +23,7 @@ public class CellButton extends Button {
 		setBackground(null);
 		setOpacity(.6);
 		
-		double size = PlacementInterface.getCellSize();
+		double size = PlacementLayout.getCellSize();
 		setMinSize(size, size);
 		setMaxSize(size, size);
 		setPrefSize(size, size);

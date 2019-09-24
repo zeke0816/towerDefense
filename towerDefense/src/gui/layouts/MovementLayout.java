@@ -12,15 +12,15 @@ import javafx.scene.layout.StackPane;
  * @author zeke0816
  *
  */
-public class MovementInterface extends LayoutInterface<GridPane> {
+public class MovementLayout extends Layout<GridPane> {
 
 	protected StackPane[] movementRows;
-	private static final MovementInterface instance = new MovementInterface();
+	private static final MovementLayout instance = new MovementLayout();
 	
 	/**
 	 * Initializes the layout creating galleries for the characters to move around
 	 */
-	protected MovementInterface() {
+	protected MovementLayout() {
 		super();
 		layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
@@ -29,7 +29,7 @@ public class MovementInterface extends LayoutInterface<GridPane> {
 		
 		movementRows = new StackPane[map.getRows()];
 		for(int i = 0; i < map.getRows(); i++) {
-			movementRows[i] = new RowInterface();
+			movementRows[i] = new RowLayout();
 			layout.add(movementRows[i], 0, i);
 		}
 	}
@@ -38,7 +38,7 @@ public class MovementInterface extends LayoutInterface<GridPane> {
 	 * Gets the instance of this class
 	 * @return the only instance of this class
 	 */
-	public static MovementInterface getInstance() {
+	public static MovementLayout getInstance() {
 		return instance;
 	}
 	
