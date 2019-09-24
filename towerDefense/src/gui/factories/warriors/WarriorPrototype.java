@@ -1,12 +1,19 @@
 package gui.factories.warriors;
 
 import characters.Warrior;
+import exceptions.DatabaseException;
 import gui.controls.WarriorButton;
+import gui.layouts.PlacementLayout;
+import gui.scenes.MainScene;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import media.databases.MediaDatabase;
 
 /**
  * Class to represent and save information about a Warrior in the GUI
@@ -22,6 +29,26 @@ public abstract class WarriorPrototype {
 	protected WarriorButton button;
 	protected Warrior warrior;
 	protected static final double size = 100;
+	private EventHandler<MouseEvent> selectWarriorListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			try {
+				WarriorButton button = (WarriorButton) event.getSource();
+				WarriorPrototype selectedWarrior = button.getWarrior();
+				PlacementLayout.getInstance().selectWarrior(selectedWarrior);
+				try {
+					Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
+					MainScene.getInstance().setCursorImage(img);
+				} catch (DatabaseException e) {
+					System.out.println("The selected Warrior's graphics could not replace the cursor.");
+				}
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while selecting the warrior.");
+			}
+		}
+		
+	};
 	
 	/**
 	 * Creates an empty Warrior Interface
@@ -36,6 +63,7 @@ public abstract class WarriorPrototype {
 		button = new WarriorButton();
 		button.setVisible(true);
         button.setPrefSize(size, size);
+        button.setOnMouseClicked(selectWarriorListener);
 	}
 	
 	/**
