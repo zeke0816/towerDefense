@@ -27,8 +27,19 @@ public class WarriorFactory {
 	
 	private static final WarriorFactory instance = new WarriorFactory();
 	
+	/**
+	 * Creates an instance of each warrior.
+	 */
 	private WarriorFactory() {
 		agentP = new AgentPPrototype();
+		theFlea = new TheFleaPrototype();
+		cyborg = new CyborgPrototype();
+		bb8 = new BB8Prototype();
+		gary = new GaryPrototype();
+		turret = new TurretPrototype();
+		toph = new TophPrototype();
+				
+		
 	}
 	
 	public static WarriorFactory getInstance() {
