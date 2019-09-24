@@ -1,14 +1,13 @@
 package gui.factories;
 
 import characters.Warrior;
-import characters.warriors.BB8;
-import characters.warriors.Cyborg;
-import characters.warriors.Gary;
-import characters.warriors.TheFlea;
-import characters.warriors.Toph;
-import characters.warriors.Turret;
 import gui.factories.warriors.AgentPPrototype;
-import gui.factories.warriors.WarriorPrototype;
+import gui.factories.warriors.BB8Prototype;
+import gui.factories.warriors.CyborgPrototype;
+import gui.factories.warriors.GaryPrototype;
+import gui.factories.warriors.TheFleaPrototype;
+import gui.factories.warriors.TophPrototype;
+import gui.factories.warriors.TurretPrototype;
 
 /**
  * Class that handles the creation of characters and objects
@@ -17,7 +16,15 @@ import gui.factories.warriors.WarriorPrototype;
  */
 public class WarriorFactory {
 	
-	protected WarriorPrototype agentP;
+	protected AgentPPrototype agentP;
+	protected TheFleaPrototype  theFlea;
+	protected CyborgPrototype cyborg;
+	protected BB8Prototype  bb8;
+	protected GaryPrototype  gary;
+	protected TurretPrototype  turret;
+	protected TophPrototype  toph;
+	
+	
 	private static final WarriorFactory instance = new WarriorFactory();
 	
 	private WarriorFactory() {
@@ -38,17 +45,17 @@ public class WarriorFactory {
 			case "agentP":
 				return agentP.getWarrior();
 			case "theFlea":
-				return new TheFlea();
+				return theFlea.getWarrior();
 			case "cyborg":
-				return new Cyborg();
+				return cyborg.getWarrior();
 			case "bb8":
-				return new BB8();
+				return bb8.getWarrior();
 			case "gary":
-				return new Gary();
+				return gary.getWarrior();
 			case "turret":
-				return new Turret();
+				return turret.getWarrior();
 			case "toph":
-				return new Toph();
+				return toph.getWarrior();
 		}
 		return null;
 	}
