@@ -28,13 +28,6 @@ public class MainInterface extends Application {
     
 	@Override
 	public void start(Stage stage) throws Exception {
-		initialize(stage);
-	}
-	
-	/**
-	 * Initializes the General User Interface with an empty game and arena
-	 */
-	private void initialize(Stage stage) {
 		stage.setTitle("Cartoon Defense");
 		stage.centerOnScreen();
 		stage.setWidth(1500);
