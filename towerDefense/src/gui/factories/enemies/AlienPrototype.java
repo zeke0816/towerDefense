@@ -7,7 +7,7 @@ public class AlienPrototype extends EnemyPrototype {
 
 		id = "alien";
 		name = "Alien";
-		playsSound = true;
+		playsSound = false;
 		
 		enemy = new Alien();
 	}

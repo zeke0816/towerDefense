@@ -7,7 +7,7 @@ public class SkeletonPrototype extends EnemyPrototype {
 
 		id = "skeleton";
 		name = "Skeleton";
-		playsSound = true;
+		playsSound = false;
 		
 		enemy = new Skeleton();
 	}

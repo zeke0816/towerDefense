@@ -7,7 +7,7 @@ public class AzulaPrototype extends EnemyPrototype{
 
 		id = "azula";
 		name = "Azula";
-		playsSound = true;
+		playsSound = false;
 		
 		enemy = new Azula();
 	}
