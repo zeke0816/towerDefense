@@ -1,5 +1,8 @@
 package gui.layouts;
 
+import java.util.HashMap;
+
+import exceptions.InvalidActionException;
 import game.Game;
 import game.Map;
 import gui.factories.enemies.PlacedEnemy;
@@ -15,7 +18,8 @@ import javafx.scene.layout.StackPane;
  */
 public class MovementLayout extends Layout<GridPane> {
 
-	protected StackPane[] movementRows;
+	private HashMap<Integer, PlacedEnemy> placedEnemies;
+	private StackPane[] movementRows;
 	private static final MovementLayout instance = new MovementLayout();
 	
 	/**
@@ -33,6 +37,7 @@ public class MovementLayout extends Layout<GridPane> {
 			movementRows[i] = new RowLayout();
 			layout.add(movementRows[i], 0, i);
 		}
+		placedEnemies = new HashMap<Integer, PlacedEnemy>();
 	}
 
 	/**
@@ -48,11 +53,16 @@ public class MovementLayout extends Layout<GridPane> {
 	}
 	
 	public void addEnemy(int row, String id) {
-		movementRows[row].getChildren().add(new PlacedEnemy(id));
+		PlacedEnemy placedEnemy = new PlacedEnemy(id);
+		movementRows[row].getChildren().add(placedEnemy);
+		placedEnemies.put(row, placedEnemy);
 	}
 	
-	public void removeEnemy(int row, int col) {
-		// movementRows[row].getChildren().remove();
+	public void removeEnemy(int row) throws InvalidActionException {
+		if(placedEnemies.isEmpty()) {
+			throw new InvalidActionException("There are no enemies placed on this row.");
+		}
+		movementRows[row].getChildren().remove(placedEnemies.remove(row));
 	}
 	
 }

@@ -5,7 +5,7 @@ import characters.Enemy;
 import characters.Warrior;
 
 /**
- * Visitor Interface, contains the declaration of all posible GameObjects
+ * Visitor Interface, contains the declaration of all possible GameObjects
  */
 public interface Visitor {
 	/**

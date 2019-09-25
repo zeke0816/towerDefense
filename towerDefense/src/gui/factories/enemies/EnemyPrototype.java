@@ -11,6 +11,10 @@ public abstract class EnemyPrototype {
 	protected boolean playsSound;
 	protected Enemy enemy;
 	
+	protected EnemyPrototype() {
+		
+	}
+	
 	/**
 	 * Clones and gets the Enemy to be 
 	 * @return the Enemy

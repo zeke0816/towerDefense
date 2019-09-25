@@ -1,6 +1,10 @@
 package game;
 
+import java.util.HashMap;
+
 import exceptions.CellTakenException;
+import exceptions.InvalidActionException;
+import javafx.util.Pair;
 
 /**
  * Class that models the arena where the characters will be placed
@@ -12,6 +16,7 @@ public class Map {
 	protected final int rows = 8;
 	protected final int cols = 16;
 	protected Cell[][] arena;
+	protected HashMap<GameObject, Pair<Integer, Integer>> objects;
 	
 	/**
 	 * Initializes an empty arena
@@ -23,6 +28,7 @@ public class Map {
 				arena[i][j] = new Cell();
 			}
 		}
+		objects = new HashMap<GameObject, Pair<Integer, Integer>>();
 	}
 	
 	/**
@@ -78,6 +84,26 @@ public class Map {
 			throw new CellTakenException("This cell has already been taken!");
 		}
 		arena[row][col].setObject(object);
+		Pair<Integer, Integer> coor = new Pair<Integer, Integer>(row, col);
+		objects.put(object, coor);
+	}
+	
+	/**
+	 * Frees a cell from an object, given the row and column
+	 * @param row the row to free
+	 * @param col the column to free
+	 * @throws InvalidActionException when the object is not on the arena
+	 */
+	public Pair<Integer, Integer> freeCell(GameObject obj) throws InvalidActionException {
+		if(objects.isEmpty()) {
+			throw new InvalidActionException("There are no Enemies on the arena.");
+		}
+		Pair<Integer, Integer> coordinates = objects.remove(obj);
+		if(coordinates == null) {
+			throw new InvalidActionException("The chosen Enemy is not on the arena.");
+		}
+		arena[coordinates.getKey()][coordinates.getValue()].setObject(null);
+		return coordinates;
 	}
 
 }
