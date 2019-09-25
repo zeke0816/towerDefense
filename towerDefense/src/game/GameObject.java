@@ -26,5 +26,11 @@ public abstract class GameObject {
 	public int getLife() {
 		return life;
 	}
+	
+	/**
+	 * Receives the Visitor, and delegates to it, a concrete operation
+	 * @param v Visitor
+	 */
+	public abstract void accept(Visitor v);
 
 }

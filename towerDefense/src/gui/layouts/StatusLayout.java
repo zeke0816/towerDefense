@@ -1,5 +1,6 @@
 package gui.layouts;
 
+import game.Game;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -18,6 +19,10 @@ public class StatusLayout extends Layout<FlowPane> {
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().add(gameTitle);
         layout.setPrefHeight(120);
+        
+        Label score = new Label("Score: "+Game.getInstance().getScore());
+        score.setAlignment(Pos.TOP_RIGHT);
+        score.setFont(new Font("Cambria", 30));
 	}
 
 	/**

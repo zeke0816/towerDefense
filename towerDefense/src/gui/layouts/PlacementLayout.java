@@ -6,7 +6,9 @@ import characters.Warrior;
 import exceptions.CellTakenException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
+import game.GameObject;
 import game.Map;
+import game.visitor.DestructionVisitor;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
 import gui.factories.WarriorFactory;
@@ -224,7 +226,17 @@ public class PlacementLayout extends Layout<GridPane> {
 						SoundPlayer.getInstance().play(enemy.getID());
 					}
 				} else if(key.getCode() == KeyCode.K) {
-					// TODO: kill enemy
+					int lastCol = map.getColumns()-1;
+					boolean killed = false;
+					for(int currentRow = map.getRows()-1 ; currentRow >= 0 && !killed ; currentRow-- ) {
+						if(map.getCell(currentRow, lastCol).isTaken()) {
+							DestructionVisitor ev = new DestructionVisitor();
+							GameObject g = map.getCell(currentRow, lastCol).getObject();
+							ev.destroy(g);
+							//TODO : FINISH ELIMINATION USING VISITOR + ELIMINATION FROM GUI
+						}
+					}
+					
 				}
 			} catch(CellTakenException e) {
 				System.out.println(e.getMessage());

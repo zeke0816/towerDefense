@@ -10,6 +10,7 @@ public class Game {
 	protected Map map;
 	protected Level level;
 	protected boolean over;
+	protected int score;
 	private static final Game instance = new Game();
 	
 	/**
@@ -19,6 +20,7 @@ public class Game {
 		map = new Map();
 		level = new Level();
 		over = false;
+		score = 0;
 	}
 	
 	public static Game getInstance() {
@@ -31,6 +33,22 @@ public class Game {
 	 */
 	public Map getMap() {
 		return map;
+	}
+	
+	/**
+	 * Gets the current score 
+	 * @return score
+	 */
+	public int getScore() {
+		return score;
+	}
+	
+	/**
+	 * Increases the game score 
+	 * @param x points to be added to the score
+	 */
+	public void updateScore(int x) {
+		score += x;
 	}
 	
 	/**
