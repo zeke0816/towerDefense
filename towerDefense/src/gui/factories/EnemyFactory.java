@@ -14,7 +14,7 @@ public class EnemyFactory {
 	protected EnemyPrototype skeleton;
 	private static final EnemyFactory instance = new EnemyFactory();
 	
-	public EnemyFactory() {
+	protected EnemyFactory() {
 		alien = new AlienPrototype();
 		azula = new AzulaPrototype();
 		doof = new DoofPrototype();
