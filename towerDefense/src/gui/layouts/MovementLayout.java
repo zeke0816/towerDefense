@@ -2,6 +2,7 @@ package gui.layouts;
 
 import game.Game;
 import game.Map;
+import gui.factories.enemies.PlacedEnemy;
 import gui.factories.warriors.PlacedWarrior;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
@@ -44,6 +45,14 @@ public class MovementLayout extends Layout<GridPane> {
 	
 	public void addWarrior(int row, int col) {
 		movementRows[row].getChildren().add(new PlacedWarrior(col));
+	}
+	
+	public void addEnemy(int row, String id) {
+		movementRows[row].getChildren().add(new PlacedEnemy(id));
+	}
+	
+	public void removeEnemy(int row, int col) {
+		// movementRows[row].getChildren().remove();
 	}
 	
 }

@@ -1,17 +1,23 @@
 package gui.layouts;
 
+import java.util.Random;
+
 import characters.Warrior;
 import exceptions.CellTakenException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
 import game.Map;
 import gui.controls.CellButton;
+import gui.factories.EnemyFactory;
 import gui.factories.WarriorFactory;
+import gui.factories.enemies.EnemyPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -58,7 +64,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				layout.add(cell, j, i);
 			}
 		}
-		
+		layout.setOnKeyPressed(enemyPlacementListener);
 	}
 
 	/**
@@ -193,6 +199,31 @@ public class PlacementLayout extends Layout<GridPane> {
 			} catch(CellTakenException e) {
 				System.out.println(e.getMessage());
 			} catch(UnselectedWarriorException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+	};
+	
+	/**
+	 * Listener for enemy placement on a cell
+	 */
+	private EventHandler<KeyEvent> enemyPlacementListener = new EventHandler<KeyEvent>() {
+
+		@Override
+		public void handle(KeyEvent key) {
+			Map map = Game.getInstance().getMap();
+			try {
+				if(key.getCode() == KeyCode.C) {
+					Random r = new Random();
+					int row = r.nextInt(map.getRows());
+					EnemyPrototype enemy = EnemyFactory.getInstance().createEnemy();
+					map.takeCell(row, map.getColumns()-1, enemy.getEnemy());
+					MovementLayout.getInstance().addEnemy(row, enemy.getID());
+				} else if(key.getCode() == KeyCode.K) {
+					// TODO: kill enemy
+				}
+			} catch(CellTakenException e) {
 				System.out.println(e.getMessage());
 			}
 		}
