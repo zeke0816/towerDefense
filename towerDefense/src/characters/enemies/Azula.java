@@ -13,6 +13,6 @@ public class Azula extends Enemy {
 	
 	@Override
 	public Enemy clone() {
-		return new Azula(); //TODO implementar clone
+		return new Azula(this);
 	}
 }

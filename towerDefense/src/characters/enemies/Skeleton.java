@@ -13,6 +13,6 @@ public class Skeleton extends Enemy{
 	
 	@Override
 	public Enemy clone() {
-		return new Skeleton(); //TODO implementar clone
+		return new Skeleton(this);
 	}
 }

@@ -13,6 +13,6 @@ public class Doof extends Enemy{
 	
 	@Override
 	public Enemy clone() {
-		return new Doof(); //TODO implementar clone
+		return new Doof(this);
 	}
 }

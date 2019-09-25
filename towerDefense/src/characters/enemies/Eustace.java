@@ -2,17 +2,17 @@ package characters.enemies;
 
 import characters.Enemy;
 
-public class Alien extends Enemy {
-	public Alien() {
+public class Eustace extends Enemy {
+	public Eustace() {
 		
 	}
 	
-	protected Alien(Alien target) {
+	protected Eustace(Eustace target) {
 		super(target);
 	}
 	
 	@Override
 	public Enemy clone() {
-		return new Alien(this);
+		return new Eustace(this);
 	}
 }

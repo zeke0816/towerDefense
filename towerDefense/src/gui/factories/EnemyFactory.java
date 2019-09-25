@@ -10,7 +10,7 @@ public class EnemyFactory {
 	protected EnemyPrototype alien;
 	protected EnemyPrototype azula;
 	protected EnemyPrototype doof;
-	protected EnemyPrototype justice;
+	protected EnemyPrototype eustace;
 	protected EnemyPrototype skeleton;
 	private static final EnemyFactory instance = new EnemyFactory();
 	
@@ -18,7 +18,7 @@ public class EnemyFactory {
 		alien = new AlienPrototype();
 		azula = new AzulaPrototype();
 		doof = new DoofPrototype();
-		justice = new JusticePrototype();
+		eustace = new EustacePrototype();
 		skeleton = new SkeletonPrototype();
 	}
 	
@@ -41,7 +41,7 @@ public class EnemyFactory {
 				enemy = skeleton;
 				break;
 			case 3:
-				enemy = justice;
+				enemy = eustace;
 				break;
 			case 4:
 				enemy = doof;
