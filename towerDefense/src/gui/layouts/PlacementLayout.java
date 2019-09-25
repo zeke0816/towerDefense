@@ -178,7 +178,6 @@ public class PlacementLayout extends Layout<GridPane> {
 				cell.setOnMouseEntered(placementNotAllowedListener);
 				int row = cell.getX();
 				int col = cell.getY();
-				WarriorPrototype selectedWarrior = getSelectedWarrior();
 				Warrior warrior = WarriorFactory.getInstance().createWarrior(selectedWarrior.getID());
 				Game.getInstance().getMap().takeCell(row, col, warrior);
 				cell.setBackground(null);

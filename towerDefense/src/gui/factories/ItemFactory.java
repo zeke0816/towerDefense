@@ -23,9 +23,12 @@ public class ItemFactory {
 	
 	private static final ItemFactory instance = new ItemFactory();
 	
-
-	public ItemFactory() {
+	private ItemFactory() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public static ItemFactory getInstance() {
+		return instance;
 	}
 
 }

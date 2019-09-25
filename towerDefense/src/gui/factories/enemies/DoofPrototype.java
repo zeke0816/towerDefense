@@ -7,7 +7,7 @@ public class DoofPrototype extends EnemyPrototype {
 
 		id = "doof";
 		name = "Dr. Doofenshmirtz";
-		playsSound = true;
+		playsSound = false;
 		
 		enemy = new Doof();
 	}
