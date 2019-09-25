@@ -1,7 +1,6 @@
 package gui.factories;
 
 import java.util.Random;
-import characters.Enemy;
 import gui.factories.enemies.*;
 
 /**
@@ -32,16 +31,21 @@ public class EnemyFactory {
 		int randomInt = ran.nextInt(5);
 		EnemyPrototype enemy = null;
 		switch(randomInt) {
-			case 0: enemy = alien;
-					break;
-			case 1: enemy = azula;
-					break;
-			case 2:	enemy = skeleton;
-					break;
-			case 3:	enemy = justice;
-					break;
-			case 4: enemy = doof;
-					break;
+			case 0:
+				enemy = alien;
+				break;
+			case 1:
+				enemy = azula;
+				break;
+			case 2:
+				enemy = skeleton;
+				break;
+			case 3:
+				enemy = justice;
+				break;
+			case 4:
+				enemy = doof;
+				break;
 		}
 		return enemy;
 	}
