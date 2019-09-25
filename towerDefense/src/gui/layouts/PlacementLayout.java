@@ -55,7 +55,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				CellButton cell = new CellButton();
 				cell.setCoordinates(i, j);
 				if(j < placementLimit){
-					cell.setOnMouseClicked(placementListener);
+					cell.setOnMouseClicked(warriorPlacementListener);
 					cell.setOnMouseEntered(placementAllowedListener);
 				} else {
 					cell.setOnMouseEntered(placementNotAllowedListener);
@@ -172,7 +172,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement on a cell
 	 */
-	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> warriorPlacementListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
