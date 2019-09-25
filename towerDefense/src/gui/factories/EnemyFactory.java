@@ -23,11 +23,11 @@ public class EnemyFactory {
 		skeleton = new SkeletonPrototype();
 	}
 	
-	public EnemyFactory getInstance() {
+	public static EnemyFactory getInstance() {
 		return instance;
 	}
 	
-	public Enemy createEnemy() {
+	public EnemyPrototype createEnemy() {
 		Random ran = new Random();
 		int randomInt = ran.nextInt(5);
 		EnemyPrototype enemy = null;
@@ -43,7 +43,7 @@ public class EnemyFactory {
 			case 4: enemy = doof;
 					break;
 		}
-		return enemy.getEnemy();
+		return enemy;
 	}
 	
 }
