@@ -220,6 +220,9 @@ public class PlacementLayout extends Layout<GridPane> {
 					EnemyPrototype enemy = EnemyFactory.getInstance().createEnemy();
 					map.takeCell(row, map.getColumns()-1, enemy.getEnemy());
 					MovementLayout.getInstance().addEnemy(row, enemy.getID());
+					if(enemy.playsSound()) {
+						SoundPlayer.getInstance().play(enemy.getID());
+					}
 				} else if(key.getCode() == KeyCode.K) {
 					// TODO: kill enemy
 				}
