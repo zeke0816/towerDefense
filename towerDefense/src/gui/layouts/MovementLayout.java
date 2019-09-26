@@ -2,6 +2,8 @@ package gui.layouts;
 
 import java.util.HashMap;
 
+import characters.Enemy;
+import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import game.Game;
 import game.Map;
@@ -48,21 +50,48 @@ public class MovementLayout extends Layout<GridPane> {
 		return instance;
 	}
 	
+	/**
+	 * Adds a Warrior onto the arena
+	 * @param row the row where the Warrior will be placed
+	 * @param col the column where the Warrior will be placed
+	 */
 	public void addWarrior(int row, int col) {
 		movementRows[row].getChildren().add(new PlacedWarrior(col));
 	}
 	
-	public void addEnemy(int row, String id) {
-		PlacedEnemy placedEnemy = new PlacedEnemy(id);
+	/**
+	 * Adds an Enemy onto the arena
+	 * @param row the row where the Enemy will be placed
+	 * @param id the ID of the Enemy
+	 * @param e the Enemy itself
+	 */
+	public void addEnemy(int row, String id, Enemy e) {
+		PlacedEnemy placedEnemy = new PlacedEnemy(id, e);
 		movementRows[row].getChildren().add(placedEnemy);
 		placedEnemies.put(row, placedEnemy);
 	}
 	
+	/**
+	 * Removes an enemy from the given row
+	 * @param row the given row
+	 * @throws InvalidActionException when there is no Wnemy at the given row
+	 */
 	public void removeEnemy(int row) throws InvalidActionException {
-		if(placedEnemies.isEmpty()) {
+		if(placedEnemies.get(row) == null) {
 			throw new InvalidActionException("There are no enemies placed on this row.");
 		}
 		movementRows[row].getChildren().remove(placedEnemies.remove(row));
+	}
+	
+	/**
+	 * Moves all the Enemies on the arena
+	 * @throws InvalidActionException when there are no Enemies on the arena
+	 * @throws CellTakenException when an Enemy was trying to take a cell that had already been taken
+	 */
+	public void moveEnemies() throws InvalidActionException, CellTakenException {
+		for(PlacedEnemy enemy: placedEnemies.values()) {
+			enemy.advance();
+		}
 	}
 	
 }

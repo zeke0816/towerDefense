@@ -232,7 +232,7 @@ public class PlacementLayout extends Layout<GridPane> {
 					EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
 					Enemy enemy = enemyPrototype.getEnemy();
 					map.takeCell(row, map.getColumns()-1, enemy);
-					MovementLayout.getInstance().addEnemy(row, enemyPrototype.getID());
+					MovementLayout.getInstance().addEnemy(row, enemyPrototype.getID(), enemy);
 					placedEnemies.push(enemy);
 					if(enemyPrototype.playsSound()) {
 						SoundPlayer.getInstance().play(enemyPrototype.getID());
@@ -245,6 +245,8 @@ public class PlacementLayout extends Layout<GridPane> {
 					Pair<Integer, Integer> coordinates = Game.getInstance().getMap().freeCell(enemyToDestroy);
 					MovementLayout.getInstance().removeEnemy(coordinates.getKey());
 					StatusLayout.getInstance().updateScore();
+				} else if(key.getCode() == KeyCode.M) {
+					MovementLayout.getInstance().moveEnemies();
 				}
 			} catch(CellTakenException | InvalidActionException e) {
 				System.out.println(e.getMessage());

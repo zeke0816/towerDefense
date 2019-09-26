@@ -62,11 +62,26 @@ public class Map {
 	 * @param row the source row
 	 * @param col the source column
 	 * @param scope the given scope
-	 * @return the enemy in sight
+	 * @return the object in sight
 	 */
 	public GameObject getObjectAt(int row, int col, int scope) {
 		GameObject object = null;
-		for(int i = col; object == null && i < scope; i++) {
+		for(int i = col; i < cols && object == null && i < scope; i++) {
+			object = arena[row][i].getObject();
+		}
+		return object;
+	}
+	
+	/**
+	 * Gets the enemy at a given scope from a row and column looking at the left side
+	 * @param row the source row
+	 * @param col the source column
+	 * @param scope the given scope
+	 * @return the object in sight
+	 */
+	public GameObject getObjectAtLeft(int row, int col, int scope) {
+		GameObject object = null;
+		for(int i = col-1; i >= 0 && object == null && i >= (col - scope); i--) {
 			object = arena[row][i].getObject();
 		}
 		return object;
@@ -104,6 +119,51 @@ public class Map {
 		}
 		arena[coordinates.getKey()][coordinates.getValue()].setObject(null);
 		return coordinates;
+	}
+	
+	/**
+	 * Checks whether a Game Object can advance or not
+	 * @param obj the Game Object
+	 * @return true if it can, false if it cannot
+	 * @throws InvalidActionException when there are no Game Objects on the arena or the selected Game Object is not on the arena
+	 */
+	public boolean canAdvance(GameObject obj) throws InvalidActionException {
+		if(objects.isEmpty()) {
+			throw new InvalidActionException("There are no Game Objects on the arena.");
+		}
+		Pair<Integer, Integer> coordinates = objects.get(obj);
+		if(coordinates == null) {
+			throw new InvalidActionException("The chosen Game Object is not on the arena.");
+		}
+		if(coordinates.getValue() == 0) {
+			return false; // Reached the end, this should never happen since the game would be over by now. TODO: remove this check
+		}
+		GameObject nextCellObject = getObjectAtLeft(coordinates.getKey(), coordinates.getValue(), 1);
+		return nextCellObject == null;
+	}
+	
+	/**
+	 * Moves a Game Object one cell to the left. Assumes it has been checked whether this is possible
+	 * @param obj the Game Object
+	 * @throws InvalidActionException when there are no Game Objects on the arena or the selected Game Object is not on the arena
+	 * @throws CellTakenException if the next cell is already taken
+	 */
+	public void advance(GameObject obj) throws InvalidActionException, CellTakenException {
+		if(objects.isEmpty()) {
+			throw new InvalidActionException("There are no Game Objects on the arena.");
+		}
+		Pair<Integer, Integer> coordinates = objects.get(obj);
+		if(coordinates == null) {
+			throw new InvalidActionException("The chosen Game Object is not on the arena.");
+		}
+		objects.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
+		freeCell(obj);
+		takeCell(coordinates.getKey(), coordinates.getValue()-1, obj);
+		if(coordinates.getValue()-1 == 0) {
+			Game.getInstance().end(); // GAME OVER
+		}
+		// System.out.println("X: "+(coordinates.getValue()-1));
+		// System.out.println("Y: "+coordinates.getKey());
 	}
 
 }

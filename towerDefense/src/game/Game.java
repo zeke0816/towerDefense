@@ -56,6 +56,7 @@ public class Game {
 	 */
 	public void end() {
 		over = true;
+		System.out.println("GAME OVER.");
 	}
 
 }
