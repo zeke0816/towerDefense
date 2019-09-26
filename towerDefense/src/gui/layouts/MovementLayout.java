@@ -89,8 +89,10 @@ public class MovementLayout extends Layout<GridPane> {
 	 * @throws CellTakenException when an Enemy was trying to take a cell that had already been taken
 	 */
 	public void moveEnemies() throws InvalidActionException, CellTakenException {
-		for(PlacedEnemy enemy: placedEnemies.values()) {
-			enemy.advance();
+		if(placedEnemies.size() > 0) {
+			for(PlacedEnemy enemy: placedEnemies.values()) {
+				enemy.advance();
+			}
 		}
 	}
 	

@@ -16,11 +16,10 @@ public class StatusLayout extends Layout<FlowPane> {
         
         score = new Label("Score: "+Game.getInstance().getScore());
         score.setAlignment(Pos.TOP_RIGHT);
-        score.setFont(new Font("Cambria", 50));
+        score.setFont(new Font("Cambria", 30));
         
 		layout = new FlowPane();
         layout.setAlignment(Pos.CENTER);
-        layout.setPrefHeight(120);
         layout.getChildren().add(score);
 	}
 

@@ -10,7 +10,7 @@ public class Game {
 	protected Map map;
 	protected Level level;
 	protected boolean over;
-	protected int score;
+	protected double score;
 	private static final Game instance = new Game();
 	
 	/**
@@ -39,7 +39,7 @@ public class Game {
 	 * Gets the current score 
 	 * @return score
 	 */
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
 	

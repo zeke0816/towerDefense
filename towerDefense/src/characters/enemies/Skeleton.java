@@ -4,7 +4,8 @@ import characters.Enemy;
 
 public class Skeleton extends Enemy{
 	public Skeleton() {
-		
+		points = 700;
+		movementSpeed = 1;
 	}
 	
 	protected Skeleton(Skeleton target) {

@@ -4,7 +4,8 @@ import characters.Enemy;
 
 public class Doof extends Enemy{
 	public Doof() {
-		
+		points = 2000;
+		movementSpeed = 2;
 	}
 	
 	protected Doof(Doof target) {

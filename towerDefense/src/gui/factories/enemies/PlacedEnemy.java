@@ -48,10 +48,17 @@ public class PlacedEnemy extends Label {
 	 * @throws CellTakenException when an Enemy was trying to take a cell that had already been taken
 	 */
 	public void advance() throws InvalidActionException, CellTakenException {
+		// System.out.println("Trying to advance.");
 		if(Game.getInstance().getMap().canAdvance(enemy)) {
-			setTranslateX(getTranslateX() - enemy.getMovementSpeed());
-			pixelsAdvanced += enemy.getMovementSpeed();
-			if(pixelsAdvanced == PlacementLayout.getCellSize()) {
+			double advancement = enemy.getMovementSpeed();
+			double cellSize = PlacementLayout.getCellSize();
+			if(getTranslateX() < cellSize) {
+				advancement = cellSize;
+			}
+			setTranslateX(getTranslateX() - advancement);
+			pixelsAdvanced += advancement;
+			// System.out.println("Advanced.");
+			if(pixelsAdvanced >= cellSize) {
 				pixelsAdvanced = 0;
 				Game.getInstance().getMap().advance(enemy);
 				// System.out.println("The Enemy has been moved.");

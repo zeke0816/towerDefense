@@ -31,7 +31,7 @@ public class MainInterface extends Application {
 		stage.setTitle("Cartoon Defense");
 		stage.centerOnScreen();
 		stage.setWidth(1500);
-		stage.setHeight(850);
+		stage.setHeight(800);
 		stage.setScene(MainScene.getInstance());
 		stage.show();
 	}

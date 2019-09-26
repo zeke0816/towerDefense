@@ -4,7 +4,8 @@ import characters.Enemy;
 
 public class Alien extends Enemy {
 	public Alien() {
-		
+		points = 300;
+		movementSpeed = 4;
 	}
 	
 	protected Alien(Alien target) {

@@ -4,7 +4,8 @@ import characters.Enemy;
 
 public class Azula extends Enemy {
 	public Azula() {
-		
+		points = 1000;
+		movementSpeed = 8;
 	}
 	
 	protected Azula(Azula target) {

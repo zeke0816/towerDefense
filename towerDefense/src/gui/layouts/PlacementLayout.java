@@ -244,6 +244,7 @@ public class PlacementLayout extends Layout<GridPane> {
 					Enemy enemyToDestroy = placedEnemies.pop();
 					Pair<Integer, Integer> coordinates = Game.getInstance().getMap().freeCell(enemyToDestroy);
 					MovementLayout.getInstance().removeEnemy(coordinates.getKey());
+					Game.getInstance().updateScore(enemyToDestroy.getPoints());
 					StatusLayout.getInstance().updateScore();
 				} else if(key.getCode() == KeyCode.M) {
 					MovementLayout.getInstance().moveEnemies();

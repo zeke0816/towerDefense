@@ -17,7 +17,7 @@ public abstract class Enemy extends Character {
 	
 	protected Enemy(Enemy target) {
 		super(target);
-		points = 0;
+		points = target.getPoints();
 	}
 	
 	/**
