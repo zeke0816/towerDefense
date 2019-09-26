@@ -8,7 +8,7 @@ public class Azula extends Enemy {
 		movementSpeed = 8;
 	}
 	
-	protected Azula(Azula target) {
+	private Azula(Azula target) {
 		super(target);
 	}
 	

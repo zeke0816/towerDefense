@@ -8,7 +8,7 @@ public class Eustace extends Enemy {
 		movementSpeed = 1;
 	}
 	
-	protected Eustace(Eustace target) {
+	private Eustace(Eustace target) {
 		super(target);
 	}
 	

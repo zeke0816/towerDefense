@@ -10,7 +10,7 @@ public class Toph extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public Toph(Toph target) {
+	private Toph(Toph target) {
         super(target);
 	}
 	

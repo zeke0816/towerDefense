@@ -10,7 +10,7 @@ public class AgentP extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public AgentP(AgentP target) {
+	private AgentP(AgentP target) {
         super(target);
 	}
 	

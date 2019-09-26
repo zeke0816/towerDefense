@@ -10,7 +10,7 @@ public class BB8 extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public BB8(BB8 target) {
+	private BB8(BB8 target) {
         super(target);
 	}
 	

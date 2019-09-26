@@ -10,7 +10,7 @@ public class Gary extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public Gary(Gary target) {
+	private Gary(Gary target) {
         super(target);
 	}
 	

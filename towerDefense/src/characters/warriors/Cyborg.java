@@ -10,7 +10,7 @@ public class Cyborg extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public Cyborg(Cyborg target) {
+	private Cyborg(Cyborg target) {
         super(target);
 	}
 	

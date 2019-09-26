@@ -8,7 +8,7 @@ public class Doof extends Enemy{
 		movementSpeed = 2;
 	}
 	
-	protected Doof(Doof target) {
+	private Doof(Doof target) {
 		super(target);
 	}
 	

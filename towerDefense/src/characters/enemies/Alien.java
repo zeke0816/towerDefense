@@ -8,7 +8,7 @@ public class Alien extends Enemy {
 		movementSpeed = 4;
 	}
 	
-	protected Alien(Alien target) {
+	private Alien(Alien target) {
 		super(target);
 	}
 	

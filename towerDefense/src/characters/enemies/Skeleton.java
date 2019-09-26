@@ -8,7 +8,7 @@ public class Skeleton extends Enemy{
 		movementSpeed = 1;
 	}
 	
-	protected Skeleton(Skeleton target) {
+	private Skeleton(Skeleton target) {
 		super(target);
 	}
 	

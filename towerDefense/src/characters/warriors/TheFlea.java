@@ -10,7 +10,7 @@ public class TheFlea extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public TheFlea(TheFlea target) {
+	private TheFlea(TheFlea target) {
         super(target);
 	}
 	

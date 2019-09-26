@@ -10,7 +10,7 @@ public class Turret extends Warrior {
 		attackSpeed = 400;
 	}
 	
-	public Turret(Turret target) {
+	private Turret(Turret target) {
         super(target);
 	}
 	
