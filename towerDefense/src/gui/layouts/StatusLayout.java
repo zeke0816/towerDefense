@@ -8,21 +8,20 @@ import javafx.scene.text.Font;
 
 public class StatusLayout extends Layout<FlowPane> {
 
+	private Label score;
 	private static final StatusLayout instance = new StatusLayout();
 	
 	protected StatusLayout() {
 		super();
-		layout = new FlowPane();
-        Label gameTitle = new Label("Cartoon Defense");
-        gameTitle.setAlignment(Pos.CENTER);
-        gameTitle.setFont(new Font("Cambria", 50));
-        layout.setAlignment(Pos.CENTER);
-        layout.getChildren().add(gameTitle);
-        layout.setPrefHeight(120);
         
-        Label score = new Label("Score: "+Game.getInstance().getScore());
+        score = new Label("Score: "+Game.getInstance().getScore());
         score.setAlignment(Pos.TOP_RIGHT);
-        score.setFont(new Font("Cambria", 30));
+        score.setFont(new Font("Cambria", 50));
+        
+		layout = new FlowPane();
+        layout.setAlignment(Pos.CENTER);
+        layout.setPrefHeight(120);
+        layout.getChildren().add(score);
 	}
 
 	/**
@@ -31,6 +30,10 @@ public class StatusLayout extends Layout<FlowPane> {
 	 */
 	public static StatusLayout getInstance() {
 		return instance;
+	}
+	
+	public void updateScore() {
+		score.setText("Score: "+Game.getInstance().getScore());
 	}
 	
 }
