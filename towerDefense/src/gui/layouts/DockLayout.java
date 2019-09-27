@@ -7,7 +7,11 @@ import gui.factories.warriors.GaryPrototype;
 import gui.factories.warriors.TheFleaPrototype;
 import gui.factories.warriors.TophPrototype;
 import gui.factories.warriors.TurretPrototype;
+import gui.scenes.MainScene;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 public class DockLayout extends Layout<GridPane> {
@@ -19,6 +23,7 @@ public class DockLayout extends Layout<GridPane> {
 		layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
         layout.setPrefHeight(120);
+        layout.setOnKeyPressed(deslectWarriorListener);
         
         AgentPPrototype agentP = new AgentPPrototype();
         layout.add(agentP.getButton(), 0, 0);
@@ -56,5 +61,20 @@ public class DockLayout extends Layout<GridPane> {
 	public static DockLayout getInstance() {
 		return instance;
 	}
+	
+	/**
+	 * Listener for deselecting a warrior
+	 */
+	private EventHandler<KeyEvent> deslectWarriorListener = new EventHandler<KeyEvent>() {
+
+		@Override
+		public void handle(KeyEvent key) {
+			if(key.getCode() == KeyCode.ESCAPE) {
+				PlacementLayout.getInstance().deselectWarrior();
+				MainScene.getInstance().resetCursorImage();
+			}
+		}
+		
+	};
 
 }

@@ -39,6 +39,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	private Stack<Enemy> placedEnemies;
 	private WarriorPrototype selectedWarrior;
 	private final static double cellSize = 64;
+	private final static double placementLimitRatio = .6;
 	private static final PlacementLayout instance = new PlacementLayout();
 	
 	/**
@@ -52,8 +53,7 @@ public class PlacementLayout extends Layout<GridPane> {
         selectedWarrior = null;
         
 		Map map = Game.getInstance().getMap();
-		
-		double placementLimit = map.getColumns() * .6; // 60% of the arena
+		double placementLimit = map.getColumns() * placementLimitRatio;
 		
 		for(int i = 0; i < map.getRows(); i++) {
 			for(int j = 0; j < map.getColumns(); j++) {
@@ -61,10 +61,8 @@ public class PlacementLayout extends Layout<GridPane> {
 				cell.setCoordinates(i, j);
 				if(j < placementLimit){
 					cell.setOnMouseClicked(warriorPlacementListener);
-					cell.setOnMouseEntered(placementAllowedListener);
-				} else {
-					cell.setOnMouseEntered(placementNotAllowedListener);
 				}
+				cell.setOnMouseEntered(placementListener);
 				cell.setOnMouseExited(placementDismissedListener);
 				layout.add(cell, j, i);
 			}
@@ -118,38 +116,29 @@ public class PlacementLayout extends Layout<GridPane> {
 	 */
 	public void deselectWarrior() {
 		selectedWarrior = null;
+		MainScene.getInstance().resetCursorImage();
 	}
 	
 	/**
 	 * Listener for warrior placement being allowed
 	 */
-	private EventHandler<MouseEvent> placementAllowedListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
 			try {
 				if(warriorSelected()) {
-					Button cell = (Button) event.getSource();
-					cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#9ae39c"), null, null)));
-				}
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the warrior.");
-			}
-		}
-		
-	};
-	
-	/**
-	 * Listener for warrior placement not being allowed
-	 */
-	private EventHandler<MouseEvent> placementNotAllowedListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				if(warriorSelected()) {
-					Button cell = (Button) event.getSource();
+					CellButton cell = (CellButton) event.getSource();
+					int row = cell.getX();
+					int col = cell.getY();
+					
+					Map map = Game.getInstance().getMap();
+					double placementLimit = map.getColumns() * placementLimitRatio;
+					
 					cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#f05959"), null, null)));
+					if(col < placementLimit && !map.getCell(row, col).isTaken()) {
+						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#9ae39c"), null, null)));
+					}
 				}
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the warrior.");
@@ -187,7 +176,6 @@ public class PlacementLayout extends Layout<GridPane> {
 					throw new UnselectedWarriorException("No Warrior has been selected!");
 				}
 				CellButton cell = (CellButton) event.getSource();
-				cell.setOnMouseEntered(placementNotAllowedListener);
 				int row = cell.getX();
 				int col = cell.getY();
 				Warrior warrior = WarriorFactory.getInstance().createWarrior(selectedWarrior.getID());
@@ -198,7 +186,6 @@ public class PlacementLayout extends Layout<GridPane> {
 				}
 				MovementLayout.getInstance().addWarrior(row, col);
 				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor nor deselect the warrior
-				MainScene.getInstance().resetCursorImage();
 				deselectWarrior();
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the warrior.");
@@ -246,6 +233,8 @@ public class PlacementLayout extends Layout<GridPane> {
 					MovementLayout.getInstance().removeEnemy(coordinates.getKey());
 					Game.getInstance().updateScore(enemyToDestroy.getPoints());
 					StatusLayout.getInstance().updateScore();
+				} else if(key.getCode() == KeyCode.ESCAPE) {
+					deselectWarrior();
 				}
 			} catch(CellTakenException | InvalidActionException e) {
 				System.out.println(e.getMessage());

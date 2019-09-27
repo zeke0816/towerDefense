@@ -104,9 +104,9 @@ public class Map {
 	}
 	
 	/**
-	 * Frees a cell from an object, given the row and column
-	 * @param row the row to free
-	 * @param col the column to free
+	 * Frees a cell from an object
+	 * @param obj the object to free
+	 * @return a Pair of coordinates indicating where the object was on the arena
 	 * @throws InvalidActionException when the object is not on the arena
 	 */
 	public Pair<Integer, Integer> freeCell(GameObject obj) throws InvalidActionException {
@@ -117,7 +117,7 @@ public class Map {
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Enemy is not on the arena.");
 		}
-		arena[coordinates.getKey()][coordinates.getValue()].setObject(null);
+		arena[coordinates.getKey()][coordinates.getValue()].free();
 		return coordinates;
 	}
 	

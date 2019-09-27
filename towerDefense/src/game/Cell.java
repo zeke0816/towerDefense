@@ -39,5 +39,16 @@ public class Cell {
 	public void setObject(GameObject o) {
 		object = o;
 	}
+	
+	/**
+	 * Frees a cell from its object
+	 */
+	public void free() {
+		System.out.println("Freed the cell.");
+		object = null;
+		if(isTaken()) {
+			System.out.println("But it is still taken.");
+		}
+	}
 
 }
