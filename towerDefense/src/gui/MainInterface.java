@@ -36,7 +36,7 @@ public class MainInterface extends Application {
 		stage.show();
 		
 		Runnable runnable = new Movement();
-        Thread thread = new Thread(runnable);
+        Thread thread = new Thread(runnable, "Enemy Movement Thread");
         thread.start();
 	}
 	
