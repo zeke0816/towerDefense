@@ -58,5 +58,9 @@ public class Game {
 		over = true;
 		System.out.println("GAME OVER.");
 	}
+	
+	public boolean isOver() {
+		return over == true;
+	}
 
 }

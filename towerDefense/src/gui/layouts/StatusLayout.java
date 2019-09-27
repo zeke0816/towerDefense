@@ -20,6 +20,7 @@ public class StatusLayout extends Layout<FlowPane> {
         
 		layout = new FlowPane();
         layout.setAlignment(Pos.CENTER);
+        layout.setPrefHeight(120);
         layout.getChildren().add(score);
 	}
 

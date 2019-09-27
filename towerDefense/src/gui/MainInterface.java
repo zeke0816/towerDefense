@@ -34,6 +34,10 @@ public class MainInterface extends Application {
 		stage.setHeight(800);
 		stage.setScene(MainScene.getInstance());
 		stage.show();
+		
+		Runnable runnable = new Movement();
+        Thread thread = new Thread(runnable);
+        thread.start();
 	}
 	
 }

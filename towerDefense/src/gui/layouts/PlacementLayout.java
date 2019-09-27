@@ -246,8 +246,6 @@ public class PlacementLayout extends Layout<GridPane> {
 					MovementLayout.getInstance().removeEnemy(coordinates.getKey());
 					Game.getInstance().updateScore(enemyToDestroy.getPoints());
 					StatusLayout.getInstance().updateScore();
-				} else if(key.getCode() == KeyCode.M) {
-					MovementLayout.getInstance().moveEnemies();
 				}
 			} catch(CellTakenException | InvalidActionException e) {
 				System.out.println(e.getMessage());
