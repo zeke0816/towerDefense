@@ -12,7 +12,6 @@ import game.Game;
 import game.Map;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
-import gui.factories.WarriorFactory;
 import gui.factories.enemies.EnemyPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
@@ -135,9 +134,10 @@ public class PlacementLayout extends Layout<GridPane> {
 					Map map = Game.getInstance().getMap();
 					double placementLimit = map.getColumns() * placementLimitRatio;
 					
-					cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#f05959"), null, null)));
 					if(col < placementLimit && !map.getCell(row, col).isTaken()) {
 						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#9ae39c"), null, null)));
+					} else {
+						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#f05959"), null, null)));
 					}
 				}
 			} catch(ClassCastException e) {
@@ -178,7 +178,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				CellButton cell = (CellButton) event.getSource();
 				int row = cell.getX();
 				int col = cell.getY();
-				Warrior warrior = WarriorFactory.getInstance().createWarrior(selectedWarrior.getID());
+				Warrior warrior = selectedWarrior.getWarrior();
 				Game.getInstance().getMap().takeCell(row, col, warrior);
 				cell.setBackground(null);
 				if(selectedWarrior.playsSound()) {
