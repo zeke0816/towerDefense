@@ -1,5 +1,6 @@
 package gui;
 
+import game.Game;
 import gui.scenes.MainScene;
 import javafx.application.Application;
 //import javafx.scene.layout.Background;
@@ -18,6 +19,7 @@ public class MainInterface extends Application {
 	// protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
 	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
 	// protected static final Paint black = Paint.valueOf("#000000");
+	protected Thread movementThread;
 	
 	/**
     * @param args the command line arguments
@@ -26,6 +28,9 @@ public class MainInterface extends Application {
     	launch(args);
     }
     
+    /**
+     * Starts the application
+     */
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setTitle("Cartoon Defense");
@@ -35,9 +40,16 @@ public class MainInterface extends Application {
 		stage.setScene(MainScene.getInstance());
 		stage.show();
 		
-		Runnable runnable = new Movement();
-        Thread thread = new Thread(runnable, "Enemy Movement Thread");
-        thread.start();
+        movementThread = new Thread(new Movement(), "Enemy Movement Thread");
+        movementThread.start();
+	}
+	
+	/**
+	 * Handles unexpected exits (user clicks on the close button)
+	 */
+	@Override
+	public void stop() {
+		Game.getInstance().end();
 	}
 	
 }
