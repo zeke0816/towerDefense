@@ -1,6 +1,6 @@
-package characters.states;
+package game.characters.states;
 
-import characters.Character;
+import game.characters.Character;
 
 /**
  * Abstract class that helps manage the state of each character on the game.

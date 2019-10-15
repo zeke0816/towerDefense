@@ -20,6 +20,7 @@ public class MainInterface extends Application {
 	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
 	// protected static final Paint black = Paint.valueOf("#000000");
 	protected Thread movementThread;
+	protected Thread battleThread;
 	
 	/**
     * @param args the command line arguments
@@ -42,6 +43,9 @@ public class MainInterface extends Application {
 		
         movementThread = new Thread(new Movement(), "Enemy Movement Thread");
         movementThread.start();
+		
+        battleThread = new Thread(new Battle(), "Enemy Movement Thread");
+        battleThread.start();
 	}
 	
 	/**

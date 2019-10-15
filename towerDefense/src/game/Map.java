@@ -1,6 +1,7 @@
 package game;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
@@ -16,7 +17,7 @@ public class Map {
 	protected final int rows = 8;
 	protected final int cols = 16;
 	protected Cell[][] arena;
-	protected HashMap<GameObject, Pair<Integer, Integer>> objects;
+	protected HashMap<GameObject, Pair<Integer, Integer>> positions;
 	
 	/**
 	 * Initializes an empty arena
@@ -28,7 +29,7 @@ public class Map {
 				arena[i][j] = new Cell();
 			}
 		}
-		objects = new HashMap<GameObject, Pair<Integer, Integer>>();
+		positions = new HashMap<GameObject, Pair<Integer, Integer>>();
 	}
 	
 	/**
@@ -58,33 +59,25 @@ public class Map {
 	}
 	
 	/**
-	 * Gets the enemy at a given scope from a row and column
-	 * @param row the source row
-	 * @param col the source column
-	 * @param scope the given scope
-	 * @return the object in sight
+	 * Gets the game object at the specified row and column
+	 * @param row the row
+	 * @param col the column
+	 * @return the game object at the row-column position
 	 */
-	public GameObject getObjectAt(int row, int col, int scope) {
-		GameObject object = null;
-		for(int i = col; i < cols && object == null && i < scope; i++) {
-			object = arena[row][i].getObject();
-		}
-		return object;
+	public GameObject getObjectAt(int row, int col) {
+		return getCell(row, col).getObject();
 	}
 	
 	/**
-	 * Gets the enemy at a given scope from a row and column looking at the left side
-	 * @param row the source row
-	 * @param col the source column
-	 * @param scope the given scope
-	 * @return the object in sight
+	 * Gets a copy of the current positions of all Game Objects
+	 * @return the copy of the positions
 	 */
-	public GameObject getObjectAtLeft(int row, int col, int scope) {
-		GameObject object = null;
-		for(int i = col-1; i >= 0 && object == null && i >= (col - scope); i--) {
-			object = arena[row][i].getObject();
+	public HashMap<GameObject, Pair<Integer, Integer>> getPositions(){
+		HashMap<GameObject, Pair<Integer, Integer>> copy = new HashMap<GameObject, Pair<Integer, Integer>>();
+		for(Entry<GameObject, Pair<Integer, Integer>> entry: positions.entrySet()) {
+			copy.put(entry.getKey(), entry.getValue());
 		}
-		return object;
+		return copy;
 	}
 	
 	/**
@@ -95,12 +88,12 @@ public class Map {
 	 */
 	public void takeCell(int row, int col, GameObject object) throws CellTakenException {
 		// System.out.println(object.hashCode()); // Memory tester to see if each object is correctly cloned by the prototype
-		if(arena[row][col].isTaken()) {
+		if(getCell(row, col).isTaken()) {
 			throw new CellTakenException("This cell has already been taken!");
 		}
-		arena[row][col].setObject(object);
+		getCell(row, col).setObject(object);
 		Pair<Integer, Integer> coor = new Pair<Integer, Integer>(row, col);
-		objects.put(object, coor);
+		positions.put(object, coor);
 	}
 	
 	/**
@@ -110,14 +103,14 @@ public class Map {
 	 * @throws InvalidActionException when the object is not on the arena
 	 */
 	public Pair<Integer, Integer> freeCell(GameObject obj) throws InvalidActionException {
-		if(objects.isEmpty()) {
+		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Enemies on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = objects.remove(obj);
+		Pair<Integer, Integer> coordinates = positions.remove(obj);
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Enemy is not on the arena.");
 		}
-		arena[coordinates.getKey()][coordinates.getValue()].free();
+		getCell(coordinates.getKey(), coordinates.getValue()).free();
 		return coordinates;
 	}
 	
@@ -128,17 +121,14 @@ public class Map {
 	 * @throws InvalidActionException when there are no Game Objects on the arena or the selected Game Object is not on the arena
 	 */
 	public boolean canAdvance(GameObject obj) throws InvalidActionException {
-		if(objects.isEmpty()) {
+		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = objects.get(obj);
+		Pair<Integer, Integer> coordinates = positions.get(obj);
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		if(coordinates.getValue() == 0) {
-			return false; // Reached the end, this should never happen since the game would be over by now. TODO: remove this check
-		}
-		GameObject nextCellObject = getObjectAtLeft(coordinates.getKey(), coordinates.getValue(), 1);
+		GameObject nextCellObject = getObjectAt(coordinates.getKey(), coordinates.getValue() - 1);
 		return nextCellObject == null;
 	}
 	
@@ -149,14 +139,14 @@ public class Map {
 	 * @throws CellTakenException if the next cell is already taken
 	 */
 	public void advance(GameObject obj) throws InvalidActionException, CellTakenException {
-		if(objects.isEmpty()) {
+		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = objects.get(obj);
+		Pair<Integer, Integer> coordinates = positions.get(obj);
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		objects.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
+		positions.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
 		freeCell(obj);
 		takeCell(coordinates.getKey(), coordinates.getValue()-1, obj);
 		if(coordinates.getValue()-1 == 0) {

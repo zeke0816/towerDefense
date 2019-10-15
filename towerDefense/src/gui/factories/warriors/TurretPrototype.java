@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.warriors.Turret;
 import exceptions.DatabaseException;
+import game.characters.warriors.Turret;
 import media.databases.MediaDatabase;
 
 public class TurretPrototype extends WarriorPrototype {

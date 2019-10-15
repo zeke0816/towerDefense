@@ -1,29 +1,30 @@
-package game;
+package game.visitors;
 
 import Item.Item;
-import characters.Enemy;
-import characters.Warrior;
+import game.characters.Enemy;
+import game.characters.Warrior;
 
 /**
  * Visitor Interface, contains the declaration of all possible GameObjects
  */
 public interface Visitor {
+	
 	/**
 	 * Visits the enemy
 	 * @param e enemy
 	 */
-	public void visitEnemy(Enemy e);
+	public void visit(Enemy e);
 	
 	/**
 	 * Visits the Warrior
 	 * @param w warrior
 	 */
-	public void visitWarrior(Warrior w);
+	public void visit(Warrior w);
 	
 	/**
 	 * Visits the Item
 	 * @param i Item
 	 */
-	public void visitItem(Item i);
+	public void visit(Item i);
 	
 }

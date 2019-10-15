@@ -1,6 +1,6 @@
-package characters.warriors;
+package game.characters.warriors;
 
-import characters.Warrior;
+import game.characters.Warrior;
 
 public class Gary extends Warrior {
 	

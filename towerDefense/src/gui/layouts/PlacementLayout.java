@@ -3,13 +3,13 @@ package gui.layouts;
 import java.util.Random;
 import java.util.Stack;
 
-import characters.Enemy;
-import characters.Warrior;
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
 import game.Map;
+import game.characters.Enemy;
+import game.characters.Warrior;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
 import gui.factories.enemies.EnemyPrototype;

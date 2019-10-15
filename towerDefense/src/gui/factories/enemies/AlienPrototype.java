@@ -1,6 +1,6 @@
 package gui.factories.enemies;
 
-import characters.enemies.Alien;
+import game.characters.enemies.Alien;
 
 public class AlienPrototype extends EnemyPrototype {
 	public AlienPrototype() {

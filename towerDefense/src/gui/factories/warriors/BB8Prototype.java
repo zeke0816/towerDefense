@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.warriors.BB8;
 import exceptions.DatabaseException;
+import game.characters.warriors.BB8;
 import media.databases.MediaDatabase;
 
 public class BB8Prototype extends WarriorPrototype {

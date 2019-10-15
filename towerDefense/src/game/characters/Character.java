@@ -1,8 +1,8 @@
-package characters;
+package game.characters;
 
-import characters.states.Basic;
-import characters.states.State;
 import game.GameObject;
+import game.characters.states.Basic;
+import game.characters.states.State;
 
 /**
  * Abstract class that helps define a character in the game
@@ -12,6 +12,7 @@ import game.GameObject;
 public abstract class Character extends GameObject {
 	
 	protected State state;
+	protected int scope;
 	protected int strength;
 	protected int protection;
 	protected int attackSpeed;
@@ -25,6 +26,7 @@ public abstract class Character extends GameObject {
 		super(target);
         if(target != null) {
         	state = target.getState();
+        	scope = target.getScope();
             strength = target.getStrength();
             protection = target.getProtection();
             attackSpeed = target.getAttackSpeed();
@@ -34,6 +36,10 @@ public abstract class Character extends GameObject {
 	
 	public State getState() {
 		return state;
+	}
+	
+	public int getScope() {
+		return scope;
 	}
 	
 	public int getStrength() {
@@ -50,6 +56,10 @@ public abstract class Character extends GameObject {
 	
 	public int getMovementSpeed() {
 		return movementSpeed;
+	}
+	
+	public void setScope(int s) {
+		scope = s;
 	}
 	
 	public void setStrength(int s) {

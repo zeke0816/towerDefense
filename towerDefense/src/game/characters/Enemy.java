@@ -1,6 +1,6 @@
-package characters;
+package game.characters;
 
-import game.Visitor;
+import game.visitors.Visitor;
 
 /**
  * Abstract class that helps define the enemies in the game
@@ -28,16 +28,26 @@ public abstract class Enemy extends Character {
 		return points;
 	}
 	
-	/**
-	 * Accept method, Inherited from GameObject
-	 * Sends to the visitor, the "Enemy" object
-	 */
 	public void accept(Visitor v) {
-		v.visitEnemy(this);
+		v.visit(this);
+	}
+
+	public boolean attack(Warrior w) {
+		life -= w.getStrength();
+		if(life < 0){
+			life = 0;
+			// TODO: KILL
+		}
+		return true;
+	}
+	
+	public boolean attack(Enemy e) {
+		return false;
 	}
 	
 	/**
 	 * Creates and returns a copy of this Enemy.
 	 */
 	public abstract Enemy clone();
+	
 }

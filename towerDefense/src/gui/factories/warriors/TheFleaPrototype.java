@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.warriors.TheFlea;
 import exceptions.DatabaseException;
+import game.characters.warriors.TheFlea;
 import media.databases.MediaDatabase;
 
 public class TheFleaPrototype extends WarriorPrototype {

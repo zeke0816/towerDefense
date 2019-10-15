@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.Warrior;
 import exceptions.DatabaseException;
+import game.characters.Warrior;
 import gui.controls.WarriorButton;
 import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;

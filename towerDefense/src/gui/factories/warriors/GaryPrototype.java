@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.warriors.Gary;
 import exceptions.DatabaseException;
+import game.characters.warriors.Gary;
 import media.databases.MediaDatabase;
 
 public class GaryPrototype extends WarriorPrototype {

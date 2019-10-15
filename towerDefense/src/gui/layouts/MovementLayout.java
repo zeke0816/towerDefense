@@ -2,11 +2,11 @@ package gui.layouts;
 
 import java.util.HashMap;
 
-import characters.Enemy;
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import game.Game;
 import game.Map;
+import game.characters.Enemy;
 import gui.factories.enemies.PlacedEnemy;
 import gui.factories.warriors.PlacedWarrior;
 import javafx.geometry.Pos;

@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.warriors.Cyborg;
 import exceptions.DatabaseException;
+import game.characters.warriors.Cyborg;
 import media.databases.MediaDatabase;
 
 public class CyborgPrototype extends WarriorPrototype {

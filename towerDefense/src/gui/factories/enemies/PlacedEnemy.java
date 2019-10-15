@@ -1,10 +1,10 @@
 package gui.factories.enemies;
 
-import characters.Enemy;
 import exceptions.CellTakenException;
 import exceptions.DatabaseException;
 import exceptions.InvalidActionException;
 import game.Game;
+import game.characters.Enemy;
 import gui.layouts.PlacementLayout;
 import javafx.scene.control.Label;
 import media.databases.MediaDatabase;

@@ -1,6 +1,6 @@
 package gui.factories.enemies;
 
-import characters.enemies.Skeleton;
+import game.characters.enemies.Skeleton;
 
 public class SkeletonPrototype extends EnemyPrototype {
 	public SkeletonPrototype() {

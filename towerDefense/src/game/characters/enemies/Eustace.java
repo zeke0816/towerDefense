@@ -1,6 +1,6 @@
-package characters.enemies;
+package game.characters.enemies;
 
-import characters.Enemy;
+import game.characters.Enemy;
 
 public class Eustace extends Enemy {
 	public Eustace() {

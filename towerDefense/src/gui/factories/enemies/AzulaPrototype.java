@@ -1,6 +1,6 @@
 package gui.factories.enemies;
 
-import characters.enemies.Azula;
+import game.characters.enemies.Azula;
 
 public class AzulaPrototype extends EnemyPrototype{
 	public AzulaPrototype() {

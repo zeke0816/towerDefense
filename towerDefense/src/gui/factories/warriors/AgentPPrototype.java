@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
-import characters.warriors.AgentP;
 import exceptions.DatabaseException;
+import game.characters.warriors.AgentP;
 import media.databases.MediaDatabase;
 
 public class AgentPPrototype extends WarriorPrototype {

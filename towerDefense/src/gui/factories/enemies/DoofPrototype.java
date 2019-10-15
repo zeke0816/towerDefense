@@ -1,6 +1,6 @@
 package gui.factories.enemies;
 
-import characters.enemies.Doof;
+import game.characters.enemies.Doof;
 
 public class DoofPrototype extends EnemyPrototype {
 	public DoofPrototype() {

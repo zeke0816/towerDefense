@@ -1,6 +1,6 @@
 package gui.factories.enemies;
 
-import characters.enemies.Eustace;
+import game.characters.enemies.Eustace;
 
 public class EustacePrototype extends EnemyPrototype {
 	public EustacePrototype() {
