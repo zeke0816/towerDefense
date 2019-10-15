@@ -16,10 +16,11 @@ public class Battle implements Runnable {
 	@Override
 	public void run() {
 		Map map = Game.getInstance().getMap();
+		attack = new AttackVisitor();
 		try {
 			while(!Game.getInstance().isOver()) {
-				HashMap<GameObject, Pair<Integer, Integer>> ePositions = map.getPositions();
-				for(Entry<GameObject, Pair<Integer, Integer>> position: ePositions.entrySet()) {
+				HashMap<GameObject, Pair<Integer, Integer>> positions = map.getPositions();
+				for(Entry<GameObject, Pair<Integer, Integer>> position: positions.entrySet()) {
 					GameObject object = position.getKey();
 					if(object.isAlive()) {
 						object.accept(attack);
