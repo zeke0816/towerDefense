@@ -6,12 +6,11 @@ import game.GameObject;
 import game.Map;
 import game.characters.Enemy;
 import game.characters.Warrior;
+import javafx.util.Pair;
 
 public class AttackVisitor implements Visitor {
 	
 	protected Map map;
-	protected int yCoordinate;
-	protected int xCoordinate;
 	
 	public AttackVisitor() {
 		map = Game.getInstance().getMap();
@@ -20,6 +19,9 @@ public class AttackVisitor implements Visitor {
 	@Override
 	public void visit(Warrior w) {
 		boolean attacked = false;
+		Pair<Integer, Integer> coordinates = map.getPositions().get(w);
+		int yCoordinate = coordinates.getKey();
+		int xCoordinate = coordinates.getValue();
 		for(int i = 1; !attacked && i <= w.getScope() && i <= xCoordinate; i++) {
 			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate + i);
 			if(opponent != null) {
@@ -31,6 +33,9 @@ public class AttackVisitor implements Visitor {
 	@Override
 	public void visit(Enemy e) {
 		boolean attacked = false;
+		Pair<Integer, Integer> coordinates = map.getPositions().get(e);
+		int yCoordinate = coordinates.getKey();
+		int xCoordinate = coordinates.getValue();
 		for(int i = 1; !attacked && i <= e.getScope() && i <= xCoordinate; i++) {
 			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate - i);
 			if(opponent != null) {
