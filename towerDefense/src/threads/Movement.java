@@ -1,4 +1,4 @@
-package gui;
+package threads;
 
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;

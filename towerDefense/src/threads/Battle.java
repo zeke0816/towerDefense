@@ -1,4 +1,4 @@
-package gui;
+package threads;
 
 import java.util.HashMap;
 import java.util.Map.Entry;

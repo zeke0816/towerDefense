@@ -7,6 +7,8 @@ import javafx.application.Application;
 //import javafx.scene.layout.BackgroundFill;
 //import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import threads.Battle;
+import threads.Movement;
 
 /**
  * Class to handle all things related to the General User Interface
