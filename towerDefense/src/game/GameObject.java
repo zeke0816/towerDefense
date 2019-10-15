@@ -12,6 +12,7 @@ import game.visitors.Visitor;
 public abstract class GameObject {
 	
 	protected int life;
+	protected int points;
 	
 	protected GameObject() {
 		
@@ -20,6 +21,7 @@ public abstract class GameObject {
 	protected GameObject(GameObject target) {
 		if(target != null) {
 			life = target.getLife();
+			points = target.getPoints();
 		}
 	}
 	
@@ -37,6 +39,14 @@ public abstract class GameObject {
 	 */
 	public boolean isDead() {
 		return !isAlive();
+	}
+	
+	/**
+	 * Gets the points given by this object
+	 * @return the points for this object
+	 */
+	public int getPoints() {
+		return points;
 	}
 	
 	/**

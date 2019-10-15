@@ -34,10 +34,6 @@ public abstract class Enemy extends Character {
 
 	public boolean attack(Warrior w) {
 		life -= w.getStrength();
-		if(life < 0){
-			life = 0;
-			// TODO: KILL
-		}
 		return true;
 	}
 	

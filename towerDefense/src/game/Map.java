@@ -104,11 +104,11 @@ public class Map {
 	 */
 	public Pair<Integer, Integer> freeCell(GameObject obj) throws InvalidActionException {
 		if(positions.isEmpty()) {
-			throw new InvalidActionException("There are no Enemies on the arena.");
+			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
 		Pair<Integer, Integer> coordinates = positions.remove(obj);
 		if(coordinates == null) {
-			throw new InvalidActionException("The chosen Enemy is not on the arena.");
+			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
 		getCell(coordinates.getKey(), coordinates.getValue()).free();
 		return coordinates;

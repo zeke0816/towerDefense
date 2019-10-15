@@ -1,18 +1,13 @@
 package gui.layouts;
 
-import java.util.Random;
-import java.util.Stack;
-
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
+import game.GameObject;
 import game.Map;
-import game.characters.Enemy;
 import game.characters.Warrior;
 import gui.controls.CellButton;
-import gui.factories.EnemyFactory;
-import gui.factories.enemies.EnemyPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
@@ -35,7 +30,6 @@ import media.sounds.SoundPlayer;
  */
 public class PlacementLayout extends Layout<GridPane> {
 
-	private Stack<Enemy> placedEnemies;
 	private WarriorPrototype selectedWarrior;
 	private final static double cellSize = 64;
 	private final static double placementLimitRatio = .6;
@@ -67,7 +61,6 @@ public class PlacementLayout extends Layout<GridPane> {
 			}
 		}
 		layout.setOnKeyPressed(enemyPlacementListener);
-		placedEnemies = new Stack<Enemy>();
 	}
 
 	/**
@@ -116,6 +109,17 @@ public class PlacementLayout extends Layout<GridPane> {
 	public void deselectWarrior() {
 		selectedWarrior = null;
 		MainScene.getInstance().resetCursorImage();
+	}
+	
+	public void killObject(GameObject object) {
+		try {
+			Pair<Integer, Integer> coordinates = Game.getInstance().getMap().freeCell(object);
+			MovementLayout.getInstance().removeEnemy(coordinates.getKey());
+			Game.getInstance().updateScore(object.getPoints());
+			StatusLayout.getInstance().updateScore();
+		} catch(InvalidActionException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	/**
@@ -205,39 +209,8 @@ public class PlacementLayout extends Layout<GridPane> {
 
 		@Override
 		public void handle(KeyEvent key) {
-			Map map = Game.getInstance().getMap();
-			try {
-				if(key.getCode() == KeyCode.C) {
-					if(placedEnemies.size() == map.getRows()) {
-						throw new InvalidActionException("You reached the limit of Enemies on the arena for now.");
-					}
-					Random r = new Random();
-					int row;
-					do {
-						row = r.nextInt(map.getRows());
-					} while(map.getCell(row, map.getColumns()-1).isTaken());
-					EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
-					Enemy enemy = enemyPrototype.getEnemy();
-					map.takeCell(row, map.getColumns()-1, enemy);
-					MovementLayout.getInstance().addEnemy(row, enemyPrototype.getID(), enemy);
-					placedEnemies.push(enemy);
-					if(enemyPrototype.playsSound()) {
-						SoundPlayer.getInstance().play(enemyPrototype.getID());
-					}
-				} else if(key.getCode() == KeyCode.K) {
-					if(placedEnemies.isEmpty()) {
-						throw new InvalidActionException("There are no more Enemies to kill.");
-					}
-					Enemy enemyToDestroy = placedEnemies.pop();
-					Pair<Integer, Integer> coordinates = Game.getInstance().getMap().freeCell(enemyToDestroy);
-					MovementLayout.getInstance().removeEnemy(coordinates.getKey());
-					Game.getInstance().updateScore(enemyToDestroy.getPoints());
-					StatusLayout.getInstance().updateScore();
-				} else if(key.getCode() == KeyCode.ESCAPE) {
-					deselectWarrior();
-				}
-			} catch(CellTakenException | InvalidActionException e) {
-				System.out.println(e.getMessage());
+			if(key.getCode() == KeyCode.ESCAPE) {
+				deselectWarrior();
 			}
 		}
 		
