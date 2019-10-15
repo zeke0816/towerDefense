@@ -1,13 +1,18 @@
 package gui.layouts;
 
+import java.util.Random;
+
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import exceptions.UnselectedWarriorException;
 import game.Game;
 import game.GameObject;
 import game.Map;
+import game.characters.Enemy;
 import game.characters.Warrior;
 import gui.controls.CellButton;
+import gui.factories.EnemyFactory;
+import gui.factories.enemies.EnemyPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
@@ -111,6 +116,10 @@ public class PlacementLayout extends Layout<GridPane> {
 		MainScene.getInstance().resetCursorImage();
 	}
 	
+	/**
+	 * Kills a given object and removes it from the GUI and the logic
+	 * @param object the Object that is dead
+	 */
 	public void killObject(GameObject object) {
 		try {
 			Pair<Integer, Integer> coordinates = Game.getInstance().getMap().freeCell(object);
@@ -119,6 +128,29 @@ public class PlacementLayout extends Layout<GridPane> {
 			StatusLayout.getInstance().updateScore();
 		} catch(InvalidActionException e) {
 			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void spawnEnemy() {
+		Map map = Game.getInstance().getMap();
+		Random r = new Random();
+		int newEnemyChooser = r.nextInt(2);
+		if(newEnemyChooser == 1) {
+			int row;
+			do {
+				row = r.nextInt(map.getRows());
+			} while(map.getCell(row, map.getColumns()-1).isTaken());
+			try {
+				EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
+				Enemy enemy = enemyPrototype.getEnemy();
+				map.takeCell(row, map.getColumns()-1, enemy);
+				MovementLayout.getInstance().addEnemy(row, enemyPrototype.getID(), enemy);
+				if(enemyPrototype.playsSound()) {
+					SoundPlayer.getInstance().play(enemyPrototype.getID());
+				}
+			} catch(CellTakenException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	

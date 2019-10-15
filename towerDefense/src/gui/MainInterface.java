@@ -1,12 +1,18 @@
 package gui;
 
 import game.Game;
+import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 //import javafx.scene.layout.Background;
 //import javafx.scene.layout.BackgroundFill;
 //import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import threads.Battle;
 import threads.Movement;
 
@@ -35,9 +41,7 @@ public class MainInterface extends Application {
      * Starts the application
      */
 	@Override
-	public void start(Stage stage) throws Exception {
-		System.out.println("Dmytro, your PC is the problem.");
-		
+	public void start(Stage stage) {
 		stage.setTitle("Cartoon Defense");
 		stage.centerOnScreen();
 		stage.setWidth(1500);
@@ -50,6 +54,19 @@ public class MainInterface extends Application {
 		
         battleThread = new Thread(new Battle(), "Battle Thread");
         battleThread.start();
+        
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				if(!Game.getInstance().isOver()) {
+					PlacementLayout.getInstance().spawnEnemy();
+				}
+			}
+        	
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
 	}
 	
 	/**
