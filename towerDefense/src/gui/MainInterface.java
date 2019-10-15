@@ -34,6 +34,8 @@ public class MainInterface extends Application {
      */
 	@Override
 	public void start(Stage stage) throws Exception {
+		System.out.println("Dmytro, your PC is the problem.");
+		
 		stage.setTitle("Cartoon Defense");
 		stage.centerOnScreen();
 		stage.setWidth(1500);
