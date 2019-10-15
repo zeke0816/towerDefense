@@ -46,7 +46,7 @@ public class MainInterface extends Application {
         movementThread = new Thread(new Movement(), "Enemy Movement Thread");
         movementThread.start();
 		
-        battleThread = new Thread(new Battle(), "Enemy Movement Thread");
+        battleThread = new Thread(new Battle(), "Battle Thread");
         battleThread.start();
 	}
 	
