@@ -106,7 +106,8 @@ public class Map {
 		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = positions.remove(obj);
+		//Pair<Integer, Integer> coordinates = positions.remove(obj);
+		Pair<Integer, Integer> coordinates = positions.get(obj);
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
@@ -146,8 +147,10 @@ public class Map {
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		positions.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
 		freeCell(obj);
+		positions.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
+		
+		//freeCell(obj);
 		takeCell(coordinates.getKey(), coordinates.getValue()-1, obj);
 		if(coordinates.getValue()-1 == 0) {
 			Game.getInstance().end(); // GAME OVER

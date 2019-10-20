@@ -12,7 +12,7 @@ public class Movement implements Runnable {
 		try {
 			while(!Game.getInstance().isOver()) {
 				MovementLayout.getInstance().moveEnemies();
-				Thread.sleep(1000);
+				Thread.sleep(50);
 			}
 		} catch(CellTakenException | InvalidActionException e) {
 			System.out.println(e.getMessage());
