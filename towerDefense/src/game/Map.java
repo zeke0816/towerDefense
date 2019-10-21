@@ -145,8 +145,8 @@ public class Map {
 		if(coordinates == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		positions.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
 		freeCell(obj);
+		positions.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
 		takeCell(coordinates.getKey(), coordinates.getValue()-1, obj);
 		if(coordinates.getValue()-1 == 0) {
 			Game.getInstance().end(); // GAME OVER
