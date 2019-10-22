@@ -1,8 +1,8 @@
-package gui.factories;
+package game.factories;
 
-import gui.factories.items.AcquirableItemPrototype;
-import gui.factories.items.PreciousItemPrototype;
-import gui.factories.items.RandomItemPrototype;
+import game.factories.items.AcquirableItemPrototype;
+import game.factories.items.PreciousItemPrototype;
+import game.factories.items.RandomItemPrototype;
 
 /**
  * TODO: agregar una jerarquia de herencia mas. Transformar 

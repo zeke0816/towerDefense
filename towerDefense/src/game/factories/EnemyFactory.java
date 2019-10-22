@@ -1,7 +1,13 @@
-package gui.factories;
+package game.factories;
 
 import java.util.Random;
-import gui.factories.enemies.*;
+
+import game.factories.enemies.AlienPrototype;
+import game.factories.enemies.AzulaPrototype;
+import game.factories.enemies.DoofPrototype;
+import game.factories.enemies.EnemyPrototype;
+import game.factories.enemies.EustacePrototype;
+import game.factories.enemies.SkeletonPrototype;
 
 /**
  * Class that handles the creation of enemies.

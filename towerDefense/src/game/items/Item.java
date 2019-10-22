@@ -1,4 +1,4 @@
-package Item;
+package game.items;
 
 import game.GameObject;
 import game.visitors.Visitor;

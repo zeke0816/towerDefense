@@ -1,6 +1,5 @@
-package Item.concreteItems;
+package game.items;
 
-import Item.Item;
 import game.characters.Enemy;
 import game.characters.Warrior;
 

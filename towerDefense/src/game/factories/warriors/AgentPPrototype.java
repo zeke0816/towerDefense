@@ -1,18 +1,18 @@
-package gui.factories.warriors;
+package game.factories.warriors;
 
 import exceptions.DatabaseException;
-import game.characters.warriors.Gary;
+import game.characters.warriors.AgentP;
 import media.databases.MediaDatabase;
 
-public class GaryPrototype extends WarriorPrototype {
+public class AgentPPrototype extends WarriorPrototype {
 
-	public GaryPrototype() {
+	public AgentPPrototype() {
 		super();
 		
-		id = "gary";
-		name = "Gary";
+		id = "agentP";
+		name = "Agent P";
 		playsSound = true;
-		
+
 		label.setText(name);
         try {
 			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
@@ -20,7 +20,7 @@ public class GaryPrototype extends WarriorPrototype {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
         button.setWarrior(this);
-        warrior = new Gary();
+        warrior = new AgentP();
 	}
 
 }

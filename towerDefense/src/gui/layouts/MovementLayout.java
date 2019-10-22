@@ -2,7 +2,6 @@ package gui.layouts;
 
 import java.util.HashMap;
 
-import Item.Item;
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import game.Game;
@@ -10,6 +9,7 @@ import game.GameObject;
 import game.Map;
 import game.characters.Enemy;
 import game.characters.Warrior;
+import game.items.Item;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;

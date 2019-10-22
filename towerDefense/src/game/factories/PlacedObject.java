@@ -1,4 +1,4 @@
-package gui.layouts;
+package game.factories;
 
 import exceptions.CellTakenException;
 import exceptions.DatabaseException;

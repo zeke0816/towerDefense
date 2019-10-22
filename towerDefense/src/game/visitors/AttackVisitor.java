@@ -1,6 +1,5 @@
 package game.visitors;
 
-import Item.Item;
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import game.Game;
@@ -8,6 +7,7 @@ import game.GameObject;
 import game.Map;
 import game.characters.Enemy;
 import game.characters.Warrior;
+import game.items.Item;
 import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
 import javafx.util.Pair;

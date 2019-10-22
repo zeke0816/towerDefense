@@ -1,4 +1,4 @@
-package gui.factories.warriors;
+package game.factories.warriors;
 
 import exceptions.DatabaseException;
 import game.characters.warriors.TheFlea;

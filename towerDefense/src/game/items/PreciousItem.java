@@ -1,13 +1,12 @@
-package Item.concreteItems;
+package game.items;
 
-import Item.Item;
 import game.characters.Enemy;
 import game.characters.Warrior;
 
 /**
- * Random Item class
+ * Precious Item class
  */
-public class RandomItem extends Item {
+public class PreciousItem extends Item {
 
 	@Override
 	public boolean attack(Warrior w) {

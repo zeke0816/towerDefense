@@ -1,4 +1,4 @@
-package gui.factories.items;
+package game.factories.items;
 
 public class AcquirableItemPrototype extends ItemPrototype {
 
