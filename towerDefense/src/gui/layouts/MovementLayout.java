@@ -10,7 +10,6 @@ import game.GameObject;
 import game.Map;
 import game.characters.Enemy;
 import game.characters.Warrior;
-import gui.factories.PlacedObject;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
