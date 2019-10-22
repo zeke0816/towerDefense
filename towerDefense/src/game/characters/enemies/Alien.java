@@ -6,6 +6,8 @@ public class Alien extends Enemy {
 	public Alien() {
 		points = 300;
 		movementSpeed = 4;
+		scope = 3;
+		life = 1000;
 	}
 	
 	private Alien(Alien target) {

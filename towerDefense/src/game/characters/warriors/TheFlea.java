@@ -5,6 +5,7 @@ import game.characters.Warrior;
 public class TheFlea extends Warrior {
 	
 	public TheFlea() {
+		scope = 2;
 		life = 2500;
 		strength = 1000;
 		attackSpeed = 400;

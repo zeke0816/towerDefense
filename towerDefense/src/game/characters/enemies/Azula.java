@@ -6,6 +6,8 @@ public class Azula extends Enemy {
 	public Azula() {
 		points = 1000;
 		movementSpeed = 8;
+		scope = 7;
+		life = 1000;
 	}
 	
 	private Azula(Azula target) {

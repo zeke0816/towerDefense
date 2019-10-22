@@ -73,7 +73,7 @@ public class PlacedObject extends Label {
 			if(pixelsAdvanced >= cellSize) {
 				pixelsAdvanced = 0;
 				Game.getInstance().getMap().advance(e);
-				row--;
+				col--;
 			}
 		}
 	}
@@ -85,6 +85,14 @@ public class PlacedObject extends Label {
 	 */
 	public void advance(Item i) throws InvalidActionException, CellTakenException {
 		
+	}
+	
+	/**
+	 * Gets the current position of the Placed Object relative to the base
+	 * @return the current distance of the Placed Object to the base
+	 */
+	public int getCurrentPosition() {
+		return Integer.parseInt(Double.toString((col * PlacementLayout.getCellSize()) - pixelsAdvanced).split("\\.")[0]);
 	}
 	
 	/**

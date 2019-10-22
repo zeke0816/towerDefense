@@ -5,6 +5,7 @@ import game.characters.Warrior;
 public class Toph extends Warrior {
 	
 	public Toph() {
+		scope = 6;
 		life = 2500;
 		strength = 1000;
 		attackSpeed = 400;

@@ -6,6 +6,8 @@ public class Skeleton extends Enemy{
 	public Skeleton() {
 		points = 700;
 		movementSpeed = 1;
+		scope = 6;
+		life = 1000;
 	}
 	
 	private Skeleton(Skeleton target) {

@@ -5,6 +5,7 @@ import game.characters.Warrior;
 public class AgentP extends Warrior {
 	
 	public AgentP() {
+		scope = 5;
 		life = 2500;
 		strength = 1000;
 		attackSpeed = 400;

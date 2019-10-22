@@ -6,6 +6,8 @@ public class Doof extends Enemy{
 	public Doof() {
 		points = 2000;
 		movementSpeed = 2;
+		scope = 2;
+		life = 1000;
 	}
 	
 	private Doof(Doof target) {

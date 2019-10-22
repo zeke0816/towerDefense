@@ -10,7 +10,9 @@ import game.Map;
 import game.characters.Enemy;
 import game.characters.Warrior;
 import game.items.Item;
+import gui.attacks.EnergyBlast;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
@@ -110,6 +112,36 @@ public class MovementLayout extends Layout<GridPane> {
 		if(placedObject != null) {
 			placedObject.advance(object);
 		}
+	}
+	
+	/**
+	 * Graphically show how a Game Object attacks another Game Object
+	 * @param attacker the attacking Game Object
+	 * @param blown the attacked Game Object
+	 */
+	public void attackObject(GameObject attacker, GameObject blownup) {
+		PlacedObject placedAttacker = placedObjects.get(attacker);
+		PlacedObject placedBlownUp = placedObjects.get(blownup);
+		EnergyBlast blast = new EnergyBlast(placedAttacker, placedBlownUp);
+		blast.shoot(blownup);
+	}
+	
+	/**
+	 * Adds a Blast onto the arena
+	 * @param row the row where the Blast will be placed
+	 * @param blast the Blast itself
+	 */
+	public void addBlast(int row, Label blast) {
+		movementRows[row].getChildren().add(blast);
+	}
+	
+	/**
+	 * Removes a Blast from the given row
+	 * @param row the row where the Blast is placed
+	 * @param blast the Blast itself
+	 */
+	public void removeBlast(int row, Label blast) {
+		movementRows[row].getChildren().remove(blast);
 	}
 	
 }

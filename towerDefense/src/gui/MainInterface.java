@@ -1,6 +1,12 @@
 package gui;
 
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 import game.Game;
+import game.GameObject;
+import game.Map;
+import game.visitors.AttackVisitor;
 import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;
 import javafx.animation.KeyFrame;
@@ -13,7 +19,7 @@ import javafx.event.EventHandler;
 //import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import threads.Battle;
+import javafx.util.Pair;
 
 /**
  * Class to handle all things related to the General User Interface
@@ -26,8 +32,7 @@ public class MainInterface extends Application {
 	// protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
 	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
 	// protected static final Paint black = Paint.valueOf("#000000");
-	protected Thread movementThread;
-	protected Thread battleThread;
+	protected AttackVisitor attack;
 	
 	/**
     * @param args the command line arguments
@@ -48,8 +53,8 @@ public class MainInterface extends Application {
 		stage.setScene(MainScene.getInstance());
 		stage.show();
 		
-        battleThread = new Thread(new Battle(), "Battle Thread");
-        battleThread.start();
+		Map map = Game.getInstance().getMap();
+		attack = new AttackVisitor();
         
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
@@ -57,6 +62,13 @@ public class MainInterface extends Application {
 			public void handle(ActionEvent arg0) {
 				if(!Game.getInstance().isOver()) {
 					PlacementLayout.getInstance().spawnEnemy();
+					HashMap<GameObject, Pair<Integer, Integer>> positions = map.getPositions();
+					for(Entry<GameObject, Pair<Integer, Integer>> position: positions.entrySet()) {
+						GameObject object = position.getKey();
+						if(object.isAlive()) {
+							object.accept(attack);
+						}
+					}
 				}
 			}
         	

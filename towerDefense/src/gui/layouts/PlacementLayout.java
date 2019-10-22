@@ -136,10 +136,16 @@ public class PlacementLayout extends Layout<GridPane> {
 		if(newEnemyChooser == 1) {
 			int row;
 			int col = map.getColumns()-1;
+			int maxAttempts = 21;
+			int currentAttempts = 0;
 			do {
 				row = r.nextInt(map.getRows());
-			} while(map.getCell(row, col).isTaken());
+				currentAttempts++;
+			} while(currentAttempts < maxAttempts && map.getCell(row, col).isTaken());
 			try {
+				if(currentAttempts == maxAttempts) {
+					throw new CellTakenException("All initial cells have been taken. Enemy spawn has been delayed.");
+				}
 				EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
 				Enemy enemy = enemyPrototype.getEnemy();
 				map.takeCell(row, map.getColumns()-1, enemy);

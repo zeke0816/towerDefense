@@ -9,7 +9,6 @@ import game.characters.Enemy;
 import game.characters.Warrior;
 import game.items.Item;
 import gui.layouts.MovementLayout;
-import gui.layouts.PlacementLayout;
 import javafx.util.Pair;
 
 public class AttackVisitor implements Visitor {
@@ -30,13 +29,8 @@ public class AttackVisitor implements Visitor {
 			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate + i);
 			if(opponent != null) {
 				attacked = opponent.attack(w);
-				if(attacked && opponent.isDead()) {
-					try {
-						map.freeCell(opponent);
-						PlacementLayout.getInstance().killObject(opponent);
-					} catch (InvalidActionException e) {
-						System.out.println(e.getMessage());
-					}
+				if(attacked) {
+					MovementLayout.getInstance().attackObject(w, opponent);
 				}
 			}
 		}
@@ -57,13 +51,8 @@ public class AttackVisitor implements Visitor {
 			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate - i);
 			if(opponent != null) {
 				attacked = opponent.attack(e);
-				if(attacked && opponent.isDead()) {
-					try {
-						map.freeCell(opponent);
-						PlacementLayout.getInstance().killObject(opponent);
-					} catch (InvalidActionException e1) {
-						System.out.println(e1.getMessage());
-					}
+				if(attacked) {
+					MovementLayout.getInstance().attackObject(e, opponent);
 				}
 			}
 		}
