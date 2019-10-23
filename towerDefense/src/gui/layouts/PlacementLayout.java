@@ -13,6 +13,7 @@ import game.objects.characters.warriors.Warrior;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
 import gui.factories.enemies.EnemyPrototype;
+import gui.factories.items.ItemPrototype;
 import gui.factories.warriors.WarriorPrototype;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
@@ -34,6 +35,7 @@ import media.sounds.SoundPlayer;
  */
 public class PlacementLayout extends Layout<GridPane> {
 
+	private ItemPrototype selectedItem;
 	private WarriorPrototype selectedWarrior;
 	private final static double cellSize = 64;
 	private final static double placementLimitRatio = .6;
@@ -47,6 +49,7 @@ public class PlacementLayout extends Layout<GridPane> {
 		layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
         
+        selectedItem = null;
         selectedWarrior = null;
         
 		Map map = Game.getInstance().getMap();
@@ -105,6 +108,22 @@ public class PlacementLayout extends Layout<GridPane> {
 	 */
 	public void selectWarrior(WarriorPrototype w) {
 		selectedWarrior = w;
+	}
+	
+	/**
+	 * Gets the selected Item
+	 * @return the currently selected Item
+	 */
+	public ItemPrototype getSelectedItem() {
+		return selectedItem;
+	}
+	
+	/**
+	 * Selects the Item to be placed in the map
+	 * @param i the Item
+	 */
+	public void selectItem(ItemPrototype i) {
+		selectedItem = i;
 	}
 	
 	/**

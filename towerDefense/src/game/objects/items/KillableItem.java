@@ -4,9 +4,17 @@ import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 
 /**
- * Random Item class
+ * Acquirable Item class
  */
-public class RandomItem extends Item {
+public class KillableItem extends Item {
+	
+	protected KillableItem() {
+		
+	}
+	
+	protected KillableItem(KillableItem target) {
+		super(target);
+	}
 
 	@Override
 	public boolean attack(Warrior w) {
@@ -16,6 +24,11 @@ public class RandomItem extends Item {
 	@Override
 	public boolean attack(Enemy w) {
 		return false;
+	}
+	
+	@Override
+	public KillableItem clone() {
+		return new KillableItem(this);
 	}
 
 }

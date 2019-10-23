@@ -6,6 +6,7 @@ import game.objects.characters.enemies.Enemy;
  * Class to represent and save information about a Enemy in the GUI
  */
 public abstract class EnemyPrototype {
+	
 	protected String id;
 	protected String name;
 	protected boolean playsSound;

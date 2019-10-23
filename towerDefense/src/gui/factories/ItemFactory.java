@@ -1,25 +1,19 @@
 package gui.factories;
 
-import gui.factories.items.AcquirableItemPrototype;
-import gui.factories.items.PreciousItemPrototype;
-import gui.factories.items.RandomItemPrototype;
+import gui.factories.items.KillableItemPrototype;
+import gui.factories.items.TemporaryCharmPrototype;
+import gui.factories.items.PermanentCharmPrototype;
 
 /**
- * TODO: agregar una jerarquia de herencia mas. Transformar 
- * las clases de tipo de Item, en abstactas, y agregar 
- * la clase concreta de cada item.
- * 
- * 
- * 
- * Class that handles the creation of items of the game
+ * Class that handles the creation of Items of the game
  * @author dimax
  *
  */
 public class ItemFactory {
 	
-	protected AcquirableItemPrototype acquirable;
-	protected PreciousItemPrototype precious;
-	protected RandomItemPrototype random;
+	protected KillableItemPrototype acquirable;
+	protected TemporaryCharmPrototype precious;
+	protected PermanentCharmPrototype random;
 	
 	private static final ItemFactory instance = new ItemFactory();
 	

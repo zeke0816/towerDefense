@@ -45,5 +45,10 @@ public abstract class Item extends GameObject {
 		life -= harm;
 		return true;
 	}
+
+	/**
+	 * Creates and returns a copy of this Item
+	 */
+	public abstract Item clone();
 	
 }

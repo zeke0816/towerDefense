@@ -4,9 +4,17 @@ import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 
 /**
- * Acquirable Item class
+ * Precious Item class
  */
-public class AcquirableItem extends Item {
+public class PermanentCharm extends Item {
+	
+	protected PermanentCharm() {
+		
+	}
+	
+	protected PermanentCharm(PermanentCharm target) {
+		super(target);
+	}
 
 	@Override
 	public boolean attack(Warrior w) {
@@ -16,6 +24,11 @@ public class AcquirableItem extends Item {
 	@Override
 	public boolean attack(Enemy w) {
 		return false;
+	}
+	
+	@Override
+	public PermanentCharm clone() {
+		return new PermanentCharm(this);
 	}
 
 }

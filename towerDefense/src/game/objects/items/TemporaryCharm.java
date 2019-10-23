@@ -4,9 +4,17 @@ import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 
 /**
- * Precious Item class
+ * Random Item class
  */
-public class PreciousItem extends Item {
+public class TemporaryCharm extends Item {
+	
+	protected TemporaryCharm() {
+		
+	}
+	
+	protected TemporaryCharm(TemporaryCharm target) {
+		super(target);
+	}
 
 	@Override
 	public boolean attack(Warrior w) {
@@ -16,6 +24,11 @@ public class PreciousItem extends Item {
 	@Override
 	public boolean attack(Enemy w) {
 		return false;
+	}
+	
+	@Override
+	public TemporaryCharm clone() {
+		return new TemporaryCharm(this);
 	}
 
 }
