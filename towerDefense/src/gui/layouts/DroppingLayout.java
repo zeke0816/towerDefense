@@ -5,7 +5,7 @@ import java.util.HashMap;
 import exceptions.InvalidActionException;
 import game.Game;
 import game.Map;
-import game.items.Item;
+import game.objects.items.Item;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;

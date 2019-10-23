@@ -1,0 +1,23 @@
+package game.objects.characters.enemies;
+
+import game.objects.characters.Enemy;
+
+public class Alien extends Enemy {
+	
+	public Alien() {
+		scope = 3;
+		life = 1000;
+		points = 300;
+		strength = 800;
+		movementSpeed = 4;
+	}
+	
+	private Alien(Alien target) {
+		super(target);
+	}
+	
+	@Override
+	public Enemy clone() {
+		return new Alien(this);
+	}
+}

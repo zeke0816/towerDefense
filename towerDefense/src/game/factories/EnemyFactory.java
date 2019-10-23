@@ -2,12 +2,12 @@ package game.factories;
 
 import java.util.Random;
 
-import game.factories.enemies.AlienPrototype;
-import game.factories.enemies.AzulaPrototype;
-import game.factories.enemies.DoofPrototype;
-import game.factories.enemies.EnemyPrototype;
-import game.factories.enemies.EustacePrototype;
-import game.factories.enemies.SkeletonPrototype;
+import game.factories.characters.enemies.AlienPrototype;
+import game.factories.characters.enemies.AzulaPrototype;
+import game.factories.characters.enemies.DoofPrototype;
+import game.factories.characters.enemies.EnemyPrototype;
+import game.factories.characters.enemies.EustacePrototype;
+import game.factories.characters.enemies.SkeletonPrototype;
 
 /**
  * Class that handles the creation of enemies.

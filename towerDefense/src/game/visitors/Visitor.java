@@ -1,8 +1,8 @@
 package game.visitors;
 
-import game.characters.Enemy;
-import game.characters.Warrior;
-import game.items.Item;
+import game.objects.characters.Enemy;
+import game.objects.characters.Warrior;
+import game.objects.items.Item;
 
 /**
  * Visitor Interface, contains the declaration of all possible GameObjects

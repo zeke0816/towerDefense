@@ -1,10 +1,10 @@
 package game;
 
-import game.characters.states.Basic;
-import game.characters.Enemy;
-import game.characters.Warrior;
-import game.characters.states.State;
-import game.items.Item;
+import game.objects.characters.Enemy;
+import game.objects.characters.Warrior;
+import game.objects.characters.states.Basic;
+import game.objects.characters.states.State;
+import game.objects.items.Item;
 import game.visitors.Visitor;
 
 /**

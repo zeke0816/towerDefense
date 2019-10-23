@@ -5,9 +5,9 @@ import exceptions.InvalidActionException;
 import game.Game;
 import game.GameObject;
 import game.Map;
-import game.characters.Enemy;
-import game.characters.Warrior;
-import game.items.Item;
+import game.objects.characters.Enemy;
+import game.objects.characters.Warrior;
+import game.objects.items.Item;
 import gui.layouts.MovementLayout;
 import javafx.util.Pair;
 
