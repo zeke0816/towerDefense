@@ -1,11 +1,11 @@
 package gui.layouts;
 
-import gui.factories.characters.warriors.AgentPPrototype;
-import gui.factories.characters.warriors.BB8Prototype;
-import gui.factories.characters.warriors.CyborgPrototype;
-import gui.factories.characters.warriors.GaryPrototype;
-import gui.factories.characters.warriors.TheFleaPrototype;
-import gui.factories.characters.warriors.TurretPrototype;
+import gui.factories.warriors.AgentPPrototype;
+import gui.factories.warriors.BB8Prototype;
+import gui.factories.warriors.CyborgPrototype;
+import gui.factories.warriors.GaryPrototype;
+import gui.factories.warriors.TheFleaPrototype;
+import gui.factories.warriors.TurretPrototype;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

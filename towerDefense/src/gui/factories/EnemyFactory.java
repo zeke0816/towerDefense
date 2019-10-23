@@ -2,12 +2,12 @@ package gui.factories;
 
 import java.util.Random;
 
-import gui.factories.characters.enemies.AlienPrototype;
-import gui.factories.characters.enemies.AzulaPrototype;
-import gui.factories.characters.enemies.DoofPrototype;
-import gui.factories.characters.enemies.EnemyPrototype;
-import gui.factories.characters.enemies.EustacePrototype;
-import gui.factories.characters.enemies.SkeletonPrototype;
+import gui.factories.enemies.AlienPrototype;
+import gui.factories.enemies.AzulaPrototype;
+import gui.factories.enemies.DoofPrototype;
+import gui.factories.enemies.EnemyPrototype;
+import gui.factories.enemies.EustacePrototype;
+import gui.factories.enemies.SkeletonPrototype;
 
 /**
  * Class that handles the creation of enemies.

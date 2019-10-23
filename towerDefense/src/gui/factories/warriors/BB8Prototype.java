@@ -1,17 +1,17 @@
-package gui.factories.characters.warriors;
+package gui.factories.warriors;
 
 import exceptions.DatabaseException;
-import game.objects.characters.warriors.TheFlea;
+import game.objects.characters.warriors.BB8;
 import media.databases.MediaDatabase;
 
-public class TheFleaPrototype extends WarriorPrototype {
+public class BB8Prototype extends WarriorPrototype {
 
-	public TheFleaPrototype() {
+	public BB8Prototype() {
 		super();
 		
-		id = "theFlea";
-		name = "The Flea";
-		playsSound = true;
+		id = "bb8";
+		name = "BB8";
+		playsSound = false;
 		
 		nameLabel.setText(name);
         try {
@@ -20,9 +20,8 @@ public class TheFleaPrototype extends WarriorPrototype {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
         button.setWarrior(this);
-        warrior = new TheFlea();
+        warrior = new BB8();
         priceLabel.setText("$ "+warrior.getPrice());
 	}
-
 
 }

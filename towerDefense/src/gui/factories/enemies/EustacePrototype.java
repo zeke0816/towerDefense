@@ -1,4 +1,4 @@
-package gui.factories.characters.enemies;
+package gui.factories.enemies;
 
 import game.objects.characters.enemies.Eustace;
 

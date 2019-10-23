@@ -32,7 +32,7 @@ public class MainInterface extends Application {
 	// protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
 	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
 	// protected static final Paint black = Paint.valueOf("#000000");
-	protected BattleVisitor attack;
+	protected BattleVisitor battle;
 	
 	/**
     * @param args the command line arguments
@@ -54,7 +54,7 @@ public class MainInterface extends Application {
 		stage.show();
 		
 		Map map = Game.getInstance().getMap();
-		attack = new BattleVisitor();
+		battle = new BattleVisitor();
         
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
@@ -66,7 +66,7 @@ public class MainInterface extends Application {
 					for(Entry<GameObject, Pair<Integer, Integer>> position: positions.entrySet()) {
 						GameObject object = position.getKey();
 						if(object.isAlive()) {
-							object.accept(attack);
+							object.accept(battle);
 						}
 					}
 				}

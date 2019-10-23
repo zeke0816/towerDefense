@@ -1,6 +1,6 @@
 package gui.controls;
 
-import gui.factories.characters.warriors.WarriorPrototype;
+import gui.factories.warriors.WarriorPrototype;
 import javafx.scene.control.Button;
 
 public class WarriorButton extends Button {
