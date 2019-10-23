@@ -1,7 +1,5 @@
 package game.objects.items.killable;
 
-import game.objects.items.Item;
-
 public class Nuke extends KillableItem {
 
 	public Nuke() {
@@ -17,7 +15,7 @@ public class Nuke extends KillableItem {
 	}
 
 	@Override
-	public Item clone() {
+	public Nuke clone() {
 		return new Nuke(this);
 	}
 }

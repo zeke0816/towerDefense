@@ -5,6 +5,8 @@ import game.objects.characters.states.Basic;
 import game.objects.characters.states.State;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
+import game.objects.items.charm.CharmingItem;
+import game.objects.items.killable.KillableItem;
 import game.objects.items.killable.Nuke;
 import game.visitors.Visitor;
 
@@ -217,11 +219,32 @@ public abstract class GameObject {
 		return true;
 	}
 	
-	public void cure() {
-		if(life < DEF_LIFE ) {
+	public boolean cure() {
+		boolean needsCure = life < DEF_LIFE ;
+		if(needsCure) {
 			life = DEF_LIFE;
 		}
+		return needsCure;
 	}
+	
+	public boolean poison() {
+		strength = 0;
+		return true;
+	}
+	
+	public boolean unpoison() {
+		strength = 0;		//TODO : CONSTANT STRENGTH
+		return true;
+	}
+	
+	public boolean applyItem(KillableItem i) {
+		return false;
+	}
+	
+	public boolean applyItem(CharmingItem i) {
+		return i.doAction(this);
+	}
+	
 	
 	/**
 	 * Accepts a Visitor and delegates some concrete operations to it

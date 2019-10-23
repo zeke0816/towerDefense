@@ -8,18 +8,18 @@ public class Cure extends PermanentCharm {
 		price = 1000;
 	}
 	
-	private Cure(Cure target) {
+	protected Cure(Cure target) {
 		super(target);
 	}
 	
 	@Override
-	public PermanentCharm clone() {
+	public Cure clone() {
 		return new Cure(this);
 	}
 
 	@Override
-	public void doAction(GameObject o) {
-		o.cure();
+	public boolean doAction(GameObject o) {
+		return o.cure();
 	}
 		
 }

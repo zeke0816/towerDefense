@@ -1,13 +1,16 @@
 package game.objects.items.charm.temporary;
 
+import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
-import game.objects.items.Item;
+import game.objects.items.charm.CharmingItem;
 
 /**
  * Temporary Item class
  */
-public abstract class TemporaryCharm extends Item {
+public abstract class TemporaryCharm extends CharmingItem {
+	
+	protected GameObject object;
 	
 	protected TemporaryCharm() {
 		
@@ -27,7 +30,17 @@ public abstract class TemporaryCharm extends Item {
 		return false;
 	}
 	
+	public boolean decreaseLife() {
+		life--;
+		boolean dead = (life == 0);
+		if(dead) {
+			undoAction(object);
+		}
+		return dead;
+	}
+	
 	public abstract TemporaryCharm clone();
 	
+	public abstract boolean undoAction(GameObject o);
 
 }

@@ -1,7 +1,5 @@
 package game.objects.items.killable;
 
-import game.objects.items.Item;
-
 public class Rock extends KillableItem{
 	
 	public Rock() {
@@ -17,7 +15,7 @@ public class Rock extends KillableItem{
 	}
 	
 	@Override
-	public Item clone() {
+	public Rock clone() {
 		return new Rock(this);
 	}
 }

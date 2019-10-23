@@ -1,6 +1,5 @@
 package game.objects.items.charm.permanent;
 
-import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;

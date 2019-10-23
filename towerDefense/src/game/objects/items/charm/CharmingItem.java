@@ -14,6 +14,6 @@ public abstract class CharmingItem extends Item{
 		super(target);
 	}
 	
-	public abstract void doAction(GameObject o);
+	public abstract boolean doAction(GameObject o);
 
 }

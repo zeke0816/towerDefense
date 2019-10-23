@@ -1,8 +1,5 @@
 package game.objects.items.killable;
 
-import game.objects.GameObject;
-import game.objects.items.Item;
-
 public class Barricade extends KillableItem{
 
 	public Barricade() {
@@ -18,7 +15,7 @@ public class Barricade extends KillableItem{
 	}
 	
 	@Override
-	public Item clone() {
+	public Barricade clone() {
 		return new Barricade(this);
 	}
 }
