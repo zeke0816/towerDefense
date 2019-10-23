@@ -38,12 +38,7 @@ public abstract class Warrior extends Character {
 	}
 	
 	public boolean attack(Item i) {
-		int harm = i.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
-		}
-		life -= harm;
-		return true;
+		return false;
 	}
 
 	/**

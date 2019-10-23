@@ -5,6 +5,7 @@ import game.objects.characters.states.Basic;
 import game.objects.characters.states.State;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
+import game.objects.items.killable.Nuke;
 import game.visitors.Visitor;
 
 /**
@@ -200,6 +201,20 @@ public abstract class GameObject {
 	 * @return true if the attack was successful, false if not.
 	 */
 	public abstract boolean attack(Item i);
+	
+	/**
+	 * Determines what happens if the Nuke tries to attack this character
+	 * @param n the Nuke trying to attack
+	 * @return true if the attack was successful, false if not.
+	 */
+	public boolean attack(Nuke n) {
+		int harm = n.getStrength() - protection;
+		if(harm < 0) {
+			harm = 0;
+		}
+		life -= harm;
+		return true;
+	}
 	
 	/**
 	 * Accepts a Visitor and delegates some concrete operations to it
