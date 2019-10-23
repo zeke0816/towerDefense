@@ -1,18 +1,19 @@
-package game.objects.items;
+package game.objects.items.temporary;
 
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
+import game.objects.items.Item;
 
 /**
- * Precious Item class
+ * Temporary Item class
  */
-public class PermanentCharm extends Item {
+public class TemporaryCharm extends Item {
 	
-	protected PermanentCharm() {
+	protected TemporaryCharm() {
 		
 	}
 	
-	protected PermanentCharm(PermanentCharm target) {
+	protected TemporaryCharm(TemporaryCharm target) {
 		super(target);
 	}
 
@@ -27,8 +28,8 @@ public class PermanentCharm extends Item {
 	}
 	
 	@Override
-	public PermanentCharm clone() {
-		return new PermanentCharm(this);
+	public TemporaryCharm clone() {
+		return new TemporaryCharm(this);
 	}
 
 }

@@ -1,18 +1,19 @@
-package game.objects.items;
+package game.objects.items.killable;
 
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
+import game.objects.items.Item;
 
 /**
- * Random Item class
+ * Killable Item class
  */
-public class TemporaryCharm extends Item {
+public class KillableItem extends Item {
 	
-	protected TemporaryCharm() {
+	protected KillableItem() {
 		
 	}
 	
-	protected TemporaryCharm(TemporaryCharm target) {
+	protected KillableItem(KillableItem target) {
 		super(target);
 	}
 
@@ -27,8 +28,8 @@ public class TemporaryCharm extends Item {
 	}
 	
 	@Override
-	public TemporaryCharm clone() {
-		return new TemporaryCharm(this);
+	public KillableItem clone() {
+		return new KillableItem(this);
 	}
 
 }

@@ -1,18 +1,19 @@
-package game.objects.items;
+package game.objects.items.permanent;
 
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
+import game.objects.items.Item;
 
 /**
- * Acquirable Item class
+ * Permanent charm Item class
  */
-public class KillableItem extends Item {
+public class PermanentCharm extends Item {
 	
-	protected KillableItem() {
+	protected PermanentCharm() {
 		
 	}
 	
-	protected KillableItem(KillableItem target) {
+	protected PermanentCharm(PermanentCharm target) {
 		super(target);
 	}
 
@@ -27,8 +28,8 @@ public class KillableItem extends Item {
 	}
 	
 	@Override
-	public KillableItem clone() {
-		return new KillableItem(this);
+	public PermanentCharm clone() {
+		return new PermanentCharm(this);
 	}
 
 }
