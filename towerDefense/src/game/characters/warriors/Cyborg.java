@@ -7,6 +7,7 @@ public class Cyborg extends Warrior {
 	public Cyborg() {
 		scope = 7;
 		life = 2500;
+		price = 5000;
 		strength = 1000;
 		attackSpeed = 400;
 	}

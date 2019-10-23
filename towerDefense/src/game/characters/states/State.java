@@ -1,6 +1,6 @@
 package game.characters.states;
 
-import game.characters.Character;
+import game.GameObject;
 
 /**
  * Abstract class that helps manage the state of each character on the game.
@@ -9,23 +9,23 @@ import game.characters.Character;
  */
 public abstract class State {
 	
-	protected Character character;
+	protected GameObject object;
 	
 	/**
 	 * Initializes the state with a given character to control.
 	 * @param c the character
 	 */
-	protected State(Character c) {
-		character = c;
+	protected State(GameObject o) {
+		object = o;
 	}
 	
 	/**
-	 * Performs an action set by the state on the character.
+	 * Performs the action
 	 */
 	public abstract void doAction();
 	
 	/**
-	 * Undoes an action performed when the state was reached.
+	 * Undoes the action
 	 */
 	public abstract void undoAction();
 	

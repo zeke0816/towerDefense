@@ -4,10 +4,11 @@ import game.characters.Enemy;
 
 public class Azula extends Enemy {
 	public Azula() {
-		points = 1000;
-		movementSpeed = 8;
 		scope = 7;
 		life = 1000;
+		points = 1000;
+		strength = 1200;
+		movementSpeed = 8;
 	}
 	
 	private Azula(Azula target) {

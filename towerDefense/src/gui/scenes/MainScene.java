@@ -1,6 +1,7 @@
 package gui.scenes;
 
 import exceptions.DatabaseException;
+import gui.layouts.BaseLayout;
 import gui.layouts.DockLayout;
 import gui.layouts.MapLayout;
 import gui.layouts.StatusLayout;
@@ -33,11 +34,12 @@ public class MainScene extends Scene {
 		*/
 		BackgroundPlayer.getInstance().play();
 		try {
-			layout.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("background", 1920, 1080, false, false));
+			layout.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("background", 1136, 720, false, false));
 		} catch (DatabaseException e) {
 			System.out.println("The main Scene's background image could not be loaded.");
 		}
         layout.setTop(StatusLayout.getInstance().getLayout());
+        layout.setLeft(BaseLayout.getInstance().getLayout());
         layout.setCenter(MapLayout.getInstance().getLayout());
         layout.setBottom(DockLayout.getInstance().getLayout());
 	}

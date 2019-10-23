@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import game.Game;
 import game.GameObject;
 import game.Map;
-import game.visitors.AttackVisitor;
+import game.visitors.BattleVisitor;
 import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;
 import javafx.animation.KeyFrame;
@@ -32,7 +32,7 @@ public class MainInterface extends Application {
 	// protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
 	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
 	// protected static final Paint black = Paint.valueOf("#000000");
-	protected AttackVisitor attack;
+	protected BattleVisitor attack;
 	
 	/**
     * @param args the command line arguments
@@ -48,13 +48,13 @@ public class MainInterface extends Application {
 	public void start(Stage stage) {
 		stage.setTitle("Cartoon Defense");
 		stage.centerOnScreen();
-		stage.setWidth(1500);
-		stage.setHeight(850);
+		stage.setWidth(1136);
+		stage.setHeight(720);
 		stage.setScene(MainScene.getInstance());
 		stage.show();
 		
 		Map map = Game.getInstance().getMap();
-		attack = new AttackVisitor();
+		attack = new BattleVisitor();
         
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 

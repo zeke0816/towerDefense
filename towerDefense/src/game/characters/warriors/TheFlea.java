@@ -6,8 +6,9 @@ public class TheFlea extends Warrior {
 	
 	public TheFlea() {
 		scope = 2;
-		life = 2500;
-		strength = 1000;
+		life = 500;
+		price = 70;
+		strength = 300;
 		attackSpeed = 400;
 	}
 	

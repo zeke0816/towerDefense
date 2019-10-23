@@ -1,21 +1,21 @@
 package game.characters.states;
 
-import game.characters.Character;
+import game.GameObject;
 
 public class Shielded extends State {
 
-	public Shielded(Character c) {
-		super(c);
+	public Shielded(GameObject o) {
+		super(o);
 	}
 
 	@Override
 	public void doAction() {
-
+		object.setProtection(400);
 	}
-
+	
 	@Override
 	public void undoAction() {
-
+		object.setProtection(0);
 	}
 
 }

@@ -1,7 +1,10 @@
 package game;
 
+import game.characters.states.Basic;
 import game.characters.Enemy;
 import game.characters.Warrior;
+import game.characters.states.State;
+import game.items.Item;
 import game.visitors.Visitor;
 
 /**
@@ -10,21 +13,51 @@ import game.visitors.Visitor;
  *
  */
 public abstract class GameObject {
-	
+
+	protected State state;
 	protected int life;
+	protected int scope;
+	protected int price;
 	protected int points;
+	protected int strength;
+	protected int protection;
+	protected int attackSpeed;
 	protected int movementSpeed;
 	
 	protected GameObject() {
-		
+		state = new Basic(this);
+		protection = 0;
 	}
 	
 	protected GameObject(GameObject target) {
 		if(target != null) {
 			life = target.getLife();
+        	scope = target.getScope();
+			state = target.getState();
 			points = target.getPoints();
+            strength = target.getStrength();
+            protection = target.getProtection();
+            attackSpeed = target.getAttackSpeed();
             movementSpeed = target.getMovementSpeed();
 		}
+	}
+	
+	/**
+	 * Gets the state of the object
+	 * @return the state
+	 */
+	public State getState() {
+		return state;
+	}
+	
+	/**
+	 * Changes the state of the object
+	 * @param s the state
+	 */
+	public void changeState(State s) {
+		state.undoAction();
+		state = s;
+		state.doAction();
 	}
 	
 	/**
@@ -60,11 +93,91 @@ public abstract class GameObject {
 	}
 
 	/**
+	 * Gets the protection of the object
+	 * @return the protection
+	 */
+	public int getProtection() {
+		return protection;
+	}
+
+	/**
+	 * Gets the scope of the object
+	 * @return the scope
+	 */
+	public int getScope() {
+		return scope;
+	}
+
+	/**
+	 * Gets the strength of the object
+	 * @return the strength
+	 */
+	public int getStrength() {
+		return strength;
+	}
+
+	/**
+	 * Gets the price of the object
+	 * @return the price
+	 */
+	public int getPrice() {
+		return price;
+	}
+	
+	/**
+	 * Gets the attack speed of the object
+	 * @return the attack speed
+	 */
+	public int getAttackSpeed() {
+		return attackSpeed;
+	}
+
+	/**
 	 * Gets the movement speed of the object
 	 * @return the movement speed
 	 */
 	public int getMovementSpeed() {
 		return movementSpeed;
+	}
+
+	/**
+	 * Sets the protection of the object
+	 * @return the protection
+	 */
+	public void setProtection(int p) {
+		protection = p;
+	}
+
+	/**
+	 * Increases the attack speed of the object
+	 * @param f the factor
+	 */
+	public void increaseAttackSpeed(double f) {
+		attackSpeed *= f;
+	}
+
+	/**
+	 * Increases the strength of the object
+	 * @param f the factor
+	 */
+	public void increaseStrength(double f) {
+		strength *= f;
+	}
+
+	/**
+	 * Decreases the attack speed of the object
+	 * @param f the factor
+	 */
+	public void decreaseAttackSpeed(double f) {
+		attackSpeed /= f;
+	}
+
+	/**
+	 * Decreases the strength of the object
+	 * @param f the factor
+	 */
+	public void decreaseStrength(double f) {
+		strength /= f;
 	}
 	
 	/**
@@ -80,6 +193,13 @@ public abstract class GameObject {
 	 * @return true if the attack was successful, false if not.
 	 */
 	public abstract boolean attack(Enemy w);
+
+	/**
+	 * Determines what happens if an Item tries to attack this character
+	 * @param w the Item trying to attack
+	 * @return true if the attack was successful, false if not.
+	 */
+	public abstract boolean attack(Item i);
 	
 	/**
 	 * Accepts a Visitor and delegates some concrete operations to it

@@ -6,8 +6,9 @@ public class Turret extends Warrior {
 	
 	public Turret() {
 		scope = 8;
-		life = 2500;
-		strength = 1000;
+		life = 1200;
+		price = 1300;
+		strength = 500;
 		attackSpeed = 400;
 	}
 	

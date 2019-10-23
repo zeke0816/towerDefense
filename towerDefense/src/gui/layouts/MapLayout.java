@@ -17,10 +17,7 @@ public class MapLayout extends Layout<StackPane> {
 		super();
 		layout = new StackPane();
         layout.setAlignment(Pos.CENTER);
-		
-		GridPane movementLayout = MovementLayout.getInstance().getLayout();
-		GridPane placementLayout = PlacementLayout.getInstance().getLayout();
-		layout.getChildren().addAll(movementLayout, placementLayout);
+        allowPicking();
 	}
 
 	/**
@@ -29,6 +26,28 @@ public class MapLayout extends Layout<StackPane> {
 	 */
 	public static MapLayout getInstance() {
 		return instance;
+	}
+	
+	/**
+	 * Allows the user to place Game Objects onto the arena, disabling picking up dropped Items.
+	 */
+	public void allowPlacement() {
+		layout.getChildren().clear();
+		GridPane movementLayout = MovementLayout.getInstance().getLayout();
+		GridPane placementLayout = PlacementLayout.getInstance().getLayout();
+		GridPane droppingLayout = DroppingLayout.getInstance().getLayout();
+		layout.getChildren().addAll(movementLayout, droppingLayout, placementLayout);
+	}
+	
+	/**
+	 * Allows the user to pick up dropped Items from the arena, disabling placing Game Objects.
+	 */
+	public void allowPicking() {
+		layout.getChildren().clear();
+		GridPane movementLayout = MovementLayout.getInstance().getLayout();
+		GridPane placementLayout = PlacementLayout.getInstance().getLayout();
+		GridPane droppingLayout = DroppingLayout.getInstance().getLayout();
+		layout.getChildren().addAll(movementLayout, placementLayout, droppingLayout);
 	}
 
 }

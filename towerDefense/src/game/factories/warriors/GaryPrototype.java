@@ -13,7 +13,7 @@ public class GaryPrototype extends WarriorPrototype {
 		name = "Gary";
 		playsSound = true;
 		
-		label.setText(name);
+		nameLabel.setText(name);
         try {
 			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
 		} catch (DatabaseException e) {
@@ -21,6 +21,7 @@ public class GaryPrototype extends WarriorPrototype {
 		}
         button.setWarrior(this);
         warrior = new Gary();
+        priceLabel.setText("$ "+warrior.getPrice());
 	}
 
 }

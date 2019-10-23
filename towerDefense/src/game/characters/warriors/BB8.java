@@ -6,8 +6,9 @@ public class BB8 extends Warrior {
 	
 	public BB8() {
 		scope = 1;
-		life = 2500;
-		strength = 1000;
+		life = 700;
+		price = 30;
+		strength = 200;
 		attackSpeed = 400;
 	}
 	

@@ -14,7 +14,7 @@ import javafx.util.Pair;
  */
 public class Map {
 	
-	protected final int rows = 8;
+	protected final int rows = 6;
 	protected final int cols = 16;
 	protected Cell[][] arena;
 	protected HashMap<GameObject, Pair<Integer, Integer>> positions;

@@ -1,21 +1,21 @@
 package game.characters.states;
 
-import game.characters.Character;
+import game.GameObject;
 
 public class Basic extends State {
 
-	public Basic(Character c) {
-		super(c);
+	public Basic(GameObject o) {
+		super(o);
 	}
 
 	@Override
 	public void doAction() {
-
+		
 	}
 
 	@Override
 	public void undoAction() {
-
+		
 	}
 
 }

@@ -129,11 +129,15 @@ public class PlacementLayout extends Layout<GridPane> {
 		}
 	}
 	
+	/**
+	 * Randomly spawns an enemy with a 10% chance of happening
+	 */
 	public void spawnEnemy() {
 		Map map = Game.getInstance().getMap();
 		Random r = new Random();
-		int newEnemyChooser = r.nextInt(2);
-		if(newEnemyChooser == 1) {
+		int newEnemyChooser = r.nextInt(11);
+		// TODO: add the wave limit here. The wave is over when the limit is reached and all enemies have been killed.
+		if(newEnemyChooser == 0) {
 			int row;
 			int col = map.getColumns()-1;
 			int maxAttempts = 21;

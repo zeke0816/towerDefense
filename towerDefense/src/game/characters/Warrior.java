@@ -1,5 +1,6 @@
 package game.characters;
 
+import game.items.Item;
 import game.visitors.Visitor;
 
 /**
@@ -26,7 +27,20 @@ public abstract class Warrior extends Character {
 	}
 	
 	public boolean attack(Enemy e) {
-		life -= e.getStrength();
+		int harm = e.getStrength() - protection;
+		if(harm < 0) {
+			harm = 0;
+		}
+		life -= harm;
+		return true;
+	}
+	
+	public boolean attack(Item i) {
+		int harm = i.getStrength() - protection;
+		if(harm < 0) {
+			harm = 0;
+		}
+		life -= harm;
 		return true;
 	}
 

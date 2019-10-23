@@ -13,7 +13,7 @@ public class TurretPrototype extends WarriorPrototype {
 		name = "Turret";
 		playsSound = false;
 		
-		label.setText(name);
+		nameLabel.setText(name);
         try {
 			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
 		} catch (DatabaseException e) {
@@ -21,6 +21,7 @@ public class TurretPrototype extends WarriorPrototype {
 		}
         button.setWarrior(this);
         warrior = new Turret();
+        priceLabel.setText("$ "+warrior.getPrice());
 	}
 
 }

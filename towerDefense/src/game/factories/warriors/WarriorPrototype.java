@@ -3,6 +3,7 @@ package game.factories.warriors;
 import exceptions.DatabaseException;
 import game.characters.Warrior;
 import gui.controls.WarriorButton;
+import gui.layouts.MapLayout;
 import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
@@ -24,10 +25,11 @@ public abstract class WarriorPrototype {
 	
 	protected String id;
 	protected String name;
-	protected boolean playsSound;
-	protected Label label;
-	protected WarriorButton button;
 	protected Warrior warrior;
+	protected Label nameLabel;
+	protected Label priceLabel;
+	protected boolean playsSound;
+	protected WarriorButton button;
 	protected static final double size = 100;
 	private EventHandler<MouseEvent> selectWarriorListener = new EventHandler<MouseEvent>() {
 
@@ -40,6 +42,7 @@ public abstract class WarriorPrototype {
 				try {
 					Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
 					MainScene.getInstance().setCursorImage(img);
+					MapLayout.getInstance().allowPlacement();
 				} catch (DatabaseException e) {
 					System.out.println("The selected Warrior's graphics could not replace the cursor.");
 				}
@@ -54,11 +57,17 @@ public abstract class WarriorPrototype {
 	 * Creates an empty Warrior Interface
 	 */
 	protected WarriorPrototype() {
-		label = new Label();
-		label.setVisible(true);
-		label.setAlignment(Pos.CENTER);
-		label.setFont(new Font("Cambria", 20));
-        GridPane.setHalignment(label, HPos.CENTER);
+		nameLabel = new Label();
+		nameLabel.setVisible(true);
+		nameLabel.setAlignment(Pos.CENTER);
+		nameLabel.setFont(new Font("Cambria", 20));
+        GridPane.setHalignment(nameLabel, HPos.CENTER);
+        
+		priceLabel = new Label();
+		priceLabel.setVisible(true);
+		priceLabel.setAlignment(Pos.CENTER);
+		priceLabel.setFont(new Font("Cambria", 20));
+        GridPane.setHalignment(priceLabel, HPos.CENTER);
         
 		button = new WarriorButton();
 		button.setVisible(true);
@@ -99,11 +108,19 @@ public abstract class WarriorPrototype {
 	}
 
 	/**
-	 * Gets the label to show on screen
+	 * Gets the name label to show on screen
 	 * @return the label
 	 */
-	public Label getLabel() {
-		return label;
+	public Label getNameLabel() {
+		return nameLabel;
+	}
+
+	/**
+	 * Gets the price label to show on screen
+	 * @return the label
+	 */
+	public Label getPriceLabel() {
+		return priceLabel;
 	}
 
 	/**

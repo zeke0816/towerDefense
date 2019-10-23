@@ -7,7 +7,8 @@ public class Gary extends Warrior {
 	public Gary() {
 		scope = 1;
 		life = 2500;
-		strength = 1000;
+		price = 90;
+		strength = 400;
 		attackSpeed = 400;
 	}
 	

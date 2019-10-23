@@ -4,10 +4,11 @@ import game.characters.Enemy;
 
 public class Skeleton extends Enemy{
 	public Skeleton() {
-		points = 700;
-		movementSpeed = 1;
 		scope = 6;
 		life = 1000;
+		points = 700;
+		strength = 700;
+		movementSpeed = 1;
 	}
 	
 	private Skeleton(Skeleton target) {

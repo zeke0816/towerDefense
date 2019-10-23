@@ -13,7 +13,7 @@ public class CyborgPrototype extends WarriorPrototype {
 		name = "Cyborg";
 		playsSound = true;
 		
-		label.setText(name);
+		nameLabel.setText(name);
         try {
 			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
 		} catch (DatabaseException e) {
@@ -21,6 +21,7 @@ public class CyborgPrototype extends WarriorPrototype {
 		}
         button.setWarrior(this);
         warrior = new Cyborg();
+        priceLabel.setText("$ "+warrior.getPrice());
 	}
 
 }

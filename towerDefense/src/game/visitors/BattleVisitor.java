@@ -11,11 +11,11 @@ import game.items.Item;
 import gui.layouts.MovementLayout;
 import javafx.util.Pair;
 
-public class AttackVisitor implements Visitor {
+public class BattleVisitor implements Visitor {
 	
 	protected Map map;
 	
-	public AttackVisitor() {
+	public BattleVisitor() {
 		map = Game.getInstance().getMap();
 	}
 
@@ -25,6 +25,11 @@ public class AttackVisitor implements Visitor {
 		Pair<Integer, Integer> coordinates = map.getPositions().get(w);
 		int yCoordinate = coordinates.getKey();
 		int xCoordinate = coordinates.getValue();
+		/*try {
+			MovementLayout.getInstance().moveObject(w);
+		} catch (InvalidActionException | CellTakenException e1) {
+			System.out.println(e1.getMessage());
+		}*/
 		for(int i = 1; !attacked && i <= w.getScope() && (i + xCoordinate) < map.getColumns(); i++) {
 			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate + i);
 			if(opponent != null) {
@@ -59,8 +64,25 @@ public class AttackVisitor implements Visitor {
 	}
 
 	@Override
-	public void visit(Item i) {
-		
+	public void visit(Item it) {
+		boolean attacked = false;
+		Pair<Integer, Integer> coordinates = map.getPositions().get(it);
+		int yCoordinate = coordinates.getKey();
+		int xCoordinate = coordinates.getValue();
+		/*try {
+			MovementLayout.getInstance().moveObject(e);
+		} catch (InvalidActionException | CellTakenException e1) {
+			System.out.println(e1.getMessage());
+		}*/
+		for(int i = 1; !attacked && i <= it.getScope() && i <= xCoordinate; i++) {
+			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate - i);
+			if(opponent != null) {
+				attacked = opponent.attack(it);
+				if(attacked) {
+					MovementLayout.getInstance().attackObject(it, opponent);
+				}
+			}
+		}
 	}
 
 }
