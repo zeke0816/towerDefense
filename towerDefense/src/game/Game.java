@@ -15,7 +15,7 @@ public class Game {
 	protected Level level;
 	protected boolean over;
 	protected double score;
-	protected ArrayList <TemporaryCharm> temporaryCharms;
+	protected ArrayList<TemporaryCharm> temporaryCharms;
 	private static final Game instance = new Game();
 	
 	/**
@@ -26,6 +26,8 @@ public class Game {
 		level = new Level();
 		over = false;
 		score = 0;
+		
+		temporaryCharms = new ArrayList<TemporaryCharm>();
 	}
 	
 	public static Game getInstance() {
