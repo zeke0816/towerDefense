@@ -1,7 +1,5 @@
 package game.objects.characters.enemies;
 
-import game.objects.characters.Enemy;
-
 public class Skeleton extends Enemy{
 	public Skeleton() {
 		scope = 6;

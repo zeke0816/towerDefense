@@ -1,15 +1,16 @@
-package game.factories.characters.warriors;
+package gui.factories.characters.warriors;
 
 import exceptions.DatabaseException;
+import game.objects.characters.warriors.Turret;
 import media.databases.MediaDatabase;
 
-public class TophPrototype extends WarriorPrototype {
+public class TurretPrototype extends WarriorPrototype {
 
-	public TophPrototype() {
+	public TurretPrototype() {
 		super();
 		
-		id = "toph";
-		name = "Toph";
+		id = "turret";
+		name = "Turret";
 		playsSound = false;
 		
 		nameLabel.setText(name);
@@ -18,7 +19,9 @@ public class TophPrototype extends WarriorPrototype {
 		} catch (DatabaseException e) {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
-        button.setOnMouseClicked(null);
+        button.setWarrior(this);
+        warrior = new Turret();
+        priceLabel.setText("$ "+warrior.getPrice());
 	}
 
 }

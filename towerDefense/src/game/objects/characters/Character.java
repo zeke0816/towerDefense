@@ -1,6 +1,6 @@
 package game.objects.characters;
 
-import game.GameObject;
+import game.objects.GameObject;
 
 /**
  * Abstract class that helps define a character in the game

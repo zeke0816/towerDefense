@@ -1,4 +1,4 @@
-package game.factories.items;
+package gui.factories.items;
 
 /**
  * Class to represent the items of the game.

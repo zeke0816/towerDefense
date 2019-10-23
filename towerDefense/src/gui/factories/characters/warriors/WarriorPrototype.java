@@ -1,7 +1,7 @@
-package game.factories.characters.warriors;
+package gui.factories.characters.warriors;
 
 import exceptions.DatabaseException;
-import game.objects.characters.Warrior;
+import game.objects.characters.warriors.Warrior;
 import gui.controls.WarriorButton;
 import gui.layouts.MapLayout;
 import gui.layouts.PlacementLayout;

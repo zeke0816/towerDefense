@@ -1,4 +1,4 @@
-package game.factories.items;
+package gui.factories.items;
 
 public class RandomItemPrototype extends ItemPrototype {
 

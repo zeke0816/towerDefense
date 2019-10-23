@@ -1,4 +1,4 @@
-package game.factories.characters.enemies;
+package gui.factories.characters.enemies;
 
 import game.objects.characters.enemies.Azula;
 

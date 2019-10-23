@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import game.Game;
-import game.GameObject;
 import game.Map;
+import game.objects.GameObject;
 import game.visitors.BattleVisitor;
 import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;

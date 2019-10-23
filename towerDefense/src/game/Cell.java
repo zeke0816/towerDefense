@@ -1,5 +1,7 @@
 package game;
 
+import game.objects.GameObject;
+
 /**
  * Class that represents a position in the arena
  * @author zeke0816

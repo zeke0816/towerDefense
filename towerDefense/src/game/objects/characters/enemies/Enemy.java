@@ -1,5 +1,7 @@
-package game.objects.characters;
+package game.objects.characters.enemies;
 
+import game.objects.characters.Character;
+import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
 import game.visitors.Visitor;
 

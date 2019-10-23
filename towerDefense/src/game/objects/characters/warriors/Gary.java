@@ -1,7 +1,5 @@
 package game.objects.characters.warriors;
 
-import game.objects.characters.Warrior;
-
 public class Gary extends Warrior {
 	
 	public Gary() {

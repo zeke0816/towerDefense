@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
+import game.objects.GameObject;
 import javafx.util.Pair;
 
 /**

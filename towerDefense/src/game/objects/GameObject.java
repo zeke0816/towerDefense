@@ -1,9 +1,9 @@
-package game;
+package game.objects;
 
-import game.objects.characters.Enemy;
-import game.objects.characters.Warrior;
+import game.objects.characters.enemies.Enemy;
 import game.objects.characters.states.Basic;
 import game.objects.characters.states.State;
+import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
 import game.visitors.Visitor;
 

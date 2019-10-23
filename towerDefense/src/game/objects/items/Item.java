@@ -1,8 +1,8 @@
 package game.objects.items;
 
-import game.GameObject;
-import game.objects.characters.Enemy;
-import game.objects.characters.Warrior;
+import game.objects.GameObject;
+import game.objects.characters.enemies.Enemy;
+import game.objects.characters.warriors.Warrior;
 import game.visitors.Visitor;
 
 /**

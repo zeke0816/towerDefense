@@ -1,6 +1,6 @@
-package game.factories.characters.enemies;
+package gui.factories.characters.enemies;
 
-import game.objects.characters.Enemy;
+import game.objects.characters.enemies.Enemy;
 
 /**
  * Class to represent and save information about a Enemy in the GUI

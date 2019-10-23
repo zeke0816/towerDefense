@@ -1,7 +1,5 @@
 package game.objects.characters.enemies;
 
-import game.objects.characters.Enemy;
-
 public class Alien extends Enemy {
 	
 	public Alien() {

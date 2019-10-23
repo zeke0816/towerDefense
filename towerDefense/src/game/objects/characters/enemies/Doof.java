@@ -1,7 +1,5 @@
 package game.objects.characters.enemies;
 
-import game.objects.characters.Enemy;
-
 public class Doof extends Enemy {
 	public Doof() {
 		scope = 2;

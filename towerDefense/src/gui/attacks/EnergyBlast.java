@@ -3,7 +3,7 @@ package gui.attacks;
 import exceptions.DatabaseException;
 import exceptions.InvalidActionException;
 import game.Game;
-import game.GameObject;
+import game.objects.GameObject;
 import gui.layouts.MovementLayout;
 import gui.layouts.PlacedObject;
 import gui.layouts.PlacementLayout;

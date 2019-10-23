@@ -1,6 +1,6 @@
 package game.objects.characters.states;
 
-import game.GameObject;
+import game.objects.GameObject;
 
 public class Shielded extends State {
 

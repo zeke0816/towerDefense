@@ -1,16 +1,16 @@
-package game.factories.characters.warriors;
+package gui.factories.characters.warriors;
 
 import exceptions.DatabaseException;
-import game.objects.characters.warriors.Cyborg;
+import game.objects.characters.warriors.Gary;
 import media.databases.MediaDatabase;
 
-public class CyborgPrototype extends WarriorPrototype {
+public class GaryPrototype extends WarriorPrototype {
 
-	public CyborgPrototype() {
+	public GaryPrototype() {
 		super();
 		
-		id = "cyborg";
-		name = "Cyborg";
+		id = "gary";
+		name = "Gary";
 		playsSound = true;
 		
 		nameLabel.setText(name);
@@ -20,7 +20,7 @@ public class CyborgPrototype extends WarriorPrototype {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
         button.setWarrior(this);
-        warrior = new Cyborg();
+        warrior = new Gary();
         priceLabel.setText("$ "+warrior.getPrice());
 	}
 
