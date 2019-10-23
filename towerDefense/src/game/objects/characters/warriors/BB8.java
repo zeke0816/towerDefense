@@ -3,8 +3,9 @@ package game.objects.characters.warriors;
 public class BB8 extends Warrior {
 	
 	public BB8() {
+		DEF_LIFE = 700;
 		scope = 1;
-		life = 700;
+		life = DEF_LIFE;
 		price = 30;
 		strength = 200;
 		attackSpeed = 400;

@@ -12,7 +12,6 @@ public abstract class Item extends GameObject {
 
 	protected Item() {
 		points = 0;
-		strength = 300;
 		movementSpeed = 0;
 	}
 	
@@ -38,14 +37,9 @@ public abstract class Item extends GameObject {
 	}
 	
 	public boolean attack(Item i) {
-		int harm = i.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
-		}
-		life -= harm;
-		return true;
+		return false;
 	}
-
+	
 	/**
 	 * Creates and returns a copy of this Item
 	 */

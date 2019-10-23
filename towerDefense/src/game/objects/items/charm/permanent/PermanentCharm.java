@@ -1,16 +1,20 @@
-package game.objects.items.permanent;
+package game.objects.items.charm.permanent;
 
+import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
-import game.objects.items.Item;
+import game.objects.items.charm.CharmingItem;
 
 /**
  * Permanent charm Item class
  */
-public class PermanentCharm extends Item {
+public abstract class PermanentCharm extends CharmingItem {
 	
 	protected PermanentCharm() {
-		
+		scope = 0;
+		life = 0;
+		strength = 0;
+		attackSpeed = 0;
 	}
 	
 	protected PermanentCharm(PermanentCharm target) {
@@ -28,8 +32,7 @@ public class PermanentCharm extends Item {
 	}
 	
 	@Override
-	public PermanentCharm clone() {
-		return new PermanentCharm(this);
-	}
+	public abstract PermanentCharm clone();
+
 
 }

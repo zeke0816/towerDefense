@@ -3,8 +3,9 @@ package game.objects.characters.enemies;
 public class Eustace extends Enemy {
 	
 	public Eustace() {
+		DEF_LIFE = 1000;
 		scope = 1;
-		life = 1000;
+		life = DEF_LIFE;
 		points = 1600;
 		strength = 100;
 		movementSpeed = 1;

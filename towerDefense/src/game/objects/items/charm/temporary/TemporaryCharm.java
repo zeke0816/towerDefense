@@ -1,4 +1,4 @@
-package game.objects.items.temporary;
+package game.objects.items.charm.temporary;
 
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
@@ -7,7 +7,7 @@ import game.objects.items.Item;
 /**
  * Temporary Item class
  */
-public class TemporaryCharm extends Item {
+public abstract class TemporaryCharm extends Item {
 	
 	protected TemporaryCharm() {
 		
@@ -27,9 +27,7 @@ public class TemporaryCharm extends Item {
 		return false;
 	}
 	
-	@Override
-	public TemporaryCharm clone() {
-		return new TemporaryCharm(this);
-	}
+	public abstract TemporaryCharm clone();
+	
 
 }

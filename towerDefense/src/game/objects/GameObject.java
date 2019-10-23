@@ -16,6 +16,7 @@ import game.visitors.Visitor;
 public abstract class GameObject {
 
 	protected State state;
+	protected int DEF_LIFE;
 	protected int life;
 	protected int scope;
 	protected int price;
@@ -214,6 +215,12 @@ public abstract class GameObject {
 		}
 		life -= harm;
 		return true;
+	}
+	
+	public void cure() {
+		if(life < DEF_LIFE ) {
+			life = DEF_LIFE;
+		}
 	}
 	
 	/**
