@@ -60,7 +60,10 @@ public class MainInterface extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				if(!Game.getInstance().isOver()) {
+				Game game = Game.getInstance();
+				if(!game.isOver()) {
+					game.checkTemporaryCharms();
+					PlacementLayout.getInstance().spawnItem();
 					PlacementLayout.getInstance().spawnEnemy();
 					HashMap<GameObject, Pair<Integer, Integer>> positions = map.getPositions();
 					for(Entry<GameObject, Pair<Integer, Integer>> position: positions.entrySet()) {

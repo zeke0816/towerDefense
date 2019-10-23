@@ -10,8 +10,10 @@ import game.Map;
 import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
+import game.objects.items.Item;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
+import gui.factories.ItemFactory;
 import gui.factories.enemies.EnemyPrototype;
 import gui.factories.items.ItemPrototype;
 import gui.factories.warriors.WarriorPrototype;
@@ -35,6 +37,7 @@ import media.sounds.SoundPlayer;
  */
 public class PlacementLayout extends Layout<GridPane> {
 
+	private Map map;
 	private ItemPrototype selectedItem;
 	private WarriorPrototype selectedWarrior;
 	private final static double cellSize = 64;
@@ -52,7 +55,7 @@ public class PlacementLayout extends Layout<GridPane> {
         selectedItem = null;
         selectedWarrior = null;
         
-		Map map = Game.getInstance().getMap();
+		map = Game.getInstance().getMap();
 		double placementLimit = map.getColumns() * placementLimitRatio;
 		
 		for(int i = 0; i < map.getRows(); i++) {
@@ -111,6 +114,22 @@ public class PlacementLayout extends Layout<GridPane> {
 	}
 	
 	/**
+	 * Deselects the Warrior to be placed in the map
+	 */
+	public void deselectWarrior() {
+		selectedWarrior = null;
+		MainScene.getInstance().resetCursorImage();
+	}
+	
+	/**
+	 * Checks whether an Item has been selected
+	 * @return true if an Item is currently selected, false if not
+	 */
+	public boolean itemSelected() {
+		return selectedItem != null;
+	}
+	
+	/**
 	 * Gets the selected Item
 	 * @return the currently selected Item
 	 */
@@ -127,10 +146,10 @@ public class PlacementLayout extends Layout<GridPane> {
 	}
 	
 	/**
-	 * Deselects the Warrior to be placed in the map
+	 * Deselects the Item to be placed in the map
 	 */
-	public void deselectWarrior() {
-		selectedWarrior = null;
+	public void deselectItem() {
+		selectedItem = null;
 		MainScene.getInstance().resetCursorImage();
 	}
 	
@@ -149,12 +168,38 @@ public class PlacementLayout extends Layout<GridPane> {
 	}
 	
 	/**
-	 * Randomly spawns an enemy with a 10% chance of happening
+	 * Randomly spawns an Item with a 1% chance of happening
+	 */
+	public void spawnItem() {
+		Random r = new Random();
+		int newEnemyChooser = r.nextInt(101);
+		if(newEnemyChooser == 0) {
+			int row;
+			int col;
+			do {
+				row = r.nextInt(map.getRows());
+				col = r.nextInt(map.getColumns());
+			} while(map.getCell(row, col).isTaken());
+			try {
+				ItemPrototype itemPrototype = ItemFactory.getInstance().createRandomItem();
+				Item item = itemPrototype.getItem();
+				map.takeCell(row, col, item);
+				MovementLayout.getInstance().addObject(row, col, itemPrototype.getID(), item);
+				if(itemPrototype.playsSound()) {
+					SoundPlayer.getInstance().play(itemPrototype.getID());
+				}
+			} catch(CellTakenException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	
+	/**
+	 * Randomly spawns an Enemy with a 20% chance of happening
 	 */
 	public void spawnEnemy() {
-		Map map = Game.getInstance().getMap();
 		Random r = new Random();
-		int newEnemyChooser = r.nextInt(11);
+		int newEnemyChooser = r.nextInt(6);
 		// TODO: add the wave limit here. The wave is over when the limit is reached and all enemies have been killed.
 		if(newEnemyChooser == 0) {
 			int row;
@@ -195,7 +240,6 @@ public class PlacementLayout extends Layout<GridPane> {
 					int row = cell.getX();
 					int col = cell.getY();
 					
-					Map map = Game.getInstance().getMap();
 					double placementLimit = map.getColumns() * placementLimitRatio;
 					
 					if(col < placementLimit && !map.getCell(row, col).isTaken()) {
@@ -243,7 +287,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				int row = cell.getX();
 				int col = cell.getY();
 				Warrior warrior = selectedWarrior.getWarrior();
-				Game.getInstance().getMap().takeCell(row, col, warrior);
+				map.takeCell(row, col, warrior);
 				cell.setBackground(null);
 				if(selectedWarrior.playsSound()) {
 					SoundPlayer.getInstance().play(selectedWarrior.getID());
