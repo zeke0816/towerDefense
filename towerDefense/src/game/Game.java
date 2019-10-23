@@ -1,5 +1,9 @@
 package game;
 
+import java.util.ArrayList;
+
+import game.objects.items.charm.temporary.TemporaryCharm;
+
 /**
  * Class that handles all things related to the game status and defaults
  * @author zeke0816
@@ -11,6 +15,7 @@ public class Game {
 	protected Level level;
 	protected boolean over;
 	protected double score;
+	protected ArrayList <TemporaryCharm> temporaryCharms;
 	private static final Game instance = new Game();
 	
 	/**
@@ -49,6 +54,19 @@ public class Game {
 	 */
 	public void updateScore(int x) {
 		score += x;
+	}
+	
+	public void checkTemporaryCharms() {
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		for(int i = 0; i < temporaryCharms.size(); i++) {
+			TemporaryCharm charm = temporaryCharms.get(i);
+			if(charm.decreaseLife()) {
+				indexes.add(i);
+			}
+		}
+		for(int index: indexes) {
+			temporaryCharms.remove(index);
+		}
 	}
 	
 	/**
