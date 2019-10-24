@@ -7,7 +7,7 @@ public class EustacePrototype extends EnemyPrototype {
 	public EustacePrototype() {
 		id = "eustace";
 		name = "Eustace";
-		playsSound = true;
+		playsSound = false;
 		
 		enemy = new Eustace();
 	}

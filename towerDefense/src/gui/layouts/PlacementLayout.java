@@ -28,6 +28,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
+import javafx.util.Pair;
 import media.sounds.SoundPlayer;
 
 /**
@@ -159,7 +160,12 @@ public class PlacementLayout extends Layout<GridPane> {
 	 */
 	public void killObject(GameObject object) {
 		try {
+			if(object.drops()) {
+				Pair<Integer, Integer> coordinates = Game.getInstance().getMap().getObjectPosition(object);
+				dropItem(coordinates.getKey(), coordinates.getValue());
+			}
 			MovementLayout.getInstance().removeObject(object);
+			Game.getInstance().getMap().freeCell(object);
 			Game.getInstance().updateScore(object.getPoints());
 			StatusLayout.getInstance().updateScore();
 		} catch(InvalidActionException e) {
@@ -198,16 +204,11 @@ public class PlacementLayout extends Layout<GridPane> {
 	 * Drops a random Droppable Item in the given coordinates
 	 */
 	public void dropItem(int row, int col) {
-		try {
-			ItemPrototype itemPrototype = ItemFactory.getInstance().createRandomItem();
-			Item item = itemPrototype.getItem();
-			map.takeCell(row, col, item);
-			DroppingLayout.getInstance().addItem(row, col, itemPrototype.getID(), item);
-			if(itemPrototype.playsSound()) {
-				SoundPlayer.getInstance().play(itemPrototype.getID());
-			}
-		} catch(CellTakenException e) {
-			System.out.println(e.getMessage());
+		ItemPrototype itemPrototype = ItemFactory.getInstance().createDroppableItem();
+		Item item = itemPrototype.getItem();
+		DroppingLayout.getInstance().addItem(row, col, itemPrototype.getID(), item);
+		if(itemPrototype.playsSound()) {
+			SoundPlayer.getInstance().play(itemPrototype.getID());
 		}
 	}
 	

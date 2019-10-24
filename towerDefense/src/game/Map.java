@@ -70,6 +70,19 @@ public class Map {
 	}
 	
 	/**
+	 * Gets the coordinates for the given Game Object
+	 * @param obj
+	 * @return
+	 */
+	public Pair<Integer, Integer> getObjectPosition(GameObject obj) throws InvalidActionException {
+		Pair<Integer, Integer> res = positions.get(obj);
+		if(res == null) {
+			throw new InvalidActionException("The Game Object could not be found on the Map.");
+		}
+		return res;
+	}
+	
+	/**
 	 * Gets a copy of the current positions of all Game Objects
 	 * @return the copy of the positions
 	 */

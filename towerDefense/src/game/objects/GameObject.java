@@ -1,5 +1,7 @@
 package game.objects;
 
+import java.util.Random;
+
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.states.Basic;
 import game.objects.characters.states.State;
@@ -24,6 +26,7 @@ public abstract class GameObject {
 	protected int price;
 	protected int points;
 	protected int strength;
+	protected boolean drops;
 	protected int protection;
 	protected int attackSpeed;
 	protected int movementSpeed;
@@ -31,6 +34,7 @@ public abstract class GameObject {
 	protected GameObject() {
 		state = new Basic(this);
 		protection = 0;
+		drops = true;
 	}
 	
 	protected GameObject(GameObject target) {
@@ -38,6 +42,7 @@ public abstract class GameObject {
 			life = target.getLife();
         	scope = target.getScope();
 			state = target.getState();
+			drops = target.getDrops();
 			points = target.getPoints();
             strength = target.getStrength();
             protection = target.getProtection();
@@ -158,6 +163,28 @@ public abstract class GameObject {
 	 */
 	public void increaseAttackSpeed(double f) {
 		attackSpeed *= f;
+	}
+	
+	/**
+	 * Gets the value of the drops attribute
+	 * @return true if it may drop, false if it may not
+	 */
+	public boolean getDrops() {
+		return drops;
+	}
+	
+	/**
+	 * If the Game Object can drop, figure out if it will drop this time around
+	 * @return true if it will drop something, false if it will not
+	 */
+	public boolean drops() {
+		boolean res = drops;
+		if(drops) {
+			Random r = new Random();
+			int rand = r.nextInt(2);
+			res = rand == 0;
+		}
+		return res;
 	}
 
 	/**

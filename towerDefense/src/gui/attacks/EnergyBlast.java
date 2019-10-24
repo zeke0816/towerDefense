@@ -1,8 +1,6 @@
 package gui.attacks;
 
 import exceptions.DatabaseException;
-import exceptions.InvalidActionException;
-import game.Game;
 import game.objects.GameObject;
 import gui.layouts.MovementLayout;
 import gui.layouts.PlacedObject;
@@ -109,12 +107,7 @@ public class EnergyBlast extends Attack {
 	
 	private void checkDeath(GameObject object) {
 		if(object.isDead()) {
-			try {
-				Game.getInstance().getMap().freeCell(object);
-				PlacementLayout.getInstance().killObject(object);
-			} catch (InvalidActionException e1) {
-				System.out.println(e1.getMessage());
-			}
+			PlacementLayout.getInstance().killObject(object);
 		}
 	}
 	

@@ -65,7 +65,7 @@ public class ItemFactory {
 	 */
 	public ItemPrototype createDroppableItem() {
 		Random ran = new Random();
-		int randomInt = ran.nextInt(6);
+		int randomInt = ran.nextInt(5);
 		return droppableItems.get(randomInt);
 	}
 
