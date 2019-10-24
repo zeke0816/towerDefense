@@ -59,7 +59,7 @@ public class DroppingLayout extends Layout<GridPane> {
 	 * @param row the given row
 	 * @throws InvalidActionException when there is no Item at the given row
 	 */
-	public void removeObject(Item item) throws InvalidActionException {
+	public void removeItem(Item item) throws InvalidActionException {
 		PlacedObject placedObject = droppedObjects.get(item);
 		if(placedObject == null) {
 			throw new InvalidActionException("There are no items dropped on this row.");

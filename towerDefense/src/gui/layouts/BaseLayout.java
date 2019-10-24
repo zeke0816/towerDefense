@@ -15,7 +15,6 @@ public class BaseLayout extends Layout<VBox> {
         
         TophPrototype toph = new TophPrototype();
         layout.getChildren().add(toph.getButton());
-        layout.getChildren().add(toph.getNameLabel());
 	}
 	
 	public static BaseLayout getInstance() {

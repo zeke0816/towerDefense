@@ -16,6 +16,7 @@ public class NukePrototype extends ItemPrototype {
 		} catch (DatabaseException e) {
 			System.out.println("The Item's graphics could not be loaded.");
 		}
+        nameLabel.setText(name);
         button.setItem(this);
 		item = new Nuke();
 	}

@@ -1,6 +1,10 @@
 package gui.layouts;
 
+import gui.factories.items.BarricadePrototype;
+import gui.factories.items.CurePrototype;
 import gui.factories.items.NukePrototype;
+import gui.factories.items.PoisonPrototype;
+import gui.factories.items.ShieldPrototype;
 import gui.factories.warriors.AgentPPrototype;
 import gui.factories.warriors.BB8Prototype;
 import gui.factories.warriors.CyborgPrototype;
@@ -64,6 +68,26 @@ public class DockLayout extends Layout<GridPane> {
         layout.add(nuke.getButton(), 6, 0);
         layout.add(nuke.getNameLabel(), 6, 1);
         layout.add(nuke.getPriceLabel(), 6, 2);
+        
+        CurePrototype cure = new CurePrototype();
+        layout.add(cure.getButton(), 7, 0);
+        layout.add(cure.getNameLabel(), 7, 1);
+        layout.add(cure.getPriceLabel(), 7, 2);
+        
+        PoisonPrototype poison = new PoisonPrototype();
+        layout.add(poison.getButton(), 8, 0);
+        layout.add(poison.getNameLabel(), 8, 1);
+        layout.add(poison.getPriceLabel(), 8, 2);
+        
+        ShieldPrototype shield = new ShieldPrototype();
+        layout.add(shield.getButton(), 9, 0);
+        layout.add(shield.getNameLabel(), 9, 1);
+        layout.add(shield.getPriceLabel(), 9, 2);
+        
+        BarricadePrototype barricade = new BarricadePrototype();
+        layout.add(barricade.getButton(), 10, 0);
+        layout.add(barricade.getNameLabel(), 10, 1);
+        layout.add(barricade.getPriceLabel(), 10, 2);
 	}
 	
 	/**

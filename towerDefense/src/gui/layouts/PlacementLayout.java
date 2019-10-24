@@ -172,7 +172,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	 */
 	public void spawnItem() {
 		Random r = new Random();
-		int newEnemyChooser = r.nextInt(101);
+		int newEnemyChooser = r.nextInt(100);
 		if(newEnemyChooser == 0) {
 			int row;
 			int col;
@@ -195,11 +195,28 @@ public class PlacementLayout extends Layout<GridPane> {
 	}
 	
 	/**
+	 * Drops a random Droppable Item in the given coordinates
+	 */
+	public void dropItem(int row, int col) {
+		try {
+			ItemPrototype itemPrototype = ItemFactory.getInstance().createRandomItem();
+			Item item = itemPrototype.getItem();
+			map.takeCell(row, col, item);
+			DroppingLayout.getInstance().addItem(row, col, itemPrototype.getID(), item);
+			if(itemPrototype.playsSound()) {
+				SoundPlayer.getInstance().play(itemPrototype.getID());
+			}
+		} catch(CellTakenException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	/**
 	 * Randomly spawns an Enemy with a 20% chance of happening
 	 */
 	public void spawnEnemy() {
 		Random r = new Random();
-		int newEnemyChooser = r.nextInt(6);
+		int newEnemyChooser = r.nextInt(5);
 		// TODO: add the wave limit here. The wave is over when the limit is reached and all enemies have been killed.
 		if(newEnemyChooser == 0) {
 			int row;
