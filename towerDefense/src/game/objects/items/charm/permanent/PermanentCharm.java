@@ -3,6 +3,7 @@ package game.objects.items.charm.permanent;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;
+import game.visitors.Visitor;
 
 /**
  * Permanent charm Item class
@@ -28,6 +29,10 @@ public abstract class PermanentCharm extends CharmingItem {
 	@Override
 	public boolean attack(Enemy w) {
 		return false;
+	}
+	
+	public void accept(Visitor v) {
+		v.visit(this);
 	}
 	
 	@Override

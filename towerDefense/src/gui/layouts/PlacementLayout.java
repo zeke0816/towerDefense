@@ -4,13 +4,14 @@ import java.util.Random;
 
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
-import exceptions.UnselectedWarriorException;
+import exceptions.UnselectedObjectException;
 import game.Game;
 import game.Map;
 import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
+import game.visitors.PlacementVisitor;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
 import gui.factories.ItemFactory;
@@ -39,6 +40,7 @@ import media.sounds.SoundPlayer;
 public class PlacementLayout extends Layout<GridPane> {
 
 	private Map map;
+	private PlacementVisitor placement;
 	private ItemPrototype selectedItem;
 	private WarriorPrototype selectedWarrior;
 	private final static double cellSize = 64;
@@ -55,6 +57,8 @@ public class PlacementLayout extends Layout<GridPane> {
         
         selectedItem = null;
         selectedWarrior = null;
+        
+        placement = new PlacementVisitor();
         
 		map = Game.getInstance().getMap();
 		double placementLimit = map.getColumns() * placementLimitRatio;
@@ -298,45 +302,30 @@ public class PlacementLayout extends Layout<GridPane> {
 		@Override
 		public void handle(MouseEvent event) {
 			try {
+				CellButton cell = (CellButton) event.getSource();
+				int row = cell.getX();
+				int col = cell.getY();
+				placement.setObject(map.getObjectAt(row, col), row, col);
 				if(!warriorSelected() && !itemSelected()) {
-					throw new UnselectedWarriorException("No Warrior has been selected!");
+					if(!warriorSelected()) {
+						throw new UnselectedObjectException("No Warrior has been selected!");
+					}
+					if(!itemSelected()){
+						throw new UnselectedObjectException("No Item has been selected!");
+					}
 				}
 				if(warriorSelected()) {
-					CellButton cell = (CellButton) event.getSource();
-					int row = cell.getX();
-					int col = cell.getY();
 					Warrior warrior = selectedWarrior.getWarrior();
-					map.takeCell(row, col, warrior);
-					cell.setBackground(null);
-					if(selectedWarrior.playsSound()) {
-						SoundPlayer.getInstance().play(selectedWarrior.getID());
-					}
-					MovementLayout.getInstance().addObject(row, col, selectedWarrior.getID(), warrior);
-					// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor nor deselect the warrior
-					deselectWarrior();
+					warrior.accept(placement);
 				}
 				if(itemSelected()) {
-					CellButton cell = (CellButton) event.getSource();
-					int row = cell.getX();
-					int col = cell.getY();
 					Item item = selectedItem.getItem();
-					map.takeCell(row, col, item);
-					cell.setBackground(null);
-					if(selectedItem.playsSound()) {
-						SoundPlayer.getInstance().play(selectedItem.getID());
-					}
-					MovementLayout.getInstance().addObject(row, col, selectedItem.getID(), item);
-					// TODO: if there are items of the same type available in the inventory, do not reset the cursor nor deselect the item
-					deselectItem();
+					item.accept(placement);
 				}
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while placing the item.");
-			} catch(CellTakenException e) {
+			} catch(UnselectedObjectException e) {
 				System.out.println(e.getMessage());
-			} catch(UnselectedWarriorException e) {
-				System.out.println(e.getMessage());
-			} finally {
-				MapLayout.getInstance().allowPicking();
 			}
 		}
 		

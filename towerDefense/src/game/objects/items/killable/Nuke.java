@@ -4,12 +4,14 @@ public class Nuke extends KillableItem {
 
 	public Nuke() {
 		scope = 3;
-		life = 3;
+		LIFE = 3;
 		price = 0;
 		attackSpeed = 1;
-		strength = 7000;
+		STRENGTH = 7000;
 		protection = life;
 		squaredScope = true;
+		life = LIFE;
+		strength = STRENGTH;
 	} 
 	
 	private Nuke(Nuke target) {

@@ -4,10 +4,12 @@ public class Tank extends KillableItem{
 
 	public Tank() {
 		scope = 5;
-		life = 1000;
+		LIFE = 1000;
 		price = 0;
-		strength = 250;
+		STRENGTH = 250;
 		attackSpeed = 4;
+		life = LIFE;
+		strength = STRENGTH;
 	}
 	
 	private Tank(Tank target) {

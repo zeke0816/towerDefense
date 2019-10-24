@@ -7,7 +7,9 @@ import game.Map;
 import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
-import game.objects.items.Item;
+import game.objects.items.charm.permanent.PermanentCharm;
+import game.objects.items.charm.temporary.TemporaryCharm;
+import game.objects.items.killable.KillableItem;
 import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
 import javafx.util.Pair;
@@ -65,7 +67,7 @@ public class BattleVisitor implements Visitor {
 	}
 
 	@Override
-	public void visit(Item it) {
+	public void visit(KillableItem it) {
 		boolean attacked = false;
 		Pair<Integer, Integer> coordinates = map.getPositions().get(it);
 		int yCoordinate = coordinates.getKey();
@@ -124,6 +126,16 @@ public class BattleVisitor implements Visitor {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void visit(PermanentCharm p) {
+		// Never going to happen, they are not on the arena
+	}
+
+	@Override
+	public void visit(TemporaryCharm t) {
+		// Never going to happen, they are not on the arena
 	}
 
 }

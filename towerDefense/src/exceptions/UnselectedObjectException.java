@@ -5,9 +5,9 @@ package exceptions;
  * @author zeke0816
  *
  */
-public class UnselectedWarriorException extends Exception {
+public class UnselectedObjectException extends Exception {
 
-	public UnselectedWarriorException(String str) {
+	public UnselectedObjectException(String str) {
 		super(str);
 	}
 	

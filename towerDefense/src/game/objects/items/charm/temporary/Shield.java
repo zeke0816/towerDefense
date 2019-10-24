@@ -20,6 +20,7 @@ public class Shield extends TemporaryCharm {
 	}
 	
 	public boolean doAction(GameObject o) {
+		System.out.println("Applied!");
 		o.changeState(new Shielded(o));
 		object = o;
 		return true;

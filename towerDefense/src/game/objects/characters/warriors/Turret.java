@@ -3,12 +3,13 @@ package game.objects.characters.warriors;
 public class Turret extends Warrior {
 	
 	public Turret() {
-		DEF_LIFE = 1200;
+		LIFE = 1200;
 		scope = 8;
-		life = DEF_LIFE;
+		life = LIFE;
 		price = 1300;
-		strength = 500;
+		STRENGTH = 500;
 		attackSpeed = 400;
+		strength = STRENGTH;
 	}
 	
 	private Turret(Turret target) {

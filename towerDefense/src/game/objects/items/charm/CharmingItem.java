@@ -7,7 +7,8 @@ public abstract class CharmingItem extends Item{
 
 	
 	protected CharmingItem() {
-	
+		LIFE = 0;
+		STRENGTH = 0;
 	}
 	
 	protected CharmingItem(CharmingItem target) {

@@ -4,10 +4,12 @@ public class Barricade extends KillableItem{
 
 	public Barricade() {
 		scope = 0;
-		life = 6000;
+		LIFE = 6000;
 		price = 2000;
-		strength = 0;
+		STRENGTH = 0;
 		attackSpeed = 0;
+		life = LIFE;
+		strength = STRENGTH;
 	}
 	
 	public Barricade(Barricade target) {

@@ -8,19 +8,19 @@ import game.objects.characters.states.State;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
 import game.objects.items.charm.CharmingItem;
-import game.objects.items.killable.KillableItem;
 import game.objects.items.killable.Nuke;
 import game.visitors.Visitor;
 
 /**
- * Abstract class that helps define the objects in the game
+ * Abstract class that helps define the Game Objects in the game
  * @author zeke0816
  *
  */
 public abstract class GameObject {
 
 	protected State state;
-	protected int DEF_LIFE;
+	protected int LIFE;
+	protected int STRENGTH;
 	protected int life;
 	protected int scope;
 	protected int price;
@@ -31,12 +31,19 @@ public abstract class GameObject {
 	protected int attackSpeed;
 	protected int movementSpeed;
 	
+	/**
+	 * Initializes the Game Object in a Basic state, not being able to drop items and without protection
+	 */
 	protected GameObject() {
 		state = new Basic(this);
 		protection = 0;
 		drops = false;
 	}
 	
+	/**
+	 * Initializes the Game Object by copying the attributes of the target Game Object onto this object
+	 * @param target the prototype Game Object
+	 */
 	protected GameObject(GameObject target) {
 		if(target != null) {
 			life = target.getLife();
@@ -246,28 +253,44 @@ public abstract class GameObject {
 		return true;
 	}
 	
+	/**
+	 * Cures a Game Object entirely from its injuries, returning its life to the default value unless it has more life than that.
+	 * @return true if he needed to be cured and was successfully cured, false in any other case.
+	 */
 	public boolean cure() {
-		boolean needsCure = life < DEF_LIFE ;
+		boolean needsCure = life < LIFE;
 		if(needsCure) {
-			life = DEF_LIFE;
+			life = LIFE;
+			System.out.println("I needed that! Thanks.");
+		} else {
+			System.out.println("I don't need that! Give it to someone else, don't waste it! Thanks.");
 		}
 		return needsCure;
 	}
 	
+	/**
+	 * Poisons the Game Object, removing its ability to harm other Game Objects.
+	 * @return true if the object was poisoned
+	 */
 	public boolean poison() {
 		strength = 0;
 		return true;
 	}
 	
+	/**
+	 * Cures the Game Object from a poison previously administered, returning its strength to the default value
+	 * @return true if the object was cured
+	 */
 	public boolean unpoison() {
-		strength = 0;		//TODO : CONSTANT STRENGTH
+		strength = STRENGTH;
 		return true;
 	}
 	
-	public boolean applyItem(KillableItem i) {
-		return false;
-	}
-	
+	/**
+	 * Applies the spell onto this Game Object
+	 * @param i the spell
+	 * @return true if it was applied and needed by the object, false in any other case.
+	 */
 	public boolean applyItem(CharmingItem i) {
 		return i.doAction(this);
 	}

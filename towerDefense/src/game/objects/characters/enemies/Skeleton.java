@@ -2,12 +2,13 @@ package game.objects.characters.enemies;
 
 public class Skeleton extends Enemy{
 	public Skeleton() {
-		DEF_LIFE = 1000;
+		LIFE = 1000;
 		scope = 6;
-		life = DEF_LIFE;
+		life = LIFE;
 		points = 700;
-		strength = 700;
+		STRENGTH = 700;
 		movementSpeed = 8;
+		strength = STRENGTH;
 	}
 	
 	private Skeleton(Skeleton target) {

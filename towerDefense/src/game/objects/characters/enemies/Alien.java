@@ -3,12 +3,14 @@ package game.objects.characters.enemies;
 public class Alien extends Enemy {
 	
 	public Alien() {
-		DEF_LIFE = 1000;
+		LIFE = 1000;
 		scope = 3;
-		life = DEF_LIFE;
+		life = LIFE;
 		points = 300;
-		strength = 800;
+		STRENGTH = 800;
 		movementSpeed = 10;
+		life = LIFE;
+		strength = STRENGTH;
 	}
 	
 	private Alien(Alien target) {

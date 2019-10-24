@@ -4,6 +4,7 @@ import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;
+import game.visitors.Visitor;
 
 /**
  * Temporary Item class
@@ -37,6 +38,10 @@ public abstract class TemporaryCharm extends CharmingItem {
 			undoAction(object);
 		}
 		return dead;
+	}
+	
+	public void accept(Visitor v) {
+		v.visit(this);
 	}
 	
 	public abstract TemporaryCharm clone();

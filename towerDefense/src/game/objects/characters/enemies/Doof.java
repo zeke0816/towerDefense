@@ -2,12 +2,13 @@ package game.objects.characters.enemies;
 
 public class Doof extends Enemy {
 	public Doof() {
-		DEF_LIFE = 1000;
+		LIFE = 1000;
 		scope = 2;
-		life = DEF_LIFE;
+		life = LIFE;
 		points = 2000;
-		strength = 200;
+		STRENGTH = 200;
 		movementSpeed = 6;
+		strength = STRENGTH;
 	}
 	
 	private Doof(Doof target) {

@@ -4,10 +4,12 @@ public class Rock extends KillableItem{
 	
 	public Rock() {
 		scope = 0;
-		life = 2500;
+		LIFE = 2500;
 		price = 0;
-		strength = 0;
+		STRENGTH = 0;
 		attackSpeed = 0;
+		life = LIFE;
+		strength = STRENGTH;
 	}
 	
 	public Rock(Rock target) {

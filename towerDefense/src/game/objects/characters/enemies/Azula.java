@@ -2,12 +2,13 @@ package game.objects.characters.enemies;
 
 public class Azula extends Enemy {
 	public Azula() {
-		DEF_LIFE = 1000;
+		LIFE = 1000;
 		scope = 7;
-		life = DEF_LIFE;
+		life = LIFE;
 		points = 1000;
-		strength = 1200;
+		STRENGTH = 1200;
 		movementSpeed = 15;
+		strength = STRENGTH;
 	}
 	
 	private Azula(Azula target) {

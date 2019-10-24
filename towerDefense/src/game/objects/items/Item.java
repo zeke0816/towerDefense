@@ -3,7 +3,6 @@ package game.objects.items;
 import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
-import game.visitors.Visitor;
 
 /**
  * Abstract Item Class
@@ -23,10 +22,6 @@ public abstract class Item extends GameObject {
 		if(target != null) {
 			squaredScope = target.hasSquaredScope();
 		}
-	}
-	
-	public void accept(Visitor v) {
-		v.visit(this);
 	}
 
 	public boolean attack(Warrior w) {
