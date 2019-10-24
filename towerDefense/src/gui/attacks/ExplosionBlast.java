@@ -14,52 +14,58 @@ import media.databases.MediaDatabase;
 public class ExplosionBlast extends Attack {
 	
 	protected double size;
-	protected int xPos;
 	protected int yPos;
+	protected int xPos;
 	protected ExplosionBlast instance;
 
 	/**
 	 * Creates an Explosion Blast at an XY position distant to the base
-	 * @param x the X coordinate
-	 * @param y the Y coordinate
+	 * @param row the row coordinate
+	 * @param col the column coordinate
 	 */
-	public ExplosionBlast(int x, int y) {
+	public ExplosionBlast(int row, int col) {
 		super();
 		
-		xPos = x;
-		yPos = y;
+		yPos = row;
+		xPos = col;
 		size = PlacementLayout.getCellSize();
 		setPrefHeight(size);
 		setPrefWidth(size);
 		setVisible(true);
-		instance = this;
-		MovementLayout.getInstance().addBlast(yPos, instance);
-	}
-	
-	public void shoot(GameObject object) {
+		setTranslateX(xPos * size);
 		try {
 			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("explosionBlast", size, size, true, false));
-			Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent arg0) {
-					setTranslateX(xPos);
-				}
-	        	
-	        }));
-			timeline.setOnFinished(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent arg0) {
-					MovementLayout.getInstance().removeBlast(yPos, instance);
-				}
-	        	
-	        });
-			timeline.setCycleCount(2);
-			timeline.play();
 		} catch (DatabaseException ex) {
 			System.out.println(ex.getMessage());
 		}
+		MovementLayout.getInstance().addBlast(yPos, this);
+		instance = this;
+	}
+	
+	/**
+	 * Listener for the explosion
+	 */
+	private EventHandler<ActionEvent> explosionAction = new EventHandler<ActionEvent>(){
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			
+		}
+		
+	};
+	
+	public void shoot(GameObject object) {
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), explosionAction));
+		timeline.setOnFinished(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				MovementLayout.getInstance().removeBlast(yPos, instance);
+			}
+			
+		});
+		timeline.setCycleCount(1);
+		timeline.play();
 	}
 
 }

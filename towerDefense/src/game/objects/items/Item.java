@@ -20,6 +20,9 @@ public abstract class Item extends GameObject {
 	
 	protected Item(Item target) {
 		super(target);
+		if(target != null) {
+			squaredScope = target.hasSquaredScope();
+		}
 	}
 	
 	public void accept(Visitor v) {

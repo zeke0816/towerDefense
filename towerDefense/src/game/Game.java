@@ -1,8 +1,11 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import game.objects.items.Item;
 import game.objects.items.charm.temporary.TemporaryCharm;
+import javafx.util.Pair;
 
 /**
  * Class that handles all things related to the game status and defaults
@@ -16,6 +19,7 @@ public class Game {
 	protected boolean over;
 	protected double score;
 	protected ArrayList<TemporaryCharm> temporaryCharms;
+	protected HashMap<Item, Pair<Integer, Integer>> explosions;
 	private static final Game instance = new Game();
 	
 	/**
@@ -28,10 +32,23 @@ public class Game {
 		score = 0;
 		
 		temporaryCharms = new ArrayList<TemporaryCharm>();
+		explosions = new HashMap<Item, Pair<Integer, Integer>>();
 	}
 	
 	public static Game getInstance() {
 		return instance;
+	}
+	
+	/**
+	 * Gets the explosions of the Game
+	 * @return the explosions
+	 */
+	public HashMap<Item, Pair<Integer, Integer>> getExplosions() {
+		return explosions;
+	}
+	
+	public void addExplosion(Item it, int row, int col) {
+		explosions.put(it, new Pair<Integer, Integer>(row, col));
 	}
 	
 	/**

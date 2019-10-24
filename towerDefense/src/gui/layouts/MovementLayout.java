@@ -128,13 +128,12 @@ public class MovementLayout extends Layout<GridPane> {
 	}
 	
 	/**
-	 * Graphically show an explosion on a cell
-	 * @param col the column
-	 * @param row the row
+	 * Graphically show an explosion on a cell from an Item
+	 * @param object the source Item
 	 */
-	public void explodeCell(int col, int row) {
-		ExplosionBlast blast = new ExplosionBlast(col, row);
-		blast.shoot(null);
+	public void explodeCell(Item item, int row, int col) {
+		ExplosionBlast blast = new ExplosionBlast(row, col);
+		blast.shoot(item);
 	}
 	
 	/**
