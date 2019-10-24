@@ -6,13 +6,14 @@ import exceptions.InvalidActionException;
 import game.Game;
 import game.Map;
 import game.objects.items.Item;
+import gui.controls.PlacedItem;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 public class DroppingLayout extends Layout<GridPane> {
 
-	private HashMap<Item, PlacedObject> droppedObjects;
+	private HashMap<Item, PlacedItem> droppedObjects;
 	private StackPane[] droppingRows;
 	private static final DroppingLayout instance = new DroppingLayout();
 	
@@ -31,7 +32,7 @@ public class DroppingLayout extends Layout<GridPane> {
 			droppingRows[i] = new RowLayout();
 			layout.add(droppingRows[i], 0, i);
 		}
-		droppedObjects = new HashMap<Item, PlacedObject>();
+		droppedObjects = new HashMap<Item, PlacedItem>();
 	}
 
 	/**
@@ -49,9 +50,9 @@ public class DroppingLayout extends Layout<GridPane> {
 	 * @param e the Item itself
 	 */
 	public void addItem(int row, int col, String id, Item item) {
-		PlacedObject placedObject = new PlacedObject(row, col, id);
-		droppingRows[row].getChildren().add(placedObject);
-		droppedObjects.put(item, placedObject);
+		PlacedItem placedItem = new PlacedItem(row, col, id, item);
+		droppingRows[row].getChildren().add(placedItem);
+		droppedObjects.put(item, placedItem);
 	}
 	
 	/**
@@ -60,7 +61,7 @@ public class DroppingLayout extends Layout<GridPane> {
 	 * @throws InvalidActionException when there is no Item at the given row
 	 */
 	public void removeItem(Item item) throws InvalidActionException {
-		PlacedObject placedObject = droppedObjects.get(item);
+		PlacedItem placedObject = droppedObjects.get(item);
 		if(placedObject == null) {
 			throw new InvalidActionException("There are no items dropped on this row.");
 		}

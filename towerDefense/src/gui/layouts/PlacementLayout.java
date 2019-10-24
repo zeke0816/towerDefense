@@ -335,6 +335,8 @@ public class PlacementLayout extends Layout<GridPane> {
 				System.out.println(e.getMessage());
 			} catch(UnselectedWarriorException e) {
 				System.out.println(e.getMessage());
+			} finally {
+				MapLayout.getInstance().allowPicking();
 			}
 		}
 		

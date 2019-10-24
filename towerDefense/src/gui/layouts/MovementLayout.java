@@ -12,6 +12,7 @@ import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
 import gui.attacks.EnergyBlast;
 import gui.attacks.ExplosionBlast;
+import gui.controls.PlacedObject;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;

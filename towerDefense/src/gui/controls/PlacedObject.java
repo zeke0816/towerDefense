@@ -1,4 +1,4 @@
-package gui.layouts;
+package gui.controls;
 
 import exceptions.CellTakenException;
 import exceptions.DatabaseException;

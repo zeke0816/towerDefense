@@ -2,8 +2,8 @@ package gui.attacks;
 
 import exceptions.DatabaseException;
 import game.objects.GameObject;
+import gui.controls.PlacedObject;
 import gui.layouts.MovementLayout;
-import gui.layouts.PlacedObject;
 import gui.layouts.PlacementLayout;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
