@@ -74,12 +74,52 @@ public class BattleVisitor implements Visitor {
 		} catch (InvalidActionException | CellTakenException e1) {
 			System.out.println(e1.getMessage());
 		}*/
-		for(int i = 1; !attacked && i <= it.getScope() && i <= xCoordinate; i++) {
-			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate - i);
-			if(opponent != null) {
-				attacked = opponent.attack(it);
-				if(attacked) {
-					MovementLayout.getInstance().attackObject(it, opponent);
+		if(it.hasSquaredScope()) {
+			System.out.println("Hi");
+			int scope = it.getScope();
+			int top = yCoordinate - scope;
+			int right = xCoordinate + scope;
+			int bottom = yCoordinate + scope;
+			int left = xCoordinate - scope;
+			if(top < 0) {
+				top = 0;
+			}
+			if(left < 0) {
+				left = 0;
+			}
+			if(right >= map.getColumns()) {
+				right = map.getColumns()-1;
+			}
+			if(bottom >= map.getRows()) {
+				bottom = map.getRows()-1;
+			}
+			for(int i = left; i <= right; i++) {
+				for(int j = top; j <= bottom; j++) {
+					GameObject opponent = map.getObjectAt(i, j);
+					if(opponent != null) {
+						attacked = opponent.attack(it);
+						if(attacked) {
+							MovementLayout.getInstance().attackObject(it, opponent);
+						}
+					} else {
+						MovementLayout.getInstance().explodeCell(i, j);
+					}
+				}
+			}
+			try {
+				MovementLayout.getInstance().removeObject(it);
+				Game.getInstance().getMap().freeCell(it);
+			} catch (InvalidActionException e) {
+				System.out.println(e.getMessage());
+			}
+		} else {
+			for(int i = 1; !attacked && i <= it.getScope() && (i + xCoordinate) < map.getColumns(); i++) {
+				GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate - i);
+				if(opponent != null) {
+					attacked = opponent.attack(it);
+					if(attacked) {
+						MovementLayout.getInstance().attackObject(it, opponent);
+					}
 				}
 			}
 		}

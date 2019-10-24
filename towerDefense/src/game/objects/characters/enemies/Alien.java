@@ -8,7 +8,7 @@ public class Alien extends Enemy {
 		life = DEF_LIFE;
 		points = 300;
 		strength = 800;
-		movementSpeed = 4;
+		movementSpeed = 10;
 	}
 	
 	private Alien(Alien target) {

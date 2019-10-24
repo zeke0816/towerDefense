@@ -7,7 +7,7 @@ public class Azula extends Enemy {
 		life = DEF_LIFE;
 		points = 1000;
 		strength = 1200;
-		movementSpeed = 8;
+		movementSpeed = 15;
 	}
 	
 	private Azula(Azula target) {

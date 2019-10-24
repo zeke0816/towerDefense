@@ -11,6 +11,7 @@ import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
 import gui.attacks.EnergyBlast;
+import gui.attacks.ExplosionBlast;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -124,6 +125,16 @@ public class MovementLayout extends Layout<GridPane> {
 		PlacedObject placedBlownUp = placedObjects.get(blownup);
 		EnergyBlast blast = new EnergyBlast(placedAttacker, placedBlownUp);
 		blast.shoot(blownup);
+	}
+	
+	/**
+	 * Graphically show an explosion on a cell
+	 * @param col the column
+	 * @param row the row
+	 */
+	public void explodeCell(int col, int row) {
+		ExplosionBlast blast = new ExplosionBlast(col, row);
+		blast.shoot(null);
 	}
 	
 	/**

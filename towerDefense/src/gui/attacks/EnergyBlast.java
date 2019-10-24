@@ -11,11 +11,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.util.Duration;
 import media.databases.MediaDatabase;
 
-public class EnergyBlast extends Label {
+public class EnergyBlast extends Attack {
 	
 	protected double destination;
 	protected double current;

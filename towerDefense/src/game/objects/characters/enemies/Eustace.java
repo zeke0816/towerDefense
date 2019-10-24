@@ -8,7 +8,7 @@ public class Eustace extends Enemy {
 		life = DEF_LIFE;
 		points = 1600;
 		strength = 100;
-		movementSpeed = 1;
+		movementSpeed = 6;
 	}
 	
 	private Eustace(Eustace target) {

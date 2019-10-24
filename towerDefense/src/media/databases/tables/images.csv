@@ -18,6 +18,9 @@ alien,src/media/images/enemies/alien.png
 azula,src/media/images/enemies/azula.png
 eustace,src/media/images/enemies/eustace.png
 skeleton,src/media/images/enemies/skeleton.png
+nuke,src/media/images/items/nuke.png
+nukecursor,src/media/cursors/nuke.png
+explsionBlast,src/media/images/blasts/explosion_blast.gif
 energyBlastHit,src/media/images/blasts/energy_blast_hit.gif
 energyBlastLeft,src/media/images/blasts/energy_blast_left.gif
 energyBlastRight,src/media/images/blasts/energy_blast_right.gif

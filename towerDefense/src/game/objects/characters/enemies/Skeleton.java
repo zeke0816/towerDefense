@@ -7,7 +7,7 @@ public class Skeleton extends Enemy{
 		life = DEF_LIFE;
 		points = 700;
 		strength = 700;
-		movementSpeed = 1;
+		movementSpeed = 8;
 	}
 	
 	private Skeleton(Skeleton target) {

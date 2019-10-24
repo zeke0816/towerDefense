@@ -235,7 +235,7 @@ public class PlacementLayout extends Layout<GridPane> {
 		@Override
 		public void handle(MouseEvent event) {
 			try {
-				if(warriorSelected()) {
+				if(warriorSelected() || itemSelected()) {
 					CellButton cell = (CellButton) event.getSource();
 					int row = cell.getX();
 					int col = cell.getY();
@@ -280,23 +280,39 @@ public class PlacementLayout extends Layout<GridPane> {
 		@Override
 		public void handle(MouseEvent event) {
 			try {
-				if(!warriorSelected()) {
+				if(!warriorSelected() && !itemSelected()) {
 					throw new UnselectedWarriorException("No Warrior has been selected!");
 				}
-				CellButton cell = (CellButton) event.getSource();
-				int row = cell.getX();
-				int col = cell.getY();
-				Warrior warrior = selectedWarrior.getWarrior();
-				map.takeCell(row, col, warrior);
-				cell.setBackground(null);
-				if(selectedWarrior.playsSound()) {
-					SoundPlayer.getInstance().play(selectedWarrior.getID());
+				if(warriorSelected()) {
+					CellButton cell = (CellButton) event.getSource();
+					int row = cell.getX();
+					int col = cell.getY();
+					Warrior warrior = selectedWarrior.getWarrior();
+					map.takeCell(row, col, warrior);
+					cell.setBackground(null);
+					if(selectedWarrior.playsSound()) {
+						SoundPlayer.getInstance().play(selectedWarrior.getID());
+					}
+					MovementLayout.getInstance().addObject(row, col, selectedWarrior.getID(), warrior);
+					// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor nor deselect the warrior
+					deselectWarrior();
 				}
-				MovementLayout.getInstance().addObject(row, col, selectedWarrior.getID(), warrior);
-				// TODO: if there are warriors of the same type available in the inventory, do not reset the cursor nor deselect the warrior
-				deselectWarrior();
+				if(itemSelected()) {
+					CellButton cell = (CellButton) event.getSource();
+					int row = cell.getX();
+					int col = cell.getY();
+					Item item = selectedItem.getItem();
+					map.takeCell(row, col, item);
+					cell.setBackground(null);
+					if(selectedItem.playsSound()) {
+						SoundPlayer.getInstance().play(selectedItem.getID());
+					}
+					MovementLayout.getInstance().addObject(row, col, selectedItem.getID(), item);
+					// TODO: if there are items of the same type available in the inventory, do not reset the cursor nor deselect the item
+					deselectItem();
+				}
 			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the warrior.");
+				System.out.println("Invalid cast while placing the item.");
 			} catch(CellTakenException e) {
 				System.out.println(e.getMessage());
 			} catch(UnselectedWarriorException e) {

@@ -9,8 +9,11 @@ import game.visitors.Visitor;
  * Abstract Item Class
  */
 public abstract class Item extends GameObject {
+	
+	protected boolean squaredScope;
 
 	protected Item() {
+		squaredScope = false;
 		points = 0;
 		movementSpeed = 0;
 	}
@@ -38,6 +41,10 @@ public abstract class Item extends GameObject {
 	
 	public boolean attack(Item i) {
 		return false;
+	}
+	
+	public boolean hasSquaredScope() {
+		return squaredScope;
 	}
 	
 	/**

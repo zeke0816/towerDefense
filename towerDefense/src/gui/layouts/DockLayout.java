@@ -1,5 +1,6 @@
 package gui.layouts;
 
+import gui.factories.items.NukePrototype;
 import gui.factories.warriors.AgentPPrototype;
 import gui.factories.warriors.BB8Prototype;
 import gui.factories.warriors.CyborgPrototype;
@@ -58,6 +59,11 @@ public class DockLayout extends Layout<GridPane> {
         layout.add(turret.getButton(), 5, 0);
         layout.add(turret.getNameLabel(), 5, 1);
         layout.add(turret.getPriceLabel(), 5, 2);
+        
+        NukePrototype nuke = new NukePrototype();
+        layout.add(nuke.getButton(), 6, 0);
+        layout.add(nuke.getNameLabel(), 6, 1);
+        layout.add(nuke.getPriceLabel(), 6, 2);
 	}
 	
 	/**

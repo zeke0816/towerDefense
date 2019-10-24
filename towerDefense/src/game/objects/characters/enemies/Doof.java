@@ -7,7 +7,7 @@ public class Doof extends Enemy {
 		life = DEF_LIFE;
 		points = 2000;
 		strength = 200;
-		movementSpeed = 2;
+		movementSpeed = 6;
 	}
 	
 	private Doof(Doof target) {
