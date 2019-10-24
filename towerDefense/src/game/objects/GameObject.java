@@ -34,7 +34,7 @@ public abstract class GameObject {
 	protected GameObject() {
 		state = new Basic(this);
 		protection = 0;
-		drops = true;
+		drops = false;
 	}
 	
 	protected GameObject(GameObject target) {

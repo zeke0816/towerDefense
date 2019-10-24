@@ -16,6 +16,7 @@ public abstract class Enemy extends Character {
 	
 	protected Enemy() {
 		points = 0;
+		drops = true;
 	}
 	
 	protected Enemy(Enemy target) {
