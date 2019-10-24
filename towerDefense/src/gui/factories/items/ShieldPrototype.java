@@ -8,6 +8,7 @@ public class ShieldPrototype extends ItemPrototype {
 
 	public ShieldPrototype() {
 		id = "shield";
+		key = "_shielded";
 		name = "Shield";
 		playsSound = false;
 

@@ -155,4 +155,22 @@ public class MovementLayout extends Layout<GridPane> {
 		movementRows[row].getChildren().remove(blast);
 	}
 	
+	/**
+	 * Wears a Spell off a given Game Object
+	 * @param object the affected Game Object
+	 */
+	public void wearCharmOff(GameObject object) {
+		PlacedObject placedObject = placedObjects.get(object);
+		placedObject.wearCharmOff();
+	}
+	
+	/**
+	 * Applies a Spell onto a given Game Object
+	 * @param object the affected Game Object
+	 */
+	public void applyCharm(GameObject object, String key) {
+		PlacedObject placedObject = placedObjects.get(object);
+		placedObject.applyCharm(key);
+	}
+	
 }

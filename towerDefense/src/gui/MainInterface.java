@@ -1,12 +1,15 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import game.Game;
 import game.Map;
 import game.objects.GameObject;
+import game.objects.items.charm.temporary.TemporaryCharm;
 import game.visitors.BattleVisitor;
+import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
 import gui.scenes.MainScene;
 import javafx.animation.KeyFrame;
@@ -62,7 +65,13 @@ public class MainInterface extends Application {
 			public void handle(ActionEvent arg0) {
 				Game game = Game.getInstance();
 				if(!game.isOver()) {
-					game.checkTemporaryCharms();
+					ArrayList<TemporaryCharm> wornOffCharms = game.checkTemporaryCharms();
+					for(TemporaryCharm charm: wornOffCharms) {
+						GameObject object = charm.getObject();
+						if(object.isAlive()) {
+							MovementLayout.getInstance().wearCharmOff(object);
+						}
+					}
 					PlacementLayout.getInstance().spawnItem();
 					PlacementLayout.getInstance().spawnEnemy();
 					HashMap<GameObject, Pair<Integer, Integer>> positions = map.getPositions();

@@ -8,6 +8,7 @@ public class CurePrototype extends ItemPrototype {
 
 	public CurePrototype() {
 		id = "cure";
+		key = "_cured";
 		name = "Cure";
 		playsSound = false;
 

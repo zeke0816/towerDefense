@@ -67,6 +67,7 @@ public class PlacementVisitor implements Visitor {
 				throw new PowerUpException("A Spell cannot be placed on the map.");
 			}
 			if(object.applyItem(t)) {
+				MovementLayout.getInstance().applyCharm(object, PlacementLayout.getInstance().getSelectedItem().getKey());
 				// TODO: if there are items of the same type available in the inventory, do not reset the cursor nor deselect the item
 				PlacementLayout.getInstance().deselectItem();
 				MapLayout.getInstance().allowPicking();

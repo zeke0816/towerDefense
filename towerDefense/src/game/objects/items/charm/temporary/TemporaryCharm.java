@@ -31,13 +31,25 @@ public abstract class TemporaryCharm extends CharmingItem {
 		return false;
 	}
 	
+	/**
+	 * Decreases the life of the Spell
+	 * @return true if the Spell wore off, false if it is still active
+	 */
 	public boolean decreaseLife() {
 		life--;
-		boolean dead = (life == 0);
-		if(dead) {
-			undoAction(object);
+		boolean woreOff = life == 0;
+		if(woreOff) {
+			undoAction();
 		}
-		return dead;
+		return woreOff;
+	}
+	
+	/**
+	 * Gets the Game Object associated with this Spell
+	 * @return the Game Object affected by this Spell
+	 */
+	public GameObject getObject() {
+		return object;
 	}
 	
 	public void accept(Visitor v) {
@@ -46,6 +58,6 @@ public abstract class TemporaryCharm extends CharmingItem {
 	
 	public abstract TemporaryCharm clone();
 	
-	public abstract boolean undoAction(GameObject o);
+	public abstract boolean undoAction();
 
 }

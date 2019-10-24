@@ -22,6 +22,7 @@ import media.databases.MediaDatabase;
 public abstract class ItemPrototype {
 	
 	protected String id;
+	protected String key;
 	protected String name;
 	protected Item item;
 	protected Label nameLabel;
@@ -87,6 +88,14 @@ public abstract class ItemPrototype {
 	 */
 	public String getID() {
 		return id;
+	}
+	
+	/**
+	 * Gets the Key string for media identification
+	 * @return the Key of the item interface
+	 */
+	public String getKey() {
+		return key;
 	}
 
 	/**

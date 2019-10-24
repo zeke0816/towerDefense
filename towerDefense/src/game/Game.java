@@ -35,6 +35,10 @@ public class Game {
 		explosions = new HashMap<Item, Pair<Integer, Integer>>();
 	}
 	
+	/**
+	 * Gets the instance of this class
+	 * @return the instance of this class
+	 */
 	public static Game getInstance() {
 		return instance;
 	}
@@ -75,8 +79,13 @@ public class Game {
 		score += x;
 	}
 	
-	public void checkTemporaryCharms() {
+	/**
+	 * Updates the life of every active temporary charm and removes expired ones.
+	 * @return a list of worn off charms.
+	 */
+	public ArrayList<TemporaryCharm> checkTemporaryCharms() {
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		ArrayList<TemporaryCharm> charms = new ArrayList<TemporaryCharm>();
 		for(int i = 0; i < temporaryCharms.size(); i++) {
 			TemporaryCharm charm = temporaryCharms.get(i);
 			if(charm.decreaseLife()) {
@@ -84,8 +93,9 @@ public class Game {
 			}
 		}
 		for(int index: indexes) {
-			temporaryCharms.remove(index);
+			charms.add(temporaryCharms.remove(index));
 		}
+		return charms;
 	}
 	
 	/**
@@ -93,9 +103,12 @@ public class Game {
 	 */
 	public void end() {
 		over = true;
-		System.out.println("GAME OVER.");
 	}
 	
+	/**
+	 * Tells whether the game is over or not
+	 * @return true if the game is over, false if not.
+	 */
 	public boolean isOver() {
 		return over == true;
 	}

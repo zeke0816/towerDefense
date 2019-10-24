@@ -19,6 +19,8 @@ import media.databases.MediaDatabase;
 public class PlacedObject extends Label {
 	
 	private double pixelsAdvanced;
+	private double size;
+	private String id;
 	private int row;
 	private int col;
 
@@ -28,14 +30,15 @@ public class PlacedObject extends Label {
 	 * @param c the column
 	 * @param id the ID of the Game Object
 	 */
-	public PlacedObject(int r, int c, String id) {
+	public PlacedObject(int r, int c, String i) {
 		super();
 		
 		pixelsAdvanced = 0;
 		row = r;
 		col = c;
+		id = i;
 		
-		double size = PlacementLayout.getCellSize();
+		size = PlacementLayout.getCellSize();
 		setPrefHeight(size);
 		setPrefWidth(size);
 		setTranslateX(col * size);
@@ -93,6 +96,28 @@ public class PlacedObject extends Label {
 	 */
 	public int getCurrentPosition() {
 		return Integer.parseInt(Double.toString((col * PlacementLayout.getCellSize()) - pixelsAdvanced).split("\\.")[0]);
+	}
+	
+	/**
+	 * Wears off a charm from this Placed Object
+	 */
+	public void wearCharmOff() {
+		try {
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
+		} catch (DatabaseException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+	
+	/**
+	 * Applies a charm onto this Placed Object
+	 */
+	public void applyCharm(String key) {
+		try {
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id+key, size, size, true, false));
+		} catch (DatabaseException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 	
 	/**

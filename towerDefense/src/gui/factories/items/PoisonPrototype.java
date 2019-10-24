@@ -8,6 +8,7 @@ public class PoisonPrototype extends ItemPrototype {
 
 	public PoisonPrototype() {
 		id = "poison";
+		key = "_poisoned";
 		name = "Poison";
 		playsSound = false;
 
