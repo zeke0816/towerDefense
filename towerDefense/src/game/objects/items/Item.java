@@ -37,10 +37,6 @@ public abstract class Item extends GameObject {
 		return true;
 	}
 	
-	public boolean attack(Item i) {
-		return false;
-	}
-	
 	public boolean hasSquaredScope() {
 		return squaredScope;
 	}

@@ -18,13 +18,13 @@ public class Poison extends TemporaryCharm{
 	}
 
 	@Override
-	public boolean undoAction() {
-		return object.unpoison();
+	public boolean doAction(GameObject o) {
+		object = o;
+		return object.poison();
 	}
 
 	@Override
-	public boolean doAction(GameObject o) {
-		object = o;
-		return o.poison();
+	public boolean undoAction() {
+		return object.unpoison();
 	}
 }	

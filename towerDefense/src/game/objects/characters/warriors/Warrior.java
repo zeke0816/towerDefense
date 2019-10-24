@@ -2,7 +2,9 @@ package game.objects.characters.warriors;
 
 import game.objects.characters.Character;
 import game.objects.characters.enemies.Enemy;
-import game.objects.items.Item;
+import game.objects.items.charm.permanent.PermanentCharm;
+import game.objects.items.charm.temporary.TemporaryCharm;
+import game.objects.items.killable.KillableItem;
 import game.visitors.Visitor;
 
 /**
@@ -37,7 +39,20 @@ public abstract class Warrior extends Character {
 		return true;
 	}
 	
-	public boolean attack(Item i) {
+	public boolean attack(KillableItem k) {
+		int harm = k.getStrength() - protection;
+		if(harm < 0) {
+			harm = 0;
+		}
+		life -= harm;
+		return true;
+	}
+	
+	public boolean attack(TemporaryCharm t) {
+		return false;
+	}
+	
+	public boolean attack(PermanentCharm p) {
 		return false;
 	}
 

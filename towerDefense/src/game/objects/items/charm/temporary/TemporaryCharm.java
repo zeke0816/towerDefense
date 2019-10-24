@@ -56,8 +56,6 @@ public abstract class TemporaryCharm extends CharmingItem {
 		v.visit(this);
 	}
 	
-	public abstract TemporaryCharm clone();
-	
 	public abstract boolean undoAction();
 
 }

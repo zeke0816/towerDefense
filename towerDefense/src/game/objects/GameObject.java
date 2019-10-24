@@ -6,9 +6,10 @@ import game.objects.characters.enemies.Enemy;
 import game.objects.characters.states.Basic;
 import game.objects.characters.states.State;
 import game.objects.characters.warriors.Warrior;
-import game.objects.items.Item;
 import game.objects.items.charm.CharmingItem;
-import game.objects.items.killable.Nuke;
+import game.objects.items.charm.permanent.PermanentCharm;
+import game.objects.items.charm.temporary.TemporaryCharm;
+import game.objects.items.killable.KillableItem;
 import game.visitors.Visitor;
 
 /**
@@ -233,25 +234,25 @@ public abstract class GameObject {
 	public abstract boolean attack(Enemy w);
 
 	/**
-	 * Determines what happens if an Item tries to attack this character
-	 * @param w the Item trying to attack
+	 * Determines what happens if an Killable Item tries to attack this character
+	 * @param w the Killable Item trying to attack
 	 * @return true if the attack was successful, false if not.
 	 */
-	public abstract boolean attack(Item i);
-	
+	public abstract boolean attack(KillableItem i);
+
 	/**
-	 * Determines what happens if the Nuke tries to attack this character
-	 * @param n the Nuke trying to attack
+	 * Determines what happens if an Temporary Charm tries to attack this character
+	 * @param w the Temporary Charm trying to attack
 	 * @return true if the attack was successful, false if not.
 	 */
-	public boolean attack(Nuke n) {
-		int harm = n.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
-		}
-		life -= harm;
-		return true;
-	}
+	public abstract boolean attack(TemporaryCharm i);
+
+	/**
+	 * Determines what happens if an Permanent Charm tries to attack this character
+	 * @param w the Permanent Charm trying to attack
+	 * @return true if the attack was successful, false if not.
+	 */
+	public abstract boolean attack(PermanentCharm i);
 	
 	/**
 	 * Cures a Game Object entirely from its injuries, returning its life to the default value unless it has more life than that.
