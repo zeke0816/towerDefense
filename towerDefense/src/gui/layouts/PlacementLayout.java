@@ -340,6 +340,8 @@ public class PlacementLayout extends Layout<GridPane> {
 		public void handle(KeyEvent key) {
 			if(key.getCode() == KeyCode.ESCAPE) {
 				deselectWarrior();
+				deselectItem();
+				MapLayout.getInstance().allowPicking();
 			}
 		}
 		
