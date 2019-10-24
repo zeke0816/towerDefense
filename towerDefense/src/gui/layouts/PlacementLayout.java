@@ -68,9 +68,9 @@ public class PlacementLayout extends Layout<GridPane> {
 				CellButton cell = new CellButton();
 				cell.setCoordinates(i, j);
 				if(j < placementLimit){
-					cell.setOnMouseClicked(warriorPlacementListener);
+					cell.setOnMouseClicked(placementListener);
 				}
-				cell.setOnMouseEntered(placementListener);
+				cell.setOnMouseEntered(placementAllowanceListener);
 				cell.setOnMouseExited(placementDismissedListener);
 				layout.add(cell, j, i);
 			}
@@ -252,7 +252,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement being allowed
 	 */
-	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> placementAllowanceListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
@@ -297,7 +297,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Listener for warrior placement on a cell
 	 */
-	private EventHandler<MouseEvent> warriorPlacementListener = new EventHandler<MouseEvent>() {
+	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
@@ -323,7 +323,7 @@ public class PlacementLayout extends Layout<GridPane> {
 					item.accept(placement);
 				}
 			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the item.");
+				System.out.println("Invalid cast while placing an Object.");
 			} catch(UnselectedObjectException e) {
 				System.out.println(e.getMessage());
 			}
