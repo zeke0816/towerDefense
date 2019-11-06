@@ -21,6 +21,7 @@ public class Game {
 	protected ArrayList<TemporaryCharm> temporaryCharms;
 	protected HashMap<Item, Pair<Integer, Integer>> explosions;
 	private static final Game instance = new Game();
+	private int budget;
 	
 	/**
 	 * Initializes the game creating a map, level, and factory, plus marking the game as not over.
@@ -30,6 +31,7 @@ public class Game {
 		level = new Level();
 		over = false;
 		score = 0;
+		budget = 2500;
 		
 		temporaryCharms = new ArrayList<TemporaryCharm>();
 		explosions = new HashMap<Item, Pair<Integer, Integer>>();
