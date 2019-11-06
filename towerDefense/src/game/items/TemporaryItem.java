@@ -1,7 +1,8 @@
 package game.items;
 
-import game.characters.Enemy;
-import game.characters.Warrior;
+import game.objects.characters.enemies.Enemy;
+import game.objects.characters.warriors.Warrior;
+import game.objects.items.Item;
 
 /**
  * Temporary Item class

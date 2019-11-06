@@ -74,6 +74,14 @@ public class Game {
 	}
 	
 	/**
+	 * Gets the current budget 
+	 * @return score
+	 */
+	public double getBudget() {
+		return budget;
+	}
+	
+	/**
 	 * Increases the game score 
 	 * @param x points to be added to the score
 	 */

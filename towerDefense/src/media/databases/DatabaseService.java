@@ -33,7 +33,7 @@ public abstract class DatabaseService {
 	public String getPath(String id) throws DatabaseException {
 		String path = "";
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(table.getAbsolutePath()));
+			BufferedReader reader = new BufferedReader(new FileReader(table.getPath()));
 	        String entry;
 	        String[] data;
 	        String line = reader.readLine();
