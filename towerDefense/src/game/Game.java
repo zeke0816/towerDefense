@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import exceptions.NotEnoughBudgetException;
 import game.objects.items.Item;
 import game.objects.items.charm.temporary.TemporaryCharm;
 import javafx.util.Pair;
@@ -79,6 +80,28 @@ public class Game {
 	 */
 	public double getBudget() {
 		return budget;
+	}
+	
+	/**
+	 * Increases the game budget
+	 * @param x money to be added to the budget
+	 */
+	public void increaseBudget(int x) {
+		budget += x;
+	}
+	
+	/**
+	 * Decreases the game budget
+	 * @param x money to be subtracted from the budget
+	 * @throws NotEnoughBudgetException 
+	 */
+	public void decreaseBudget(int x) throws NotEnoughBudgetException {
+		if(budget >= x) {
+			budget-=x;
+		}
+		else {
+			throw new NotEnoughBudgetException("Not enough budget !");
+		}
 	}
 	
 	/**

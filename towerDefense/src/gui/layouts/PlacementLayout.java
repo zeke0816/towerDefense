@@ -168,6 +168,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				Pair<Integer, Integer> coordinates = Game.getInstance().getMap().getObjectPosition(object);
 				dropItem(coordinates.getKey(), coordinates.getValue());
 			}
+			Game.getInstance().increaseBudget(object.getPrice()); 
 			MovementLayout.getInstance().removeObject(object);
 			Game.getInstance().getMap().freeCell(object);
 			Game.getInstance().updateScore(object.getPoints());
