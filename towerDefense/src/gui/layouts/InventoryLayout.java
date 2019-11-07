@@ -48,7 +48,7 @@ public class InventoryLayout extends Layout<GridPane> {
 		
 		layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
-        layout.setPrefHeight(120);
+        layout.setPrefHeight(200);
         layout.setBackground(redBackground);
         layout.setOnKeyPressed(deslectObjectListener);
         

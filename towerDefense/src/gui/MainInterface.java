@@ -31,10 +31,6 @@ import javafx.util.Pair;
  */
 public class MainInterface extends Application {
 	
-	// protected static final Background darkBackground = new Background(new BackgroundFill(Paint.valueOf("#dddddd"), null, null));
-	// protected static final Background background = new Background(new BackgroundFill(Paint.valueOf("#ffffff"), null, null));
-	// protected static final Paint gray = Paint.valueOf("#8e8e8e");
-	// protected static final Paint black = Paint.valueOf("#000000");
 	protected BattleVisitor battle;
 	
 	/**

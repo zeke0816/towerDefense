@@ -22,8 +22,6 @@ import gui.scenes.MainScene;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -46,6 +44,76 @@ public class PlacementLayout extends Layout<GridPane> {
 	private final static double cellSize = 64;
 	private final static double placementLimitRatio = .6;
 	private static final PlacementLayout instance = new PlacementLayout();
+	private EventHandler<MouseEvent> placementAllowanceListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			try {
+				if(warriorSelected() || itemSelected()) {
+					CellButton cell = (CellButton) event.getSource();
+					int row = cell.getX();
+					int col = cell.getY();
+					
+					double placementLimit = map.getColumns() * placementLimitRatio;
+					
+					if(col < placementLimit && !map.getCell(row, col).isTaken()) {
+						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#9ae39c"), null, null)));
+					} else {
+						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#f05959"), null, null)));
+					}
+				}
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while placing the warrior.");
+			}
+		}
+		
+	};
+	private EventHandler<MouseEvent> placementDismissedListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			try {
+				Button cell = (Button) event.getSource();
+				cell.setBackground(null);
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while placing the warrior.");
+			}
+		}
+		
+	};
+	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			try {
+				CellButton cell = (CellButton) event.getSource();
+				int row = cell.getX();
+				int col = cell.getY();
+				placement.setObject(map.getObjectAt(row, col), row, col);
+				if(!warriorSelected() && !itemSelected()) {
+					if(!warriorSelected()) {
+						throw new UnselectedObjectException("No Warrior has been selected!");
+					}
+					if(!itemSelected()){
+						throw new UnselectedObjectException("No Item has been selected!");
+					}
+				}
+				if(warriorSelected()) {
+					Warrior warrior = selectedWarrior.cloneWarrior();
+					warrior.accept(placement);
+				}
+				if(itemSelected()) {
+					Item item = selectedItem.cloneItem();
+					item.accept(placement);
+				}
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while placing an Object.");
+			} catch(UnselectedObjectException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+	};
 	
 	/**
 	 * Initializes the layout for the buttons that will handle the positioning of the Warriors
@@ -75,7 +143,6 @@ public class PlacementLayout extends Layout<GridPane> {
 				layout.add(cell, j, i);
 			}
 		}
-		layout.setOnKeyPressed(cancelPlacementListener);
 	}
 
 	/**
@@ -249,103 +316,5 @@ public class PlacementLayout extends Layout<GridPane> {
 			}
 		}
 	}
-	
-	/**
-	 * Listener for warrior placement being allowed
-	 */
-	private EventHandler<MouseEvent> placementAllowanceListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				if(warriorSelected() || itemSelected()) {
-					CellButton cell = (CellButton) event.getSource();
-					int row = cell.getX();
-					int col = cell.getY();
-					
-					double placementLimit = map.getColumns() * placementLimitRatio;
-					
-					if(col < placementLimit && !map.getCell(row, col).isTaken()) {
-						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#9ae39c"), null, null)));
-					} else {
-						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#f05959"), null, null)));
-					}
-				}
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the warrior.");
-			}
-		}
-		
-	};
-	
-	/**
-	 * Listener for warrior placement being dismissed
-	 */
-	private EventHandler<MouseEvent> placementDismissedListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				Button cell = (Button) event.getSource();
-				cell.setBackground(null);
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the warrior.");
-			}
-		}
-		
-	};
-	
-	/**
-	 * Listener for warrior placement on a cell
-	 */
-	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				CellButton cell = (CellButton) event.getSource();
-				int row = cell.getX();
-				int col = cell.getY();
-				placement.setObject(map.getObjectAt(row, col), row, col);
-				if(!warriorSelected() && !itemSelected()) {
-					if(!warriorSelected()) {
-						throw new UnselectedObjectException("No Warrior has been selected!");
-					}
-					if(!itemSelected()){
-						throw new UnselectedObjectException("No Item has been selected!");
-					}
-				}
-				if(warriorSelected()) {
-					Warrior warrior = selectedWarrior.cloneWarrior();
-					warrior.accept(placement);
-				}
-				if(itemSelected()) {
-					Item item = selectedItem.cloneItem();
-					item.accept(placement);
-				}
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing an Object.");
-			} catch(UnselectedObjectException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		
-	};
-	
-	/**
-	 * Listener for canceling placement on a cell
-	 */
-	private EventHandler<KeyEvent> cancelPlacementListener = new EventHandler<KeyEvent>() {
-
-		@Override
-		public void handle(KeyEvent key) {
-			if(key.getCode() == KeyCode.ESCAPE) {
-				deselectWarrior();
-				deselectItem();
-				MapLayout.getInstance().allowPicking();
-			}
-		}
-		
-	};
 
 }

@@ -34,6 +34,7 @@ public class Game {
 		inventory = new Inventory();
 		level = new Level();
 		over = false;
+		paused = true;
 		score = 0;
 		budget = 2500;
 		

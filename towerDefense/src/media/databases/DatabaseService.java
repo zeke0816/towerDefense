@@ -1,10 +1,10 @@
 package media.databases;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import exceptions.DatabaseException;
 
@@ -15,7 +15,7 @@ import exceptions.DatabaseException;
  */
 public abstract class DatabaseService {
 	
-	protected File table;
+	protected InputStream table;
 	
 	/**
 	 * Initializes the Database Service
@@ -33,7 +33,7 @@ public abstract class DatabaseService {
 	public String getPath(String id) throws DatabaseException {
 		String path = "";
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(table.getPath()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(table));
 	        String entry;
 	        String[] data;
 	        String line = reader.readLine();
@@ -52,9 +52,9 @@ public abstract class DatabaseService {
 	        	throw new DatabaseException("The media resource could not be found in the database.");
 	        }
 		} catch (FileNotFoundException e) {
-			System.out.println("The selected table does not exist in the database.");
+			System.out.println("The selected table does not exist in the database: "+e.getMessage());
 		} catch (IOException e) {
-			System.out.println("A row could not be read from the selected table.");
+			System.out.println("A row could not be read from the selected table: "+e.getMessage());
 		}
         return path;
 	}
