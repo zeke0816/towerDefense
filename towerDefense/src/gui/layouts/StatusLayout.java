@@ -9,7 +9,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 public class StatusLayout extends Layout<FlowPane> {
 

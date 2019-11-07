@@ -23,7 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 import media.sounds.BackgroundPlayer;
 
 public class MainScene extends Scene {

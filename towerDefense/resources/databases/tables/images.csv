@@ -52,6 +52,9 @@ doof_shielded,/images/enemies/doof_shielded.png
 alien,/images/enemies/alien.png
 alien_poisoned,/images/enemies/alien_poisoned.png
 alien_shielded,/images/enemies/alien_shielded.png
+jiren,/images/enemies/jiren.png
+jiren_poisoned,/images/enemies/jiren_poisoned.png
+jiren_shielded,/images/enemies/jiren_shielded.png
 azula,/images/enemies/azula.png
 azula_poisoned,/images/enemies/azula_poisoned.png
 azula_shielded,/images/enemies/azula_shielded.png

@@ -3,7 +3,7 @@ package gui.factories.items;
 import exceptions.DatabaseException;
 import game.objects.items.charm.temporary.Poison;
 import javafx.scene.layout.Background;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 public class PoisonPrototype extends ItemPrototype {
 

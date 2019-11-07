@@ -9,7 +9,7 @@ import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
 import gui.layouts.PlacementLayout;
 import javafx.scene.control.Label;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 /**
  * Class that helps understand the movement of an Enemy on the arena and communicate such information with the logic of the game

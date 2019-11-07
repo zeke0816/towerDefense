@@ -7,7 +7,7 @@ import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 /**
  * Class that plays a sound when needed

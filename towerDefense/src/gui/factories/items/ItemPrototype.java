@@ -23,7 +23,7 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 /**
  * Class to represent the items of the game.

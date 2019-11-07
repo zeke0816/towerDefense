@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
 import exceptions.DatabaseException;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 public class TophPrototype extends WarriorPrototype {
 

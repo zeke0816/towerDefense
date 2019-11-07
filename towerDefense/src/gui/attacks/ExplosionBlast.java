@@ -9,7 +9,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 public class ExplosionBlast extends Attack {
 	

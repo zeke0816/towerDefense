@@ -1,4 +1,4 @@
-package media.databases;
+package media;
 
 import exceptions.DatabaseException;
 import javafx.scene.image.Image;
@@ -8,6 +8,9 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.media.Media;
+import media.databases.DatabaseService;
+import media.databases.ImageService;
+import media.databases.SoundService;
 
 public class MediaDatabase {
 	

@@ -3,7 +3,7 @@ package gui.factories.warriors;
 import exceptions.DatabaseException;
 import game.objects.characters.warriors.Gary;
 import javafx.scene.layout.Background;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 public class GaryPrototype extends WarriorPrototype {
 

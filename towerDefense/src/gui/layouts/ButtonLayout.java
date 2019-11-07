@@ -4,7 +4,7 @@ import exceptions.DatabaseException;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 public class ButtonLayout extends Layout<StackPane> {
 	

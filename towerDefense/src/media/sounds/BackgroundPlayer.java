@@ -6,7 +6,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import media.databases.MediaDatabase;
+import media.MediaDatabase;
 
 /**
  * Class that plays the background music
