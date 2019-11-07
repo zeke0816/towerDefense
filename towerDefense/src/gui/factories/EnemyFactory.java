@@ -8,6 +8,7 @@ import gui.factories.enemies.AzulaPrototype;
 import gui.factories.enemies.DoofPrototype;
 import gui.factories.enemies.EnemyPrototype;
 import gui.factories.enemies.EustacePrototype;
+import gui.factories.enemies.JirenPrototype;
 import gui.factories.enemies.SkeletonPrototype;
 
 /**
@@ -29,6 +30,7 @@ public class EnemyFactory {
 		enemies.add(new DoofPrototype());
 		enemies.add(new EustacePrototype());
 		enemies.add(new SkeletonPrototype());
+		enemies.add(new JirenPrototype());
 	}
 	
 	/**
@@ -45,7 +47,7 @@ public class EnemyFactory {
 	 */
 	public EnemyPrototype createEnemy() {
 		Random ran = new Random();
-		int randomInt = ran.nextInt(5);
+		int randomInt = ran.nextInt(6);
 		return enemies.get(randomInt);
 	}
 	
