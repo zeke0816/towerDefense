@@ -1,7 +1,7 @@
 package gui.factories.items;
 
 import exceptions.DatabaseException;
-import exceptions.NotEnoughBudgetException;
+import exceptions.CannotAffordException;
 import game.Game;
 import game.objects.items.Item;
 import gui.controls.ItemButton;
@@ -72,7 +72,7 @@ public abstract class ItemPrototype {
 				StoreLayout.getInstance().updateAvailability();
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the warrior.");
-			} catch (NotEnoughBudgetException e) {
+			} catch (CannotAffordException e) {
 				System.out.println(e.getMessage());
 			}
 		}
@@ -97,7 +97,7 @@ public abstract class ItemPrototype {
 				System.out.println("Invalid cast while selecting the warrior.");
 			} catch (DatabaseException e) {
 				System.out.println("The selected Warrior's graphics could not replace the cursor.");
-			} catch (NotEnoughBudgetException e) {
+			} catch (CannotAffordException e) {
 				System.out.println(e.getMessage());
 			}
 		}

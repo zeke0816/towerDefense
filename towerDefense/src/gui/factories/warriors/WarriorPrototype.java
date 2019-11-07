@@ -1,7 +1,7 @@
 package gui.factories.warriors;
 
 import exceptions.DatabaseException;
-import exceptions.NotEnoughBudgetException;
+import exceptions.CannotAffordException;
 import game.Game;
 import game.objects.characters.warriors.Warrior;
 import gui.controls.WarriorButton;
@@ -75,7 +75,7 @@ public abstract class WarriorPrototype {
 				StatusLayout.getInstance().updateBudget();
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the warrior.");
-			} catch (NotEnoughBudgetException e) {
+			} catch (CannotAffordException e) {
 				System.out.println(e.getMessage());
 			}
 		}
@@ -101,7 +101,7 @@ public abstract class WarriorPrototype {
 				System.out.println("Invalid cast while selecting the warrior.");
 			} catch (DatabaseException e) {
 				System.out.println("The selected Warrior's graphics could not replace the cursor.");
-			} catch (NotEnoughBudgetException e) {
+			} catch (CannotAffordException e) {
 				System.out.println(e.getMessage());
 			}
 		}
