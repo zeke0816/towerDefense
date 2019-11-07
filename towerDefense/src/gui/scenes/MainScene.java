@@ -1,15 +1,19 @@
 package gui.scenes;
 
 import exceptions.DatabaseException;
+import game.Game;
 import gui.layouts.BaseLayout;
 import gui.layouts.DockLayout;
 import gui.layouts.MapLayout;
 import gui.layouts.StatusLayout;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import media.databases.MediaDatabase;
 import media.sounds.BackgroundPlayer;
@@ -18,6 +22,24 @@ public class MainScene extends Scene {
 	
 	private static final BorderPane layout = new BorderPane();
 	private static final MainScene instance = new MainScene(layout);
+	private EventHandler<KeyEvent> pauseListener = new EventHandler<KeyEvent>() {
+
+		@Override
+		public void handle(KeyEvent key) {
+			if(key.getCode() == KeyCode.P) {
+				Game game = Game.getInstance();
+				if(game.paused()) {
+					game.resume();
+				} else {
+					game.pause();
+				}
+			}
+			if(key.getCode() == KeyCode.I) {
+				DockLayout.getInstance().toggleInventory();
+			}
+		}
+		
+	};
 
 	/**
 	 * Initializes the Main Scene by setting the default style values, the background music, the background image, and the main layouts.
@@ -42,6 +64,7 @@ public class MainScene extends Scene {
         layout.setLeft(BaseLayout.getInstance().getLayout());
         layout.setCenter(MapLayout.getInstance().getLayout());
         layout.setBottom(DockLayout.getInstance().getLayout());
+        setOnKeyPressed(pauseListener);
 	}
 
 	/**

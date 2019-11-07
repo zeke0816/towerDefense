@@ -16,8 +16,10 @@ import javafx.util.Pair;
 public class Game {
 	
 	protected Map map;
+	protected Inventory inventory;
 	protected Level level;
 	protected boolean over;
+	protected boolean paused;
 	protected double score;
 	protected ArrayList<TemporaryCharm> temporaryCharms;
 	protected HashMap<Item, Pair<Integer, Integer>> explosions;
@@ -29,6 +31,7 @@ public class Game {
 	 */
 	protected Game() {
 		map = new Map();
+		inventory = new Inventory();
 		level = new Level();
 		over = false;
 		score = 0;
@@ -67,6 +70,14 @@ public class Game {
 	}
 	
 	/**
+	 * Gets the inventory of the Game
+	 * @return the inventory
+	 */
+	public Inventory getInventory() {
+		return inventory;
+	}
+	
+	/**
 	 * Gets the current score 
 	 * @return score
 	 */
@@ -83,6 +94,14 @@ public class Game {
 	}
 	
 	/**
+	 * Gets the current level 
+	 * @return score
+	 */
+	public Level getLevel() {
+		return level;
+	}
+	
+	/**
 	 * Increases the game budget
 	 * @param x money to be added to the budget
 	 */
@@ -96,12 +115,14 @@ public class Game {
 	 * @throws NotEnoughBudgetException 
 	 */
 	public void decreaseBudget(int x) throws NotEnoughBudgetException {
-		if(budget >= x) {
-			budget-=x;
+		if(budget < x) {
+			throw new NotEnoughBudgetException("Not enough budget!");
 		}
-		else {
-			throw new NotEnoughBudgetException("Not enough budget !");
-		}
+		budget-=x;
+	}
+	
+	public boolean canAfford(int x) {
+		return x <= budget;
 	}
 	
 	/**
@@ -136,6 +157,28 @@ public class Game {
 	 */
 	public void end() {
 		over = true;
+	}
+	
+	/**
+	 * Tells whether the game is paused or not
+	 * @return true if it is paused, false if it is not.
+	 */
+	public boolean paused() {
+		return paused;
+	}
+	
+	/**
+	 * Pause the game
+	 */
+	public void pause() {
+		paused = true;
+	}
+	
+	/**
+	 * Resume the game
+	 */
+	public void resume() {
+		paused = false;
 	}
 	
 	/**

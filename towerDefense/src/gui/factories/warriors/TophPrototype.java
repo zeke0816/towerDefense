@@ -11,14 +11,14 @@ public class TophPrototype extends WarriorPrototype {
 		id = "toph";
 		name = "Toph";
 		playsSound = false;
+		placingButton.setOnMouseClicked(null);
+		placingButton.setBorder(null);
 		
-		nameLabel.setText(name);
         try {
-			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
+			placingButton.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
 		} catch (DatabaseException e) {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
-        button.setOnMouseClicked(null);
 	}
 
 }

@@ -14,7 +14,7 @@ public class BaseLayout extends Layout<VBox> {
         layout.setAlignment(Pos.CENTER);
         
         TophPrototype toph = new TophPrototype();
-        layout.getChildren().add(toph.getButton());
+        layout.getChildren().add(toph.getPlacingButton());
 	}
 	
 	public static BaseLayout getInstance() {

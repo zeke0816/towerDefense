@@ -2,6 +2,7 @@ package gui.factories.warriors;
 
 import exceptions.DatabaseException;
 import game.objects.characters.warriors.BB8;
+import javafx.scene.layout.Background;
 import media.databases.MediaDatabase;
 
 public class BB8Prototype extends WarriorPrototype {
@@ -12,16 +13,21 @@ public class BB8Prototype extends WarriorPrototype {
 		id = "bb8";
 		name = "BB8";
 		playsSound = false;
-		
-		nameLabel.setText(name);
+
         try {
-			button.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
+        	Background bg = MediaDatabase.getInstance().getImageBackgroundMedia(id+"_profile", size, size, true, false);
+        	Background disabled = MediaDatabase.getInstance().getImageBackgroundMedia(id+"_profileDisabled", size, size, true, false);
+			placingButton.setBackground(bg);
+			profileLabel.setBackground(bg);
+			disabledLabel.setBackground(disabled);
 		} catch (DatabaseException e) {
 			System.out.println("The Warrior's graphics could not be loaded.");
 		}
-        button.setWarrior(this);
+        placingButton.setPrototype(this);
+        buyingButton.setPrototype(this);
+        buyPlaceButton.setPrototype(this);
         warrior = new BB8();
-        priceLabel.setText("$ "+warrior.getPrice());
+        buyingButton.setText("$ "+warrior.getPrice());
 	}
 
 }

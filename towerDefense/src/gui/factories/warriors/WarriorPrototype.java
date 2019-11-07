@@ -1,19 +1,29 @@
 package gui.factories.warriors;
 
 import exceptions.DatabaseException;
+import exceptions.NotEnoughBudgetException;
+import game.Game;
 import game.objects.characters.warriors.Warrior;
 import gui.controls.WarriorButton;
+import gui.layouts.InventoryLayout;
 import gui.layouts.MapLayout;
 import gui.layouts.PlacementLayout;
+import gui.layouts.StatusLayout;
+import gui.layouts.StoreLayout;
 import gui.scenes.MainScene;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 import media.databases.MediaDatabase;
 
 /**
@@ -26,28 +36,73 @@ public abstract class WarriorPrototype {
 	protected String id;
 	protected String name;
 	protected Warrior warrior;
-	protected Label nameLabel;
-	protected Label priceLabel;
+	protected Label profileLabel;
+	protected Label disabledLabel;
 	protected boolean playsSound;
-	protected WarriorButton button;
-	protected static final double size = 100;
+	protected WarriorButton placingButton;
+	protected WarriorButton buyingButton;
+	protected WarriorButton buyPlaceButton;
+	protected static final double size = 64;
 	private EventHandler<MouseEvent> selectWarriorListener = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
 			try {
-				WarriorButton button = (WarriorButton) event.getSource();
-				WarriorPrototype selectedWarrior = button.getWarrior();
+				WarriorPrototype selectedWarrior = placingButton.getPrototype();
 				PlacementLayout.getInstance().selectWarrior(selectedWarrior);
-				try {
-					Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
-					MainScene.getInstance().setCursorImage(img);
-					MapLayout.getInstance().allowPlacement();
-				} catch (DatabaseException e) {
-					System.out.println("The selected Warrior's graphics could not replace the cursor.");
-				}
+				Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
+				MainScene.getInstance().setCursorImage(img);
+				MapLayout.getInstance().allowPlacement();
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the warrior.");
+			} catch (DatabaseException e) {
+				System.out.println("The selected Warrior's graphics could not replace the cursor.");
+			}
+		}
+		
+	};
+	private EventHandler<MouseEvent> buyWarriorListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			try {
+				Game game = Game.getInstance();
+				WarriorPrototype selectedWarrior = buyPlaceButton.getPrototype();
+				game.decreaseBudget(selectedWarrior.getWarrior().getPrice());
+				game.getInventory().add(selectedWarrior.getID());
+				InventoryLayout.getInstance().updateAvailability();
+				StoreLayout.getInstance().updateAvailability();
+				StatusLayout.getInstance().updateBudget();
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while selecting the warrior.");
+			} catch (NotEnoughBudgetException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+	};
+	private EventHandler<MouseEvent> buyPlaceWarriorListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			try {
+				WarriorPrototype selectedWarrior = buyPlaceButton.getPrototype();
+				Game game = Game.getInstance();
+				game.decreaseBudget(selectedWarrior.getWarrior().getPrice());
+				game.getInventory().add(selectedWarrior.getID());
+				PlacementLayout.getInstance().selectWarrior(selectedWarrior);
+				Image img = MediaDatabase.getInstance().getImageMedia(selectedWarrior.getID()+"cursor");
+				MainScene.getInstance().setCursorImage(img);
+				MapLayout.getInstance().allowPlacement();
+				InventoryLayout.getInstance().updateAvailability();
+				StoreLayout.getInstance().updateAvailability();
+				StatusLayout.getInstance().updateBudget();
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while selecting the warrior.");
+			} catch (DatabaseException e) {
+				System.out.println("The selected Warrior's graphics could not replace the cursor.");
+			} catch (NotEnoughBudgetException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 		
@@ -57,30 +112,56 @@ public abstract class WarriorPrototype {
 	 * Creates an empty Warrior Interface
 	 */
 	protected WarriorPrototype() {
-		nameLabel = new Label();
-		nameLabel.setVisible(true);
-		nameLabel.setAlignment(Pos.CENTER);
-		nameLabel.setFont(new Font("Cambria", 20));
-        GridPane.setHalignment(nameLabel, HPos.CENTER);
+		profileLabel = new Label();
+		profileLabel.setVisible(true);
+		profileLabel.setPrefSize(size, size);
+		profileLabel.setBorder(new Border(new BorderStroke(Color.valueOf("#ff8d7f"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        GridPane.setMargin(profileLabel, new Insets(10, 5, 5, 5));
         
-		priceLabel = new Label();
-		priceLabel.setVisible(true);
-		priceLabel.setAlignment(Pos.CENTER);
-		priceLabel.setFont(new Font("Cambria", 20));
-        GridPane.setHalignment(priceLabel, HPos.CENTER);
+        disabledLabel = new Label();
+        disabledLabel.setVisible(true);
+        disabledLabel.setPrefSize(size, size);
+        disabledLabel.setBorder(new Border(new BorderStroke(Color.valueOf("#ff8d7f"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        GridPane.setMargin(disabledLabel, new Insets(10, 5, 5, 5));
         
-		button = new WarriorButton();
-		button.setVisible(true);
-        button.setPrefSize(size, size);
-        button.setOnMouseClicked(selectWarriorListener);
+		placingButton = new WarriorButton(size, size);
+        placingButton.setOnMouseClicked(selectWarriorListener);
+        GridPane.setMargin(placingButton, new Insets(10, 5, 5, 5));
+        
+		buyingButton = new WarriorButton(64, 16);
+		buyingButton.setOnMouseClicked(buyWarriorListener);
+		buyingButton.setBorder(null);
+		GridPane.setMargin(buyingButton, new Insets(0, 5, 5, 5));
+        
+		buyPlaceButton = new WarriorButton(64, 16);
+		buyPlaceButton.setOnMouseClicked(buyPlaceWarriorListener);
+		buyPlaceButton.setBorder(null);
+		GridPane.setMargin(buyPlaceButton, new Insets(0, 5, 5, 5));
+        
+		try {
+			Background b = MediaDatabase.getInstance().getImageBackgroundMedia("buyButton", 64, 16, true, false);
+			Background bP = MediaDatabase.getInstance().getImageBackgroundMedia("buyPlaceButton", 64, 16, true, false);
+			buyingButton.setBackground(b);
+			buyPlaceButton.setBackground(bP);
+		} catch (DatabaseException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	/**
-	 * Clones and gets the Warrior to be 
+	 * Clones and gets the Warrior to be placed
+	 * @return the Warrior
+	 */
+	public Warrior cloneWarrior() {
+		return warrior.clone();
+	}
+	
+	/**
+	 * Gets the Warrior
 	 * @return the Warrior
 	 */
 	public Warrior getWarrior() {
-		return warrior.clone();
+		return warrior;
 	}
 	
 	/**
@@ -108,27 +189,43 @@ public abstract class WarriorPrototype {
 	}
 
 	/**
-	 * Gets the name label to show on screen
+	 * Gets the profile label to show on screen
 	 * @return the label
 	 */
-	public Label getNameLabel() {
-		return nameLabel;
+	public Label getProfileLabel() {
+		return profileLabel;
 	}
 
 	/**
-	 * Gets the price label to show on screen
+	 * Gets the disabled label to show on screen
 	 * @return the label
 	 */
-	public Label getPriceLabel() {
-		return priceLabel;
+	public Label getDisabledLabel() {
+		return disabledLabel;
 	}
 
 	/**
-	 * Gets the button to show on screen
-	 * @return the button
+	 * Gets the placing button to show on screen
+	 * @return the placing button
 	 */
-	public WarriorButton getButton() {
-		return button;
+	public WarriorButton getPlacingButton() {
+		return placingButton;
+	}
+
+	/**
+	 * Gets the buying button to show on screen
+	 * @return the buying button
+	 */
+	public WarriorButton getBuyingButton() {
+		return buyingButton;
+	}
+
+	/**
+	 * Gets the buying & placing button to show on screen
+	 * @return the buying & placing button
+	 */
+	public WarriorButton getBuyPlaceButton() {
+		return buyPlaceButton;
 	}
 
 }

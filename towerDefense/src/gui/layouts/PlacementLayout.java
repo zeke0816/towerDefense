@@ -75,7 +75,7 @@ public class PlacementLayout extends Layout<GridPane> {
 				layout.add(cell, j, i);
 			}
 		}
-		layout.setOnKeyPressed(enemyPlacementListener);
+		layout.setOnKeyPressed(cancelPlacementListener);
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class PlacementLayout extends Layout<GridPane> {
 			} while(map.getCell(row, col).isTaken());
 			try {
 				ItemPrototype itemPrototype = ItemFactory.getInstance().createRandomItem();
-				Item item = itemPrototype.getItem();
+				Item item = itemPrototype.cloneItem();
 				map.takeCell(row, col, item);
 				MovementLayout.getInstance().addObject(row, col, itemPrototype.getID(), item);
 				if(itemPrototype.playsSound()) {
@@ -210,7 +210,7 @@ public class PlacementLayout extends Layout<GridPane> {
 	 */
 	public void dropItem(int row, int col) {
 		ItemPrototype itemPrototype = ItemFactory.getInstance().createDroppableItem();
-		Item item = itemPrototype.getItem();
+		Item item = itemPrototype.cloneItem();
 		DroppingLayout.getInstance().addItem(row, col, itemPrototype.getID(), item);
 		if(itemPrototype.playsSound()) {
 			SoundPlayer.getInstance().play(itemPrototype.getID());
@@ -316,11 +316,11 @@ public class PlacementLayout extends Layout<GridPane> {
 					}
 				}
 				if(warriorSelected()) {
-					Warrior warrior = selectedWarrior.getWarrior();
+					Warrior warrior = selectedWarrior.cloneWarrior();
 					warrior.accept(placement);
 				}
 				if(itemSelected()) {
-					Item item = selectedItem.getItem();
+					Item item = selectedItem.cloneItem();
 					item.accept(placement);
 				}
 			} catch(ClassCastException e) {
@@ -333,9 +333,9 @@ public class PlacementLayout extends Layout<GridPane> {
 	};
 	
 	/**
-	 * Listener for enemy placement on a cell
+	 * Listener for canceling placement on a cell
 	 */
-	private EventHandler<KeyEvent> enemyPlacementListener = new EventHandler<KeyEvent>() {
+	private EventHandler<KeyEvent> cancelPlacementListener = new EventHandler<KeyEvent>() {
 
 		@Override
 		public void handle(KeyEvent key) {

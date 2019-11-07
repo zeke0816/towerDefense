@@ -1,93 +1,48 @@
 package gui.layouts;
 
-import gui.factories.items.BarricadePrototype;
-import gui.factories.items.CurePrototype;
-import gui.factories.items.NukePrototype;
-import gui.factories.items.PoisonPrototype;
-import gui.factories.items.ShieldPrototype;
-import gui.factories.warriors.AgentPPrototype;
-import gui.factories.warriors.BB8Prototype;
-import gui.factories.warriors.CyborgPrototype;
-import gui.factories.warriors.GaryPrototype;
-import gui.factories.warriors.TheFleaPrototype;
-import gui.factories.warriors.TurretPrototype;
-import gui.scenes.MainScene;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.BorderPane;
 
-public class DockLayout extends Layout<GridPane> {
+public class DockLayout extends Layout<BorderPane> {
 	
-	protected static final Background darkBackground = new Background(new BackgroundFill(Paint.valueOf("#dddddd"), null, null));
 	private static final DockLayout instance = new DockLayout();
+	private boolean buying;
 
 	protected DockLayout() {
 		super();
-		layout = new GridPane();
-        layout.setAlignment(Pos.CENTER);
-        layout.setPrefHeight(120);
-        layout.setBackground(darkBackground);
-        layout.setOnKeyPressed(deslectWarriorListener);
-        
-        BB8Prototype bb8 = new BB8Prototype();
-        layout.add(bb8.getButton(), 0, 0);
-        layout.add(bb8.getNameLabel(), 0, 1);
-        layout.add(bb8.getPriceLabel(), 0, 2);
-        
-        TheFleaPrototype flea = new TheFleaPrototype();
-        layout.add(flea.getButton(), 1, 0);
-        layout.add(flea.getNameLabel(), 1, 1);
-        layout.add(flea.getPriceLabel(), 1, 2);
-        
-        GaryPrototype gary = new GaryPrototype();
-        layout.add(gary.getButton(), 2, 0);
-        layout.add(gary.getNameLabel(), 2, 1);
-        layout.add(gary.getPriceLabel(), 2, 2);
-        
-        TurretPrototype turret = new TurretPrototype();
-        layout.add(turret.getButton(), 3, 0);
-        layout.add(turret.getNameLabel(), 3, 1);
-        layout.add(turret.getPriceLabel(), 3, 2);
-        
-        AgentPPrototype agentP = new AgentPPrototype();
-        layout.add(agentP.getButton(), 4, 0);
-        layout.add(agentP.getNameLabel(), 4, 1);
-        layout.add(agentP.getPriceLabel(), 4, 2);
+		
+		layout = new BorderPane();
 
-        CyborgPrototype cyborg = new CyborgPrototype();
-        layout.add(cyborg.getButton(), 5, 0);
-        layout.add(cyborg.getNameLabel(), 5, 1);
-        layout.add(cyborg.getPriceLabel(), 5, 2);
-        
-        ShieldPrototype shield = new ShieldPrototype();
-        layout.add(shield.getButton(), 6, 0);
-        layout.add(shield.getNameLabel(), 6, 1);
-        layout.add(shield.getPriceLabel(), 6, 2);
-        
-        CurePrototype cure = new CurePrototype();
-        layout.add(cure.getButton(), 7, 0);
-        layout.add(cure.getNameLabel(), 7, 1);
-        layout.add(cure.getPriceLabel(), 7, 2);
-        
-        PoisonPrototype poison = new PoisonPrototype();
-        layout.add(poison.getButton(), 8, 0);
-        layout.add(poison.getNameLabel(), 8, 1);
-        layout.add(poison.getPriceLabel(), 8, 2);
-        
-        BarricadePrototype barricade = new BarricadePrototype();
-        layout.add(barricade.getButton(), 9, 0);
-        layout.add(barricade.getNameLabel(), 9, 1);
-        layout.add(barricade.getPriceLabel(), 9, 2);
-        
-        NukePrototype nuke = new NukePrototype();
-        layout.add(nuke.getButton(), 10, 0);
-        layout.add(nuke.getNameLabel(), 10, 1);
-        layout.add(nuke.getPriceLabel(), 10, 2);
+		layout.setTop(ButtonLayout.getInstance().getLayout());
+		allowBuying();
+	}
+	
+	/**
+	 * Brings the Store up front
+	 */
+	public void allowBuying() {
+		buying = true;
+		ButtonLayout.getInstance().allowBuying();
+		layout.setBottom(StoreLayout.getInstance().getLayout());
+	}
+
+	/**
+	 * Brings the Inventory up front
+	 */
+	public void allowPlacing() {
+		buying = false;
+		ButtonLayout.getInstance().allowPlacing();
+		layout.setBottom(InventoryLayout.getInstance().getLayout());
+	}
+	
+	/**
+	 * 
+	 */
+	public void toggleInventory() {
+		if(buying) {
+			allowPlacing();
+		} else {
+			allowBuying();
+		}
 	}
 	
 	/**
@@ -97,21 +52,5 @@ public class DockLayout extends Layout<GridPane> {
 	public static DockLayout getInstance() {
 		return instance;
 	}
-	
-	/**
-	 * Listener for deselecting a warrior
-	 */
-	private EventHandler<KeyEvent> deslectWarriorListener = new EventHandler<KeyEvent>() {
-
-		@Override
-		public void handle(KeyEvent key) {
-			if(key.getCode() == KeyCode.ESCAPE) {
-				PlacementLayout.getInstance().deselectWarrior();
-				MainScene.getInstance().resetCursorImage();
-				MapLayout.getInstance().allowPicking();
-			}
-		}
-		
-	};
 
 }

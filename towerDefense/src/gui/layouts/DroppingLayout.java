@@ -65,6 +65,7 @@ public class DroppingLayout extends Layout<GridPane> {
 		if(placedObject == null) {
 			throw new InvalidActionException("There are no items dropped on this row.");
 		}
+		Game.getInstance().getInventory().add(placedObject.getID());
 		droppingRows[placedObject.getRow()].getChildren().remove(droppedObjects.remove(item));
 	}
 	

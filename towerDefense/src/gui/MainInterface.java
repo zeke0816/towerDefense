@@ -64,7 +64,7 @@ public class MainInterface extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				Game game = Game.getInstance();
-				if(!game.isOver()) {
+				if(!game.isOver() && !game.paused()) {
 					ArrayList<TemporaryCharm> wornOffCharms = game.checkTemporaryCharms();
 					for(TemporaryCharm charm: wornOffCharms) {
 						GameObject object = charm.getObject();

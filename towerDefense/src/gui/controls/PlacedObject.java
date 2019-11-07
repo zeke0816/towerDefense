@@ -51,6 +51,14 @@ public class PlacedObject extends Label {
 	}
 	
 	/**
+	 * Gets the ID of the object
+	 * @return the ID
+	 */
+	public String getID() {
+		return id;
+	}
+	
+	/**
 	 * Moves a Warrior on the arena
 	 * @throws InvalidActionException when there are no Warriors on the arena
 	 * @throws CellTakenException when a Warrior was trying to take a cell that had already been taken
