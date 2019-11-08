@@ -51,6 +51,7 @@ public abstract class GameObject {
         	scope = target.getScope();
 			state = target.getState();
 			drops = target.getDrops();
+			price = target.getPrice();
 			points = target.getPoints();
             strength = target.getStrength();
             protection = target.getProtection();

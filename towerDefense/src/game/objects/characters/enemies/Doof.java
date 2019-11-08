@@ -9,6 +9,7 @@ public class Doof extends Enemy {
 		STRENGTH = 200;
 		movementSpeed = 6;
 		strength = STRENGTH;
+		price = STRENGTH;
 	}
 	
 	private Doof(Doof target) {

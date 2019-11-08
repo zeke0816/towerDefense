@@ -35,10 +35,6 @@ public class BattleVisitor implements Visitor {
 				if(attacked) {
 					MovementLayout.getInstance().attackObject(w, opponent);
 				}
-				if(opponent.isDead()) {
-					System.out.println("Killing... an Enemy? Let me know.");
-					Game.getInstance().getLevel().getWave().kill();
-				}
 			}
 		}
 	}

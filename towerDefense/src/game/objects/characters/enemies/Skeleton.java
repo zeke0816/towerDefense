@@ -1,6 +1,7 @@
 package game.objects.characters.enemies;
 
-public class Skeleton extends Enemy{
+public class Skeleton extends Enemy {
+	
 	public Skeleton() {
 		LIFE = 1000;
 		scope = 6;
@@ -9,6 +10,7 @@ public class Skeleton extends Enemy{
 		STRENGTH = 700;
 		movementSpeed = 8;
 		strength = STRENGTH;
+		price = STRENGTH;
 	}
 	
 	private Skeleton(Skeleton target) {

@@ -3,11 +3,11 @@ package game.objects.characters.warriors;
 public class TheFlea extends Warrior {
 	
 	public TheFlea() {
-		LIFE = 500;
+		LIFE = 1800;
 		scope = 2;
 		life = LIFE;
 		price = 70;
-		STRENGTH = 300;
+		STRENGTH = 1200;
 		attackSpeed = 400;
 		strength = STRENGTH;
 	}

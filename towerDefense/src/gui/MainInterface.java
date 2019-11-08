@@ -11,6 +11,7 @@ import game.objects.items.charm.temporary.TemporaryCharm;
 import game.visitors.BattleVisitor;
 import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
+import gui.layouts.StatusLayout;
 import gui.scenes.MainScene;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -76,6 +77,7 @@ public class MainInterface extends Application {
 						if(object.isAlive()) {
 							object.accept(battle);
 						}
+						StatusLayout.getInstance().updateBudget();
 					}
 				}
 			}

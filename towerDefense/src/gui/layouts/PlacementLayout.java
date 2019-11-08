@@ -100,11 +100,11 @@ public class PlacementLayout extends Layout<GridPane> {
 					}
 				}
 				if(warriorSelected()) {
-					Warrior warrior = selectedWarrior.cloneWarrior();
+					Warrior warrior = selectedWarrior.getWarrior();
 					warrior.accept(placement);
 				}
 				if(itemSelected()) {
-					Item item = selectedItem.cloneItem();
+					Item item = selectedItem.getItem();
 					item.accept(placement);
 				}
 			} catch(ClassCastException e) {

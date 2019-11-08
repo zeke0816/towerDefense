@@ -10,6 +10,7 @@ public class Eustace extends Enemy {
 		STRENGTH = 100;
 		movementSpeed = 6;
 		strength = STRENGTH;
+		price = STRENGTH;
 	}
 	
 	private Eustace(Eustace target) {

@@ -11,6 +11,7 @@ public class Jiren extends Enemy {
 		movementSpeed = 5;
 		life = LIFE;
 		strength = STRENGTH;
+		price = STRENGTH;
 	}
 	
 	private Jiren(Jiren target) {

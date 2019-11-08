@@ -11,6 +11,7 @@ public class Alien extends Enemy {
 		movementSpeed = 10;
 		life = LIFE;
 		strength = STRENGTH;
+		price = STRENGTH;
 	}
 	
 	private Alien(Alien target) {

@@ -1,5 +1,6 @@
 package game.objects.characters.enemies;
 
+import game.Game;
 import game.objects.characters.Character;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.permanent.PermanentCharm;
@@ -15,23 +16,34 @@ import game.visitors.Visitor;
 public abstract class Enemy extends Character {
 	
 	protected int points;
+	protected int worth;
 	
 	protected Enemy() {
 		points = 0;
+		worth = 3000;
 		drops = true;
 	}
 	
 	protected Enemy(Enemy target) {
 		super(target);
 		points = target.getPoints();
+		worth = target.getWorth();
 	}
 	
 	/**
-	 * Enemy Points
-	 * @return points
+	 * Gets the points given by this Enemy
+	 * @return the points
 	 */
 	public int getPoints() {
 		return points;
+	}
+	
+	/**
+	 * Gets the worth of this Enemy
+	 * @return the worth
+	 */
+	public int getWorth() {
+		return worth;
 	}
 	
 	public void accept(Visitor v) {
@@ -44,6 +56,10 @@ public abstract class Enemy extends Character {
 			harm = 0;
 		}
 		life -= harm;
+		if(isDead()) {
+			Game.getInstance().increaseBudget(getWorth());
+			Game.getInstance().getLevel().getWave().kill();
+		}
 		return true;
 	}
 	
@@ -57,6 +73,10 @@ public abstract class Enemy extends Character {
 			harm = 0;
 		}
 		life -= harm;
+		if(isDead()) {
+			Game.getInstance().increaseBudget(getWorth());
+			Game.getInstance().getLevel().getWave().kill();
+		}
 		return true;
 	}
 	

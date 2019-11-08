@@ -9,6 +9,7 @@ public class Azula extends Enemy {
 		STRENGTH = 1200;
 		movementSpeed = 15;
 		strength = STRENGTH;
+		price = STRENGTH;
 	}
 	
 	private Azula(Azula target) {

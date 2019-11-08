@@ -67,7 +67,7 @@ public class MainScene extends Scene {
 		super(parent);
 		BackgroundPlayer.getInstance().play();
 		try {
-			layout.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("background", 1136, 720, false, false));
+			layout.setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("background", 1136, 720, false, true));
 		} catch (DatabaseException e) {
 			System.out.println("The main Scene's background image could not be loaded.");
 		}
