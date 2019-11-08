@@ -28,17 +28,16 @@ public class BattleVisitor implements Visitor {
 		Pair<Integer, Integer> coordinates = map.getPositions().get(w);
 		int yCoordinate = coordinates.getKey();
 		int xCoordinate = coordinates.getValue();
-		/*try {
-			MovementLayout.getInstance().moveObject(w);
-		} catch (InvalidActionException | CellTakenException e1) {
-			System.out.println(e1.getMessage());
-		}*/
 		for(int i = 1; !attacked && i <= w.getScope() && (i + xCoordinate) < map.getColumns(); i++) {
 			GameObject opponent = map.getObjectAt(yCoordinate, xCoordinate + i);
 			if(opponent != null) {
 				attacked = opponent.attack(w);
 				if(attacked) {
 					MovementLayout.getInstance().attackObject(w, opponent);
+				}
+				if(opponent.isDead()) {
+					System.out.println("Killing... an Enemy? Let me know.");
+					Game.getInstance().getLevel().getWave().kill();
 				}
 			}
 		}
@@ -73,11 +72,6 @@ public class BattleVisitor implements Visitor {
 		int yCoordinate = coordinates.getKey();
 		int xCoordinate = coordinates.getValue();
 		int scope = it.getScope();
-		/*try {
-			MovementLayout.getInstance().moveObject(e);
-		} catch (InvalidActionException | CellTakenException e1) {
-			System.out.println(e1.getMessage());
-		}*/
 		if(it.hasSquaredScope()) {
 			try {
 				int top = yCoordinate - scope;

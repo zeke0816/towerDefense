@@ -8,14 +8,16 @@ package game;
 public class Level {
 	
 	protected int value;
-	protected int multiplier;
+	protected int currentWave;
+	protected Wave wave;
 	
 	/**
 	 * Initializes in Level 1 and a default multiplier
 	 */
 	public Level() {
 		value = 1;
-		multiplier = 1;
+		currentWave = 1;
+		wave = new Wave();
 	}
 	
 	/**
@@ -27,19 +29,23 @@ public class Level {
 	}
 	
 	/**
-	 * Gets the multiplier for object skills and features
-	 * @return the multiplier for the current level
+	 * Gets the Wave taking place
+	 * @return the Wave
 	 */
-	public int getMultiplier() {
-		return multiplier;
+	public Wave getWave() {
+		return wave;
 	}
 	
 	/**
 	 * Increase the level by 1 and calculate the new multiplier
 	 */
-	public void increase() {
-		value++;
-		multiplier *= 1.25;
+	public void levelUp() {
+		currentWave++;
+		if(currentWave == 4) {
+			currentWave = 0;
+			value++;
+		}
+		wave.levelUp();
 	}
 
 }

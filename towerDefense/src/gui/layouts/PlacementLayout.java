@@ -7,6 +7,7 @@ import exceptions.InvalidActionException;
 import exceptions.UnselectedObjectException;
 import game.Game;
 import game.Map;
+import game.Wave;
 import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
@@ -235,10 +236,11 @@ public class PlacementLayout extends Layout<GridPane> {
 				Pair<Integer, Integer> coordinates = Game.getInstance().getMap().getObjectPosition(object);
 				dropItem(coordinates.getKey(), coordinates.getValue());
 			}
-			Game.getInstance().increaseBudget(object.getPrice()); 
+			Game game = Game.getInstance();
+			game.increaseBudget(object.getPrice()); 
 			MovementLayout.getInstance().removeObject(object);
-			Game.getInstance().getMap().freeCell(object);
-			Game.getInstance().updateScore(object.getPoints());
+			game.getMap().freeCell(object);
+			game.updateScore(object.getPoints());
 			StatusLayout.getInstance().updateScore();
 		} catch(InvalidActionException e) {
 			System.out.println(e.getMessage());
@@ -288,31 +290,34 @@ public class PlacementLayout extends Layout<GridPane> {
 	 * Randomly spawns an Enemy with a 20% chance of happening
 	 */
 	public void spawnEnemy() {
-		Random r = new Random();
-		int newEnemyChooser = r.nextInt(5);
-		// TODO: add the wave limit here. The wave is over when the limit is reached and all enemies have been killed.
-		if(newEnemyChooser == 0) {
-			int row;
-			int col = map.getColumns()-1;
-			int maxAttempts = 21;
-			int currentAttempts = 0;
-			do {
-				row = r.nextInt(map.getRows());
-				currentAttempts++;
-			} while(currentAttempts < maxAttempts && map.getCell(row, col).isTaken());
-			try {
-				if(currentAttempts == maxAttempts) {
-					throw new CellTakenException("All initial cells have been taken. Enemy spawn has been delayed.");
+		Wave wave = Game.getInstance().getLevel().getWave();
+		if(wave.spawns() < wave.spawnLimit()) {
+			Random r = new Random();
+			int newEnemyChooser = r.nextInt(5);
+			if(newEnemyChooser == 0) {
+				int row;
+				int col = map.getColumns()-1;
+				int maxAttempts = 21;
+				int currentAttempts = 0;
+				do {
+					row = r.nextInt(map.getRows());
+					currentAttempts++;
+				} while(currentAttempts < maxAttempts && map.getCell(row, col).isTaken());
+				try {
+					if(currentAttempts == maxAttempts) {
+						throw new CellTakenException("All initial cells have been taken. Enemy spawn has been delayed.");
+					}
+					EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
+					Enemy enemy = enemyPrototype.getEnemy();
+					map.takeCell(row, map.getColumns()-1, enemy);
+					MovementLayout.getInstance().addObject(row, col, enemyPrototype.getID(), enemy);
+					if(enemyPrototype.playsSound()) {
+						SoundPlayer.getInstance().play(enemyPrototype.getID());
+					}
+					wave.spawn();
+				} catch(CellTakenException e) {
+					System.out.println(e.getMessage());
 				}
-				EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
-				Enemy enemy = enemyPrototype.getEnemy();
-				map.takeCell(row, map.getColumns()-1, enemy);
-				MovementLayout.getInstance().addObject(row, col, enemyPrototype.getID(), enemy);
-				if(enemyPrototype.playsSound()) {
-					SoundPlayer.getInstance().play(enemyPrototype.getID());
-				}
-			} catch(CellTakenException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 	}
