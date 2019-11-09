@@ -10,7 +10,7 @@ public class Turret extends Warrior {
 		life = LIFE;
 		price = 1300;
 		STRENGTH = 1800;
-		attackFrequency = 400;
+		attackFrequency = 700;
 		strength = STRENGTH;
 		takesTwoCells = true;
 	}

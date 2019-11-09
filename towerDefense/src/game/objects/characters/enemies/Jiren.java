@@ -11,6 +11,7 @@ public class Jiren extends Enemy {
 		points = 1000;
 		STRENGTH = 2400;
 		movementFrequency = 1;
+		attackFrequency = 500;
 		life = LIFE;
 		strength = STRENGTH;
 		price = STRENGTH;

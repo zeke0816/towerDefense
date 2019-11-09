@@ -10,7 +10,7 @@ public class AgentP extends Warrior {
 		scope = 448;
 		price = 2300;
 		STRENGTH = 1000;
-		attackFrequency = 400;
+		attackFrequency = 800;
 		strength = STRENGTH;
 		playsSound = true;
 	}

@@ -11,6 +11,7 @@ public class Skeleton extends Enemy {
 		points = 700;
 		STRENGTH = 700;
 		movementFrequency = 15;
+		attackFrequency = 1500;
 		strength = STRENGTH;
 		price = STRENGTH;
 	}

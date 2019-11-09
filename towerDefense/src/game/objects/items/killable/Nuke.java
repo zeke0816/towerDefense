@@ -8,7 +8,7 @@ public class Nuke extends KillableItem {
 		scope = 192;
 		LIFE = 10000;
 		price = 0;
-		attackFrequency = 1;
+		attackFrequency = 1500;
 		STRENGTH = 10000;
 		protection = life;
 		squaredScope = true;

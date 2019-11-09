@@ -9,7 +9,7 @@ public class Barricade extends KillableItem{
 		LIFE = 6000;
 		price = 2000;
 		STRENGTH = 0;
-		attackFrequency = 0;
+		attackFrequency = 80000;
 		life = LIFE;
 		strength = STRENGTH;
 	}

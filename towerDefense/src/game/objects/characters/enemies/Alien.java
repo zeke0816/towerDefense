@@ -11,6 +11,7 @@ public class Alien extends Enemy {
 		points = 300;
 		STRENGTH = 800;
 		movementFrequency = 10;
+		attackFrequency = 2500;
 		life = LIFE;
 		strength = STRENGTH;
 		price = STRENGTH;

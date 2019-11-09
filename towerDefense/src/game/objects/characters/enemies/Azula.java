@@ -11,6 +11,7 @@ public class Azula extends Enemy {
 		points = 1000;
 		STRENGTH = 2500;
 		movementFrequency = 5;
+		attackFrequency = 500;
 		strength = STRENGTH;
 		price = STRENGTH;
 	}

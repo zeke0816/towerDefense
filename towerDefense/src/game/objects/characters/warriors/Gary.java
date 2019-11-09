@@ -10,7 +10,7 @@ public class Gary extends Warrior {
 		life = LIFE;
 		price = 90;
 		STRENGTH = 400;
-		attackFrequency = 400;
+		attackFrequency = 5000;
 		strength = STRENGTH;
 		playsSound = true;
 	}

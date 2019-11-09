@@ -9,7 +9,7 @@ public class Rock extends KillableItem{
 		LIFE = 2500;
 		price = 0;
 		STRENGTH = 0;
-		attackFrequency = 0;
+		attackFrequency = 90000;
 		life = LIFE;
 		strength = STRENGTH;
 	}

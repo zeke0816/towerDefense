@@ -11,6 +11,7 @@ public class Eustace extends Enemy {
 		points = 1600;
 		STRENGTH = 1000;
 		movementFrequency = 25;
+		attackFrequency = 5000;
 		strength = STRENGTH;
 		price = STRENGTH;
 	}

@@ -9,7 +9,7 @@ public class Tank extends KillableItem {
 		LIFE = 1000;
 		price = 0;
 		STRENGTH = 250;
-		attackFrequency = 4;
+		attackFrequency = 4000;
 		life = LIFE;
 		strength = STRENGTH;
 	}

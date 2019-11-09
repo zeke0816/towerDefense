@@ -10,7 +10,7 @@ public class BB8 extends Warrior {
 		life = LIFE;
 		price = 30;
 		STRENGTH = 600;
-		attackFrequency = 400;
+		attackFrequency = 1400;
 		strength = STRENGTH;
 	}
 	

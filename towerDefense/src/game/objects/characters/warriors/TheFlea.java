@@ -10,7 +10,7 @@ public class TheFlea extends Warrior {
 		life = LIFE;
 		price = 70;
 		STRENGTH = 1200;
-		attackFrequency = 400;
+		attackFrequency = 4000;
 		strength = STRENGTH;
 		playsSound = true;
 	}

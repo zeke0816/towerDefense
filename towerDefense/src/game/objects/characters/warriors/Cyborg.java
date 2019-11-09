@@ -10,7 +10,7 @@ public class Cyborg extends Warrior {
 		life = LIFE;
 		price = 5000;
 		STRENGTH = 1000;
-		attackFrequency = 400;
+		attackFrequency = 600;
 		strength = STRENGTH;
 		playsSound = true;
 	}

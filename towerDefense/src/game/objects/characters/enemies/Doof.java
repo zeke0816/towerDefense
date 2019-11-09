@@ -11,6 +11,7 @@ public class Doof extends Enemy {
 		points = 2000;
 		STRENGTH = 200;
 		movementFrequency = 20;
+		attackFrequency = 4000;
 		strength = STRENGTH;
 		price = STRENGTH;
 	}
