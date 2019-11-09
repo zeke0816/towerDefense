@@ -3,13 +3,16 @@ package game.objects.characters.warriors;
 public class Gary extends Warrior {
 	
 	public Gary() {
+		id = "gary";
+		name = "Gary";
 		LIFE = 2500;
-		scope = 1;
+		scope = 64;
 		life = LIFE;
 		price = 90;
 		STRENGTH = 400;
-		attackSpeed = 400;
+		attackFrequency = 400;
 		strength = STRENGTH;
+		playsSound = true;
 	}
 	
 	private Gary(Gary target) {

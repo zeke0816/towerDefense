@@ -1,5 +1,7 @@
 package game.objects.items;
 
+import exceptions.InvalidActionException;
+import game.Game;
 import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
@@ -14,7 +16,7 @@ public abstract class Item extends GameObject {
 	protected Item() {
 		squaredScope = false;
 		points = 0;
-		movementSpeed = 0;
+		movementFrequency = 0;
 	}
 	
 	protected Item(Item target) {
@@ -29,21 +31,29 @@ public abstract class Item extends GameObject {
 	}
 	
 	public boolean attack(Enemy e) {
-		int harm = e.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
+		boolean attacked = false;
+		attackAttempts++;
+		if(attackAttempts == attackFrequency) {
+			int harm = e.getStrength() - protection;
+			if(harm < 0) {
+				harm = 0;
+			}
+			life -= harm;
+			if(isDead()) {
+				try {
+					Game.getInstance().getMap().freeCell(this);
+				} catch (InvalidActionException e1) {
+					System.out.println(e1.getMessage());
+				}
+			}
+			attacked = true;
+			resetAttackAttempts();
 		}
-		life -= harm;
-		return true;
+		return attacked;
 	}
 	
 	public boolean hasSquaredScope() {
 		return squaredScope;
 	}
-	
-	/**
-	 * Creates and returns a copy of this Item
-	 */
-	public abstract Item clone();
 	
 }

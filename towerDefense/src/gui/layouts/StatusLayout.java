@@ -2,6 +2,8 @@ package gui.layouts;
 
 import exceptions.DatabaseException;
 import game.Game;
+import game.Level;
+import game.Wave;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -89,7 +91,9 @@ public class StatusLayout extends Layout<FlowPane> {
 	}
 	
 	public void updateLevel() {
-		level.setText(""+Game.getInstance().getLevel().getValue()+"  ");
+		Level l = Game.getInstance().getLevel();
+		Wave wave = l.getWave();
+		level.setText(""+l.getValue()+" / "+wave.getValue()+" / "+wave.deaths()+":"+wave.spawnLimit()+"  ");
 	}
 	
 }

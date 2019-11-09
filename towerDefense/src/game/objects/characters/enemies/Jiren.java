@@ -3,12 +3,14 @@ package game.objects.characters.enemies;
 public class Jiren extends Enemy {
 
 	public Jiren() {
-		LIFE = 2000;
-		scope = 10;
+		id = "jiren";
+		name = "Jiren";
+		LIFE = 7000;
+		scope = 640;
 		life = LIFE;
 		points = 1000;
-		STRENGTH = 1000;
-		movementSpeed = 5;
+		STRENGTH = 2400;
+		movementFrequency = 1;
 		life = LIFE;
 		strength = STRENGTH;
 		price = STRENGTH;

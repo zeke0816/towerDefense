@@ -1,12 +1,13 @@
 package game.objects.characters.enemies;
 
+import exceptions.InvalidActionException;
 import game.Game;
 import game.objects.characters.Character;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.permanent.PermanentCharm;
 import game.objects.items.charm.temporary.TemporaryCharm;
 import game.objects.items.killable.KillableItem;
-import game.visitors.Visitor;
+import visitors.Visitor;
 
 /**
  * Abstract class that helps define the enemies in the game
@@ -17,6 +18,7 @@ public abstract class Enemy extends Character {
 	
 	protected int points;
 	protected int worth;
+	protected final int increment = 200;
 	
 	protected Enemy() {
 		points = 0;
@@ -51,16 +53,29 @@ public abstract class Enemy extends Character {
 	}
 
 	public boolean attack(Warrior w) {
-		int harm = w.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
+		boolean attacked = false;
+		attackAttempts++;
+		if(attackAttempts == attackFrequency) {
+			int harm = w.getStrength() - protection;
+			if(harm < 0) {
+				harm = 0;
+			}
+			life -= harm;
+			if(isDead()) {
+				try {
+					Game game = Game.getInstance();
+					game.increaseBudget(getWorth());
+					game.getLevel().getWave().kill();
+					game.getMap().freeCell(this);
+					game.updateScore(points);
+				} catch(InvalidActionException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			attacked = true;
+			resetAttackAttempts();
 		}
-		life -= harm;
-		if(isDead()) {
-			Game.getInstance().increaseBudget(getWorth());
-			Game.getInstance().getLevel().getWave().kill();
-		}
-		return true;
+		return attacked;
 	}
 	
 	public boolean attack(Enemy e) {
@@ -68,16 +83,29 @@ public abstract class Enemy extends Character {
 	}
 	
 	public boolean attack(KillableItem i) {
-		int harm = i.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
+		boolean attacked = false;
+		attackAttempts++;
+		if(attackAttempts == attackFrequency) {
+			int harm = i.getStrength() - protection;
+			if(harm < 0) {
+				harm = 0;
+			}
+			life -= harm;
+			if(isDead()) {
+				try {
+					Game game = Game.getInstance();
+					game.increaseBudget(getWorth());
+					game.getLevel().getWave().kill();
+					game.getMap().freeCell(this);
+					game.updateScore(points);
+				} catch(InvalidActionException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			attacked = true;
+			resetAttackAttempts();
 		}
-		life -= harm;
-		if(isDead()) {
-			Game.getInstance().increaseBudget(getWorth());
-			Game.getInstance().getLevel().getWave().kill();
-		}
-		return true;
+		return attacked;
 	}
 	
 	public boolean attack(TemporaryCharm i) {

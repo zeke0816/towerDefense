@@ -3,13 +3,16 @@ package game.objects.characters.warriors;
 public class AgentP extends Warrior {
 	
 	public AgentP() {
+		id = "agentP";
+		name = "Agent P";
 		LIFE = 2500;
 		life = LIFE;
-		scope = 5;
+		scope = 448;
 		price = 2300;
 		STRENGTH = 1000;
-		attackSpeed = 400;
+		attackFrequency = 400;
 		strength = STRENGTH;
+		playsSound = true;
 	}
 	
 	private AgentP(AgentP target) {

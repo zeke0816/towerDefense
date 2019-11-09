@@ -4,7 +4,7 @@ import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;
-import game.visitors.Visitor;
+import visitors.Visitor;
 
 /**
  * Temporary Item class

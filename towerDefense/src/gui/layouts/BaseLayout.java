@@ -1,6 +1,6 @@
 package gui.layouts;
 
-import gui.factories.warriors.TophPrototype;
+import gui.factories.prototypes.characters.warriors.TophPrototype;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 

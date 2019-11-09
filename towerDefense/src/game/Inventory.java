@@ -2,7 +2,7 @@ package game;
 
 import java.util.HashMap;
 
-import exceptions.InvalidActionException;
+import exceptions.UnavailableObjectException;
 
 public class Inventory {
 	
@@ -10,6 +10,10 @@ public class Inventory {
 	
 	public Inventory() {
 		inventory = new HashMap<String, Integer>();
+	}
+	
+	public void flush() {
+		inventory.clear();
 	}
 	
 	public void add(String id) {
@@ -28,9 +32,9 @@ public class Inventory {
 		return num > 0;
 	}
 	
-	public void take(String id) throws InvalidActionException {
+	public void take(String id) throws UnavailableObjectException {
 		if(inventory.get(id) == null) {
-			throw new InvalidActionException("This Game Object is not available at the moment.");
+			throw new UnavailableObjectException("This Game Object is not available at the moment.");
 		}
 		inventory.put(id, inventory.get(id)-1);
 	}

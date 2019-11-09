@@ -4,31 +4,19 @@ import java.util.Random;
 
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
-import exceptions.UnselectedObjectException;
 import game.Game;
+import game.Level;
 import game.Map;
 import game.Wave;
 import game.objects.GameObject;
-import game.objects.characters.enemies.Enemy;
-import game.objects.characters.warriors.Warrior;
-import game.objects.items.Item;
-import game.visitors.PlacementVisitor;
+import game.objects.characters.states.Shielded;
 import gui.controls.CellButton;
 import gui.factories.EnemyFactory;
 import gui.factories.ItemFactory;
-import gui.factories.enemies.EnemyPrototype;
-import gui.factories.items.ItemPrototype;
-import gui.factories.warriors.WarriorPrototype;
+import gui.factories.prototypes.ObjectPrototype;
 import gui.scenes.MainScene;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Paint;
-import javafx.util.Pair;
 import media.sounds.SoundPlayer;
 
 /**
@@ -39,108 +27,32 @@ import media.sounds.SoundPlayer;
 public class PlacementLayout extends Layout<GridPane> {
 
 	private Map map;
-	private PlacementVisitor placement;
-	private ItemPrototype selectedItem;
-	private WarriorPrototype selectedWarrior;
-	private final static double cellSize = 64;
-	private final static double placementLimitRatio = .6;
+	private ObjectPrototype selectedObject;
 	private static final PlacementLayout instance = new PlacementLayout();
-	private EventHandler<MouseEvent> placementAllowanceListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				if(warriorSelected() || itemSelected()) {
-					CellButton cell = (CellButton) event.getSource();
-					int row = cell.getX();
-					int col = cell.getY();
-					
-					double placementLimit = map.getColumns() * placementLimitRatio;
-					
-					if(col < placementLimit && !map.getCell(row, col).isTaken()) {
-						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#9ae39c"), null, null)));
-					} else {
-						cell.setBackground(new Background(new BackgroundFill(Paint.valueOf("#f05959"), null, null)));
-					}
-				}
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the warrior.");
-			}
-		}
-		
-	};
-	private EventHandler<MouseEvent> placementDismissedListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				Button cell = (Button) event.getSource();
-				cell.setBackground(null);
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing the warrior.");
-			}
-		}
-		
-	};
-	private EventHandler<MouseEvent> placementListener = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			try {
-				CellButton cell = (CellButton) event.getSource();
-				int row = cell.getX();
-				int col = cell.getY();
-				placement.setObject(map.getObjectAt(row, col), row, col);
-				if(!warriorSelected() && !itemSelected()) {
-					if(!warriorSelected()) {
-						throw new UnselectedObjectException("No Warrior has been selected!");
-					}
-					if(!itemSelected()){
-						throw new UnselectedObjectException("No Item has been selected!");
-					}
-				}
-				if(warriorSelected()) {
-					Warrior warrior = selectedWarrior.getWarrior();
-					warrior.accept(placement);
-				}
-				if(itemSelected()) {
-					Item item = selectedItem.getItem();
-					item.accept(placement);
-				}
-			} catch(ClassCastException e) {
-				System.out.println("Invalid cast while placing an Object.");
-			} catch(UnselectedObjectException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		
-	};
 	
 	/**
 	 * Initializes the layout for the buttons that will handle the positioning of the Warriors
 	 */
 	protected PlacementLayout() {
 		super();
-		layout = new GridPane();
-        layout.setAlignment(Pos.CENTER);
-        
-        selectedItem = null;
-        selectedWarrior = null;
-        
-        placement = new PlacementVisitor();
-        
+
 		map = Game.getInstance().getMap();
-		double placementLimit = map.getColumns() * placementLimitRatio;
+		int height = Map.cellSize * map.getLanes();
+		int width = map.getDistance();
 		
-		for(int i = 0; i < map.getRows(); i++) {
-			for(int j = 0; j < map.getColumns(); j++) {
-				CellButton cell = new CellButton();
-				cell.setCoordinates(i, j);
-				if(j < placementLimit){
-					cell.setOnMouseClicked(placementListener);
-				}
-				cell.setOnMouseEntered(placementAllowanceListener);
-				cell.setOnMouseExited(placementDismissedListener);
+		layout = new GridPane();
+        layout.setAlignment(Pos.TOP_LEFT);
+        layout.setMinSize(width, height);
+        layout.setMaxSize(width, height);
+        layout.setPrefSize(width, height);
+        
+        selectedObject = null;
+        
+		int lanes = map.getLanes();
+		int cells = map.getDistance() / Map.cellSize;
+		for(int i = 0; i < lanes; i++) {
+			for(int j = 0; j < cells; j++) {
+				CellButton cell = new CellButton(i, j);
 				layout.add(cell, j, i);
 			}
 		}
@@ -153,76 +65,36 @@ public class PlacementLayout extends Layout<GridPane> {
 	public static PlacementLayout getInstance() {
 		return instance;
 	}
-
-	/**
-	 * Gets the cell size
-	 * @return the only instance of this class
-	 */
-	public static double getCellSize() {
-		return cellSize;
-	}
 	
 	/**
 	 * Checks whether a Warrior has been selected
 	 * @return true if a Warrior is currently selected, false if not
 	 */
-	public boolean warriorSelected() {
-		return selectedWarrior != null;
+	public boolean objectSelected() {
+		return selectedObject != null;
 	}
 	
 	/**
 	 * Gets the selected Warrior
 	 * @return the currently selected Warrior
 	 */
-	public WarriorPrototype getSelectedWarrior() {
-		return selectedWarrior;
+	public ObjectPrototype getSelectedObject() {
+		return selectedObject;
 	}
 	
 	/**
 	 * Selects the Warrior to be placed in the map
 	 * @param w the Warrior
 	 */
-	public void selectWarrior(WarriorPrototype w) {
-		selectedWarrior = w;
+	public void selectObject(ObjectPrototype prototype) {
+		selectedObject = prototype;
 	}
 	
 	/**
-	 * Deselects the Warrior to be placed in the map
+	 * Deselects the Object to be placed in the map
 	 */
-	public void deselectWarrior() {
-		selectedWarrior = null;
-		MainScene.getInstance().resetCursorImage();
-	}
-	
-	/**
-	 * Checks whether an Item has been selected
-	 * @return true if an Item is currently selected, false if not
-	 */
-	public boolean itemSelected() {
-		return selectedItem != null;
-	}
-	
-	/**
-	 * Gets the selected Item
-	 * @return the currently selected Item
-	 */
-	public ItemPrototype getSelectedItem() {
-		return selectedItem;
-	}
-	
-	/**
-	 * Selects the Item to be placed in the map
-	 * @param i the Item
-	 */
-	public void selectItem(ItemPrototype i) {
-		selectedItem = i;
-	}
-	
-	/**
-	 * Deselects the Item to be placed in the map
-	 */
-	public void deselectItem() {
-		selectedItem = null;
+	public void deselectObject() {
+		selectedObject = null;
 		MainScene.getInstance().resetCursorImage();
 	}
 	
@@ -231,44 +103,38 @@ public class PlacementLayout extends Layout<GridPane> {
 	 * @param object the Object that is dead
 	 */
 	public void killObject(GameObject object) {
-		try {
-			if(object.drops()) {
-				Pair<Integer, Integer> coordinates = Game.getInstance().getMap().getObjectPosition(object);
-				dropItem(coordinates.getKey(), coordinates.getValue());
-			}
-			Game game = Game.getInstance();
-			game.increaseBudget(object.getPrice()); 
-			MovementLayout.getInstance().removeObject(object);
-			game.getMap().freeCell(object);
-			game.updateScore(object.getPoints());
-			StatusLayout.getInstance().updateScore();
-		} catch(InvalidActionException e) {
-			System.out.println(e.getMessage());
+		if(object.drops()) {
+			dropItem(object.getLane(), object.getDistance());
 		}
+		MovementLayout.getInstance().removeObject(object);
+		StatusLayout.getInstance().updateScore();
+		StatusLayout.getInstance().updateBudget();
+		StoreLayout.getInstance().updateAvailability();
 	}
 	
 	/**
-	 * Randomly spawns an Item with a 1% chance of happening
+	 * Randomly spawns an Item with a .1% chance of happening
 	 */
 	public void spawnItem() {
 		Random r = new Random();
-		int newEnemyChooser = r.nextInt(100);
+		int newEnemyChooser = r.nextInt(1000); // .1% chance
 		if(newEnemyChooser == 0) {
-			int row;
-			int col;
+			int lane;
+			int distance;
 			do {
-				row = r.nextInt(map.getRows());
-				col = r.nextInt(map.getColumns());
-			} while(map.getCell(row, col).isTaken());
+				lane = r.nextInt(map.getLanes());
+				distance = r.nextInt(map.getDistance());
+			} while(map.getCell(lane, distance).isTaken());
 			try {
-				ItemPrototype itemPrototype = ItemFactory.getInstance().createRandomItem();
-				Item item = itemPrototype.cloneItem();
-				map.takeCell(row, col, item);
-				MovementLayout.getInstance().addObject(row, col, itemPrototype.getID(), item);
-				if(itemPrototype.playsSound()) {
-					SoundPlayer.getInstance().play(itemPrototype.getID());
+				GameObject item = ItemFactory.getInstance().createRandomItem().cloneObject();
+				item.setLane(lane);
+				item.setDistance(distance);
+				map.takeCell(item);
+				MovementLayout.getInstance().addObject(item);
+				if(item.playsSound()) {
+					SoundPlayer.getInstance().play(item.getID());
 				}
-			} catch(CellTakenException e) {
+			} catch(CellTakenException | InvalidActionException e) {
 				System.out.println(e.getMessage());
 			}
 		}
@@ -277,45 +143,61 @@ public class PlacementLayout extends Layout<GridPane> {
 	/**
 	 * Drops a random Droppable Item in the given coordinates
 	 */
-	public void dropItem(int row, int col) {
-		ItemPrototype itemPrototype = ItemFactory.getInstance().createDroppableItem();
-		Item item = itemPrototype.cloneItem();
-		DroppingLayout.getInstance().addItem(row, col, itemPrototype.getID(), item);
-		if(itemPrototype.playsSound()) {
-			SoundPlayer.getInstance().play(itemPrototype.getID());
+	public void dropItem(int lane, int distance) {
+		GameObject item = ItemFactory.getInstance().createDroppableItem().cloneObject();
+		item.setLane(lane);
+		item.setDistance(distance);
+		DroppingLayout.getInstance().addObject(item);
+		if(item.playsSound()) {
+			SoundPlayer.getInstance().play(item.getID());
 		}
 	}
 	
 	/**
-	 * Randomly spawns an Enemy with a 20% chance of happening
+	 * Randomly spawns an Enemy with a 2% chance of happening
 	 */
 	public void spawnEnemy() {
-		Wave wave = Game.getInstance().getLevel().getWave();
+		Level level = Game.getInstance().getLevel();
+		Wave wave = level.getWave();
+		
+		if(wave.isChanging()) {
+			EnemyFactory.getInstance().growStats();
+			wave.stopChanging();
+		}
+		if(level.isChanging()) {
+			EnemyFactory.getInstance().upgrade();
+			level.stopChanging();
+		}
+		
 		if(wave.spawns() < wave.spawnLimit()) {
 			Random r = new Random();
-			int newEnemyChooser = r.nextInt(5);
+			int newEnemyChooser = r.nextInt(50); // 2% chance
 			if(newEnemyChooser == 0) {
-				int row;
-				int col = map.getColumns()-1;
-				int maxAttempts = 21;
+				int lane;
+				int distance = (map.getDistance() - Map.cellSize);
+				int maxAttempts = 21; // arbitrary number
 				int currentAttempts = 0;
 				do {
-					row = r.nextInt(map.getRows());
+					lane = r.nextInt(map.getLanes());
 					currentAttempts++;
-				} while(currentAttempts < maxAttempts && map.getCell(row, col).isTaken());
+				} while(currentAttempts < maxAttempts && map.getCell(lane, distance).isTaken());
 				try {
 					if(currentAttempts == maxAttempts) {
 						throw new CellTakenException("All initial cells have been taken. Enemy spawn has been delayed.");
 					}
-					EnemyPrototype enemyPrototype = EnemyFactory.getInstance().createEnemy();
-					Enemy enemy = enemyPrototype.getEnemy();
-					map.takeCell(row, map.getColumns()-1, enemy);
-					MovementLayout.getInstance().addObject(row, col, enemyPrototype.getID(), enemy);
-					if(enemyPrototype.playsSound()) {
-						SoundPlayer.getInstance().play(enemyPrototype.getID());
+					GameObject enemy = EnemyFactory.getInstance().createEnemy().cloneObject();
+					enemy.setLane(lane);
+					enemy.setDistance(distance);
+					if(r.nextInt(20) == 0) { // 5% chance
+						enemy.changeState(new Shielded(enemy));
+					}
+					map.takeCell(enemy);
+					MovementLayout.getInstance().addObject(enemy);
+					if(enemy.playsSound()) {
+						SoundPlayer.getInstance().play(enemy.getID());
 					}
 					wave.spawn();
-				} catch(CellTakenException e) {
+				} catch(CellTakenException | InvalidActionException e) {
 					System.out.println(e.getMessage());
 				}
 			}

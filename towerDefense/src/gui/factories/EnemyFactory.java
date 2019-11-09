@@ -1,36 +1,43 @@
 package gui.factories;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import gui.factories.enemies.AlienPrototype;
-import gui.factories.enemies.AzulaPrototype;
-import gui.factories.enemies.DoofPrototype;
-import gui.factories.enemies.EnemyPrototype;
-import gui.factories.enemies.EustacePrototype;
-import gui.factories.enemies.JirenPrototype;
-import gui.factories.enemies.SkeletonPrototype;
+import gui.factories.difficulty.DifficultyState;
+import gui.factories.difficulty.Easy;
+import gui.factories.prototypes.ObjectPrototype;
+import gui.factories.prototypes.characters.enemies.AlienPrototype;
+import gui.factories.prototypes.characters.enemies.AzulaPrototype;
+import gui.factories.prototypes.characters.enemies.DoofPrototype;
+import gui.factories.prototypes.characters.enemies.EustacePrototype;
+import gui.factories.prototypes.characters.enemies.JirenPrototype;
+import gui.factories.prototypes.characters.enemies.SkeletonPrototype;
 
 /**
  * Class that handles the creation of enemies.
  */
 public class EnemyFactory {
-	
-	protected ArrayList<EnemyPrototype> enemies;
+
+	protected DifficultyState state;
+	protected ArrayList<ObjectPrototype> easyEnemies, mediumEnemies, hardEnemies;
 	private static final EnemyFactory instance = new EnemyFactory();
 	
 	/**
 	 * Initializes the Enemy factory with a list of Enemy Prototypes
 	 */
 	protected EnemyFactory() {
-		enemies = new ArrayList<EnemyPrototype>();
+		easyEnemies = new ArrayList<ObjectPrototype>();
+		easyEnemies.add(new EustacePrototype());
+		easyEnemies.add(new AlienPrototype());
 		
-		enemies.add(new AlienPrototype());
-		enemies.add(new AzulaPrototype());
-		enemies.add(new DoofPrototype());
-		enemies.add(new EustacePrototype());
-		enemies.add(new SkeletonPrototype());
-		enemies.add(new JirenPrototype());
+		mediumEnemies = new ArrayList<ObjectPrototype>();
+		mediumEnemies.add(new DoofPrototype());
+		mediumEnemies.add(new SkeletonPrototype());
+
+		hardEnemies = new ArrayList<ObjectPrototype>();
+		hardEnemies.add(new AzulaPrototype());
+		hardEnemies.add(new JirenPrototype());
+		
+		state = new Easy(this);
 	}
 	
 	/**
@@ -40,15 +47,43 @@ public class EnemyFactory {
 	public static EnemyFactory getInstance() {
 		return instance;
 	}
+
+	/**
+	 * Changes the state of this Factory
+	 */
+	public void upgrade() {
+		state.doThis();
+	}
+	
+	/**
+	 * Changes the state of this Factory (for reals this time)
+	 * @param s the new State 
+	 */
+	public void changeState(DifficultyState s) {
+		state = s;
+	}
 	
 	/**
 	 * Returns a randomly chosen Enemy
-	 * @return an Enemy
+	 * @return an Enemy prototype
 	 */
-	public EnemyPrototype createEnemy() {
-		Random ran = new Random();
-		int randomInt = ran.nextInt(6);
-		return enemies.get(randomInt);
+	public ObjectPrototype createEnemy() {
+		return state.createEnemy(easyEnemies, mediumEnemies, hardEnemies);
+	}
+	
+	/**
+	 * Incremets the life and the strength of the enemy.
+	 */
+	public void growStats() {
+		for(ObjectPrototype ep : easyEnemies) {
+			ep.getObject().growStats();
+		}
+		for(ObjectPrototype ep : mediumEnemies) {
+			ep.getObject().growStats();
+		}
+		for(ObjectPrototype ep : hardEnemies) {
+			ep.getObject().growStats();
+		}
 	}
 	
 }

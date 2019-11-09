@@ -5,6 +5,9 @@ import game.objects.GameObject;
 public class Poison extends TemporaryCharm{
 
 	public Poison() {
+		id = "poison";
+		name = "Poison";
+		key = "_poisoned";
 		price = 1500;
 	}
 	

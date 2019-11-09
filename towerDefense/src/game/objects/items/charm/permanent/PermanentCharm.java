@@ -3,7 +3,7 @@ package game.objects.items.charm.permanent;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;
-import game.visitors.Visitor;
+import visitors.Visitor;
 
 /**
  * Permanent charm Item class
@@ -14,7 +14,7 @@ public abstract class PermanentCharm extends CharmingItem {
 		scope = 0;
 		life = 0;
 		strength = 0;
-		attackSpeed = 0;
+		attackFrequency = 0;
 	}
 	
 	protected PermanentCharm(PermanentCharm target) {

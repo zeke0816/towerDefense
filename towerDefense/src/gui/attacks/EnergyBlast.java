@@ -1,10 +1,11 @@
 package gui.attacks;
 
 import exceptions.DatabaseException;
+import game.Map;
 import game.objects.GameObject;
-import gui.controls.PlacedObject;
 import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
+import gui.layouts.StatusLayout;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -14,40 +15,38 @@ import media.MediaDatabase;
 
 public class EnergyBlast extends Attack {
 	
-	protected double destination;
-	protected double current;
+	protected int destination;
+	protected int current;
 	protected int duration;
-	protected double size;
-	protected int row;
 	protected EnergyBlast instance;
 
 	/**
 	 * Creates an Energy Blast traveling from a source distance from/to the base to a destination distance from/to the base
-	 * @param a the attacking Object
-	 * @param b the blown up Object
+	 * @param lane the lane where the blast is thrown
+	 * @param s the source position
+	 * @param d the destination position
 	 */
-	public EnergyBlast(PlacedObject attacker, PlacedObject blownup) {
+	public EnergyBlast(int lane, int s, int d) {
 		super();
 		
-		row = attacker.getRow();
-		size = PlacementLayout.getCellSize();
-		current = attacker.getCurrentPosition();
-		destination = blownup.getCurrentPosition();
-		duration = Integer.parseInt(Double.toString(Math.abs(destination - current)).split("\\.")[0]);
+		setTranslateY(lane * Map.cellSize);
+		current = s;
+		destination = d;
+		duration = Math.abs(destination - current);
 		
 		updatePosition(current);
-		setPrefHeight(size);
-		setPrefWidth(size);
+		setPrefHeight(Map.cellSize);
+		setPrefWidth(Map.cellSize);
 		setVisible(true);
 		instance = this;
-		MovementLayout.getInstance().addBlast(row, instance);
+		MovementLayout.getInstance().addBlast(instance);
 	}
 	
 	public void shoot(GameObject object) {
 		try {
 			if(destination > current) {
 				// shoot right
-				setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("energyBlastRight", size, size, true, false));
+				setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("energyBlastRight", Map.cellSize, Map.cellSize, true, false));
 				Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
 	
 					@Override
@@ -61,7 +60,7 @@ public class EnergyBlast extends Attack {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						MovementLayout.getInstance().removeBlast(row, instance);
+						MovementLayout.getInstance().removeBlast(instance);
 						checkDeath(object);
 					}
 		        	
@@ -70,7 +69,7 @@ public class EnergyBlast extends Attack {
 				timeline.play();
 			} else {
 				// shoot left
-				setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("energyBlastLeft", size, size, true, false));
+				setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("energyBlastLeft", Map.cellSize, Map.cellSize, true, false));
 				Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
 
 					@Override
@@ -84,7 +83,7 @@ public class EnergyBlast extends Attack {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						MovementLayout.getInstance().removeBlast(row, instance);
+						MovementLayout.getInstance().removeBlast(instance);
 						checkDeath(object);
 					}
 		        	
@@ -108,6 +107,7 @@ public class EnergyBlast extends Attack {
 	private void checkDeath(GameObject object) {
 		if(object.isDead()) {
 			PlacementLayout.getInstance().killObject(object);
+			StatusLayout.getInstance().updateLevel();
 		}
 	}
 	

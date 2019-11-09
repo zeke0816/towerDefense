@@ -33,9 +33,9 @@ public class MapLayout extends Layout<StackPane> {
 	 */
 	public void allowPlacement() {
 		layout.getChildren().clear();
-		GridPane movementLayout = MovementLayout.getInstance().getLayout();
+		StackPane movementLayout = MovementLayout.getInstance().getLayout();
 		GridPane placementLayout = PlacementLayout.getInstance().getLayout();
-		GridPane droppingLayout = DroppingLayout.getInstance().getLayout();
+		StackPane droppingLayout = DroppingLayout.getInstance().getLayout();
 		layout.getChildren().addAll(movementLayout, droppingLayout, placementLayout);
 	}
 	
@@ -44,9 +44,9 @@ public class MapLayout extends Layout<StackPane> {
 	 */
 	public void allowPicking() {
 		layout.getChildren().clear();
-		GridPane movementLayout = MovementLayout.getInstance().getLayout();
+		StackPane movementLayout = MovementLayout.getInstance().getLayout();
 		GridPane placementLayout = PlacementLayout.getInstance().getLayout();
-		GridPane droppingLayout = DroppingLayout.getInstance().getLayout();
+		StackPane droppingLayout = DroppingLayout.getInstance().getLayout();
 		layout.getChildren().addAll(movementLayout, placementLayout, droppingLayout);
 	}
 

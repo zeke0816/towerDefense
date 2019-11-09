@@ -1,7 +1,7 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
@@ -15,8 +15,10 @@ import javafx.util.Pair;
  */
 public class Map {
 	
-	protected final int rows = 6;
-	protected final int cols = 13;
+	public static final int cellSize = 64;
+	public static final double limitFactor = .6;
+	protected final int lanes = 6;
+	protected final int distance = 13 * cellSize;
 	protected Cell[][] arena;
 	protected HashMap<GameObject, Pair<Integer, Integer>> positions;
 	
@@ -24,90 +26,98 @@ public class Map {
 	 * Initializes an empty arena
 	 */
 	public Map() {
-		arena = new Cell[rows][cols];
-		for(int i = 0; i < rows; i++) {
-			for(int j = 0; j < cols; j++) {
+		arena = new Cell[lanes][distance];
+		for(int i = 0; i < lanes; i++) {
+			for(int j = 0; j < distance; j++) {
 				arena[i][j] = new Cell();
+				// if this is the last lane
+				if(i == lanes - 1) {
+					arena[i][j].takeDoubleObjects(false);
+				}
 			}
 		}
 		positions = new HashMap<GameObject, Pair<Integer, Integer>>();
 	}
 	
 	/**
+	 * Flushes the map
+	 */
+	public void flush(){
+		positions.clear();
+	}
+	
+	/**
 	 * Gets the rows of the arena
 	 * @return the rows
 	 */
-	public int getRows() {
-		return rows;
+	public int getLanes() {
+		return lanes;
 	}
 	
 	/**
 	 * Gets the columns of the arena
 	 * @return the columns
 	 */
-	public int getColumns() {
-		return cols;
+	public int getDistance() {
+		return distance;
 	}
 	
 	/**
-	 * Gets the cell at the specified row and column
-	 * @param row the row
-	 * @param col the column
-	 * @return the cell at the row-column position
+	 * Gets the cell at the specified lane and distance
+	 * @param l the lane
+	 * @param d the distance
+	 * @return the cell at the lane-distance position
 	 */
-	public Cell getCell(int row, int col) {
-		return arena[row][col];
+	public Cell getCell(int l, int d) {
+		return arena[l][d];
 	}
 	
 	/**
-	 * Gets the game object at the specified row and column
-	 * @param row the row
-	 * @param col the column
-	 * @return the game object at the row-column position
+	 * Gets the game object at the specified lane and distance
+	 * @param l the lane
+	 * @param d the distance
+	 * @return the game object at the lane-distance position
 	 */
-	public GameObject getObjectAt(int row, int col) {
-		return getCell(row, col).getObject();
-	}
-	
-	/**
-	 * Gets the coordinates for the given Game Object
-	 * @param obj
-	 * @return
-	 */
-	public Pair<Integer, Integer> getObjectPosition(GameObject obj) throws InvalidActionException {
-		Pair<Integer, Integer> res = positions.get(obj);
-		if(res == null) {
-			throw new InvalidActionException("The Game Object could not be found on the Map.");
-		}
-		return res;
+	public GameObject getObjectAt(int l, int d) {
+		return getCell(l, d).getObject();
 	}
 	
 	/**
 	 * Gets a copy of the current positions of all Game Objects
 	 * @return the copy of the positions
 	 */
-	public HashMap<GameObject, Pair<Integer, Integer>> getPositions(){
-		HashMap<GameObject, Pair<Integer, Integer>> copy = new HashMap<GameObject, Pair<Integer, Integer>>();
-		for(Entry<GameObject, Pair<Integer, Integer>> entry: positions.entrySet()) {
-			copy.put(entry.getKey(), entry.getValue());
+	public ArrayList<GameObject> getGameObjectList(){
+		ArrayList<GameObject> list = new ArrayList<GameObject>();
+		for(GameObject object: positions.keySet()) {
+			list.add(object);
 		}
-		return copy;
+		return list;
 	}
 	
 	/**
-	 * Lets an object take the place in a cell, given the row and column
-	 * @param row the row to take
-	 * @param col the column to take
+	 * Lets an object take the place in a cell, given the lane and distance
+	 * @param l the lane to take
+	 * @param d the distance to take
 	 * @param object the object trying to take the cell
+	 * @throws InvalidActionException 
 	 */
-	public void takeCell(int row, int col, GameObject object) throws CellTakenException {
+	public void takeCell(GameObject object) throws CellTakenException, InvalidActionException {
 		// System.out.println(object.hashCode()); // Memory tester to see if each object is correctly cloned by the prototype
-		if(getCell(row, col).isTaken()) {
+		int l = object.getLane();
+		int d = object.getDistance();
+		Cell cell = getCell(l, d);
+		if(cell.isTaken()) {
 			throw new CellTakenException("This cell has already been taken!");
 		}
-		getCell(row, col).setObject(object);
-		Pair<Integer, Integer> coor = new Pair<Integer, Integer>(row, col);
+		if(!cell.canTakeDoubleObjects() && object.takesTwoCells()) {
+			throw new InvalidActionException("This object cannot be placed on this cell.");
+		}
+		cell.setObject(object);
+		Pair<Integer, Integer> coor = new Pair<Integer, Integer>(l, d);
 		positions.put(object, coor);
+		if(object.takesTwoCells()) {
+			getCell(l + 1, d).setObject(object);
+		}
 	}
 	
 	/**
@@ -116,15 +126,17 @@ public class Map {
 	 * @return a Pair of coordinates indicating where the object was on the arena
 	 * @throws InvalidActionException when the object is not on the arena
 	 */
-	public void freeCell(GameObject obj) throws InvalidActionException {
+	public void freeCell(GameObject object) throws InvalidActionException {
 		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = positions.remove(obj);
-		if(coordinates == null) {
+		if(positions.remove(object) == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		getCell(coordinates.getKey(), coordinates.getValue()).free();
+		getCell(object.getLane(), object.getDistance()).free();
+		if(object.takesTwoCells()) {
+			getCell(object.getLane() + 1, object.getDistance()).free();
+		}
 	}
 	
 	/**
@@ -133,15 +145,14 @@ public class Map {
 	 * @return true if it can, false if it cannot
 	 * @throws InvalidActionException when there are no Game Objects on the arena or the selected Game Object is not on the arena
 	 */
-	public boolean canAdvance(GameObject obj) throws InvalidActionException {
+	public boolean canAdvance(GameObject object) throws InvalidActionException {
 		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = positions.get(obj);
-		if(coordinates == null) {
+		if(positions.get(object) == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		GameObject nextCellObject = getObjectAt(coordinates.getKey(), coordinates.getValue() - 1);
+		GameObject nextCellObject = getObjectAt(object.getLane(), object.getDistance() - 1);
 		return nextCellObject == null;
 	}
 	
@@ -151,18 +162,20 @@ public class Map {
 	 * @throws InvalidActionException when there are no Game Objects on the arena or the selected Game Object is not on the arena
 	 * @throws CellTakenException if the next cell is already taken
 	 */
-	public void advance(GameObject obj) throws InvalidActionException, CellTakenException {
+	public void advance(GameObject object) throws InvalidActionException, CellTakenException {
 		if(positions.isEmpty()) {
 			throw new InvalidActionException("There are no Game Objects on the arena.");
 		}
-		Pair<Integer, Integer> coordinates = positions.get(obj);
-		if(coordinates == null) {
+		if(positions.get(object) == null) {
 			throw new InvalidActionException("The chosen Game Object is not on the arena.");
 		}
-		freeCell(obj);
-		positions.put(obj, new Pair<Integer, Integer>(coordinates.getKey(), coordinates.getValue()-1));
-		takeCell(coordinates.getKey(), coordinates.getValue()-1, obj);
-		if(coordinates.getValue()-1 == 0) {
+		freeCell(object);
+		object.setDistance(object.getDistance()-1);
+		int l = object.getLane();
+		int d = object.getDistance();
+		positions.put(object, new Pair<Integer, Integer>(l, d));
+		takeCell(object);
+		if(d == 0) {
 			Game.getInstance().end(); // GAME OVER
 		}
 		// System.out.println("X: "+(coordinates.getValue()-1));

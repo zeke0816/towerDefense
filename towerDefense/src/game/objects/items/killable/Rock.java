@@ -3,11 +3,13 @@ package game.objects.items.killable;
 public class Rock extends KillableItem{
 	
 	public Rock() {
+		id = "rock";
+		name = "Rock";
 		scope = 0;
 		LIFE = 2500;
 		price = 0;
 		STRENGTH = 0;
-		attackSpeed = 0;
+		attackFrequency = 0;
 		life = LIFE;
 		strength = STRENGTH;
 	}

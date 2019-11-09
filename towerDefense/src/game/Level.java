@@ -8,16 +8,16 @@ package game;
 public class Level {
 	
 	protected int value;
-	protected int currentWave;
 	protected Wave wave;
+	protected boolean isChanging;
 	
 	/**
 	 * Initializes in Level 1 and a default multiplier
 	 */
 	public Level() {
 		value = 1;
-		currentWave = 1;
-		wave = new Wave();
+		wave = new Wave(this);
+		isChanging = false;
 	}
 	
 	/**
@@ -37,15 +37,35 @@ public class Level {
 	}
 	
 	/**
+	 * Tells whether the level is changing or not
+	 * @return true if it is changing, false if it is not
+	 */
+	public boolean isChanging() {
+		return isChanging;
+	}
+	
+	/**
+	 * Stops the changing behavior
+	 */
+	public void stopChanging() {
+		isChanging = false;
+	}
+	
+	/**
+	 * Resets the level
+	 */
+	public void reset() {
+		value = 1;
+	}
+	
+	/**
 	 * Increase the level by 1 and calculate the new multiplier
 	 */
 	public void levelUp() {
-		currentWave++;
-		if(currentWave == 4) {
-			currentWave = 0;
-			value++;
-		}
-		wave.levelUp();
+		value++;
+		isChanging = true;
+		wave.waveUp();
+		wave.resetValue();
 	}
 
 }

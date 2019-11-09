@@ -4,9 +4,13 @@ import exceptions.DatabaseException;
 import game.Game;
 import gui.layouts.BaseLayout;
 import gui.layouts.DockLayout;
+import gui.layouts.DroppingLayout;
+import gui.layouts.InventoryLayout;
 import gui.layouts.MapLayout;
+import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
 import gui.layouts.StatusLayout;
+import gui.layouts.StoreLayout;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -30,29 +34,41 @@ public class MainScene extends Scene {
 	
 	private static final StackPane layout = new StackPane();
 	private static final BorderPane gameLayout = new BorderPane();
-	private static final BorderPane pauseLayout = new BorderPane();
+	private static final BorderPane statusLayout = new BorderPane();
 	private static final MainScene instance = new MainScene(layout);
-	private Label pauseLabel;
+	private Label statusLabel;
 	private EventHandler<KeyEvent> pauseListener = new EventHandler<KeyEvent>() {
 
 		@Override
 		public void handle(KeyEvent key) {
-			if(key.getCode() == KeyCode.P) {
-				Game game = Game.getInstance();
-				if(game.paused()) {
-					game.resume();
+			Game game = Game.getInstance();
+			if(key.getCode() == KeyCode.N) {
+				if(!game.hasStarted() && (game.isOver() || game.isBeaten())) {
+					game.startNew();
+					MovementLayout.getInstance().flush();
+					DroppingLayout.getInstance().flush();
+					StoreLayout.getInstance().updateAvailability();
+					InventoryLayout.getInstance().updateAvailability();
+					game.start();
 					resume();
-				} else {
-					game.pause();
-					pause();
+				}
+			}
+			if(key.getCode() == KeyCode.P) {
+				if(game.hasStarted()) {
+					if(game.paused()) {
+						game.resume();
+						resume();
+					} else {
+						game.pause();
+						pause();
+					}
 				}
 			}
 			if(key.getCode() == KeyCode.I) {
 				DockLayout.getInstance().toggleInventory();
 			}
 			if(key.getCode() == KeyCode.ESCAPE) {
-				PlacementLayout.getInstance().deselectWarrior();
-				PlacementLayout.getInstance().deselectItem();
+				PlacementLayout.getInstance().deselectObject();
 				MapLayout.getInstance().allowPicking();
 			}
 		}
@@ -71,38 +87,55 @@ public class MainScene extends Scene {
 		} catch (DatabaseException e) {
 			System.out.println("The main Scene's background image could not be loaded.");
 		}
-		pauseLabel = new Label();
-		pauseLabel.setOpacity(.6);
-		pauseLabel.setText("PAUSED");
-		pauseLabel.setFont(new Font("Trebuchet", 20));
-		pauseLabel.setTextFill(Paint.valueOf("#fff"));
-		pauseLabel.setPadding(new Insets(10, 16, 10, 16));
-		pauseLabel.setBackground(new Background(new BackgroundFill(Paint.valueOf("#000"), null, null)));
+		statusLabel = new Label();
+		statusLabel.setOpacity(.6);
+		statusLabel.setText("PRESS N TO START A NEW GAME");
+		statusLabel.setFont(new Font("Trebuchet", 20));
+		statusLabel.setTextFill(Paint.valueOf("#fff"));
+		statusLabel.setPadding(new Insets(10, 16, 10, 16));
+		statusLabel.setBackground(new Background(new BackgroundFill(Paint.valueOf("#000"), null, null)));
         gameLayout.setTop(StatusLayout.getInstance().getLayout());
         gameLayout.setLeft(BaseLayout.getInstance().getLayout());
         gameLayout.setCenter(MapLayout.getInstance().getLayout());
         gameLayout.setBottom(DockLayout.getInstance().getLayout());
-        pauseLayout.setCenter(pauseLabel);
+        statusLayout.setCenter(statusLabel);
         setOnKeyPressed(pauseListener);
-        pause();
+        layout.getChildren().addAll(gameLayout, statusLayout);
+	}
+	
+	/**
+	 * Shows the victory screen
+	 */
+	public void victory() {
+		pause();
+		statusLabel.setText("VICTORY! YOU HAVE WON THE GAME. PRESS N TO START AGAIN");
+	}
+	
+	/**
+	 * Shows the game over screen
+	 */
+	public void gameOver() {
+		pause();
+		statusLabel.setText("GAME OVER! PRESS N TO START A NEW GAME");
 	}
 	
 	/**
 	 * Shows the pause screen
 	 */
 	private void pause() {
-		pauseLayout.setCenter(pauseLabel);
+		statusLayout.setCenter(statusLabel);
+		statusLabel.setText("PAUSED");
 		layout.getChildren().clear();
-        layout.getChildren().addAll(gameLayout, pauseLayout);
+        layout.getChildren().addAll(gameLayout, statusLayout);
 	}
 	
 	/**
 	 * Removes the pause screen
 	 */
 	private void resume() {
-		pauseLayout.setCenter(null);
+		statusLayout.setCenter(null);
 		layout.getChildren().clear();
-        layout.getChildren().addAll(pauseLayout, gameLayout);
+        layout.getChildren().addAll(statusLayout, gameLayout);
 	}
 
 	/**

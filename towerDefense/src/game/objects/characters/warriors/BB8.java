@@ -3,12 +3,14 @@ package game.objects.characters.warriors;
 public class BB8 extends Warrior {
 	
 	public BB8() {
+		id = "bb8";
+		name = "BB8";
 		LIFE = 1700;
-		scope = 1;
+		scope = 64;
 		life = LIFE;
 		price = 30;
 		STRENGTH = 600;
-		attackSpeed = 400;
+		attackFrequency = 400;
 		strength = STRENGTH;
 	}
 	

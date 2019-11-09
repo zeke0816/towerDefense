@@ -3,42 +3,36 @@ package gui.attacks;
 import exceptions.DatabaseException;
 import game.objects.GameObject;
 import gui.layouts.MovementLayout;
-import gui.layouts.PlacementLayout;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.BackgroundPosition;
 import javafx.util.Duration;
 import media.MediaDatabase;
 
 public class ExplosionBlast extends Attack {
 	
-	protected double size;
-	protected int yPos;
-	protected int xPos;
 	protected ExplosionBlast instance;
 
 	/**
-	 * Creates an Explosion Blast at an XY position distant to the base
-	 * @param row the row coordinate
-	 * @param col the column coordinate
+	 * Creates an Explosion Blast at a given distance to the base
+	 * @param d the distance to the base
 	 */
-	public ExplosionBlast(int row, int col) {
+	public ExplosionBlast(int left, int top, int scope) {
 		super();
 		
-		yPos = row;
-		xPos = col;
-		size = PlacementLayout.getCellSize();
-		setPrefHeight(size);
-		setPrefWidth(size);
+		setPrefHeight(scope);
+		setPrefWidth(scope);
 		setVisible(true);
-		setTranslateX(xPos * size);
+		setTranslateY(top);
+		setTranslateX(left);
 		try {
-			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("explosionBlast", size, size, true, false));
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia("explosionBlast", scope, scope, true, false, BackgroundPosition.CENTER));
 		} catch (DatabaseException ex) {
 			System.out.println(ex.getMessage());
 		}
-		MovementLayout.getInstance().addBlast(yPos, this);
+		MovementLayout.getInstance().addBlast(this);
 		instance = this;
 	}
 	
@@ -60,7 +54,7 @@ public class ExplosionBlast extends Attack {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				MovementLayout.getInstance().removeBlast(yPos, instance);
+				MovementLayout.getInstance().removeBlast(instance);
 			}
 			
 		});

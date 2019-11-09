@@ -3,11 +3,13 @@ package game.objects.items.killable;
 public class Barricade extends KillableItem{
 
 	public Barricade() {
+		id = "barricade";
+		name = "Barricade";
 		scope = 0;
 		LIFE = 6000;
 		price = 2000;
 		STRENGTH = 0;
-		attackSpeed = 0;
+		attackFrequency = 0;
 		life = LIFE;
 		strength = STRENGTH;
 	}

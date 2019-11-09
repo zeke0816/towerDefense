@@ -1,17 +1,16 @@
 package gui.factories;
 
-import gui.factories.items.RockPrototype;
-import gui.factories.items.ShieldPrototype;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-import gui.factories.items.CurePrototype;
-import gui.factories.items.ItemPrototype;
-import gui.factories.items.NukePrototype;
-import gui.factories.items.TankPrototype;
-import gui.factories.items.PoisonPrototype;
-import gui.factories.items.BarricadePrototype;
+import gui.factories.prototypes.ObjectPrototype;
+import gui.factories.prototypes.items.BarricadePrototype;
+import gui.factories.prototypes.items.CurePrototype;
+import gui.factories.prototypes.items.NukePrototype;
+import gui.factories.prototypes.items.PoisonPrototype;
+import gui.factories.prototypes.items.RockPrototype;
+import gui.factories.prototypes.items.ShieldPrototype;
+import gui.factories.prototypes.items.TankPrototype;
 
 /**
  * Class that handles the creation of Items of the game
@@ -19,8 +18,8 @@ import gui.factories.items.BarricadePrototype;
  */
 public class ItemFactory {
 	
-	protected ArrayList<ItemPrototype> randomItems;
-	protected ArrayList<ItemPrototype> droppableItems;
+	protected ArrayList<ObjectPrototype> randomItems;
+	protected ArrayList<ObjectPrototype> droppableItems;
 	
 	private static final ItemFactory instance = new ItemFactory();
 	
@@ -28,8 +27,8 @@ public class ItemFactory {
 	 * Initializes the Item factory with a list for random items and a list for droppable items
 	 */
 	private ItemFactory() {
-		randomItems = new ArrayList<ItemPrototype>();
-		droppableItems = new ArrayList<ItemPrototype>();
+		randomItems = new ArrayList<ObjectPrototype>();
+		droppableItems = new ArrayList<ObjectPrototype>();
 		
 		randomItems.add(new RockPrototype());
 		randomItems.add(new TankPrototype());
@@ -53,7 +52,7 @@ public class ItemFactory {
 	 * Returns a randomly chosen Random Item
 	 * @return a Random item
 	 */
-	public ItemPrototype createRandomItem() {
+	public ObjectPrototype createRandomItem() {
 		Random ran = new Random();
 		int randomInt = ran.nextInt(2);
 		return randomItems.get(randomInt);
@@ -63,7 +62,7 @@ public class ItemFactory {
 	 * Returns a randomly chosen Droppable Item
 	 * @return a droppable item
 	 */
-	public ItemPrototype createDroppableItem() {
+	public ObjectPrototype createDroppableItem() {
 		Random ran = new Random();
 		int randomInt = ran.nextInt(5);
 		return droppableItems.get(randomInt);

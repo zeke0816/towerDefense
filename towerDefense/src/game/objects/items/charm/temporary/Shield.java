@@ -7,6 +7,9 @@ import game.objects.characters.states.Shielded;
 public class Shield extends TemporaryCharm {
 
 	public Shield(){
+		id = "shield";
+		name = "Shield";
+		key = "_shielded";
 		price = 2500;
 	}	
 	

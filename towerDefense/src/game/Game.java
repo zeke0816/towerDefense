@@ -18,28 +18,26 @@ public class Game {
 	protected Map map;
 	protected Inventory inventory;
 	protected Level level;
+	protected boolean beaten;
 	protected boolean over;
 	protected boolean paused;
+	protected boolean started;
 	protected double score;
+	protected int budget;
 	protected ArrayList<TemporaryCharm> temporaryCharms;
-	protected HashMap<Item, Pair<Integer, Integer>> explosions;
-	private static final Game instance = new Game();
-	private int budget;
+	protected HashMap<Item, Pair<Integer, Integer>> explosives;
+	protected static final Game instance = new Game();
 	
 	/**
 	 * Initializes the game creating a map, level, and factory, plus marking the game as not over.
 	 */
 	protected Game() {
 		map = new Map();
-		inventory = new Inventory();
 		level = new Level();
-		over = false;
-		paused = true;
-		score = 0;
-		budget = 2500;
-		
+		inventory = new Inventory();
 		temporaryCharms = new ArrayList<TemporaryCharm>();
-		explosions = new HashMap<Item, Pair<Integer, Integer>>();
+		explosives = new HashMap<Item, Pair<Integer, Integer>>();
+		startNew();
 	}
 	
 	/**
@@ -51,15 +49,37 @@ public class Game {
 	}
 	
 	/**
-	 * Gets the explosions of the Game
-	 * @return the explosions
+	 * Starts a new game
 	 */
-	public HashMap<Item, Pair<Integer, Integer>> getExplosions() {
-		return explosions;
+	public void startNew() {
+		over = true;
+		started = false;
+		paused = false;
+		beaten = false;
+		score = 0;
+		budget = 2500;
+		map.flush();
+		inventory.flush();
+		temporaryCharms.clear();
+		explosives.clear();
 	}
 	
-	public void addExplosion(Item it, int row, int col) {
-		explosions.put(it, new Pair<Integer, Integer>(row, col));
+	/**
+	 * Gets the explosives of the game
+	 * @return the explosives
+	 */
+	public HashMap<Item, Pair<Integer, Integer>> getExplosives() {
+		return explosives;
+	}
+	
+	/**
+	 * Adds an explosive to the game
+	 * @param it the explosive
+	 * @param l the lane where it is located
+	 * @param d the explosive's distance to the base
+	 */
+	public void addExplosives(Item it, int l, int d) {
+		explosives.put(it, new Pair<Integer, Integer>(l, d));
 	}
 	
 	/**
@@ -122,6 +142,11 @@ public class Game {
 		budget-=x;
 	}
 	
+	/**
+	 * Tells whether an amount of money can be afforded
+	 * @param x the amount to be paid
+	 * @return true if the player can afford it, false if not
+	 */
 	public boolean canAfford(int x) {
 		return x <= budget;
 	}
@@ -158,6 +183,25 @@ public class Game {
 	 */
 	public void end() {
 		over = true;
+		paused = false;
+		beaten = false;
+	}
+	
+	/**
+	 * Beat the game (Victory)
+	 */
+	public void beat() {
+		beaten = true;
+		started = false;
+		level.reset();
+	}
+	
+	/**
+	 * Start the game
+	 */
+	public void start() {
+		started = true;
+		over = false;
 	}
 	
 	/**
@@ -187,7 +231,23 @@ public class Game {
 	 * @return true if the game is over, false if not.
 	 */
 	public boolean isOver() {
-		return over == true;
+		return over;
+	}
+	
+	/**
+	 * Tells whether the game was beaten or not
+	 * @return true if the game was beaten, false if not.
+	 */
+	public boolean isBeaten() {
+		return beaten;
+	}
+	
+	/**
+	 * Tells whether the game has started or not
+	 * @return true if the game has started, false if not.
+	 */
+	public boolean hasStarted() {
+		return started;
 	}
 
 }

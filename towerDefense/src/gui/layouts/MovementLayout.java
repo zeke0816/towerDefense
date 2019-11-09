@@ -15,7 +15,6 @@ import gui.attacks.ExplosionBlast;
 import gui.controls.PlacedObject;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -23,10 +22,9 @@ import javafx.scene.layout.StackPane;
  * @author zeke0816
  *
  */
-public class MovementLayout extends Layout<GridPane> {
+public class MovementLayout extends Layout<StackPane> {
 
 	private HashMap<GameObject, PlacedObject> placedObjects;
-	private StackPane[] movementRows;
 	private static final MovementLayout instance = new MovementLayout();
 	
 	/**
@@ -34,16 +32,17 @@ public class MovementLayout extends Layout<GridPane> {
 	 */
 	protected MovementLayout() {
 		super();
-		layout = new GridPane();
-        layout.setAlignment(Pos.CENTER);
 
 		Map map = Game.getInstance().getMap();
+		int width = map.getDistance();
+		int height = map.getLanes() * Map.cellSize;
 		
-		movementRows = new StackPane[map.getRows()];
-		for(int i = 0; i < map.getRows(); i++) {
-			movementRows[i] = new RowLayout();
-			layout.add(movementRows[i], 0, i);
-		}
+		layout = new StackPane();
+		layout.setAlignment(Pos.TOP_LEFT);
+		layout.setMinSize(width, height);
+		layout.setMaxSize(width, height);
+		layout.setPrefSize(width, height);
+		
 		placedObjects = new HashMap<GameObject, PlacedObject>();
 	}
 
@@ -56,14 +55,24 @@ public class MovementLayout extends Layout<GridPane> {
 	}
 	
 	/**
+	 * Flushes the entire layout
+	 */
+	public void flush() {
+		for(GameObject object: placedObjects.keySet()) {
+			removeObject(object);
+		}
+	}
+	
+	/**
 	 * Adds a Game Object onto the arena
-	 * @param row the row where the Game Object will be placed
+	 * @param l the lane where the Game Object will be placed
+	 * @param d the the Game Object's distance to the base
 	 * @param id the ID of the Game Object
 	 * @param e the Game Object itself
 	 */
-	public void addObject(int row, int col, String id, GameObject object) {
-		PlacedObject placedObject = new PlacedObject(row, col, id);
-		movementRows[row].getChildren().add(placedObject);
+	public void addObject(GameObject object) {
+		PlacedObject placedObject = new PlacedObject(object.getLane(), object.getDistance(), object.getID());
+		layout.getChildren().add(placedObject);
 		placedObjects.put(object, placedObject);
 	}
 	
@@ -72,12 +81,11 @@ public class MovementLayout extends Layout<GridPane> {
 	 * @param row the given row
 	 * @throws InvalidActionException when there is no Game Object at the given row
 	 */
-	public void removeObject(GameObject object) throws InvalidActionException {
+	public void removeObject(GameObject object) {
 		PlacedObject placedObject = placedObjects.get(object);
-		if(placedObject == null) {
-			throw new InvalidActionException("There are no enemies placed on this row.");
+		if(placedObject != null) {
+			layout.getChildren().remove(placedObjects.remove(object));
 		}
-		movementRows[placedObject.getRow()].getChildren().remove(placedObjects.remove(object));
 	}
 	
 	/**
@@ -86,10 +94,7 @@ public class MovementLayout extends Layout<GridPane> {
 	 * @throws CellTakenException when a Warrior was trying to take a cell that had already been taken
 	 */
 	public void moveObject(Warrior object) throws InvalidActionException, CellTakenException {
-		PlacedObject placedObject = placedObjects.get(object);
-		if(placedObject != null) {
-			placedObject.advance(object);
-		}
+		// Warriors do not move
 	}
 	
 	/**
@@ -110,10 +115,7 @@ public class MovementLayout extends Layout<GridPane> {
 	 * @throws CellTakenException when a Item was trying to take a cell that had already been taken
 	 */
 	public void moveObject(Item object) throws InvalidActionException, CellTakenException {
-		PlacedObject placedObject = placedObjects.get(object);
-		if(placedObject != null) {
-			placedObject.advance(object);
-		}
+		// Items do not move
 	}
 	
 	/**
@@ -122,37 +124,40 @@ public class MovementLayout extends Layout<GridPane> {
 	 * @param blown the attacked Game Object
 	 */
 	public void attackObject(GameObject attacker, GameObject blownup) {
-		PlacedObject placedAttacker = placedObjects.get(attacker);
-		PlacedObject placedBlownUp = placedObjects.get(blownup);
-		EnergyBlast blast = new EnergyBlast(placedAttacker, placedBlownUp);
+		int lane = attacker.getLane();
+		if(attacker.getLane() < blownup.getLane()) {
+			lane = blownup.getLane();
+		}
+		EnergyBlast blast = new EnergyBlast(lane, attacker.getDistance(), blownup.getDistance());
 		blast.shoot(blownup);
 	}
 	
 	/**
 	 * Graphically show an explosion on a cell from an Item
-	 * @param object the source Item
+	 * @param item the source Item
+	 * @param left the left boundary of the explosion
+	 * @param top the top boundary of the explosion
+	 * @param scope the distance from the top and the left covered by the explosion
 	 */
-	public void explodeCell(Item item, int row, int col) {
-		ExplosionBlast blast = new ExplosionBlast(row, col);
+	public void explodeRegion(Item item, int left, int top, int scope) {
+		ExplosionBlast blast = new ExplosionBlast(left, top, scope);
 		blast.shoot(item);
 	}
 	
 	/**
 	 * Adds a Blast onto the arena
-	 * @param row the row where the Blast will be placed
-	 * @param blast the Blast itself
+	 * @param blast the Blast
 	 */
-	public void addBlast(int row, Label blast) {
-		movementRows[row].getChildren().add(blast);
+	public void addBlast(Label blast) {
+		layout.getChildren().add(blast);
 	}
 	
 	/**
 	 * Removes a Blast from the given row
-	 * @param row the row where the Blast is placed
-	 * @param blast the Blast itself
+	 * @param blast the Blast
 	 */
-	public void removeBlast(int row, Label blast) {
-		movementRows[row].getChildren().remove(blast);
+	public void removeBlast(Label blast) {
+		layout.getChildren().remove(blast);
 	}
 	
 	/**
@@ -167,6 +172,7 @@ public class MovementLayout extends Layout<GridPane> {
 	/**
 	 * Applies a Spell onto a given Game Object
 	 * @param object the affected Game Object
+	 * @param key the charm's GUI identifying key
 	 */
 	public void applyCharm(GameObject object, String key) {
 		PlacedObject placedObject = placedObjects.get(object);

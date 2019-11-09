@@ -1,11 +1,13 @@
 package game.objects.characters.warriors;
 
+import exceptions.InvalidActionException;
+import game.Game;
 import game.objects.characters.Character;
 import game.objects.characters.enemies.Enemy;
 import game.objects.items.charm.permanent.PermanentCharm;
 import game.objects.items.charm.temporary.TemporaryCharm;
 import game.objects.items.killable.KillableItem;
-import game.visitors.Visitor;
+import visitors.Visitor;
 
 /**
  * Abstract class that helps define the warriors in the game
@@ -15,7 +17,7 @@ import game.visitors.Visitor;
 public abstract class Warrior extends Character {
 	
 	protected Warrior() {
-		movementSpeed = 0;
+		movementFrequency = 0;
 	}
 	
 	protected Warrior(Warrior target) {
@@ -31,21 +33,47 @@ public abstract class Warrior extends Character {
 	}
 	
 	public boolean attack(Enemy e) {
-		int harm = e.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
+		boolean attacked = false;
+		attackAttempts++;
+		if(attackAttempts == attackFrequency) {
+			int harm = e.getStrength() - protection;
+			if(harm < 0) {
+				harm = 0;
+			}
+			life -= harm;
+			if(isDead()) {
+				try {
+					Game.getInstance().getMap().freeCell(this);
+				} catch (InvalidActionException e1) {
+					System.out.println(e1.getMessage());
+				}
+			}
+			attacked = true;
+			resetAttackAttempts();
 		}
-		life -= harm;
-		return true;
+		return attacked;
 	}
 	
 	public boolean attack(KillableItem k) {
-		int harm = k.getStrength() - protection;
-		if(harm < 0) {
-			harm = 0;
+		boolean attacked = false;
+		attackAttempts++;
+		if(attackAttempts == attackFrequency) {
+			int harm = k.getStrength() - protection;
+			if(harm < 0) {
+				harm = 0;
+			}
+			life -= harm;
+			if(isDead()) {
+				try {
+					Game.getInstance().getMap().freeCell(this);
+				} catch (InvalidActionException e1) {
+					System.out.println(e1.getMessage());
+				}
+			}
+			attacked = true;
+			resetAttackAttempts();
 		}
-		life -= harm;
-		return true;
+		return attacked;
 	}
 	
 	public boolean attack(TemporaryCharm t) {

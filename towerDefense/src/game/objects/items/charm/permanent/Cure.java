@@ -5,6 +5,9 @@ import game.objects.GameObject;
 public class Cure extends PermanentCharm {
 
 	public Cure() {
+		id = "cure";
+		name = "Cure";
+		key = "_cured";
 		price = 1000;
 	}
 	

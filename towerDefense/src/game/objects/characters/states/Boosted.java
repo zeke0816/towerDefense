@@ -13,14 +13,14 @@ public class Boosted extends State {
 
 	@Override
 	public void doAction() {
-		object.increaseAttackSpeed(1.2);
-		object.increaseStrength(1.2);
+		object.increaseAttackFrequency(4);
+		object.increaseStrength(500);
 	}
 
 	@Override
 	public void undoAction() {
-		object.decreaseAttackSpeed(1.2);
-		object.decreaseStrength(1.2);
+		object.decreaseAttackFrequency(4);
+		object.decreaseStrength(500);
 	}
 
 }

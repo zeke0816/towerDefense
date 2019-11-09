@@ -1,13 +1,15 @@
 package game.objects.items.killable;
 
-public class Tank extends KillableItem{
+public class Tank extends KillableItem {
 
 	public Tank() {
-		scope = 5;
+		id = "tank";
+		name = "Tank";
+		scope = 320;
 		LIFE = 1000;
 		price = 0;
 		STRENGTH = 250;
-		attackSpeed = 4;
+		attackFrequency = 4;
 		life = LIFE;
 		strength = STRENGTH;
 	}

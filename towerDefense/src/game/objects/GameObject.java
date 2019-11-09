@@ -2,6 +2,10 @@ package game.objects;
 
 import java.util.Random;
 
+import exceptions.CannotAffordException;
+import exceptions.UnavailableObjectException;
+import game.Game;
+import game.Inventory;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.states.Basic;
 import game.objects.characters.states.State;
@@ -10,7 +14,7 @@ import game.objects.items.charm.CharmingItem;
 import game.objects.items.charm.permanent.PermanentCharm;
 import game.objects.items.charm.temporary.TemporaryCharm;
 import game.objects.items.killable.KillableItem;
-import game.visitors.Visitor;
+import visitors.Visitor;
 
 /**
  * Abstract class that helps define the Game Objects in the game
@@ -20,25 +24,44 @@ import game.visitors.Visitor;
 public abstract class GameObject {
 
 	protected State state;
-	protected int LIFE;
-	protected int STRENGTH;
+	protected String id;
+	protected String key;
+	protected String name;
+	protected int lane;
 	protected int life;
+	protected int LIFE;
 	protected int scope;
 	protected int price;
 	protected int points;
 	protected int strength;
+	protected int STRENGTH;
+	protected int distance;
 	protected boolean drops;
 	protected int protection;
-	protected int attackSpeed;
-	protected int movementSpeed;
+	protected boolean playsSound;
+	protected int attackAttempts;
+	protected int attackFrequency;
+	protected int movementAttempts;
+	protected boolean takesTwoCells;
+	protected int movementFrequency;
+	protected final int increment = 200;
 	
 	/**
 	 * Initializes the Game Object in a Basic state, not being able to drop items and without protection
 	 */
 	protected GameObject() {
-		state = new Basic(this);
-		protection = 0;
+		id = "na";
+		key = "_na";
+		name = "N/A";
 		drops = false;
+		protection = 0;
+		playsSound = false;
+		attackFrequency = 4;
+		takesTwoCells = false;
+		movementFrequency = 10;
+		state = new Basic(this);
+		resetAttackAttempts();
+		resetMovementAttempts();
 	}
 	
 	/**
@@ -47,6 +70,9 @@ public abstract class GameObject {
 	 */
 	protected GameObject(GameObject target) {
 		if(target != null) {
+			id = target.getID();
+			key = target.getKey();
+        	name = target.getName();
 			life = target.getLife();
         	scope = target.getScope();
 			state = target.getState();
@@ -54,9 +80,13 @@ public abstract class GameObject {
 			price = target.getPrice();
 			points = target.getPoints();
             strength = target.getStrength();
+            playsSound = target.playsSound();
             protection = target.getProtection();
-            attackSpeed = target.getAttackSpeed();
-            movementSpeed = target.getMovementSpeed();
+            takesTwoCells = target.takesTwoCells();
+            attackAttempts = target.getAttackAttempts();
+            attackFrequency = target.getAttackFrequency();
+            movementAttempts = target.getMovementAttempts();
+            movementFrequency = target.getMovementFrequency();
 		}
 	}
 	
@@ -66,6 +96,34 @@ public abstract class GameObject {
 	 */
 	public State getState() {
 		return state;
+	}
+	
+	/**
+	 * Buys this Game Object
+	 * @throws CannotAffordException if the Game Object is not affordable
+	 */
+	public void buy() throws CannotAffordException {
+		Game game = Game.getInstance();
+		game.decreaseBudget(price);
+		game.getInventory().add(id);
+	}
+	
+	/**
+	 * Uses this Game Object, taking it from the Inventory
+	 * @return true if there are more Objects like this in the Inventory, false if not
+	 * @throws UnavailableObjectException if the Game Object is not available in the Inventory
+	 */
+	public boolean use() throws UnavailableObjectException {
+		Inventory inventory = Game.getInstance().getInventory();
+		inventory.take(id);
+		return inventory.available(id);
+	}
+	
+	/**
+	 * Saves this Game Object in the Inventory
+	 */
+	public void save() {
+		Game.getInstance().getInventory().add(id);
 	}
 	
 	/**
@@ -95,6 +153,46 @@ public abstract class GameObject {
 	}
 	
 	/**
+	 * Gets the ID
+	 * @return the ID
+	 */
+	public String getID() {
+		return id;
+	}
+	
+	/**
+	 * Gets the Key
+	 * @return the Key
+	 */
+	public String getKey() {
+		return key;
+	}
+	
+	/**
+	 * Gets the name
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * Gets the lane where this object is located
+	 * @return the lane
+	 */
+	public int getLane() {
+		return lane;
+	}
+	
+	/**
+	 * Gets the object's distance to the base
+	 * @return the distance
+	 */
+	public int getDistance() {
+		return distance;
+	}
+	
+	/**
 	 * Gets the points given by this object
 	 * @return the points for this object
 	 */
@@ -116,6 +214,22 @@ public abstract class GameObject {
 	 */
 	public int getProtection() {
 		return protection;
+	}
+	
+	/**
+	 * Tells whether the object plays a sound
+	 * @return true if it does, false if not
+	 */
+	public boolean playsSound() {
+		return playsSound;
+	}
+	
+	/**
+	 * Tells whether the object takes two cells (vertically)
+	 * @return true if it can, false if not
+	 */
+	public boolean takesTwoCells() {
+		return takesTwoCells;
 	}
 
 	/**
@@ -146,16 +260,53 @@ public abstract class GameObject {
 	 * Gets the attack speed of the object
 	 * @return the attack speed
 	 */
-	public int getAttackSpeed() {
-		return attackSpeed;
+	public int getAttackFrequency() {
+		return attackFrequency;
+	}
+
+	/**
+	 * Gets the number of attack attempts
+	 * @return the attempts to attack so far
+	 */
+	public int getAttackAttempts() {
+		return attackAttempts;
+	}
+
+	/**
+	 * Resets the attack attempts
+	 */
+	public void resetAttackAttempts() {
+		attackAttempts = 0;
+	}
+
+	/**
+	 * Gets the movement attempts of the object
+	 * @return the movement attempts
+	 */
+	public int getMovementAttempts() {
+		return movementAttempts;
+	}
+
+	/**
+	 * Attempts to move
+	 */
+	public void move() {
+		movementAttempts++;
+	}
+
+	/**
+	 * Resets the movement attempts
+	 */
+	public void resetMovementAttempts() {
+		movementAttempts = 0;
 	}
 
 	/**
 	 * Gets the movement speed of the object
 	 * @return the movement speed
 	 */
-	public int getMovementSpeed() {
-		return movementSpeed;
+	public int getMovementFrequency() {
+		return movementFrequency;
 	}
 
 	/**
@@ -170,8 +321,8 @@ public abstract class GameObject {
 	 * Increases the attack speed of the object
 	 * @param f the factor
 	 */
-	public void increaseAttackSpeed(double f) {
-		attackSpeed *= f;
+	public void increaseAttackFrequency(int f) {
+		attackFrequency -= f;
 	}
 	
 	/**
@@ -200,24 +351,24 @@ public abstract class GameObject {
 	 * Increases the strength of the object
 	 * @param f the factor
 	 */
-	public void increaseStrength(double f) {
-		strength *= f;
+	public void increaseStrength(int f) {
+		strength += f;
 	}
 
 	/**
 	 * Decreases the attack speed of the object
 	 * @param f the factor
 	 */
-	public void decreaseAttackSpeed(double f) {
-		attackSpeed /= f;
+	public void decreaseAttackFrequency(int f) {
+		attackFrequency += f;
 	}
 
 	/**
 	 * Decreases the strength of the object
 	 * @param f the factor
 	 */
-	public void decreaseStrength(double f) {
-		strength /= f;
+	public void decreaseStrength(int f) {
+		strength -= f;
 	}
 	
 	/**
@@ -297,11 +448,36 @@ public abstract class GameObject {
 		return i.doAction(this);
 	}
 	
+	/**
+	 * Sets the lane where this object is located
+	 * @param l the lane
+	 */
+	public void setLane(int l) {
+		lane = l;
+	}
+	
+	/**
+	 * Sets the object's distance to the base
+	 * @param d the distance
+	 */
+	public void setDistance(int d) {
+		distance = d;
+	}
+
+	/**
+	 * Increments the life and strength of the enemy
+	 */
+	public void growStats() {
+		LIFE += increment;
+		STRENGTH += increment;
+	}
 	
 	/**
 	 * Accepts a Visitor and delegates some concrete operations to it
 	 * @param v the visitor to accept
 	 */
 	public abstract void accept(Visitor v);
+	
+	public abstract GameObject clone();
 
 }

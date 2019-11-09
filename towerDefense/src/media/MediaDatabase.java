@@ -20,22 +20,64 @@ public class MediaDatabase {
 		
 	}
 	
+	/**
+	 * Gets the instance of this class
+	 * @return the instance
+	 */
 	public static MediaDatabase getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Gets a sound media from the database with a given ID
+	 * @param id the ID of the media
+	 * @return the sound
+	 * @throws DatabaseException when the media resource could not be found
+	 */
 	public Media getSoundMedia(String id) throws DatabaseException {
 		DatabaseService sounds = new SoundService();
 		return new Media(getClass().getResource(sounds.getPath(id)).toExternalForm());
 	}
-	
+
+	/**
+	 * Gets an image from the database with a given ID
+	 * @param id the ID of the image
+	 * @return the image
+	 * @throws DatabaseException when the image resource could not be found
+	 */
 	public Image getImageMedia(String id) throws DatabaseException {
 		DatabaseService images = new ImageService();
 		return new Image(getClass().getResource(images.getPath(id)).toExternalForm());
 	}
 	
+	/**
+	 * Gets a background from an image found in the database using the given ID.
+	 * The background position defaults to TOP_LEFT.
+	 * @param id the ID
+	 * @param width the width of the background
+	 * @param height the height of the background
+	 * @param contain true if the background should be contained by the node
+	 * @param cover true if the background should cover the node
+	 * @return the background
+	 * @throws DatabaseException when the image resource could not be found
+	 */
 	public Background getImageBackgroundMedia(String id, double width, double height, boolean contain, boolean cover) throws DatabaseException {
-		return new Background(new BackgroundImage(getImageMedia(id), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(width, height, false, false, contain, cover)));
+		return new Background(new BackgroundImage(getImageMedia(id), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, contain, cover)));
+	}
+
+	/**
+	 * Gets a background from an image found in the database using the given ID.
+	 * @param id the ID
+	 * @param width the width of the background
+	 * @param height the height of the background
+	 * @param contain true if the background should be contained by the node
+	 * @param cover true if the background should cover the node
+	 * @param position the Background Position
+	 * @return the background
+	 * @throws DatabaseException when the image resource could not be found
+	 */
+	public Background getImageBackgroundMedia(String id, double width, double height, boolean contain, boolean cover, BackgroundPosition position) throws DatabaseException {
+		return new Background(new BackgroundImage(getImageMedia(id), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, position, new BackgroundSize(width, height, false, false, contain, cover)));
 	}
 
 }

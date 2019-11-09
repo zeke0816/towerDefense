@@ -1,13 +1,16 @@
 package game.objects.characters.enemies;
 
 public class Azula extends Enemy {
+	
 	public Azula() {
-		LIFE = 1000;
-		scope = 7;
+		id = "azula";
+		name = "Azula";
+		LIFE = 10000;
+		scope = 448;
 		life = LIFE;
 		points = 1000;
-		STRENGTH = 1200;
-		movementSpeed = 15;
+		STRENGTH = 2500;
+		movementFrequency = 5;
 		strength = STRENGTH;
 		price = STRENGTH;
 	}

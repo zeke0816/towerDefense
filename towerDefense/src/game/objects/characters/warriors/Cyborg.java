@@ -3,13 +3,16 @@ package game.objects.characters.warriors;
 public class Cyborg extends Warrior {
 	
 	public Cyborg() {
+		id = "cyborg";
+		name = "Cyborg";
 		LIFE= 2500;
-		scope = 7;
+		scope = 640;
 		life = LIFE;
 		price = 5000;
 		STRENGTH = 1000;
-		attackSpeed = 400;
+		attackFrequency = 400;
 		strength = STRENGTH;
+		playsSound = true;
 	}
 	
 	private Cyborg(Cyborg target) {

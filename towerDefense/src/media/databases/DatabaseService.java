@@ -49,7 +49,7 @@ public abstract class DatabaseService {
 	        }
 	        reader.close();
 	        if(!found) {
-	        	throw new DatabaseException("The media resource could not be found in the database.");
+	        	throw new DatabaseException("The media resource could not be found in the database: "+id);
 	        }
 		} catch (FileNotFoundException e) {
 			System.out.println("The selected table does not exist in the database: "+e.getMessage());

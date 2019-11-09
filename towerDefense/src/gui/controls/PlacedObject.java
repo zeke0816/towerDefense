@@ -4,10 +4,10 @@ import exceptions.CellTakenException;
 import exceptions.DatabaseException;
 import exceptions.InvalidActionException;
 import game.Game;
+import game.Map;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.Item;
-import gui.layouts.PlacementLayout;
 import javafx.scene.control.Label;
 import media.MediaDatabase;
 
@@ -18,33 +18,34 @@ import media.MediaDatabase;
  */
 public class PlacedObject extends Label {
 	
-	private double pixelsAdvanced;
-	private double size;
+	private int lane;
+	private int distance;
 	private String id;
-	private int row;
-	private int col;
 
 	/**
 	 * Initializes a Placed Object with its ID, coordinates, and 0 advanced pixels
-	 * @param r the row
-	 * @param c the column
+	 * @param l the lane
+	 * @param d the distance to the base
 	 * @param id the ID of the Game Object
 	 */
-	public PlacedObject(int r, int c, String i) {
+	public PlacedObject(int l, int d, String i) {
 		super();
 		
-		pixelsAdvanced = 0;
-		row = r;
-		col = c;
+		lane = l;
+		distance = d;
 		id = i;
 		
-		size = PlacementLayout.getCellSize();
-		setPrefHeight(size);
-		setPrefWidth(size);
-		setTranslateX(col * size);
+		setMinSize(Map.cellSize, Map.cellSize);
+		setPrefSize(Map.cellSize, Map.cellSize);
+		setMaxSize(Map.cellSize, Map.cellSize * 2);
+
+		setTranslateY(Map.cellSize * lane);
+		setTranslateX(distance);
+		// System.out.println("Y: "+getTranslateY());
+		// System.out.println("X: "+getTranslateX());
 		
 		try {
-			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, Map.cellSize, Map.cellSize, true, false));
 		} catch (DatabaseException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -64,7 +65,7 @@ public class PlacedObject extends Label {
 	 * @throws CellTakenException when a Warrior was trying to take a cell that had already been taken
 	 */
 	public void advance(Warrior w) throws InvalidActionException, CellTakenException {
-		
+		// Warriors do not move
 	}
 	
 	/**
@@ -73,18 +74,14 @@ public class PlacedObject extends Label {
 	 * @throws CellTakenException when an Enemy was trying to take a cell that had already been taken
 	 */
 	public void advance(Enemy e) throws InvalidActionException, CellTakenException {
-		if(Game.getInstance().getMap().canAdvance(e)) {
-			double advancement = e.getMovementSpeed();
-			double cellSize = PlacementLayout.getCellSize();
-			if(getTranslateX() < cellSize) {
-				advancement = cellSize;
-			}
-			setTranslateX(getTranslateX() - advancement);
-			pixelsAdvanced += advancement;
-			if(pixelsAdvanced >= cellSize) {
-				pixelsAdvanced = 0;
-				Game.getInstance().getMap().advance(e);
-				col--;
+		Map map = Game.getInstance().getMap();
+		if(map.canAdvance(e)) {
+			e.move(); // attempts to move
+			if(e.getMovementAttempts() == e.getMovementAttempts()) {
+				map.advance(e);
+				setTranslateX(getTranslateX() - 1);
+				distance--;
+				e.resetMovementAttempts();
 			}
 		}
 	}
@@ -95,15 +92,7 @@ public class PlacedObject extends Label {
 	 * @throws CellTakenException when a Item was trying to take a cell that had already been taken
 	 */
 	public void advance(Item i) throws InvalidActionException, CellTakenException {
-		
-	}
-	
-	/**
-	 * Gets the current position of the Placed Object relative to the base
-	 * @return the current distance of the Placed Object to the base
-	 */
-	public int getCurrentPosition() {
-		return Integer.parseInt(Double.toString((col * PlacementLayout.getCellSize()) - pixelsAdvanced).split("\\.")[0]);
+		// Items do not move
 	}
 	
 	/**
@@ -111,9 +100,9 @@ public class PlacedObject extends Label {
 	 */
 	public void wearCharmOff() {
 		try {
-			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, size, size, true, false));
-		} catch (DatabaseException ex) {
-			System.out.println(ex.getMessage());
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id, Map.cellSize, Map.cellSize, true, false));
+		} catch (DatabaseException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -122,26 +111,26 @@ public class PlacedObject extends Label {
 	 */
 	public void applyCharm(String key) {
 		try {
-			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id+key, size, size, true, false));
-		} catch (DatabaseException ex) {
-			System.out.println(ex.getMessage());
+			setBackground(MediaDatabase.getInstance().getImageBackgroundMedia(id+key, Map.cellSize, Map.cellSize, true, false));
+		} catch (DatabaseException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
 	/**
-	 * Gets the row where the Game Object is located
-	 * @return the row
+	 * Gets the lane where the Game Object is located
+	 * @return the lane
 	 */
-	public int getRow() {
-		return row;
+	public int getLane() {
+		return lane;
 	}
 	
 	/**
-	 * Gets the column where the Game Object is located
-	 * @return the column
+	 * Gets the Game Object's distance to the base
+	 * @return the distance
 	 */
-	public int getCol() {
-		return col;
+	public int getDistance() {
+		return distance;
 	}
 
 }

@@ -7,7 +7,6 @@ import game.objects.items.charm.temporary.TemporaryCharm;
 import game.objects.items.killable.KillableItem;
 
 public abstract class CharmingItem extends Item{
-
 	
 	protected CharmingItem() {
 		LIFE = 0;
