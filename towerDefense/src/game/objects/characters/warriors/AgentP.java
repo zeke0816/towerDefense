@@ -8,7 +8,7 @@ public class AgentP extends Warrior {
 		LIFE = 2500;
 		life = LIFE;
 		scope = 448;
-		price = 2300;
+		price = 7000;
 		STRENGTH = 1000;
 		attackFrequency = 800;
 		strength = STRENGTH;

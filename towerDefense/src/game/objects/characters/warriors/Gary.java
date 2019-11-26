@@ -8,7 +8,7 @@ public class Gary extends Warrior {
 		LIFE = 2500;
 		scope = 64;
 		life = LIFE;
-		price = 90;
+		price = 1500;
 		STRENGTH = 400;
 		attackFrequency = 5000;
 		strength = STRENGTH;

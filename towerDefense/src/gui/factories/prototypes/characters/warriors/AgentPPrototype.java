@@ -1,11 +1,11 @@
 package gui.factories.prototypes.characters.warriors;
 
-import exceptions.DatabaseException;
 import game.Map;
+import media.MediaDatabase;
+import exceptions.DatabaseException;
+import javafx.scene.layout.Background;
 import game.objects.characters.warriors.AgentP;
 import gui.factories.prototypes.ObjectPrototype;
-import javafx.scene.layout.Background;
-import media.MediaDatabase;
 
 public class AgentPPrototype extends ObjectPrototype {
 
@@ -27,6 +27,7 @@ public class AgentPPrototype extends ObjectPrototype {
         buyingButton.setPrototype(this);
         buyPlaceButton.setPrototype(this);
         buyingButton.setText("$ "+object.getPrice());
+        sellingButton.setText("$ "+object.getSellValue());
 	}
 
 }

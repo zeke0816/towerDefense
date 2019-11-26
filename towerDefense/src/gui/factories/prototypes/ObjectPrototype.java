@@ -2,6 +2,7 @@ package gui.factories.prototypes;
 
 import exceptions.CannotAffordException;
 import exceptions.DatabaseException;
+import exceptions.UnavailableObjectException;
 import game.Map;
 import game.objects.GameObject;
 import gui.controls.ObjectButton;
@@ -38,6 +39,7 @@ public class ObjectPrototype {
 	protected Label disabledLabel;
 	protected ObjectButton placingButton;
 	protected ObjectButton buyingButton;
+	protected ObjectButton sellingButton;
 	protected ObjectButton buyPlaceButton;
 	private EventHandler<MouseEvent> selectObjectListener = new EventHandler<MouseEvent>() {
 
@@ -71,6 +73,24 @@ public class ObjectPrototype {
 			} catch(ClassCastException e) {
 				System.out.println("Invalid cast while selecting the Game Object.");
 			} catch (CannotAffordException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+	};
+	private EventHandler<MouseEvent> sellObjectListener = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			ObjectPrototype selectedObject = placingButton.getPrototype();
+			try {
+				selectedObject.getObject().sell();
+				InventoryLayout.getInstance().updateAvailability();
+				StoreLayout.getInstance().updateAvailability();
+				StatusLayout.getInstance().updateBudget();
+			} catch(ClassCastException e) {
+				System.out.println("Invalid cast while selecting the Game Object.");
+			} catch (UnavailableObjectException e) {
 				System.out.println(e.getMessage());
 			}
 		}
@@ -127,6 +147,11 @@ public class ObjectPrototype {
 		buyingButton.setBorder(null);
 		GridPane.setMargin(buyingButton, new Insets(0, 5, 5, 5));
         
+		sellingButton = new ObjectButton(64, 16);
+		sellingButton.setOnMouseClicked(sellObjectListener);
+		sellingButton.setBorder(null);
+		GridPane.setMargin(sellingButton, new Insets(0, 5, 5, 5));
+        
 		buyPlaceButton = new ObjectButton(64, 16);
 		buyPlaceButton.setOnMouseClicked(buyPlaceObjectListener);
 		buyPlaceButton.setBorder(null);
@@ -134,8 +159,10 @@ public class ObjectPrototype {
         
 		try {
 			Background b = MediaDatabase.getInstance().getImageBackgroundMedia("buyButton", 64, 16, true, false);
+			Background s = MediaDatabase.getInstance().getImageBackgroundMedia("sellButton", 64, 16, true, false);
 			Background bP = MediaDatabase.getInstance().getImageBackgroundMedia("buyPlaceButton", 64, 16, true, false);
 			buyingButton.setBackground(b);
+			buyingButton.setBackground(s);
 			buyPlaceButton.setBackground(bP);
 		} catch (DatabaseException e) {
 			System.out.println(e.getMessage());
@@ -188,6 +215,14 @@ public class ObjectPrototype {
 	 */
 	public ObjectButton getBuyingButton() {
 		return buyingButton;
+	}
+
+	/**
+	 * Gets the selling button to show on screen
+	 * @return the selling button
+	 */
+	public ObjectButton getSellingButton() {
+		return sellingButton;
 	}
 
 	/**

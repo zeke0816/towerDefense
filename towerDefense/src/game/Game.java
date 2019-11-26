@@ -20,15 +20,16 @@ import visitors.BattleVisitor;
 public class Game {
 	
 	protected Map map;
-	protected Inventory inventory;
-	protected Level level;
-	protected BattleVisitor fight;
-	protected GameState state;
-	protected double score;
 	protected int budget;
+	protected Level level;
+	protected double score;
+	protected GameState state;
+	protected BattleVisitor fight;
+	protected Inventory inventory;
+	public static final double sellingTax = .5;
+	protected static final Game instance = new Game();
 	protected ArrayList<TemporaryCharm> temporaryCharms;
 	protected HashMap<Item, Pair<Integer, Integer>> explosives;
-	protected static final Game instance = new Game();
 	
 	/**
 	 * Initializes the game creating a map, level, and factory, plus marking the game as not over.

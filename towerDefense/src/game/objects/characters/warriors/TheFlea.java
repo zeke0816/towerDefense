@@ -8,7 +8,7 @@ public class TheFlea extends Warrior {
 		LIFE = 1800;
 		scope = 128;
 		life = LIFE;
-		price = 70;
+		price = 1000;
 		STRENGTH = 1200;
 		attackFrequency = 4000;
 		strength = STRENGTH;

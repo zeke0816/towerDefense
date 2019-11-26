@@ -5,6 +5,7 @@ level,/images/level.png
 store,/images/buttons/store.png
 inventory,/images/buttons/inventory.png
 buyButton,/images/buttons/buy.png
+sellButton,/images/buttons/sell.png
 buyPlaceButton,/images/buttons/buyPlace.png
 agentP,/images/warriors/agentP.png
 agentP_poisoned,/images/warriors/agentP_poisoned.png

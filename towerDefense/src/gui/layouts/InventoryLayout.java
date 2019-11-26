@@ -91,31 +91,37 @@ public class InventoryLayout extends Layout<GridPane> {
 		layout.add(bb8.getDisabledLabel(), 0, 0);
 		if(inventory.available(bb8.getObject().getID())) {
 			layout.add(bb8.getPlacingButton(), 0, 0);
+			layout.add(bb8.getSellingButton(), 0, 1);
 		}
 
 		layout.add(flea.getDisabledLabel(), 1, 0);
 		if(inventory.available(flea.getObject().getID())) {
 			layout.add(flea.getPlacingButton(), 1, 0);
+			layout.add(flea.getSellingButton(), 1, 1);
 		}
 
 		layout.add(gary.getDisabledLabel(), 2, 0);
 		if(inventory.available(gary.getObject().getID())) {
 			layout.add(gary.getPlacingButton(), 2, 0);
+			layout.add(gary.getSellingButton(), 2, 1);
 		}
 
 		layout.add(turret.getDisabledLabel(), 3, 0);
 		if(inventory.available(turret.getObject().getID())) {
 			layout.add(turret.getPlacingButton(), 3, 0);
+			layout.add(turret.getSellingButton(), 3, 1);
 		}
 
 		layout.add(agentP.getDisabledLabel(), 4, 0);
 		if(inventory.available(agentP.getObject().getID())) {
 			layout.add(agentP.getPlacingButton(), 4, 0);
+			layout.add(agentP.getSellingButton(), 4, 1);
 		}
 
 		layout.add(cyborg.getDisabledLabel(), 5, 0);
 		if(inventory.available(cyborg.getObject().getID())) {
 			layout.add(cyborg.getPlacingButton(), 5, 0);
+			layout.add(cyborg.getSellingButton(), 5, 1);
 		}
 		
         layout.add(separator, 6, 0);
@@ -123,26 +129,31 @@ public class InventoryLayout extends Layout<GridPane> {
 		layout.add(shield.getDisabledLabel(), 7, 0);
 		if(inventory.available(shield.getObject().getID())) {
 			layout.add(shield.getPlacingButton(), 7, 0);
+			layout.add(shield.getSellingButton(), 7, 1);
 		}
 
 		layout.add(cure.getDisabledLabel(), 8, 0);
 		if(inventory.available(cure.getObject().getID())) {
 			layout.add(cure.getPlacingButton(), 8, 0);
+			layout.add(cure.getSellingButton(), 8, 1);
 		}
 
 		layout.add(poison.getDisabledLabel(), 9, 0);
 		if(inventory.available(poison.getObject().getID())) {
 			layout.add(poison.getPlacingButton(), 9, 0);
+			layout.add(poison.getSellingButton(), 9, 1);
 		}
 
 		layout.add(barricade.getDisabledLabel(), 10, 0);
 		if(inventory.available(barricade.getObject().getID())) {
 			layout.add(barricade.getPlacingButton(), 10, 0);
+			layout.add(barricade.getSellingButton(), 10, 1);
 		}
 
 		layout.add(nuke.getDisabledLabel(), 11, 0);
 		if(inventory.available(nuke.getObject().getID())) {
 			layout.add(nuke.getPlacingButton(), 11, 0);
+			layout.add(nuke.getSellingButton(), 11, 1);
     	}
 	}
 	

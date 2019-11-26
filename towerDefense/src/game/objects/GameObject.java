@@ -111,6 +111,16 @@ public abstract class GameObject {
 	}
 	
 	/**
+	 * Sells this Game Object
+	 * @throws UnavailableObjectException 
+	 */
+	public void sell() throws UnavailableObjectException {
+		Game game = Game.getInstance();
+		game.increaseBudget(price);
+		game.getInventory().take(id);
+	}
+	
+	/**
 	 * Uses this Game Object, taking it from the Inventory
 	 * @return true if there are more Objects like this in the Inventory, false if not
 	 * @throws UnavailableObjectException if the Game Object is not available in the Inventory
@@ -256,6 +266,10 @@ public abstract class GameObject {
 	 */
 	public int getPrice() {
 		return price;
+	}
+	
+	public double getSellValue() {
+		return price * Game.sellingTax;
 	}
 	
 	/**

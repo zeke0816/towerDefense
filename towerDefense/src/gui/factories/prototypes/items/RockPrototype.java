@@ -27,6 +27,7 @@ public class RockPrototype extends ObjectPrototype {
         buyingButton.setPrototype(this);
         buyPlaceButton.setPrototype(this);
         buyingButton.setText("$ "+object.getPrice());
+        sellingButton.setText("$ "+object.getSellValue());
 	}
 
 }
