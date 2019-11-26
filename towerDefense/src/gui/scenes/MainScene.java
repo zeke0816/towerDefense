@@ -111,7 +111,9 @@ public class MainScene extends Scene {
 		"LEFT - Budget\n"+
 		"CENTER - Points\n"+
 		"RIGHT - Level / Wave / Killed enemies : enemies in the current Wave\n\n"+
-		"HAVE FUN!");
+		"Have fun and thank you for playing our game!\n\n"+
+		"Дмитро Школяр - 黄西结 - Vanesa Y. Mamani\n"+
+		"© 2019. All rights reserved.");
 	}
 	
 	/**

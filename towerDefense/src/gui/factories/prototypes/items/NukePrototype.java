@@ -25,6 +25,7 @@ public class NukePrototype extends ObjectPrototype {
 		}
         placingButton.setPrototype(this);
         buyingButton.setPrototype(this);
+        sellingButton.setPrototype(this);
         buyPlaceButton.setPrototype(this);
         buyingButton.setText("$ "+object.getPrice());
         sellingButton.setText("$ "+object.getSellValue());

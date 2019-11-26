@@ -162,7 +162,7 @@ public class ObjectPrototype {
 			Background s = MediaDatabase.getInstance().getImageBackgroundMedia("sellButton", 64, 16, true, false);
 			Background bP = MediaDatabase.getInstance().getImageBackgroundMedia("buyPlaceButton", 64, 16, true, false);
 			buyingButton.setBackground(b);
-			buyingButton.setBackground(s);
+			sellingButton.setBackground(s);
 			buyPlaceButton.setBackground(bP);
 		} catch (DatabaseException e) {
 			System.out.println(e.getMessage());
