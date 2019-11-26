@@ -74,7 +74,7 @@ public class Game {
 	 */
 	public void startNew() {
 		score = 0;
-		budget = 2500;
+		budget = 10000;
 		level.reset();
 		map.flush();
 		inventory.flush();
@@ -144,7 +144,7 @@ public class Game {
 	 * Increases the game budget
 	 * @param x money to be added to the budget
 	 */
-	public void increaseBudget(int x) {
+	public void increaseBudget(double x) {
 		budget += x;
 	}
 	
@@ -153,11 +153,11 @@ public class Game {
 	 * @param x money to be subtracted from the budget
 	 * @throws CannotAffordException 
 	 */
-	public void decreaseBudget(int x) throws CannotAffordException {
+	public void decreaseBudget(double x) throws CannotAffordException {
 		if(budget < x) {
 			throw new CannotAffordException("Not enough budget!");
 		}
-		budget-=x;
+		budget -= x;
 	}
 	
 	/**

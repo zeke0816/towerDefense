@@ -116,7 +116,7 @@ public abstract class GameObject {
 	 */
 	public void sell() throws UnavailableObjectException {
 		Game game = Game.getInstance();
-		game.increaseBudget(price);
+		game.increaseBudget(getSellValue());
 		game.getInventory().take(id);
 	}
 	
