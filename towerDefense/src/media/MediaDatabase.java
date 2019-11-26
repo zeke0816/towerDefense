@@ -1,5 +1,7 @@
 package media;
 
+import java.net.URL;
+
 import exceptions.DatabaseException;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -36,7 +38,11 @@ public class MediaDatabase {
 	 */
 	public Media getSoundMedia(String id) throws DatabaseException {
 		DatabaseService sounds = new SoundService();
-		return new Media(getClass().getResource(sounds.getPath(id)).toExternalForm());
+		URL url = getClass().getResource(sounds.getPath(id));
+		if(url == null) {
+			throw new DatabaseException("The sound media could not be found on the database.");
+		}
+		return new Media(url.toExternalForm());
 	}
 
 	/**
@@ -47,7 +53,11 @@ public class MediaDatabase {
 	 */
 	public Image getImageMedia(String id) throws DatabaseException {
 		DatabaseService images = new ImageService();
-		return new Image(getClass().getResource(images.getPath(id)).toExternalForm());
+		URL url = getClass().getResource(images.getPath(id));
+		if(url == null) {
+			throw new DatabaseException("The image media could not be found on the database.");
+		}
+		return new Image(url.toExternalForm());
 	}
 	
 	/**
