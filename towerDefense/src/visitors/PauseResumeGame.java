@@ -29,17 +29,17 @@ public class PauseResumeGame implements GameVisitor {
 
 	@Override
 	public void visit(Loss r) {
-		// Start a new game to pause the game.
+		System.out.println("The game cannot be paused or resumed if it is not currently running or paused.");
 	}
 
 	@Override
 	public void visit(Win r) {
-		// Start a new game to pause the game.
+		System.out.println("The game cannot be paused or resumed if it is not currently running or paused.");
 	}
 
 	@Override
 	public void visit(Welcome r) {
-		// Start a new game to pause the game.
+		System.out.println("The game cannot be paused or resumed if it is not currently running or paused.");
 	}
 
 }

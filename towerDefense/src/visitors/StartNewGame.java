@@ -6,9 +6,12 @@ import game.states.Paused;
 import game.states.Running;
 import game.states.Welcome;
 import game.states.Win;
+import gui.factories.EnemyFactory;
+import gui.factories.difficulty.Easy;
 import gui.layouts.DroppingLayout;
 import gui.layouts.InventoryLayout;
 import gui.layouts.MovementLayout;
+import gui.layouts.StatusLayout;
 import gui.layouts.StoreLayout;
 import gui.scenes.MainScene;
 
@@ -61,6 +64,9 @@ public class StartNewGame implements GameVisitor {
 		DroppingLayout.getInstance().flush();
 		StoreLayout.getInstance().updateAvailability();
 		InventoryLayout.getInstance().updateAvailability();
+		StatusLayout.getInstance().updateScore();
+		StatusLayout.getInstance().updateLevel();
+		EnemyFactory.getInstance().changeState(new Easy(EnemyFactory.getInstance()));
 		g.startNew();
 		Running running = new Running(g);
 		g.changeState(running);

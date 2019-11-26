@@ -72,7 +72,7 @@ public class EnemyFactory {
 	}
 	
 	/**
-	 * Incremets the life and the strength of the enemy.
+	 * Increments the life and the strength of the enemy.
 	 */
 	public void growStats() {
 		for(ObjectPrototype ep : easyEnemies) {
