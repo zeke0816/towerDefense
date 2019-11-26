@@ -46,13 +46,10 @@ public class DroppingLayout extends Layout<StackPane> {
 	 * Flushes the entire layout
 	 */
 	public void flush() {
-		for(GameObject object: droppedObjects.keySet()) {
-			try {
-				removeObject(object);
-			} catch (InvalidActionException e) {
-				System.out.println(e.getMessage());
-			}
+		for(PlacedItem item: droppedObjects.values()) {
+			layout.getChildren().remove(item);
 		}
+		droppedObjects.clear();
 	}
 	
 	/**

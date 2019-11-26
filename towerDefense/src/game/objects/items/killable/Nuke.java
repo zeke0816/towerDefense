@@ -6,10 +6,10 @@ public class Nuke extends KillableItem {
 		id = "nuke";
 		name = "Nuke";
 		scope = 192;
-		LIFE = 10000;
-		price = 0;
+		LIFE = 1000000;
+		price = 1000000;
 		attackFrequency = 1500;
-		STRENGTH = 10000;
+		STRENGTH = 1000000;
 		protection = life;
 		squaredScope = true;
 		life = LIFE;

@@ -2,13 +2,19 @@ package game.objects.characters.states;
 
 import game.objects.GameObject;
 
-public class Boosted extends State {
-	
-	protected GameObject object;
+/**
+ * Boosted state for a Game Object
+ * @author zeke0816
+ *
+ */
+public class Boosted extends GameObjectState {
 
+	/**
+	 * Initializes the state knowing its context
+	 * @param o the context
+	 */
 	public Boosted(GameObject o) {
 		super(o);
-		object = o;
 	}
 
 	@Override

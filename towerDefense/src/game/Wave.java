@@ -108,5 +108,15 @@ public class Wave {
 		deaths = 0;
 		spawnLimit += 1;
 	}
+	
+	/**
+	 * Resets the entire wave
+	 */
+	public void reset() {
+		value = 1;
+		spawns = 0;
+		deaths = 0;
+		spawnLimit = 5;
+	}
 
 }

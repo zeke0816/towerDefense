@@ -124,7 +124,7 @@ public class PlacementLayout extends Layout<GridPane> {
 			do {
 				lane = r.nextInt(map.getLanes());
 				distance = r.nextInt(map.getDistance());
-			} while(map.getCell(lane, distance).isTaken());
+			} while(distance < (map.getDistance() * Map.limitFactor) && map.getCell(lane, distance).isTaken());
 			try {
 				GameObject item = ItemFactory.getInstance().createRandomItem().cloneObject();
 				item.setLane(lane);

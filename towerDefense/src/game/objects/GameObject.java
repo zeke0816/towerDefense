@@ -1,5 +1,6 @@
 package game.objects;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import exceptions.CannotAffordException;
@@ -8,13 +9,13 @@ import game.Game;
 import game.Inventory;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.states.Basic;
-import game.objects.characters.states.State;
+import game.objects.characters.states.GameObjectState;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;
 import game.objects.items.charm.permanent.PermanentCharm;
 import game.objects.items.charm.temporary.TemporaryCharm;
 import game.objects.items.killable.KillableItem;
-import visitors.Visitor;
+import visitors.GameObjectVisitor;
 
 /**
  * Abstract class that helps define the Game Objects in the game
@@ -23,7 +24,7 @@ import visitors.Visitor;
  */
 public abstract class GameObject {
 
-	protected State state;
+	protected GameObjectState state;
 	protected String id;
 	protected String key;
 	protected String name;
@@ -56,6 +57,7 @@ public abstract class GameObject {
 		drops = false;
 		protection = 0;
 		playsSound = false;
+		attackAttempts = 0;
 		attackFrequency = 4;
 		takesTwoCells = false;
 		movementFrequency = 10;
@@ -94,7 +96,7 @@ public abstract class GameObject {
 	 * Gets the state of the object
 	 * @return the state
 	 */
-	public State getState() {
+	public GameObjectState getState() {
 		return state;
 	}
 	
@@ -130,7 +132,7 @@ public abstract class GameObject {
 	 * Changes the state of the object
 	 * @param s the state
 	 */
-	public void changeState(State s) {
+	public void changeState(GameObjectState s) {
 		state.undoAction();
 		state = s;
 		state.doAction();
@@ -323,6 +325,9 @@ public abstract class GameObject {
 	 */
 	public void increaseAttackFrequency(int f) {
 		attackFrequency -= f;
+		if(attackFrequency < 0) {
+			attackFrequency = 0;
+		}
 	}
 	
 	/**
@@ -473,11 +478,27 @@ public abstract class GameObject {
 	}
 	
 	/**
+	 * Registers an attack attempt
+	 */
+	public void attemptAttack() {
+		attackAttempts += 100;
+	}
+	
+	/**
 	 * Accepts a Visitor and delegates some concrete operations to it
 	 * @param v the visitor to accept
 	 */
-	public abstract void accept(Visitor v);
+	public abstract void accept(GameObjectVisitor v);
 	
+	/**
+	 * Clones this Game Object
+	 */
 	public abstract GameObject clone();
+	
+	/**
+	 * Picks up a fight with someone and returns who it fought against if it did
+	 * @return the opponent for this fight or null if there was no opponent to fight with
+	 */
+	public abstract ArrayList<GameObject> fight();
 
 }

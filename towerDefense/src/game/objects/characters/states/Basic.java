@@ -2,8 +2,17 @@ package game.objects.characters.states;
 
 import game.objects.GameObject;
 
-public class Basic extends State {
+/**
+ * Basic state for a Game Object
+ * @author zeke0816
+ *
+ */
+public class Basic extends GameObjectState {
 
+	/**
+	 * Initializes the state knowing its context
+	 * @param o the context
+	 */
 	public Basic(GameObject o) {
 		super(o);
 	}

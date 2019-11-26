@@ -4,13 +4,9 @@ import exceptions.DatabaseException;
 import game.Game;
 import gui.layouts.BaseLayout;
 import gui.layouts.DockLayout;
-import gui.layouts.DroppingLayout;
-import gui.layouts.InventoryLayout;
 import gui.layouts.MapLayout;
-import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
 import gui.layouts.StatusLayout;
-import gui.layouts.StoreLayout;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -27,9 +23,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import media.MediaDatabase;
 import media.sounds.BackgroundPlayer;
+import visitors.GameVisitor;
+import visitors.PauseResumeGame;
+import visitors.StartNewGame;
 
+
+/**
+ * The Main Scene is the class that manages the main window of the game.
+ * Essentially, most of the interaction between the system and the user happens in here.
+ * 
+ * @author zeke0816
+ *
+ */
 public class MainScene extends Scene {
 	
 	private static final StackPane layout = new StackPane();
@@ -41,28 +49,14 @@ public class MainScene extends Scene {
 
 		@Override
 		public void handle(KeyEvent key) {
-			Game game = Game.getInstance();
+			GameVisitor action;
 			if(key.getCode() == KeyCode.N) {
-				if(!game.hasStarted() && (game.isOver() || game.isBeaten())) {
-					game.startNew();
-					MovementLayout.getInstance().flush();
-					DroppingLayout.getInstance().flush();
-					StoreLayout.getInstance().updateAvailability();
-					InventoryLayout.getInstance().updateAvailability();
-					game.start();
-					resume();
-				}
+				action = new StartNewGame();
+				Game.getInstance().state().accept(action);
 			}
 			if(key.getCode() == KeyCode.P) {
-				if(game.hasStarted()) {
-					if(game.paused()) {
-						game.resume();
-						resume();
-					} else {
-						game.pause();
-						pause();
-					}
-				}
+				action = new PauseResumeGame();
+				Game.getInstance().state().accept(action);
 			}
 			if(key.getCode() == KeyCode.I) {
 				DockLayout.getInstance().toggleInventory();
@@ -89,42 +83,66 @@ public class MainScene extends Scene {
 		}
 		statusLabel = new Label();
 		statusLabel.setOpacity(.6);
-		statusLabel.setText("PRESS N TO START A NEW GAME");
 		statusLabel.setFont(new Font("Trebuchet", 20));
 		statusLabel.setTextFill(Paint.valueOf("#fff"));
+		statusLabel.setTextAlignment(TextAlignment.CENTER);
 		statusLabel.setPadding(new Insets(10, 16, 10, 16));
 		statusLabel.setBackground(new Background(new BackgroundFill(Paint.valueOf("#000"), null, null)));
         gameLayout.setTop(StatusLayout.getInstance().getLayout());
         gameLayout.setLeft(BaseLayout.getInstance().getLayout());
         gameLayout.setCenter(MapLayout.getInstance().getLayout());
         gameLayout.setBottom(DockLayout.getInstance().getLayout());
-        statusLayout.setCenter(statusLabel);
         setOnKeyPressed(pauseListener);
-        layout.getChildren().addAll(gameLayout, statusLayout);
+        welcome();
+	}
+	
+	/**
+	 * Shows the welcome screen
+	 */
+	public void welcome() {
+		prepareStatus();
+		statusLabel.setText("Welcome to CARTOON DEFENSE!\n\n"+
+		"Press the 'N' key whenever you are ready to start the game\n\n"+
+		"Please, keep the following keyboard shortcuts in mind:\n\n"+
+		"P - Pause the game\n"+
+		"I - Toggle inventory / store\n"+
+		"ESC - Deselect an object\n\n"+
+		"There are 3 indicators on the top:\n\n"+
+		"LEFT - Budget\n"+
+		"CENTER - Points\n"+
+		"RIGHT - Level / Wave / Killed enemies : enemies in the current Wave\n\n"+
+		"HAVE FUN!");
 	}
 	
 	/**
 	 * Shows the victory screen
 	 */
 	public void victory() {
-		pause();
-		statusLabel.setText("VICTORY! YOU HAVE WON THE GAME. PRESS N TO START AGAIN");
+		prepareStatus();
+		statusLabel.setText("VICTORY!\n\n"+
+		"You have won the game. Good job! Press the 'N' key to start again");
 	}
 	
 	/**
-	 * Shows the game over screen
+	 * Shows the loss screen
 	 */
-	public void gameOver() {
-		pause();
-		statusLabel.setText("GAME OVER! PRESS N TO START A NEW GAME");
+	public void loss() {
+		prepareStatus();
+		statusLabel.setText("DEFEAT!\n\n"+
+		"You have lost the game. Sad face :(. Press the 'N' key to start again");
 	}
 	
 	/**
 	 * Shows the pause screen
 	 */
-	private void pause() {
+	public void pause() {
+		prepareStatus();
+        statusLabel.setText("PAUSED.\n\n"+
+		"You may press the 'N' key to restart the game if you wish or 'P' to resume");
+	}
+	
+	private void prepareStatus() {
 		statusLayout.setCenter(statusLabel);
-		statusLabel.setText("PAUSED");
 		layout.getChildren().clear();
         layout.getChildren().addAll(gameLayout, statusLayout);
 	}
@@ -132,7 +150,7 @@ public class MainScene extends Scene {
 	/**
 	 * Removes the pause screen
 	 */
-	private void resume() {
+	public void resume() {
 		statusLayout.setCenter(null);
 		layout.getChildren().clear();
         layout.getChildren().addAll(statusLayout, gameLayout);

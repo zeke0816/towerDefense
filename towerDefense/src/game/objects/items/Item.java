@@ -32,8 +32,8 @@ public abstract class Item extends GameObject {
 	
 	public boolean attack(Enemy e) {
 		boolean attacked = false;
-		attackAttempts++;
-		if(attackAttempts == attackFrequency) {
+		e.attemptAttack();
+		if(e.getAttackAttempts() == e.getAttackFrequency()) {
 			int harm = e.getStrength() - protection;
 			if(harm < 0) {
 				harm = 0;
@@ -47,7 +47,7 @@ public abstract class Item extends GameObject {
 				}
 			}
 			attacked = true;
-			resetAttackAttempts();
+			e.resetAttackAttempts();
 		}
 		return attacked;
 	}

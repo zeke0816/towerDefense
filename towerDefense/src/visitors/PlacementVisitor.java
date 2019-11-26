@@ -17,7 +17,7 @@ import gui.layouts.MovementLayout;
 import gui.layouts.PlacementLayout;
 import media.sounds.SoundPlayer;
 
-public class PlacementVisitor implements Visitor {
+public class PlacementVisitor implements GameObjectVisitor {
 	
 	protected GameObject object;
 	protected int lane;

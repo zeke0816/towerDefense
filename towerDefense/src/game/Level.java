@@ -56,6 +56,7 @@ public class Level {
 	 */
 	public void reset() {
 		value = 1;
+		wave.reset();
 	}
 	
 	/**

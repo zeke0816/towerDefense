@@ -2,8 +2,17 @@ package game.objects.characters.states;
 
 import game.objects.GameObject;
 
-public class Shielded extends State {
+/**
+ * Shielded state for a game object
+ * @author zeke0816
+ *
+ */
+public class Shielded extends GameObjectState {
 
+	/**
+	 * Initializes the state knowing its context
+	 * @param o the context
+	 */
 	public Shielded(GameObject o) {
 		super(o);
 	}

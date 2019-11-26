@@ -9,7 +9,7 @@ import game.objects.items.killable.KillableItem;
 /**
  * Visitor Interface, contains the declaration of all possible GameObjects
  */
-public interface Visitor {
+public interface GameObjectVisitor {
 	
 	/**
 	 * Visits the enemy

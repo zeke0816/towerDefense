@@ -55,12 +55,13 @@ public class MovementLayout extends Layout<StackPane> {
 	}
 	
 	/**
-	 * Flushes the entire layout
+	 * Removes all the placed objects from the layout
 	 */
 	public void flush() {
-		for(GameObject object: placedObjects.keySet()) {
-			removeObject(object);
+		for(PlacedObject item: placedObjects.values()) {
+			layout.getChildren().remove(item);
 		}
+		placedObjects.clear();
 	}
 	
 	/**

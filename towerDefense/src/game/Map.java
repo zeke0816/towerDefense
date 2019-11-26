@@ -6,6 +6,8 @@ import java.util.HashMap;
 import exceptions.CellTakenException;
 import exceptions.InvalidActionException;
 import game.objects.GameObject;
+import game.states.GameState;
+import game.states.Loss;
 import javafx.util.Pair;
 
 /**
@@ -40,10 +42,15 @@ public class Map {
 	}
 	
 	/**
-	 * Flushes the map
+	 * Frees all the cells of the map and removes all references to object positions
 	 */
 	public void flush(){
 		positions.clear();
+		for(int i = 0; i < lanes; i++) {
+			for(int j = 0; j < distance; j++) {
+				arena[i][j].free();
+			}
+		}
 	}
 	
 	/**
@@ -176,7 +183,9 @@ public class Map {
 		positions.put(object, new Pair<Integer, Integer>(l, d));
 		takeCell(object);
 		if(d == 0) {
-			Game.getInstance().end(); // GAME OVER
+			// LOSE
+			GameState loss = new Loss(Game.getInstance());
+			Game.getInstance().changeState(loss);
 		}
 		// System.out.println("X: "+(coordinates.getValue()-1));
 		// System.out.println("Y: "+coordinates.getKey());

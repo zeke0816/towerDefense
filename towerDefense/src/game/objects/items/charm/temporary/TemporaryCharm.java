@@ -4,7 +4,7 @@ import game.objects.GameObject;
 import game.objects.characters.enemies.Enemy;
 import game.objects.characters.warriors.Warrior;
 import game.objects.items.charm.CharmingItem;
-import visitors.Visitor;
+import visitors.GameObjectVisitor;
 
 /**
  * Temporary Item class
@@ -52,7 +52,7 @@ public abstract class TemporaryCharm extends CharmingItem {
 		return object;
 	}
 	
-	public void accept(Visitor v) {
+	public void accept(GameObjectVisitor v) {
 		v.visit(this);
 	}
 	

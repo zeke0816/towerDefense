@@ -71,7 +71,7 @@ nuke_cursor,/images/cursors/nuke.png
 cure,/images/items/cure.png
 cure_profile,/images/items/profiles/cure.png
 cure_profile_disabled,/images/items/profiles/disabled/cure.png
-cure_cursor,/cursors/cure.png
+cure_cursor,/images/cursors/cure.png
 poison,/images/items/poison.png
 poison_profile,/images/items/profiles/poison.png
 poison_profile_disabled,/images/items/profiles/disabled/poison.png

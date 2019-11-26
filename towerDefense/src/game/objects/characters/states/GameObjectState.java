@@ -7,7 +7,7 @@ import game.objects.GameObject;
  * @author zeke0816
  *
  */
-public abstract class State {
+public abstract class GameObjectState {
 	
 	protected GameObject object;
 	
@@ -15,7 +15,7 @@ public abstract class State {
 	 * Initializes the state with a given character to control.
 	 * @param c the character
 	 */
-	protected State(GameObject o) {
+	protected GameObjectState(GameObject o) {
 		object = o;
 	}
 	
