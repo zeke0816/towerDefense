@@ -5,11 +5,11 @@ public class AgentP extends Warrior {
 	public AgentP() {
 		id = "agentP";
 		name = "Agent P";
-		LIFE = 2500;
+		LIFE = 5500;
 		life = LIFE;
 		scope = 448;
 		price = 7000;
-		STRENGTH = 1000;
+		STRENGTH = 1300;
 		attackFrequency = 800;
 		strength = STRENGTH;
 		playsSound = true;

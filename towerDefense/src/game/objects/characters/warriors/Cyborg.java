@@ -5,11 +5,11 @@ public class Cyborg extends Warrior {
 	public Cyborg() {
 		id = "cyborg";
 		name = "Cyborg";
-		LIFE= 2500;
+		LIFE= 8000;
 		scope = 640;
 		life = LIFE;
 		price = 10000;
-		STRENGTH = 1000;
+		STRENGTH = 2000;
 		attackFrequency = 600;
 		strength = STRENGTH;
 		playsSound = true;
