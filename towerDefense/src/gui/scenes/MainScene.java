@@ -28,6 +28,8 @@ import media.MediaDatabase;
 import media.sounds.BackgroundPlayer;
 import visitors.GameVisitor;
 import visitors.PauseResumeGame;
+import visitors.ShowCredits;
+import visitors.ShowWelcome;
 import visitors.StartNewGame;
 
 
@@ -56,6 +58,14 @@ public class MainScene extends Scene {
 			}
 			if(key.getCode() == KeyCode.P) {
 				action = new PauseResumeGame();
+				Game.getInstance().state().accept(action);
+			}
+			if(key.getCode() == KeyCode.C) {
+				action = new ShowCredits();
+				Game.getInstance().state().accept(action);
+			}
+			if(key.getCode() == KeyCode.W) {
+				action = new ShowWelcome();
 				Game.getInstance().state().accept(action);
 			}
 			if(key.getCode() == KeyCode.I) {
@@ -112,8 +122,26 @@ public class MainScene extends Scene {
 		"CENTER - Points\n"+
 		"RIGHT - Level / Wave / Killed enemies : enemies in the current Wave\n\n"+
 		"Have fun and thank you for playing our game!\n\n"+
-		"Дмитро Школяр - 黄西结 - Vanesa Y. Mamani\n"+
-		"© 2019. All rights reserved.");
+		"Press the 'C' key to see the credits screen.");
+	}
+	
+	/**
+	 * Shows the credits screen
+	 */
+	public void credits() {
+		prepareStatus();
+		statusLabel.setText("CREDITS\n\n"+
+		"DEVELOPERS\n\n"+
+		"Дмитро Школяр\n"+
+		"黄西结\n"+
+		"Vanesa Y. Mamani\n\n"+
+		"SPECIAL THANKS TO\n\n"+
+		"Iñaki Barreix - Project Supervisor\n"+
+		"José Ignacio Ochoa (Pepe) - Project Leader\n"+
+		"Federico Virkel - Project Leader\n"+
+		"Mariano Lavopa - Project Leader\n\n"+
+		"© 2019. All rights reserved.\n\n"+
+		"Press the 'W' key to see the welcome screen and the 'N' key to start a new game.");
 	}
 	
 	/**
@@ -122,7 +150,9 @@ public class MainScene extends Scene {
 	public void victory() {
 		prepareStatus();
 		statusLabel.setText("VICTORY!\n\n"+
-		"You have won the game. Good job! Press the 'N' key to start again");
+		"You have won the game. Good job! Press the 'N' key to start again\n"+
+		"Press the 'W' key to see the welcome screen\n"+
+		"Press the 'C' key to see the credits.");
 	}
 	
 	/**
@@ -131,7 +161,9 @@ public class MainScene extends Scene {
 	public void loss() {
 		prepareStatus();
 		statusLabel.setText("DEFEAT!\n\n"+
-		"You have lost the game. Sad face :(. Press the 'N' key to start again");
+		"You have lost the game. Sad face :(. Press the 'N' key to start again"+
+		"Press the 'W' key to see the welcome screen\n"+
+		"Press the 'C' key to see the credits.");
 	}
 	
 	/**
@@ -140,7 +172,7 @@ public class MainScene extends Scene {
 	public void pause() {
 		prepareStatus();
         statusLabel.setText("PAUSED.\n\n"+
-		"You may press the 'N' key to restart the game if you wish or 'P' to resume");
+		"You may press the 'N' key to restart the game if you wish or the 'P' key to resume");
 	}
 	
 	private void prepareStatus() {

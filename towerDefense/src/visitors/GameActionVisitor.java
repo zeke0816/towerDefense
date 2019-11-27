@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import game.objects.GameObject;
 import game.objects.items.charm.temporary.TemporaryCharm;
+import game.states.Credits;
 import game.states.Loss;
 import game.states.Paused;
 import game.states.Running;
@@ -30,6 +31,7 @@ public class GameActionVisitor implements GameVisitor {
 
 	@Override
 	public void visit(Running r) {
+		MainScene.getInstance().resume();
 		ArrayList<TemporaryCharm> wornOffCharms = r.getGame().checkTemporaryCharms();
 		for(TemporaryCharm charm: wornOffCharms) {
 			GameObject object = charm.getObject();
@@ -61,6 +63,11 @@ public class GameActionVisitor implements GameVisitor {
 	@Override
 	public void visit(Welcome r) {
 		MainScene.getInstance().welcome();
+	}
+
+	@Override
+	public void visit(Credits r) {
+		MainScene.getInstance().credits();
 	}
 
 }

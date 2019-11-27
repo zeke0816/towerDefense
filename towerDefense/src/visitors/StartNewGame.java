@@ -1,6 +1,7 @@
 package visitors;
 
 import game.Game;
+import game.states.Credits;
 import game.states.Loss;
 import game.states.Paused;
 import game.states.Running;
@@ -52,6 +53,11 @@ public class StartNewGame implements GameVisitor {
 
 	@Override
 	public void visit(Welcome r) {
+		start(r.getGame());
+	}
+
+	@Override
+	public void visit(Credits r) {
 		start(r.getGame());
 	}
 	

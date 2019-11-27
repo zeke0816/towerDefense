@@ -3,6 +3,7 @@ package visitors;
 import game.states.Running;
 import game.states.Welcome;
 import game.states.Paused;
+import game.states.Credits;
 import game.states.Loss;
 import game.states.Win;
 
@@ -40,5 +41,11 @@ public interface GameVisitor {
 	 * @param r the welcome state
 	 */
 	public void visit(Welcome r);
+
+	/**
+	 * Visits the credits state
+	 * @param r the credits state
+	 */
+	public void visit(Credits r);
 
 }
