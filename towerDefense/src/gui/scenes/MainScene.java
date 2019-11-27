@@ -141,7 +141,7 @@ public class MainScene extends Scene {
 		"Federico Virkel - Project Leader\n"+
 		"Mariano Lavopa - Project Leader\n\n"+
 		"© 2019. All rights reserved.\n\n"+
-		"Press the 'W' key to see the welcome screen and the 'N' key to start a new game.");
+		"Press the 'W' key to see the welcome screen or the 'N' key to start a new game.");
 	}
 	
 	/**
