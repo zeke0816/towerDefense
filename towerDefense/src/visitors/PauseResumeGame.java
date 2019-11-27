@@ -7,6 +7,7 @@ import game.states.Paused;
 import game.states.Running;
 import game.states.Welcome;
 import game.states.Win;
+import gui.scenes.MainScene;
 
 /**
  * Class that defines what to do when the "Pause" or "Resume" command is triggered
@@ -32,6 +33,7 @@ public class PauseResumeGame implements GameVisitor {
 	public void visit(Paused r) {
 		GameState state = new Running(r.getGame());
 		r.getGame().changeState(state);
+		MainScene.getInstance().resume();
 	}
 
 	@Override

@@ -31,7 +31,6 @@ public class GameActionVisitor implements GameVisitor {
 
 	@Override
 	public void visit(Running r) {
-		MainScene.getInstance().resume();
 		ArrayList<TemporaryCharm> wornOffCharms = r.getGame().checkTemporaryCharms();
 		for(TemporaryCharm charm: wornOffCharms) {
 			GameObject object = charm.getObject();
