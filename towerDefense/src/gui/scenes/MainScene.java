@@ -136,7 +136,7 @@ public class MainScene extends Scene {
 		"黄西结\n"+
 		"Vanesa Y. Mamani\n\n"+
 		"SPECIAL THANKS TO\n\n"+
-		"Iñaki Barreix - Project Supervisor\n"+
+		"Iñaqui Barreix - Project Supervisor\n"+
 		"José Ignacio Ochoa (Pepe) - Project Leader\n"+
 		"Federico Virkel - Project Leader\n"+
 		"Mariano Lavopa - Project Leader\n\n"+

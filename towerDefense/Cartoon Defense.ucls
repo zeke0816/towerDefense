@@ -1,0 +1,1947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="visitors.BattleVisitor" project="towerDefense" 
+    file="/towerDefense/src/visitors/BattleVisitor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7715" y="1375"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="visitors.StartNewGame" project="towerDefense" 
+    file="/towerDefense/src/visitors/StartNewGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="209" width="130" x="1218" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="visitors.GameActionVisitor" project="towerDefense" 
+    file="/towerDefense/src/visitors/GameActionVisitor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="150" x="1558" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="visitors.GameVisitor" project="towerDefense" 
+    file="/towerDefense/src/visitors/GameVisitor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="130" x="1218" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="visitors.ShowWelcome" project="towerDefense" 
+    file="/towerDefense/src/visitors/ShowWelcome.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="130" x="1388" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" name="visitors.GameObjectVisitor" project="towerDefense" 
+    file="/towerDefense/src/visitors/GameObjectVisitor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7609" y="1109"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="visitors.PlacementVisitor" project="towerDefense" 
+    file="/towerDefense/src/visitors/PlacementVisitor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7500" y="1393"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="visitors.PauseResumeGame" project="towerDefense" 
+    file="/towerDefense/src/visitors/PauseResumeGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="159" x="1019" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="visitors.ShowCredits" project="towerDefense" 
+    file="/towerDefense/src/visitors/ShowCredits.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="130" x="849" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="gui.CartoonDefense" project="towerDefense" 
+    file="/towerDefense/src/gui/CartoonDefense.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="133" x="3084" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="gui.scenes.MainScene" project="towerDefense" 
+    file="/towerDefense/src/gui/scenes/MainScene.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="371" width="247" x="529" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="gui.layouts.DockLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/DockLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="163" x="2149" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="gui.layouts.MapLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/MapLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="159" x="2362" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="gui.layouts.ButtonLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/ButtonLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="171" x="2571" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="gui.layouts.PlacementLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/PlacementLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="222" x="3815" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="gui.layouts.InventoryLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/InventoryLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="287" x="3574" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="gui.layouts.BaseLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/BaseLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="163" x="2792" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="gui.layouts.StatusLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/StatusLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="209" width="170" x="1929" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="gui.layouts.MovementLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/MovementLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="317" width="265" x="3257" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="gui.layouts.StoreLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/StoreLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="287" x="3237" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="gui.layouts.RowLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/RowLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="100" x="2944" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="gui.layouts.DroppingLayout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/DroppingLayout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="202" x="3005" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="gui.layouts.Layout" project="towerDefense" 
+    file="/towerDefense/src/gui/layouts/Layout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="97" x="3257" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="gui.factories.ItemFactory" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/ItemFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="236" x="4959" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="gui.factories.EnemyFactory" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/EnemyFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="200" x="5245" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="gui.factories.prototypes.ObjectPrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/ObjectPrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="313" x="4959" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="gui.factories.prototypes.items.PoisonPrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/PoisonPrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="141" x="2547" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="gui.factories.prototypes.items.ShieldPrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/ShieldPrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="141" x="3574" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="gui.factories.prototypes.items.TankPrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/TankPrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="141" x="5916" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="gui.factories.prototypes.items.NukePrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/NukePrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="141" x="2909" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="gui.factories.prototypes.items.BarricadePrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/BarricadePrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="154" x="4481" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="gui.factories.prototypes.items.RockPrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/RockPrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="141" x="6097" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="gui.factories.prototypes.items.CurePrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/items/CurePrototype.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="141" x="2728" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="gui.factories.prototypes.characters.warriors.TophPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/warriors/TophPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="6775" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="gui.factories.prototypes.characters.warriors.AgentPPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/warriors/AgentPPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="4239" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="gui.factories.prototypes.characters.warriors.TurretPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/warriors/TurretPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="3332" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="gui.factories.prototypes.characters.warriors.BB8Prototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/characters/warriors/BB8Prototype.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="2305" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="gui.factories.prototypes.characters.warriors.GaryPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/warriors/GaryPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="3997" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="gui.factories.prototypes.characters.warriors.CyborgPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/warriors/CyborgPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="3755" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="gui.factories.prototypes.characters.warriors.TheFleaPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/warriors/TheFleaPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="202" x="3090" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="gui.factories.prototypes.characters.enemies.EustacePrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/enemies/EustacePrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="204" x="4940" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="gui.factories.prototypes.characters.enemies.AlienPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/enemies/AlienPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="204" x="5184" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="gui.factories.prototypes.characters.enemies.SkeletonPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/enemies/SkeletonPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="204" x="5672" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="gui.factories.prototypes.characters.enemies.AzulaPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/enemies/AzulaPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="204" x="7017" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="gui.factories.prototypes.characters.enemies.DoofPrototype" project="towerDefense" 
+    file="/towerDefense/src/gui/factories/prototypes/characters/enemies/DoofPrototype.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="204" x="5428" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="gui.factories.prototypes.characters.enemies.JirenPrototype" 
+    project="towerDefense" file="/towerDefense/src/gui/factories/prototypes/characters/enemies/JirenPrototype.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="204" x="6531" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="gui.controls.PlacedObject" project="towerDefense" 
+    file="/towerDefense/src/gui/controls/PlacedObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="169" x="2638" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="gui.controls.CellButton" project="towerDefense" 
+    file="/towerDefense/src/gui/controls/CellButton.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="340" x="1516" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="gui.controls.PlacedItem" project="towerDefense" 
+    file="/towerDefense/src/gui/controls/PlacedItem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="247" x="2018" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="gui.controls.ObjectButton" project="towerDefense" 
+    file="/towerDefense/src/gui/controls/ObjectButton.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="213" x="6278" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="gui.attacks.ExplosionBlast" project="towerDefense" 
+    file="/towerDefense/src/gui/attacks/ExplosionBlast.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="268" x="4328" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="gui.attacks.Attack" project="towerDefense" 
+    file="/towerDefense/src/gui/attacks/Attack.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="157" x="4207" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="gui.attacks.EnergyBlast" project="towerDefense" 
+    file="/towerDefense/src/gui/attacks/EnergyBlast.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="191" x="4087" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="media.MediaDatabase" project="towerDefense" 
+    file="/towerDefense/src/media/MediaDatabase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="173" width="561" x="1896" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="media.sounds.SoundPlayer" project="towerDefense" 
+    file="/towerDefense/src/media/sounds/SoundPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="169" x="5495" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="media.sounds.BackgroundPlayer" project="towerDefense" 
+    file="/towerDefense/src/media/sounds/BackgroundPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="198" x="5714" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="media.sounds.MusicPlayer" project="towerDefense" 
+    file="/towerDefense/src/media/sounds/MusicPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="165" x="5604" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="media.databases.ImageService" project="towerDefense" 
+    file="/towerDefense/src/media/databases/ImageService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="115" x="4646" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="media.databases.SoundService" project="towerDefense" 
+    file="/towerDefense/src/media/databases/SoundService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="118" x="4801" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="media.databases.DatabaseService" project="towerDefense" 
+    file="/towerDefense/src/media/databases/DatabaseService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="142" x="4723" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="game.Map" project="towerDefense" file="/towerDefense/src/game/Map.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4787" y="768"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="game.Wave" project="towerDefense" file="/towerDefense/src/game/Wave.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="371" width="141" x="1748" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="game.Inventory" project="towerDefense" 
+    file="/towerDefense/src/game/Inventory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7361" y="381"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="game.Cell" project="towerDefense" file="/towerDefense/src/game/Cell.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="209" width="204" x="4675" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="game.Game" project="towerDefense" file="/towerDefense/src/game/Game.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7815" y="700"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="game.Level" project="towerDefense" file="/towerDefense/src/game/Level.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="227" width="141" x="1748" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="game.states.Credits" project="towerDefense" 
+    file="/towerDefense/src/game/states/Credits.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9155" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="game.states.Win" project="towerDefense" 
+    file="/towerDefense/src/game/states/Win.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8552" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="game.states.GameState" project="towerDefense" 
+    file="/towerDefense/src/game/states/GameState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8351" y="706"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="game.states.Loss" project="towerDefense" 
+    file="/towerDefense/src/game/states/Loss.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8954" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="game.states.Welcome" project="towerDefense" 
+    file="/towerDefense/src/game/states/Welcome.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8150" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="game.states.Paused" project="towerDefense" 
+    file="/towerDefense/src/game/states/Paused.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8351" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="game.states.Running" project="towerDefense" 
+    file="/towerDefense/src/game/states/Running.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8753" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="game.objects.GameObject" project="towerDefense" 
+    file="/towerDefense/src/game/objects/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1415" width="223" x="7045" y="1611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="game.objects.items.Item" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/Item.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7981" y="1878"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="game.objects.items.killable.Tank" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/killable/Tank.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8892" y="2751"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="game.objects.items.killable.KillableItem" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/killable/KillableItem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8590" y="2394"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="game.objects.items.killable.Rock" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/killable/Rock.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8722" y="2751"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="game.objects.items.killable.Barricade" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/killable/Barricade.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8378" y="2751"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="game.objects.items.killable.Nuke" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/killable/Nuke.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8552" y="2751"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="game.objects.items.charm.CharmingItem" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/charm/CharmingItem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7995" y="2398"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="game.objects.items.charm.temporary.Shield" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/charm/temporary/Shield.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7643" y="3022"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="game.objects.items.charm.temporary.Poison" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/charm/temporary/Poison.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7878" y="3022"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="game.objects.items.charm.temporary.TemporaryCharm" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/charm/temporary/TemporaryCharm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7866" y="2800"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="game.objects.items.charm.permanent.Cure" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/charm/permanent/Cure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8113" y="3013"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="86" language="java" name="game.objects.items.charm.permanent.PermanentCharm" project="towerDefense" 
+    file="/towerDefense/src/game/objects/items/charm/permanent/PermanentCharm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8128" y="2782"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="87" language="java" name="game.objects.characters.Character" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/Character.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="140" x="7329" y="3066"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="88" language="java" name="game.objects.characters.warriors.Turret" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/Turret.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="158" x="8325" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="89" language="java" name="game.objects.characters.warriors.Gary" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/Gary.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="158" x="8721" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="90" language="java" name="game.objects.characters.warriors.TheFlea" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/TheFlea.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="158" x="8127" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="91" language="java" name="game.objects.characters.warriors.AgentP" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/AgentP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="158" x="8919" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="92" language="java" name="game.objects.characters.warriors.BB8" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/BB8.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="158" x="8523" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="93" language="java" name="game.objects.characters.warriors.Cyborg" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/Cyborg.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="158" x="7929" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="94" language="java" name="game.objects.characters.warriors.Warrior" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/warriors/Warrior.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="245" width="207" x="8325" y="3225"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="95" language="java" name="game.objects.characters.states.GameObjectState" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/states/GameObjectState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="197" x="7045" y="3066"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="96" language="java" name="game.objects.characters.states.Basic" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/states/Basic.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="149" x="7140" y="3225"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="97" language="java" name="game.objects.characters.states.Boosted" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/states/Boosted.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="149" x="6951" y="3225"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="98" language="java" name="game.objects.characters.states.Shielded" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/states/Shielded.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="149" x="6762" y="3225"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="99" language="java" name="game.objects.characters.enemies.Alien" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Alien.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="160" x="7329" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="100" language="java" name="game.objects.characters.enemies.Eustace" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Eustace.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="160" x="7129" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="101" language="java" name="game.objects.characters.enemies.Azula" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Azula.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="160" x="7729" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="102" language="java" name="game.objects.characters.enemies.Jiren" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Jiren.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="160" x="6729" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="103" language="java" name="game.objects.characters.enemies.Doof" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Doof.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="160" x="7529" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="104" language="java" name="game.objects.characters.enemies.Skeleton" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Skeleton.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="160" x="6929" y="3600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="105" language="java" name="game.objects.characters.enemies.Enemy" project="towerDefense" 
+    file="/towerDefense/src/game/objects/characters/enemies/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="207" x="7329" y="3225"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="106" language="java" name="exceptions.CellTakenException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/CellTakenException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="171" x="318" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="107" language="java" name="exceptions.DatabaseException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/DatabaseException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="170" x="2734" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="108" language="java" name="exceptions.UnavailableObjectException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/UnavailableObjectException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="216" x="62" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="109" language="java" name="exceptions.CannotAffordException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/CannotAffordException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="189" x="1079" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="110" language="java" name="exceptions.PowerUpException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/PowerUpException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="168" x="1308" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="111" language="java" name="exceptions.UnselectedObjectException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/UnselectedObjectException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="213" x="826" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="112" language="java" name="exceptions.InvalidActionException" project="towerDefense" 
+    file="/towerDefense/src/exceptions/InvalidActionException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="187" x="2507" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="113">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="114" name="cyborg"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="117" name="mediumEnemies"/>      
+      <multiplicity id="118" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="119">    
+    <end type="SOURCE" refId="94"/>    
+    <end type="TARGET" refId="87"/>  
+  </generalization>  
+  <association id="120">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="121" name="fight"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="123">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="124" name="object"/>      
+      <multiplicity id="125" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="126">    
+    <end type="SOURCE" refId="90"/>    
+    <end type="TARGET" refId="94"/>  
+  </generalization>  
+  <generalization id="127">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="128">    
+    <bendpoint x="8128" y="672"/>    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="129" name="game"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="131">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="132">    
+    <end type="SOURCE" refId="82"/>    
+    <end type="TARGET" refId="84"/>  
+  </generalization>  
+  <generalization id="133">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="134">    
+    <end type="SOURCE" refId="56"/>    
+    <end type="TARGET" refId="57"/>  
+  </generalization>  
+  <generalization id="135">    
+    <end type="SOURCE" refId="88"/>    
+    <end type="TARGET" refId="94"/>  
+  </generalization>  
+  <association id="136">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="137" name="temporaryCharms"/>      
+      <multiplicity id="138" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="139">    
+    <end type="SOURCE" refId="84"/>    
+    <end type="TARGET" refId="81"/>  
+  </generalization>  
+  <generalization id="140">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <generalization id="141">    
+    <end type="SOURCE" refId="102"/>    
+    <end type="TARGET" refId="105"/>  
+  </generalization>  
+  <association id="142">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="143" name="buyingButton"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="145">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="146">    
+    <end type="SOURCE" refId="77"/>    
+    <end type="TARGET" refId="75"/>  
+  </generalization>  
+  <generalization id="147">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="148">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="149" name="placedObjects"/>      
+      <multiplicity id="150" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="151">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="152">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="153">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="154" name="instance"/>      
+      <multiplicity id="155" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="53" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="156">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="157" name="agentP"/>      
+      <multiplicity id="158" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="159">    
+    <end type="SOURCE" refId="86"/>    
+    <end type="TARGET" refId="81"/>  
+  </generalization>  
+  <generalization id="160">    
+    <end type="SOURCE" refId="83"/>    
+    <end type="TARGET" refId="84"/>  
+  </generalization>  
+  <generalization id="161">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="162">    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="69"/>  
+  </generalization>  
+  <association id="163">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="164" name="hardEnemies"/>      
+      <multiplicity id="165" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="166">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <realization id="167">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="168">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="169">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="170" name="droppableItems"/>      
+      <multiplicity id="171" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="172">    
+    <end type="SOURCE" refId="68"/>    
+    <end type="TARGET" refId="69"/>  
+  </generalization>  
+  <generalization id="173">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="174">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="175" name="instance"/>      
+      <multiplicity id="176" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="177">    
+    <end type="SOURCE" refId="73"/>    
+    <end type="TARGET" refId="69"/>  
+  </generalization>  
+  <association id="178">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="179" name="cure"/>      
+      <multiplicity id="180" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="181">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="182" name="instance"/>      
+      <multiplicity id="183" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="184">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="185">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="186" name="flea"/>      
+      <multiplicity id="187" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="188">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="189" name="object"/>      
+      <multiplicity id="190" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <bendpoint x="4909" y="1362"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="192" name="object"/>      
+      <multiplicity id="193" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="194">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="195" name="poison"/>      
+      <multiplicity id="196" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="197">    
+    <end type="SOURCE" refId="53"/>    
+    <end type="TARGET" refId="52"/>  
+  </generalization>  
+  <association id="198">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="199" name="gary"/>      
+      <multiplicity id="200" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="201">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="202" name="instance"/>      
+      <multiplicity id="203" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="204">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="205" name="sellingButton"/>      
+      <multiplicity id="206" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="207">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="208" name="instance"/>      
+      <multiplicity id="209" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="210">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="211" name="bb8"/>      
+      <multiplicity id="212" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="213">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="214" name="instance"/>      
+      <multiplicity id="215" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="216">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="217" name="instance"/>      
+      <multiplicity id="218" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="219">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="220">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="221" name="state"/>      
+      <multiplicity id="222" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="223">    
+    <end type="SOURCE" refId="71"/>    
+    <end type="TARGET" refId="69"/>  
+  </generalization>  
+  <association id="224">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="225" name="instance"/>      
+      <multiplicity id="226" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="227">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="228" name="instance"/>      
+      <multiplicity id="229" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="230">    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="69"/>  
+  </generalization>  
+  <association id="231">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="232" name="randomItems"/>      
+      <multiplicity id="233" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="234">    
+    <end type="SOURCE" refId="76"/>    
+    <end type="TARGET" refId="77"/>  
+  </generalization>  
+  <generalization id="235">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="236">    
+    <end type="SOURCE" refId="79"/>    
+    <end type="TARGET" refId="77"/>  
+  </generalization>  
+  <association id="237">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="238" name="bb8"/>      
+      <multiplicity id="239" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="240">    
+    <end type="SOURCE" refId="100"/>    
+    <end type="TARGET" refId="105"/>  
+  </generalization>  
+  <association id="241">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="242" name="nuke"/>      
+      <multiplicity id="243" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="244">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="245">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="246">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="247" name="placingButton"/>      
+      <multiplicity id="248" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="249">    
+    <end type="SOURCE" refId="55"/>    
+    <end type="TARGET" refId="57"/>  
+  </generalization>  
+  <association id="250">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="251" name="instance"/>      
+      <multiplicity id="252" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="253">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="254" name="shield"/>      
+      <multiplicity id="255" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="256">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="257" name="instance"/>      
+      <multiplicity id="258" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="56" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="259">    
+    <bendpoint x="7064" y="3048"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="260" name="state">        
+        <position height="19" width="37" x="7024" y="3038"/>      
+      </attribute>      
+      <multiplicity id="261" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="95" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="262">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="263" name="turret"/>      
+      <multiplicity id="264" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="265">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="266">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="267" name="nuke"/>      
+      <multiplicity id="268" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="269">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="270" name="inventory"/>      
+      <multiplicity id="271" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="63" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="272">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="273" name="instance"/>      
+      <multiplicity id="274" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="275">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="276" name="instance"/>      
+      <multiplicity id="277" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="278">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="279" name="map"/>      
+      <multiplicity id="280" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="61" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="281">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="282">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="283" name="instance"/>      
+      <multiplicity id="284" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="285">    
+    <bendpoint x="3562" y="458"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="286">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="287">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="288" name="action"/>      
+      <multiplicity id="289" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="290">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="291" name="map"/>      
+      <multiplicity id="292" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="61" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="293">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="294">    
+    <end type="SOURCE" refId="59"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <association id="295">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="296" name="arena"/>      
+      <multiplicity id="297" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="298">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="299" name="shield"/>      
+      <multiplicity id="300" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="301">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="302">    
+    <end type="SOURCE" refId="97"/>    
+    <end type="TARGET" refId="95"/>  
+  </generalization>  
+  <generalization id="303">    
+    <end type="SOURCE" refId="101"/>    
+    <end type="TARGET" refId="105"/>  
+  </generalization>  
+  <realization id="304">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="305">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="306">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="307" name="instance"/>      
+      <multiplicity id="308" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="51" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="309">    
+    <end type="SOURCE" refId="91"/>    
+    <end type="TARGET" refId="94"/>  
+  </generalization>  
+  <association id="310">    
+    <bendpoint x="7193" y="3047"/>    
+    <end type="SOURCE" refId="95" navigable="false">      
+      <attribute id="311" name="object">        
+        <position height="19" width="43" x="7140" y="3036"/>      
+      </attribute>      
+      <multiplicity id="312" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="313">    
+    <bendpoint x="3583" y="458"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="314">    
+    <end type="SOURCE" refId="84" navigable="false">      
+      <attribute id="315" name="object"/>      
+      <multiplicity id="316" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="317">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="318">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="319" name="selectedObject"/>      
+      <multiplicity id="320" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="321">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="322" name="barricade"/>      
+      <multiplicity id="323" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="324">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="325">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="326" name="flea"/>      
+      <multiplicity id="327" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="328">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="329" name="cyborg"/>      
+      <multiplicity id="330" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="331">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="332" name="agentP"/>      
+      <multiplicity id="333" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="334">    
+    <end type="SOURCE" refId="103"/>    
+    <end type="TARGET" refId="105"/>  
+  </generalization>  
+  <association id="335">    
+    <bendpoint x="2521" y="969"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="336" name="droppedObjects"/>      
+      <multiplicity id="337" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="338">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="339">    
+    <end type="SOURCE" refId="92"/>    
+    <end type="TARGET" refId="94"/>  
+  </generalization>  
+  <association id="340">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="341" name="instance"/>      
+      <multiplicity id="342" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="343">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="344" name="instance"/>      
+      <multiplicity id="345" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="346">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="347">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="348" name="prototype"/>      
+      <multiplicity id="349" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="350">    
+    <end type="SOURCE" refId="75"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <generalization id="351">    
+    <end type="SOURCE" refId="81"/>    
+    <end type="TARGET" refId="75"/>  
+  </generalization>  
+  <association id="352">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="353" name="level"/>      
+      <multiplicity id="354" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="66" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="355">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="356" name="gary"/>      
+      <multiplicity id="357" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="358">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="359">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="360" name="easyEnemies"/>      
+      <multiplicity id="361" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="362">    
+    <end type="SOURCE" refId="87"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <association id="363">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="364" name="object"/>      
+      <multiplicity id="365" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="366">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="367" name="instance"/>      
+      <multiplicity id="368" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="369">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="370">    
+    <end type="SOURCE" refId="58"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <association id="371">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="372" name="poison"/>      
+      <multiplicity id="373" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="374">    
+    <end type="SOURCE" refId="93"/>    
+    <end type="TARGET" refId="94"/>  
+  </generalization>  
+  <association id="375">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="376" name="buyPlaceButton"/>      
+      <multiplicity id="377" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="378">    
+    <end type="SOURCE" refId="66" navigable="false">      
+      <attribute id="379" name="wave"/>      
+      <multiplicity id="380" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="62" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="381">    
+    <end type="SOURCE" refId="80"/>    
+    <end type="TARGET" refId="77"/>  
+  </generalization>  
+  <association id="382">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="383" name="instance"/>      
+      <multiplicity id="384" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="385">    
+    <end type="SOURCE" refId="105"/>    
+    <end type="TARGET" refId="87"/>  
+  </generalization>  
+  <generalization id="386">    
+    <end type="SOURCE" refId="96"/>    
+    <end type="TARGET" refId="95"/>  
+  </generalization>  
+  <generalization id="387">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="388">    
+    <end type="SOURCE" refId="104"/>    
+    <end type="TARGET" refId="105"/>  
+  </generalization>  
+  <generalization id="389">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="52"/>  
+  </generalization>  
+  <generalization id="390">    
+    <end type="SOURCE" refId="78"/>    
+    <end type="TARGET" refId="77"/>  
+  </generalization>  
+  <generalization id="391">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="392">    
+    <end type="SOURCE" refId="89"/>    
+    <end type="TARGET" refId="94"/>  
+  </generalization>  
+  <association id="393">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="394" name="level"/>      
+      <multiplicity id="395" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="66" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="396">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="397">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="398" name="barricade"/>      
+      <multiplicity id="399" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="400">    
+    <end type="SOURCE" refId="70"/>    
+    <end type="TARGET" refId="69"/>  
+  </generalization>  
+  <association id="401">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="402" name="turret"/>      
+      <multiplicity id="403" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="404">    
+    <end type="SOURCE" refId="98"/>    
+    <end type="TARGET" refId="95"/>  
+  </generalization>  
+  <generalization id="405">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="406">    
+    <end type="SOURCE" refId="99"/>    
+    <end type="TARGET" refId="105"/>  
+  </generalization>  
+  <association id="407">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="408" name="cure"/>      
+      <multiplicity id="409" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="410">    
+    <end type="SOURCE" refId="85"/>    
+    <end type="TARGET" refId="86"/>  
+  </generalization>  
+  <generalization id="411">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
