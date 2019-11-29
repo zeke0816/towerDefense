@@ -59,7 +59,6 @@ public class BattleVisitor implements GameObjectVisitor {
 	public void visit(KillableItem it) {
 		ArrayList<GameObject> opponents = it.fight();
 		if(!opponents.isEmpty()) {
-			System.out.println("Attacking");
 			for(int i = 0; i < opponents.size(); i++) {
 				MovementLayout.getInstance().attackObject(it, opponents.get(i));
 			}

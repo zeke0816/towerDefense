@@ -48,7 +48,6 @@ public abstract class Warrior extends Character {
 		boolean attacked = false;
 		e.attemptAttack();
 		if(e.getAttackAttempts() == e.getAttackFrequency()) {
-			System.out.println("Attacked");
 			int harm = e.getStrength() - protection;
 			if(harm < 0) {
 				harm = 0;
